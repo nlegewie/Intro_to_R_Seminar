@@ -1,0 +1,72 @@
+{
+  "chart": {
+    "title": "Share of GDP spent on education vs. share of government spending assigned to education",
+    "subtitle": "[General government](#dod:general-government)  spending on education (current, capital, and transfers) is shown as a percentage of total government spending across all sectors and as a percentage of GDP.",
+    "citation": "UNESCO Institute for Statistics (2025)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/share-edu-spending-gdp-vs-share-edu-total-spending?v=1&csvType=full&useColumnShortNames=false",
+    "selection": []
+  },
+  "columns": {
+    "Expenditure on education as share of government spending": {
+      "titleShort": "Expenditure on education as share of government spending",
+      "titleLong": "Expenditure on education as share of government spending",
+      "descriptionShort": "Percentage of total [general government](#dod:general-government) spending (across all sectors) that is allocated to education.",
+      "descriptionKey": [
+        "This indicator shows how much of a government’s overall budget is allocated to education. It reflects the priority given to education relative to other sectors such as health, infrastructure, defence, or social protection.",
+        "It is calculated by dividing total government expenditure on education (across all education levels) by total general government expenditure, and expressing the result as a percentage. The spending figures include budgets from central, regional, and local authorities, where available.",
+        "A higher percentage suggests that education is a higher fiscal priority within national budgets. Lower values may reflect limited resources, competing demands from other sectors, or different demographic and policy contexts.",
+        "While this indicator enables useful cross-country comparisons, results should be interpreted with caution. National budget structures, spending classifications, and demographic differences can all affect the comparability of figures. For example, countries with younger populations may naturally devote more resources to education, while ageing populations may drive higher spending on healthcare or pensions."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1980-2025",
+      "type": "Numeric",
+      "owidVariableId": 1029593,
+      "shortName": "expenditure_on_education_as_a_percentage_of_total_government_expenditure__pct__xgovexp_imf",
+      "lastUpdated": "2025-05-01",
+      "nextUpdate": "2026-05-01",
+      "citationShort": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data. “Expenditure on education as share of government spending” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1029593.metadata.json"
+    },
+    "Government spending on education as share of GDP": {
+      "titleShort": "Government spending on education as share of GDP",
+      "titleLong": "Government spending on education as share of GDP",
+      "descriptionShort": "Total annual [general government](#dod:general-government) spending on all levels of education, expressed as a percentage of [GDP](#dod:gdp).",
+      "descriptionKey": [
+        "This indicator shows the share of a country’s total economic output (GDP) that is spent on education annually. It reflects the scale of education spending relative to the size of the economy.",
+        "It includes all government spending at the relevant education level — from central, regional, and local authorities — and covers both current and capital expenditures.",
+        "It covers all types of public education spending — including teacher salaries, textbooks, school maintenance, capital projects such as building classrooms, and even external funding from international donors that is channeled through government budgets.",
+        "A higher percentage means a larger share of national resources is allocated to education, which may indicate political commitment or policy prioritization. But it doesn’t necessarily mean higher spending per student or better outcomes. Countries with lower GDPs might have high percentages but limited resources in absolute terms.",
+        "This indicator is useful for understanding how education fits within the broader picture of government spending and national development. It should be interpreted alongside measures like per-student spending and enrollment rates."
+      ],
+      "shortUnit": "%",
+      "unit": "% of GDP",
+      "timespan": "1970-2024",
+      "type": "Numeric",
+      "owidVariableId": 1029604,
+      "shortName": "government_expenditure_on_education_as_a_percentage_of_gdp__pct__xgdp_fsgov",
+      "lastUpdated": "2025-05-01",
+      "nextUpdate": "2026-05-01",
+      "citationShort": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data. “Government spending on education as share of GDP” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1029604.metadata.json"
+    },
+    "World region according to OWID": {
+      "titleShort": "World region according to OWID",
+      "titleLong": "World region according to OWID",
+      "descriptionShort": "Regions defined by Our World in Data, which are used in OWID charts and maps.",
+      "unit": "",
+      "timespan": "2023-2023",
+      "type": "Continent",
+      "owidVariableId": 900801,
+      "shortName": "owid_region",
+      "lastUpdated": "2023-01-01",
+      "citationShort": "Our World in Data – processed by Our World in Data",
+      "citationLong": "Our World in Data – processed by Our World in Data. “World region according to OWID” [dataset]. Our World in Data, “Regions” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/900801.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-04-11",
+  "activeFilters": {}
+}

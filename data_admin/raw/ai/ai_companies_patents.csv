@@ -1,0 +1,1611 @@
+country,field,num_patent_applications,num_patent_granted
+Argentina,All,43,17
+Argentina,Machine_Learning,33,14
+Austria,Measuring_and_Testing,23,18
+Austria,Control,40,32
+Austria,Energy_Management,22,16
+Austria,Machine_Learning,71,54
+Austria,All,83,61
+Australia,Security__eg_cybersecurity,355,254
+Australia,Knowledge_Representation,186,128
+Australia,Control,477,361
+Australia,Energy_Management,155,125
+Australia,Industrial_and_Manufacturing,258,186
+Australia,Banking_and_Finance,244,161
+Australia,Life_Sciences,1481,843
+Australia,Speech_Processing,124,91
+Australia,Machine_Learning,3268,2234
+Australia,All,4300,2927
+Australia,Planning_and_Scheduling,430,272
+Australia,Analytics_and_Algorithms,712,413
+Australia,Physical_Sciences_and_Engineering,284,199
+Australia,Business,591,380
+Australia,Ontology_Engineering,83,68
+Australia,Logic_Programming,356,252
+Australia,Telecommunications,744,540
+Australia,Transportation,242,195
+Australia,Computer_Vision,1037,731
+Australia,Personal_Devices_and_Computing,1578,1187
+Australia,Measuring_and_Testing,671,472
+Australia,Probabilistic_Reasoning,269,191
+Australia,Generic_and_Unspecified,889,563
+Belgium,All,32,25
+Bulgaria,All,33,29
+Brazil,Control,155,118
+Brazil,Energy_Management,30,18
+Brazil,Physical_Sciences_and_Engineering,85,50
+Brazil,Security__eg_cybersecurity,35,22
+Brazil,Knowledge_Representation,36,20
+Brazil,Computer_Vision,214,154
+Brazil,Measuring_and_Testing,211,148
+Brazil,Speech_Processing,29,17
+Brazil,Business,111,65
+Brazil,Generic_and_Unspecified,191,104
+Brazil,Transportation,108,92
+Brazil,Life_Sciences,260,151
+Brazil,Analytics_and_Algorithms,126,74
+Brazil,Banking_and_Finance,34,22
+Brazil,Machine_Learning,654,421
+Brazil,Personal_Devices_and_Computing,296,201
+Brazil,Logic_Programming,87,50
+Brazil,Planning_and_Scheduling,91,56
+Brazil,Telecommunications,153,89
+Brazil,All,875,535
+Brazil,Industrial_and_Manufacturing,69,44
+Brazil,Probabilistic_Reasoning,55,36
+Canada,Security__eg_cybersecurity,282,156
+Canada,Physical_Sciences_and_Engineering,349,200
+Canada,Life_Sciences,1470,713
+Canada,Probabilistic_Reasoning,307,179
+Canada,Speech_Processing,121,59
+Canada,Ontology_Engineering,89,50
+Canada,Telecommunications,741,459
+Canada,Personal_Devices_and_Computing,1689,1060
+Canada,Analytics_and_Algorithms,733,381
+Canada,Generic_and_Unspecified,940,449
+Canada,Measuring_and_Testing,710,434
+Canada,Machine_Learning,3278,1770
+Canada,Control,487,331
+Canada,Industrial_and_Manufacturing,282,171
+Canada,All,4339,2290
+Canada,Computer_Vision,983,628
+Canada,Knowledge_Representation,228,126
+Canada,Transportation,317,240
+Canada,Banking_and_Finance,279,143
+Canada,Energy_Management,134,79
+Canada,Logic_Programming,481,295
+Canada,Business,708,342
+Canada,Planning_and_Scheduling,518,257
+Switzerland,All,37,12
+China (mainland),Probabilistic_Reasoning,24983,11412
+China (mainland),Physical_Sciences_and_Engineering,12590,5634
+China (mainland),Energy_Management,25754,9913
+China (mainland),Banking_and_Finance,10584,2854
+China (mainland),Speech_Processing,13039,5768
+China (mainland),Knowledge_Representation,6238,2354
+China (mainland),Computer_Vision,75342,35505
+China (mainland),Life_Sciences,29304,11835
+China (mainland),Planning_and_Scheduling,39033,14234
+China (mainland),Transportation,30513,15535
+China (mainland),Machine_Learning,346176,149225
+China (mainland),Control,15871,8521
+China (mainland),Security__eg_cybersecurity,14281,5551
+China (mainland),Measuring_and_Testing,31623,14496
+China (mainland),Analytics_and_Algorithms,31352,13460
+China (mainland),Ontology_Engineering,28205,11870
+China (mainland),Generic_and_Unspecified,83706,39280
+China (mainland),Industrial_and_Manufacturing,25701,11773
+China (mainland),All,440526,188268
+China (mainland),Business,48562,17311
+China (mainland),Telecommunications,36149,18049
+China (mainland),Personal_Devices_and_Computing,203751,91858
+China (mainland),Logic_Programming,12851,5154
+Germany,Banking_and_Finance,145,76
+Germany,Telecommunications,642,346
+Germany,Security__eg_cybersecurity,184,98
+Germany,Measuring_and_Testing,1030,502
+Germany,Knowledge_Representation,127,68
+Germany,Ontology_Engineering,84,36
+Germany,Life_Sciences,568,311
+Germany,Physical_Sciences_and_Engineering,210,88
+Germany,Energy_Management,318,97
+Germany,Probabilistic_Reasoning,209,112
+Germany,Planning_and_Scheduling,234,119
+Germany,Transportation,1272,750
+Germany,Analytics_and_Algorithms,663,268
+Germany,Generic_and_Unspecified,884,415
+Germany,Personal_Devices_and_Computing,1533,716
+Germany,Speech_Processing,113,60
+Germany,Computer_Vision,1019,577
+Germany,Control,1544,853
+Germany,Machine_Learning,4206,1848
+Germany,Logic_Programming,258,150
+Germany,Industrial_and_Manufacturing,461,248
+Germany,Business,259,131
+Germany,All,5111,2295
+Denmark,Computer_Vision,34,32
+Denmark,Measuring_and_Testing,27,25
+Denmark,Analytics_and_Algorithms,32,29
+Denmark,Generic_and_Unspecified,31,29
+Denmark,Life_Sciences,52,46
+Denmark,Machine_Learning,103,94
+Denmark,All,137,124
+Denmark,Telecommunications,41,39
+Denmark,Control,33,32
+Denmark,Personal_Devices_and_Computing,40,39
+Denmark,Transportation,21,21
+Spain,Logic_Programming,40,35
+Spain,Telecommunications,89,82
+Spain,Life_Sciences,134,121
+Spain,Generic_and_Unspecified,118,92
+Spain,Probabilistic_Reasoning,41,37
+Spain,Analytics_and_Algorithms,83,80
+Spain,Industrial_and_Manufacturing,56,45
+Spain,Business,33,23
+Spain,Physical_Sciences_and_Engineering,35,28
+Spain,Control,95,86
+Spain,Security__eg_cybersecurity,24,20
+Spain,Machine_Learning,342,308
+Spain,Computer_Vision,118,107
+Spain,Personal_Devices_and_Computing,147,130
+Spain,Energy_Management,30,21
+Spain,All,480,416
+Spain,Measuring_and_Testing,85,76
+Finland,All,215,111
+Finland,Logic_Programming,22,8
+Finland,Telecommunications,89,49
+Finland,Measuring_and_Testing,38,21
+Finland,Generic_and_Unspecified,49,22
+Finland,Control,32,19
+Finland,Planning_and_Scheduling,21,7
+Finland,Personal_Devices_and_Computing,84,43
+Finland,Analytics_and_Algorithms,61,41
+Finland,Life_Sciences,42,26
+Finland,Computer_Vision,45,22
+Finland,Machine_Learning,157,86
+Finland,Industrial_and_Manufacturing,27,11
+France,Business,81,48
+France,Computer_Vision,263,193
+France,Energy_Management,66,46
+France,Machine_Learning,941,604
+France,Speech_Processing,22,10
+France,Planning_and_Scheduling,58,36
+France,Personal_Devices_and_Computing,431,302
+France,Probabilistic_Reasoning,72,52
+France,Knowledge_Representation,29,19
+France,Physical_Sciences_and_Engineering,50,36
+France,Life_Sciences,188,117
+France,Logic_Programming,64,42
+France,Security__eg_cybersecurity,86,62
+France,All,1356,851
+France,Control,221,146
+France,Analytics_and_Algorithms,174,97
+France,Generic_and_Unspecified,416,254
+France,Measuring_and_Testing,224,153
+France,Transportation,230,155
+France,Telecommunications,215,139
+United Kingdom,Business,278,127
+United Kingdom,Measuring_and_Testing,422,223
+United Kingdom,Control,353,206
+United Kingdom,Personal_Devices_and_Computing,1067,618
+United Kingdom,Security__eg_cybersecurity,193,101
+United Kingdom,Transportation,305,160
+United Kingdom,Generic_and_Unspecified,416,185
+United Kingdom,Planning_and_Scheduling,211,100
+United Kingdom,Industrial_and_Manufacturing,136,78
+United Kingdom,Machine_Learning,2575,1153
+United Kingdom,Computer_Vision,726,404
+United Kingdom,Analytics_and_Algorithms,398,148
+United Kingdom,Physical_Sciences_and_Engineering,190,117
+United Kingdom,Energy_Management,85,46
+United Kingdom,Banking_and_Finance,107,53
+United Kingdom,Speech_Processing,137,80
+United Kingdom,All,3048,1354
+United Kingdom,Life_Sciences,497,201
+United Kingdom,Ontology_Engineering,77,30
+United Kingdom,Logic_Programming,200,115
+United Kingdom,Telecommunications,621,297
+United Kingdom,Knowledge_Representation,115,61
+United Kingdom,Probabilistic_Reasoning,237,132
+Greece,Machine_Learning,50,42
+Greece,Personal_Devices_and_Computing,30,24
+Greece,All,60,47
+Hungary,Machine_Learning,30,23
+Hungary,All,39,31
+Israel,Telecommunications,52,32
+Israel,Life_Sciences,29,5
+Israel,Computer_Vision,42,22
+Israel,Transportation,21,10
+Israel,All,154,65
+Israel,Analytics_and_Algorithms,31,11
+Israel,Machine_Learning,119,49
+Israel,Personal_Devices_and_Computing,75,43
+Israel,Generic_and_Unspecified,32,15
+Israel,Control,22,12
+India,Business,194,105
+India,Control,83,75
+India,Computer_Vision,231,195
+India,Machine_Learning,546,413
+India,Transportation,37,29
+India,Telecommunications,147,111
+India,Probabilistic_Reasoning,109,81
+India,Banking_and_Finance,35,19
+India,All,877,613
+India,Planning_and_Scheduling,140,75
+India,Knowledge_Representation,142,104
+India,Ontology_Engineering,61,45
+India,Logic_Programming,240,172
+India,Industrial_and_Manufacturing,29,21
+India,Generic_and_Unspecified,158,97
+India,Measuring_and_Testing,52,43
+India,Analytics_and_Algorithms,89,70
+India,Life_Sciences,123,87
+India,Personal_Devices_and_Computing,510,399
+India,Security__eg_cybersecurity,46,37
+Italy,Computer_Vision,77,24
+Italy,All,360,114
+Italy,Security__eg_cybersecurity,26,5
+Italy,Life_Sciences,91,29
+Italy,Transportation,43,24
+Italy,Industrial_and_Manufacturing,33,16
+Italy,Machine_Learning,289,96
+Italy,Generic_and_Unspecified,68,17
+Italy,Personal_Devices_and_Computing,84,33
+Italy,Analytics_and_Algorithms,71,32
+Italy,Measuring_and_Testing,67,31
+Japan,Computer_Vision,4970,3479
+Japan,Personal_Devices_and_Computing,6617,5135
+Japan,All,22622,15071
+Japan,Physical_Sciences_and_Engineering,749,550
+Japan,Generic_and_Unspecified,4146,2807
+Japan,Logic_Programming,1825,1429
+Japan,Banking_and_Finance,474,363
+Japan,Energy_Management,762,600
+Japan,Planning_and_Scheduling,1133,811
+Japan,Security__eg_cybersecurity,628,482
+Japan,Transportation,2176,1810
+Japan,Measuring_and_Testing,2490,1758
+Japan,Business,1591,1132
+Japan,Speech_Processing,812,600
+Japan,Life_Sciences,3723,2255
+Japan,Control,3481,2895
+Japan,Telecommunications,2554,1855
+Japan,Ontology_Engineering,171,114
+Japan,Knowledge_Representation,735,571
+Japan,Analytics_and_Algorithms,1964,1339
+Japan,Machine_Learning,18095,11984
+Japan,Industrial_and_Manufacturing,1658,1220
+Japan,Probabilistic_Reasoning,1182,891
+South Korea,Life_Sciences,6011,3734
+South Korea,Physical_Sciences_and_Engineering,1631,1066
+South Korea,Energy_Management,2022,1327
+South Korea,Planning_and_Scheduling,2682,1504
+South Korea,Business,6682,3601
+South Korea,Ontology_Engineering,507,299
+South Korea,Probabilistic_Reasoning,1251,898
+South Korea,Security__eg_cybersecurity,2426,1537
+South Korea,Computer_Vision,8415,5532
+South Korea,Banking_and_Finance,1261,758
+South Korea,Transportation,2687,1785
+South Korea,Telecommunications,6874,4168
+South Korea,Industrial_and_Manufacturing,2441,1568
+South Korea,Generic_and_Unspecified,10102,6482
+South Korea,Personal_Devices_and_Computing,11278,7272
+South Korea,Measuring_and_Testing,4234,2767
+South Korea,Speech_Processing,2369,1503
+South Korea,Knowledge_Representation,834,520
+South Korea,Analytics_and_Algorithms,2753,1775
+South Korea,Control,3124,2177
+South Korea,Machine_Learning,28535,18447
+South Korea,Logic_Programming,1829,1136
+South Korea,All,38919,24918
+Lithuania,All,30,27
+Luxembourg,Measuring_and_Testing,37,36
+Luxembourg,Computer_Vision,23,23
+Luxembourg,Life_Sciences,17,17
+Luxembourg,Planning_and_Scheduling,26,26
+Luxembourg,Personal_Devices_and_Computing,61,59
+Luxembourg,All,175,170
+Luxembourg,Generic_and_Unspecified,32,32
+Luxembourg,Control,19,17
+Luxembourg,Machine_Learning,132,127
+Morocco,All,29,16
+Mexico,Energy_Management,21,15
+Mexico,Security__eg_cybersecurity,31,16
+Mexico,Transportation,90,79
+Mexico,Planning_and_Scheduling,75,49
+Mexico,Physical_Sciences_and_Engineering,70,39
+Mexico,Telecommunications,123,74
+Mexico,Business,103,60
+Mexico,Measuring_and_Testing,146,95
+Mexico,All,678,365
+Mexico,Personal_Devices_and_Computing,186,138
+Mexico,Industrial_and_Manufacturing,83,49
+Mexico,Analytics_and_Algorithms,87,44
+Mexico,Machine_Learning,486,276
+Mexico,Control,124,97
+Mexico,Computer_Vision,134,91
+Mexico,Logic_Programming,48,31
+Mexico,Generic_and_Unspecified,174,76
+Mexico,Probabilistic_Reasoning,41,29
+Mexico,Life_Sciences,194,95
+Malaysia,All,74,65
+Malaysia,Computer_Vision,17,14
+Malaysia,Machine_Learning,46,42
+Netherlands,Computer_Vision,43,43
+Netherlands,Machine_Learning,144,140
+Netherlands,Analytics_and_Algorithms,27,26
+Netherlands,Measuring_and_Testing,27,25
+Netherlands,Life_Sciences,39,38
+Netherlands,All,164,160
+Netherlands,Personal_Devices_and_Computing,42,41
+Norway,Machine_Learning,27,15
+Norway,All,34,21
+New Zealand,Machine_Learning,39,32
+New Zealand,All,63,51
+New Zealand,Personal_Devices_and_Computing,23,20
+New Zealand,Generic_and_Unspecified,21,16
+New Zealand,Life_Sciences,32,29
+New Zealand,Computer_Vision,17,16
+Peru,All,31,16
+Peru,Machine_Learning,19,12
+Philippines,All,19,7
+Poland,Life_Sciences,33,25
+Poland,Machine_Learning,92,66
+Poland,Computer_Vision,26,22
+Poland,Telecommunications,22,20
+Poland,Personal_Devices_and_Computing,41,33
+Poland,Generic_and_Unspecified,29,25
+Poland,All,124,93
+Portugal,All,50,37
+Portugal,Life_Sciences,17,12
+Portugal,Machine_Learning,32,25
+Romania,Machine_Learning,36,6
+Serbia,All,27,5
+Serbia,Machine_Learning,22,4
+Russia,All,1124,1062
+Russia,Personal_Devices_and_Computing,494,473
+Russia,Logic_Programming,130,120
+Russia,Control,124,120
+Russia,Business,89,79
+Russia,Transportation,99,98
+Russia,Banking_and_Finance,30,26
+Russia,Industrial_and_Manufacturing,33,32
+Russia,Measuring_and_Testing,171,167
+Russia,Physical_Sciences_and_Engineering,61,56
+Russia,Security__eg_cybersecurity,95,90
+Russia,Probabilistic_Reasoning,139,137
+Russia,Generic_and_Unspecified,180,166
+Russia,Ontology_Engineering,23,22
+Russia,Planning_and_Scheduling,54,49
+Russia,Machine_Learning,810,769
+Russia,Computer_Vision,183,178
+Russia,Life_Sciences,160,153
+Russia,Knowledge_Representation,49,44
+Russia,Speech_Processing,36,31
+Russia,Telecommunications,165,158
+Sweden,All,140,76
+Sweden,Generic_and_Unspecified,24,12
+Sweden,Measuring_and_Testing,30,21
+Sweden,Life_Sciences,27,13
+Sweden,Personal_Devices_and_Computing,52,26
+Sweden,Transportation,29,18
+Sweden,Computer_Vision,26,9
+Sweden,Machine_Learning,115,65
+Sweden,Telecommunications,38,24
+Sweden,Control,42,29
+Singapore,Banking_and_Finance,70,53
+Singapore,Machine_Learning,455,302
+Singapore,Control,60,48
+Singapore,Security__eg_cybersecurity,62,48
+Singapore,Planning_and_Scheduling,74,53
+Singapore,Personal_Devices_and_Computing,314,229
+Singapore,Business,111,72
+Singapore,Telecommunications,122,105
+Singapore,Knowledge_Representation,56,36
+Singapore,Physical_Sciences_and_Engineering,35,25
+Singapore,Generic_and_Unspecified,151,104
+Singapore,Industrial_and_Manufacturing,24,17
+Singapore,Analytics_and_Algorithms,72,49
+Singapore,All,642,426
+Singapore,Logic_Programming,100,67
+Singapore,Measuring_and_Testing,85,66
+Singapore,Transportation,43,34
+Singapore,Life_Sciences,175,112
+Singapore,Computer_Vision,163,121
+Turkey,Generic_and_Unspecified,73,3
+Turkey,All,175,14
+Turkey,Machine_Learning,102,10
+Turkey,Telecommunications,35,6
+Turkey,Life_Sciences,35,1
+Turkey,Business,26,3
+Turkey,Measuring_and_Testing,21,0
+Turkey,Personal_Devices_and_Computing,43,7
+Taiwan,Industrial_and_Manufacturing,124,104
+Taiwan,Measuring_and_Testing,195,155
+Taiwan,Business,118,96
+Taiwan,Planning_and_Scheduling,81,67
+Taiwan,Personal_Devices_and_Computing,681,587
+Taiwan,Life_Sciences,379,286
+Taiwan,Physical_Sciences_and_Engineering,50,30
+Taiwan,Ontology_Engineering,45,36
+Taiwan,Knowledge_Representation,57,50
+Taiwan,Generic_and_Unspecified,718,576
+Taiwan,Logic_Programming,145,122
+Taiwan,Transportation,45,39
+Taiwan,Control,156,130
+Taiwan,Computer_Vision,494,426
+Taiwan,Machine_Learning,2098,1736
+Taiwan,Telecommunications,261,222
+Taiwan,All,2887,2376
+Taiwan,Energy_Management,57,44
+Taiwan,Probabilistic_Reasoning,136,124
+Taiwan,Analytics_and_Algorithms,222,176
+Ukraine,Machine_Learning,45,44
+Ukraine,All,55,54
+United States,Industrial_and_Manufacturing,2791,1989
+United States,Physical_Sciences_and_Engineering,2171,1506
+United States,Knowledge_Representation,6836,5320
+United States,Measuring_and_Testing,8034,6056
+United States,Banking_and_Finance,3756,2818
+United States,Planning_and_Scheduling,6836,4838
+United States,Control,9912,8010
+United States,Personal_Devices_and_Computing,41042,33068
+United States,Life_Sciences,11261,6861
+United States,Probabilistic_Reasoning,6204,4765
+United States,Computer_Vision,17253,13535
+United States,Ontology_Engineering,2380,1883
+United States,Machine_Learning,59230,44775
+United States,Business,10909,7752
+United States,Security__eg_cybersecurity,5431,4418
+United States,Energy_Management,1511,1125
+United States,Speech_Processing,4193,3380
+United States,Generic_and_Unspecified,12406,8808
+United States,All,78339,58746
+United States,Analytics_and_Algorithms,8403,5778
+United States,Transportation,7765,6368
+United States,Telecommunications,18718,14879
+United States,Logic_Programming,13489,10664
+South Africa,Machine_Learning,106,103
+South Africa,Generic_and_Unspecified,55,52
+South Africa,All,164,156
+Argentina,Ontology_Engineering,0,0
+Austria,Ontology_Engineering,0,0
+Austria,Speech_Processing,0,0
+Azerbaijan,Ontology_Engineering,0,0
+Azerbaijan,Computer_Vision,0,0
+Azerbaijan,Life_Sciences,0,0
+Azerbaijan,Transportation,0,0
+Azerbaijan,Industrial_and_Manufacturing,0,0
+Azerbaijan,Knowledge_Representation,0,0
+Azerbaijan,Telecommunications,0,0
+Azerbaijan,Security__eg_cybersecurity,0,0
+Azerbaijan,Measuring_and_Testing,0,0
+Azerbaijan,Analytics_and_Algorithms,0,0
+Azerbaijan,Banking_and_Finance,0,0
+Azerbaijan,Planning_and_Scheduling,0,0
+Azerbaijan,Business,0,0
+Azerbaijan,Machine_Learning,0,0
+Azerbaijan,Logic_Programming,0,0
+Azerbaijan,Energy_Management,0,0
+Azerbaijan,Physical_Sciences_and_Engineering,0,0
+Azerbaijan,Probabilistic_Reasoning,0,0
+Azerbaijan,Control,0,0
+Azerbaijan,Speech_Processing,0,0
+Belgium,Banking_and_Finance,0,0
+Belgium,Knowledge_Representation,0,0
+Belgium,Probabilistic_Reasoning,0,0
+Belgium,Logic_Programming,0,0
+Belgium,Ontology_Engineering,0,0
+Bulgaria,Transportation,0,0
+Bulgaria,Industrial_and_Manufacturing,0,0
+Bulgaria,Business,0,0
+Bulgaria,Telecommunications,0,0
+Bulgaria,Energy_Management,0,0
+Bulgaria,Speech_Processing,0,0
+Bulgaria,Personal_Devices_and_Computing,0,0
+Bulgaria,Analytics_and_Algorithms,0,0
+Bulgaria,Computer_Vision,0,0
+Bulgaria,Logic_Programming,0,0
+Bulgaria,Measuring_and_Testing,0,0
+Bulgaria,Planning_and_Scheduling,0,0
+Bulgaria,Ontology_Engineering,0,0
+Bulgaria,Physical_Sciences_and_Engineering,0,0
+Bulgaria,Life_Sciences,0,0
+Bulgaria,Knowledge_Representation,0,0
+Bulgaria,Control,0,0
+Bulgaria,Banking_and_Finance,0,0
+Bulgaria,Security__eg_cybersecurity,0,0
+Bulgaria,Probabilistic_Reasoning,0,0
+Brunei Darussalam,Business,0,0
+Brunei Darussalam,Ontology_Engineering,0,0
+Brunei Darussalam,Speech_Processing,0,0
+Brunei Darussalam,Physical_Sciences_and_Engineering,0,0
+Brunei Darussalam,Personal_Devices_and_Computing,0,0
+Brunei Darussalam,Transportation,0,0
+Brunei Darussalam,Telecommunications,0,0
+Brunei Darussalam,Industrial_and_Manufacturing,0,0
+Brunei Darussalam,Generic_and_Unspecified,0,0
+Brunei Darussalam,Knowledge_Representation,0,0
+Brunei Darussalam,Logic_Programming,0,0
+Brunei Darussalam,Control,0,0
+Brunei Darussalam,Security__eg_cybersecurity,0,0
+Brunei Darussalam,Banking_and_Finance,0,0
+Brunei Darussalam,Probabilistic_Reasoning,0,0
+Brunei Darussalam,Computer_Vision,0,0
+Brunei Darussalam,Energy_Management,0,0
+Brunei Darussalam,Measuring_and_Testing,0,0
+Brunei Darussalam,Planning_and_Scheduling,0,0
+Chile,Knowledge_Representation,0,0
+Chile,Planning_and_Scheduling,0,0
+Chile,Speech_Processing,0,0
+Chile,Business,0,0
+Chile,Ontology_Engineering,0,0
+Chile,Energy_Management,0,0
+Chile,Banking_and_Finance,0,0
+Chile,Probabilistic_Reasoning,0,0
+Colombia,Ontology_Engineering,0,0
+Colombia,Speech_Processing,0,0
+Colombia,Logic_Programming,0,0
+Colombia,Knowledge_Representation,0,0
+Colombia,Transportation,0,0
+Colombia,Energy_Management,0,0
+Costa Rica,Speech_Processing,0,0
+Costa Rica,Telecommunications,0,0
+Costa Rica,Energy_Management,0,0
+Costa Rica,Measuring_and_Testing,0,0
+Costa Rica,Control,0,0
+Costa Rica,Knowledge_Representation,0,0
+Costa Rica,Analytics_and_Algorithms,0,0
+Costa Rica,Transportation,0,0
+Costa Rica,Probabilistic_Reasoning,0,0
+Costa Rica,Business,0,0
+Costa Rica,Ontology_Engineering,0,0
+Costa Rica,Security__eg_cybersecurity,0,0
+Costa Rica,Banking_and_Finance,0,0
+Costa Rica,Computer_Vision,0,0
+Costa Rica,Physical_Sciences_and_Engineering,0,0
+Costa Rica,Personal_Devices_and_Computing,0,0
+Costa Rica,Logic_Programming,0,0
+Costa Rica,Planning_and_Scheduling,0,0
+Cuba,Planning_and_Scheduling,0,0
+Cuba,Logic_Programming,0,0
+Cuba,Speech_Processing,0,0
+Cuba,Security__eg_cybersecurity,0,0
+Cuba,Measuring_and_Testing,0,0
+Cuba,Business,0,0
+Cuba,Analytics_and_Algorithms,0,0
+Cuba,Transportation,0,0
+Cuba,Computer_Vision,0,0
+Cuba,Life_Sciences,0,0
+Cuba,Knowledge_Representation,0,0
+Cuba,Ontology_Engineering,0,0
+Cuba,Personal_Devices_and_Computing,0,0
+Cuba,Banking_and_Finance,0,0
+Cuba,Machine_Learning,0,0
+Cuba,Probabilistic_Reasoning,0,0
+Czechia,Security__eg_cybersecurity,0,0
+Czechia,Speech_Processing,0,0
+Czechia,Probabilistic_Reasoning,0,0
+Czechia,Banking_and_Finance,0,0
+Czechia,Ontology_Engineering,0,0
+Czechia,Knowledge_Representation,0,0
+Czechia,Computer_Vision,0,0
+Czechia,Planning_and_Scheduling,0,0
+Czechia,Physical_Sciences_and_Engineering,0,0
+Czechia,Energy_Management,0,0
+Denmark,Ontology_Engineering,0,0
+Estonia,Business,0,0
+Estonia,Banking_and_Finance,0,0
+Estonia,Analytics_and_Algorithms,0,0
+Estonia,Energy_Management,0,0
+Estonia,Speech_Processing,0,0
+Estonia,Ontology_Engineering,0,0
+Estonia,Industrial_and_Manufacturing,0,0
+Estonia,Probabilistic_Reasoning,0,0
+Estonia,Logic_Programming,0,0
+Estonia,Telecommunications,0,0
+Estonia,Measuring_and_Testing,0,0
+Estonia,Generic_and_Unspecified,0,0
+Estonia,Control,0,0
+Estonia,Life_Sciences,0,0
+Estonia,Computer_Vision,0,0
+Estonia,Planning_and_Scheduling,0,0
+Estonia,Security__eg_cybersecurity,0,0
+Estonia,Physical_Sciences_and_Engineering,0,0
+Estonia,Knowledge_Representation,0,0
+Estonia,Personal_Devices_and_Computing,0,0
+Estonia,Transportation,0,0
+Greece,Banking_and_Finance,0,0
+Greece,Knowledge_Representation,0,0
+Hong Kong,Knowledge_Representation,0,0
+Hong Kong,Industrial_and_Manufacturing,0,0
+Hong Kong,Speech_Processing,0,0
+Hong Kong,Ontology_Engineering,0,0
+Hong Kong,Logic_Programming,0,0
+Croatia,Knowledge_Representation,0,0
+Croatia,Speech_Processing,0,0
+Croatia,Business,0,0
+Croatia,Logic_Programming,0,0
+Croatia,Probabilistic_Reasoning,0,0
+Croatia,Energy_Management,0,0
+Croatia,Banking_and_Finance,0,0
+Croatia,Industrial_and_Manufacturing,0,0
+Croatia,Analytics_and_Algorithms,0,0
+Croatia,Transportation,0,0
+Croatia,Security__eg_cybersecurity,0,0
+Croatia,Planning_and_Scheduling,0,0
+Hungary,Ontology_Engineering,0,0
+Hungary,Knowledge_Representation,0,0
+Indonesia,Physical_Sciences_and_Engineering,0,0
+Indonesia,Knowledge_Representation,0,0
+Indonesia,Energy_Management,0,0
+Indonesia,Industrial_and_Manufacturing,0,0
+Indonesia,Control,0,0
+Indonesia,Analytics_and_Algorithms,0,0
+Indonesia,Measuring_and_Testing,0,0
+Indonesia,Planning_and_Scheduling,0,0
+Indonesia,Transportation,0,0
+Indonesia,Generic_and_Unspecified,0,0
+Indonesia,Ontology_Engineering,0,0
+Indonesia,Probabilistic_Reasoning,0,0
+Indonesia,Speech_Processing,0,0
+Indonesia,Computer_Vision,0,0
+Indonesia,Security__eg_cybersecurity,0,0
+Ireland,Industrial_and_Manufacturing,0,0
+Ireland,Energy_Management,0,0
+Ireland,Security__eg_cybersecurity,0,0
+Ireland,Logic_Programming,0,0
+Ireland,Measuring_and_Testing,0,0
+Ireland,Transportation,0,0
+Ireland,Control,0,0
+Ireland,Speech_Processing,0,0
+Ireland,Knowledge_Representation,0,0
+Ireland,Ontology_Engineering,0,0
+Ireland,Telecommunications,0,0
+Ireland,Analytics_and_Algorithms,0,0
+Ireland,Banking_and_Finance,0,0
+Ireland,Physical_Sciences_and_Engineering,0,0
+Iran,Speech_Processing,0,0
+Iran,Knowledge_Representation,0,0
+Iran,Generic_and_Unspecified,0,0
+Iran,Computer_Vision,0,0
+Iran,Planning_and_Scheduling,0,0
+Iran,Physical_Sciences_and_Engineering,0,0
+Iran,Industrial_and_Manufacturing,0,0
+Iran,Life_Sciences,0,0
+Iran,Energy_Management,0,0
+Iran,Machine_Learning,0,0
+Iran,Analytics_and_Algorithms,0,0
+Iran,Transportation,0,0
+Iran,Control,0,0
+Iran,Business,0,0
+Iran,Measuring_and_Testing,0,0
+Iran,Ontology_Engineering,0,0
+Iran,Banking_and_Finance,0,0
+Jordan,Computer_Vision,0,0
+Jordan,Personal_Devices_and_Computing,0,0
+Jordan,Probabilistic_Reasoning,0,0
+Jordan,Energy_Management,0,0
+Jordan,Planning_and_Scheduling,0,0
+Jordan,Analytics_and_Algorithms,0,0
+Jordan,Banking_and_Finance,0,0
+Jordan,Transportation,0,0
+Jordan,Knowledge_Representation,0,0
+Jordan,Physical_Sciences_and_Engineering,0,0
+Jordan,Ontology_Engineering,0,0
+Jordan,Life_Sciences,0,0
+Jordan,Speech_Processing,0,0
+Jordan,Logic_Programming,0,0
+Kenya,Security__eg_cybersecurity,0,0
+Kenya,Analytics_and_Algorithms,0,0
+Kenya,Life_Sciences,0,0
+Kenya,Ontology_Engineering,0,0
+Kenya,Personal_Devices_and_Computing,0,0
+Kenya,Probabilistic_Reasoning,0,0
+Kenya,Energy_Management,0,0
+Kenya,Planning_and_Scheduling,0,0
+Kenya,Physical_Sciences_and_Engineering,0,0
+Kenya,Telecommunications,0,0
+Kenya,Generic_and_Unspecified,0,0
+Kenya,Speech_Processing,0,0
+Kenya,Business,0,0
+Kenya,Knowledge_Representation,0,0
+Kenya,Logic_Programming,0,0
+Kenya,Banking_and_Finance,0,0
+Kenya,Industrial_and_Manufacturing,0,0
+Sri Lanka,Industrial_and_Manufacturing,0,0
+Sri Lanka,Knowledge_Representation,0,0
+Sri Lanka,Generic_and_Unspecified,0,0
+Sri Lanka,Planning_and_Scheduling,0,0
+Sri Lanka,Business,0,0
+Sri Lanka,Speech_Processing,0,0
+Sri Lanka,Computer_Vision,0,0
+Sri Lanka,Ontology_Engineering,0,0
+Sri Lanka,Probabilistic_Reasoning,0,0
+Sri Lanka,Banking_and_Finance,0,0
+Sri Lanka,Physical_Sciences_and_Engineering,0,0
+Sri Lanka,Telecommunications,0,0
+Sri Lanka,Measuring_and_Testing,0,0
+Sri Lanka,Personal_Devices_and_Computing,0,0
+Sri Lanka,Control,0,0
+Sri Lanka,Transportation,0,0
+Sri Lanka,Logic_Programming,0,0
+Sri Lanka,Energy_Management,0,0
+Sri Lanka,Security__eg_cybersecurity,0,0
+Lithuania,Speech_Processing,0,0
+Lithuania,Ontology_Engineering,0,0
+Lithuania,Knowledge_Representation,0,0
+Latvia,Industrial_and_Manufacturing,0,0
+Latvia,Business,0,0
+Latvia,Analytics_and_Algorithms,0,0
+Latvia,Control,0,0
+Latvia,Knowledge_Representation,0,0
+Latvia,Banking_and_Finance,0,0
+Latvia,Energy_Management,0,0
+Latvia,Personal_Devices_and_Computing,0,0
+Latvia,Transportation,0,0
+Latvia,Speech_Processing,0,0
+Latvia,Physical_Sciences_and_Engineering,0,0
+Latvia,Measuring_and_Testing,0,0
+Latvia,Generic_and_Unspecified,0,0
+Latvia,Logic_Programming,0,0
+Latvia,Life_Sciences,0,0
+Latvia,Planning_and_Scheduling,0,0
+Latvia,Ontology_Engineering,0,0
+Latvia,Computer_Vision,0,0
+Latvia,Security__eg_cybersecurity,0,0
+Latvia,Probabilistic_Reasoning,0,0
+Morocco,Speech_Processing,0,0
+"Moldova, Republic of",Security__eg_cybersecurity,0,0
+"Moldova, Republic of",Knowledge_Representation,0,0
+"Moldova, Republic of",Logic_Programming,0,0
+"Moldova, Republic of",Measuring_and_Testing,0,0
+"Moldova, Republic of",Analytics_and_Algorithms,0,0
+"Moldova, Republic of",Ontology_Engineering,0,0
+"Moldova, Republic of",Energy_Management,0,0
+"Moldova, Republic of",Telecommunications,0,0
+"Moldova, Republic of",Industrial_and_Manufacturing,0,0
+"Moldova, Republic of",Physical_Sciences_and_Engineering,0,0
+"Moldova, Republic of",Probabilistic_Reasoning,0,0
+"Moldova, Republic of",Transportation,0,0
+"Moldova, Republic of",Speech_Processing,0,0
+"Moldova, Republic of",Banking_and_Finance,0,0
+"Moldova, Republic of",Planning_and_Scheduling,0,0
+"Moldova, Republic of",Control,0,0
+"Moldova, Republic of",Generic_and_Unspecified,0,0
+"Moldova, Republic of",Business,0,0
+"Moldova, Republic of",Life_Sciences,0,0
+Oman,Banking_and_Finance,0,0
+Oman,Energy_Management,0,0
+Oman,Planning_and_Scheduling,0,0
+Oman,Industrial_and_Manufacturing,0,0
+Oman,Physical_Sciences_and_Engineering,0,0
+Oman,Business,0,0
+Oman,Probabilistic_Reasoning,0,0
+Oman,Analytics_and_Algorithms,0,0
+Oman,Knowledge_Representation,0,0
+Oman,Speech_Processing,0,0
+Oman,Personal_Devices_and_Computing,0,0
+Oman,Security__eg_cybersecurity,0,0
+Oman,Telecommunications,0,0
+Oman,Generic_and_Unspecified,0,0
+Oman,Logic_Programming,0,0
+Oman,Measuring_and_Testing,0,0
+Oman,Computer_Vision,0,0
+Oman,Ontology_Engineering,0,0
+Panama,Energy_Management,0,0
+Panama,Ontology_Engineering,0,0
+Panama,Transportation,0,0
+Panama,Planning_and_Scheduling,0,0
+Panama,Machine_Learning,0,0
+Panama,Analytics_and_Algorithms,0,0
+Panama,Banking_and_Finance,0,0
+Panama,Telecommunications,0,0
+Panama,Personal_Devices_and_Computing,0,0
+Panama,Probabilistic_Reasoning,0,0
+Panama,Logic_Programming,0,0
+Panama,Speech_Processing,0,0
+Panama,Computer_Vision,0,0
+Panama,Measuring_and_Testing,0,0
+Panama,Business,0,0
+Panama,Industrial_and_Manufacturing,0,0
+Panama,Knowledge_Representation,0,0
+Panama,Security__eg_cybersecurity,0,0
+Panama,Physical_Sciences_and_Engineering,0,0
+Peru,Ontology_Engineering,0,0
+Peru,Speech_Processing,0,0
+Philippines,Security__eg_cybersecurity,0,0
+Philippines,Speech_Processing,0,0
+Philippines,Knowledge_Representation,0,0
+Philippines,Control,0,0
+Philippines,Logic_Programming,0,0
+Philippines,Industrial_and_Manufacturing,0,0
+Philippines,Energy_Management,0,0
+Philippines,Analytics_and_Algorithms,0,0
+Poland,Ontology_Engineering,0,0
+Portugal,Ontology_Engineering,0,0
+Portugal,Banking_and_Finance,0,0
+Romania,Speech_Processing,0,0
+Romania,Measuring_and_Testing,0,0
+Romania,Logic_Programming,0,0
+Romania,Security__eg_cybersecurity,0,0
+Romania,Transportation,0,0
+Romania,Knowledge_Representation,0,0
+Romania,Banking_and_Finance,0,0
+Romania,Industrial_and_Manufacturing,0,0
+Romania,Personal_Devices_and_Computing,0,0
+Serbia,Energy_Management,0,0
+Serbia,Speech_Processing,0,0
+Serbia,Logic_Programming,0,0
+Serbia,Knowledge_Representation,0,0
+Serbia,Security__eg_cybersecurity,0,0
+Serbia,Planning_and_Scheduling,0,0
+Serbia,Analytics_and_Algorithms,0,0
+Saudi Arabia,Logic_Programming,0,0
+Saudi Arabia,Probabilistic_Reasoning,0,0
+Saudi Arabia,Telecommunications,0,0
+Saudi Arabia,Knowledge_Representation,0,0
+Saudi Arabia,Analytics_and_Algorithms,0,0
+Saudi Arabia,Life_Sciences,0,0
+Saudi Arabia,Speech_Processing,0,0
+Saudi Arabia,Physical_Sciences_and_Engineering,0,0
+Saudi Arabia,Personal_Devices_and_Computing,0,0
+Saudi Arabia,Transportation,0,0
+Saudi Arabia,Computer_Vision,0,0
+Saudi Arabia,Measuring_and_Testing,0,0
+Saudi Arabia,Security__eg_cybersecurity,0,0
+Saudi Arabia,Ontology_Engineering,0,0
+Saudi Arabia,Control,0,0
+Slovenia,Speech_Processing,0,0
+Slovenia,Ontology_Engineering,0,0
+Slovenia,Logic_Programming,0,0
+Slovenia,Knowledge_Representation,0,0
+Slovenia,Probabilistic_Reasoning,0,0
+Slovenia,Security__eg_cybersecurity,0,0
+Slovenia,Planning_and_Scheduling,0,0
+Slovenia,Transportation,0,0
+Slovakia,Knowledge_Representation,0,0
+Slovakia,Physical_Sciences_and_Engineering,0,0
+Slovakia,Transportation,0,0
+Slovakia,Banking_and_Finance,0,0
+Slovakia,Business,0,0
+Slovakia,Planning_and_Scheduling,0,0
+Slovakia,Analytics_and_Algorithms,0,0
+Slovakia,Personal_Devices_and_Computing,0,0
+Slovakia,Measuring_and_Testing,0,0
+Slovakia,Control,0,0
+Slovakia,Speech_Processing,0,0
+Slovakia,Logic_Programming,0,0
+Slovakia,Probabilistic_Reasoning,0,0
+Slovakia,Ontology_Engineering,0,0
+Slovakia,Telecommunications,0,0
+Slovakia,Security__eg_cybersecurity,0,0
+Slovakia,Computer_Vision,0,0
+Slovakia,Life_Sciences,0,0
+Slovakia,Energy_Management,0,0
+Thailand,Transportation,0,0
+Thailand,Telecommunications,0,0
+Thailand,Security__eg_cybersecurity,0,0
+Thailand,Energy_Management,0,0
+Thailand,Speech_Processing,0,0
+Thailand,Control,0,0
+Thailand,Ontology_Engineering,0,0
+Thailand,Knowledge_Representation,0,0
+Thailand,Personal_Devices_and_Computing,0,0
+Thailand,Industrial_and_Manufacturing,0,0
+Thailand,Logic_Programming,0,0
+Thailand,Probabilistic_Reasoning,0,0
+Thailand,Measuring_and_Testing,0,0
+Thailand,Planning_and_Scheduling,0,0
+Thailand,Computer_Vision,0,0
+Thailand,Generic_and_Unspecified,0,0
+Thailand,Life_Sciences,0,0
+Thailand,Analytics_and_Algorithms,0,0
+Thailand,Physical_Sciences_and_Engineering,0,0
+Thailand,Banking_and_Finance,0,0
+Tunisia,Business,0,0
+Tunisia,Ontology_Engineering,0,0
+Tunisia,Transportation,0,0
+Tunisia,Speech_Processing,0,0
+Tunisia,Measuring_and_Testing,0,0
+Tunisia,Analytics_and_Algorithms,0,0
+Tunisia,Personal_Devices_and_Computing,0,0
+Tunisia,Computer_Vision,0,0
+Tunisia,Logic_Programming,0,0
+Tunisia,Probabilistic_Reasoning,0,0
+Tunisia,Banking_and_Finance,0,0
+Tunisia,Planning_and_Scheduling,0,0
+Tunisia,Physical_Sciences_and_Engineering,0,0
+Tunisia,Industrial_and_Manufacturing,0,0
+Tunisia,Knowledge_Representation,0,0
+Tunisia,Energy_Management,0,0
+Tunisia,Life_Sciences,0,0
+Ukraine,Transportation,0,0
+Ukraine,Telecommunications,0,0
+Ukraine,Business,0,0
+Ukraine,Security__eg_cybersecurity,0,0
+Ukraine,Planning_and_Scheduling,0,0
+Ukraine,Energy_Management,0,0
+Ukraine,Analytics_and_Algorithms,0,0
+Ukraine,Banking_and_Finance,0,0
+Ukraine,Speech_Processing,0,0
+Uruguay,Planning_and_Scheduling,0,0
+Uruguay,Telecommunications,0,0
+Uruguay,Transportation,0,0
+Uruguay,Banking_and_Finance,0,0
+Uruguay,Logic_Programming,0,0
+Uruguay,Speech_Processing,0,0
+Uruguay,Analytics_and_Algorithms,0,0
+Uruguay,Energy_Management,0,0
+Uruguay,Generic_and_Unspecified,0,0
+Uruguay,Physical_Sciences_and_Engineering,0,0
+Uruguay,Probabilistic_Reasoning,0,0
+Uruguay,Measuring_and_Testing,0,0
+Uruguay,Ontology_Engineering,0,0
+Uruguay,Control,0,0
+Uruguay,Security__eg_cybersecurity,0,0
+Uruguay,Personal_Devices_and_Computing,0,0
+Uruguay,Knowledge_Representation,0,0
+Uruguay,Life_Sciences,0,0
+Uruguay,Business,0,0
+South Africa,Transportation,0,0
+South Africa,Speech_Processing,0,0
+South Africa,Probabilistic_Reasoning,0,0
+Argentina,Security__eg_cybersecurity,1,0
+Argentina,Transportation,1,1
+Argentina,Banking_and_Finance,1,0
+Argentina,Knowledge_Representation,1,1
+Argentina,Speech_Processing,1,1
+Azerbaijan,Personal_Devices_and_Computing,1,0
+Azerbaijan,All,1,0
+Azerbaijan,Generic_and_Unspecified,1,0
+Belgium,Speech_Processing,1,1
+Brunei Darussalam,Analytics_and_Algorithms,1,1
+Brunei Darussalam,All,1,1
+Brunei Darussalam,Machine_Learning,1,1
+Brunei Darussalam,Life_Sciences,1,1
+Switzerland,Energy_Management,1,1
+Switzerland,Security__eg_cybersecurity,1,1
+Switzerland,Ontology_Engineering,1,0
+Chile,Transportation,1,1
+Chile,Control,1,1
+Chile,Industrial_and_Manufacturing,1,0
+Chile,Analytics_and_Algorithms,1,0
+Chile,Logic_Programming,1,1
+Chile,Security__eg_cybersecurity,1,0
+Colombia,Security__eg_cybersecurity,1,0
+Colombia,Control,1,0
+Colombia,Personal_Devices_and_Computing,1,0
+Colombia,Banking_and_Finance,1,0
+Costa Rica,Generic_and_Unspecified,1,0
+Costa Rica,Industrial_and_Manufacturing,1,0
+Costa Rica,Machine_Learning,1,0
+Costa Rica,Life_Sciences,1,0
+Cuba,Industrial_and_Manufacturing,1,1
+Cuba,Control,1,1
+Cuba,Physical_Sciences_and_Engineering,1,1
+Cuba,Generic_and_Unspecified,1,1
+Cuba,All,1,1
+Cuba,Energy_Management,1,1
+Cuba,Telecommunications,1,1
+Czechia,Analytics_and_Algorithms,1,1
+Czechia,Business,1,1
+Czechia,Telecommunications,1,1
+Czechia,Industrial_and_Manufacturing,1,1
+Estonia,Machine_Learning,1,1
+Estonia,All,1,1
+Greece,Transportation,1,1
+Hong Kong,Banking_and_Finance,1,1
+Hong Kong,Measuring_and_Testing,1,1
+Hong Kong,Security__eg_cybersecurity,1,1
+Hong Kong,Probabilistic_Reasoning,1,1
+Hong Kong,Planning_and_Scheduling,1,1
+Hong Kong,Control,1,1
+Hong Kong,Energy_Management,1,1
+Croatia,Personal_Devices_and_Computing,1,1
+Croatia,Telecommunications,1,1
+Croatia,Ontology_Engineering,1,1
+Croatia,Physical_Sciences_and_Engineering,1,0
+Hungary,Energy_Management,1,1
+Hungary,Banking_and_Finance,1,1
+Indonesia,Business,1,1
+Indonesia,Life_Sciences,1,1
+Indonesia,Logic_Programming,1,0
+Ireland,Computer_Vision,1,1
+Ireland,Generic_and_Unspecified,1,0
+Ireland,Life_Sciences,1,1
+Ireland,Planning_and_Scheduling,1,0
+Ireland,Probabilistic_Reasoning,1,0
+Ireland,Business,1,0
+Israel,Energy_Management,1,0
+Iran,Logic_Programming,1,1
+Iran,Telecommunications,1,1
+Iran,Probabilistic_Reasoning,1,1
+Iran,Security__eg_cybersecurity,1,1
+Iran,Personal_Devices_and_Computing,1,1
+Iran,All,1,1
+Jordan,Measuring_and_Testing,1,0
+Jordan,Control,1,0
+Jordan,Telecommunications,1,0
+Jordan,Security__eg_cybersecurity,1,1
+Jordan,Business,1,0
+Jordan,Generic_and_Unspecified,1,1
+Kenya,Measuring_and_Testing,1,1
+Kenya,Transportation,1,1
+Kenya,Machine_Learning,1,1
+Kenya,Computer_Vision,1,1
+Kenya,Control,1,1
+Kenya,All,1,1
+Sri Lanka,All,1,1
+Sri Lanka,Analytics_and_Algorithms,1,1
+Sri Lanka,Life_Sciences,1,1
+Sri Lanka,Machine_Learning,1,1
+Lithuania,Transportation,1,1
+Lithuania,Control,1,1
+Lithuania,Probabilistic_Reasoning,1,1
+Lithuania,Logic_Programming,1,1
+Luxembourg,Banking_and_Finance,1,1
+Luxembourg,Speech_Processing,1,1
+Latvia,Telecommunications,1,1
+Morocco,Knowledge_Representation,1,1
+Morocco,Transportation,1,1
+Morocco,Energy_Management,1,0
+"Moldova, Republic of",Personal_Devices_and_Computing,1,0
+"Moldova, Republic of",Computer_Vision,1,0
+"Moldova, Republic of",All,1,0
+"Moldova, Republic of",Machine_Learning,1,0
+Norway,Speech_Processing,1,1
+Norway,Ontology_Engineering,1,1
+Norway,Knowledge_Representation,1,0
+Oman,Transportation,1,0
+Oman,Control,1,0
+Oman,Machine_Learning,1,0
+Oman,Life_Sciences,1,0
+Oman,All,1,0
+Panama,Control,1,0
+Panama,Life_Sciences,1,0
+Peru,Knowledge_Representation,1,0
+Peru,Energy_Management,1,1
+Philippines,Probabilistic_Reasoning,1,1
+Philippines,Life_Sciences,1,1
+Philippines,Ontology_Engineering,1,0
+Philippines,Physical_Sciences_and_Engineering,1,1
+Philippines,Planning_and_Scheduling,1,1
+Philippines,Banking_and_Finance,1,1
+Philippines,Telecommunications,1,1
+Philippines,Transportation,1,0
+Portugal,Speech_Processing,1,0
+Romania,Analytics_and_Algorithms,1,1
+Romania,Planning_and_Scheduling,1,0
+Serbia,Life_Sciences,1,0
+Serbia,Telecommunications,1,1
+Serbia,Banking_and_Finance,1,1
+Serbia,Physical_Sciences_and_Engineering,1,0
+Serbia,Ontology_Engineering,1,0
+Serbia,Business,1,1
+Saudi Arabia,Planning_and_Scheduling,1,0
+Saudi Arabia,Business,1,0
+Saudi Arabia,Generic_and_Unspecified,1,0
+Saudi Arabia,Energy_Management,1,0
+Saudi Arabia,Industrial_and_Manufacturing,1,0
+Saudi Arabia,Banking_and_Finance,1,0
+Slovenia,Banking_and_Finance,1,1
+Slovenia,Business,1,1
+Slovenia,Industrial_and_Manufacturing,1,1
+Slovenia,Energy_Management,1,1
+Slovenia,Control,1,1
+Slovakia,Generic_and_Unspecified,1,0
+Thailand,Machine_Learning,1,0
+Thailand,All,1,0
+Thailand,Business,1,0
+Tunisia,Telecommunications,1,0
+Turkey,Ontology_Engineering,1,1
+Turkey,Knowledge_Representation,1,0
+Ukraine,Industrial_and_Manufacturing,1,1
+Ukraine,Ontology_Engineering,1,1
+Ukraine,Control,1,0
+Ukraine,Computer_Vision,1,1
+Ukraine,Physical_Sciences_and_Engineering,1,1
+Ukraine,Knowledge_Representation,1,1
+Ukraine,Measuring_and_Testing,1,1
+Uruguay,Machine_Learning,1,1
+Uruguay,Computer_Vision,1,1
+South Africa,Measuring_and_Testing,1,1
+South Africa,Industrial_and_Manufacturing,1,0
+South Africa,Analytics_and_Algorithms,1,1
+South Africa,Control,1,1
+South Africa,Knowledge_Representation,1,0
+South Africa,Ontology_Engineering,1,1
+South Africa,Life_Sciences,1,1
+Argentina,Energy_Management,2,1
+Argentina,Industrial_and_Manufacturing,2,1
+Argentina,Control,2,2
+Belgium,Energy_Management,2,1
+Belgium,Security__eg_cybersecurity,2,1
+Switzerland,Measuring_and_Testing,2,0
+Switzerland,Knowledge_Representation,2,0
+Switzerland,Speech_Processing,2,1
+Chile,Life_Sciences,2,0
+Chile,Measuring_and_Testing,2,0
+Chile,Computer_Vision,2,1
+Chile,Physical_Sciences_and_Engineering,2,1
+Colombia,Telecommunications,2,0
+Colombia,Planning_and_Scheduling,2,0
+Colombia,Probabilistic_Reasoning,2,1
+Colombia,Computer_Vision,2,0
+Costa Rica,All,2,0
+Czechia,Transportation,2,2
+Czechia,Personal_Devices_and_Computing,2,2
+Czechia,Life_Sciences,2,1
+Czechia,Logic_Programming,2,2
+Czechia,Generic_and_Unspecified,2,1
+Denmark,Knowledge_Representation,2,2
+Finland,Banking_and_Finance,2,0
+Greece,Security__eg_cybersecurity,2,1
+Greece,Logic_Programming,2,2
+Hong Kong,Life_Sciences,2,2
+Hong Kong,Transportation,2,2
+Hong Kong,Business,2,2
+Hong Kong,Analytics_and_Algorithms,2,2
+Hong Kong,Physical_Sciences_and_Engineering,2,1
+Croatia,Control,2,2
+Croatia,Computer_Vision,2,2
+Croatia,Generic_and_Unspecified,2,1
+Croatia,Life_Sciences,2,1
+Hungary,Speech_Processing,2,2
+Indonesia,All,2,1
+Indonesia,Machine_Learning,2,1
+Indonesia,Telecommunications,2,1
+Indonesia,Banking_and_Finance,2,1
+Indonesia,Personal_Devices_and_Computing,2,1
+Ireland,Personal_Devices_and_Computing,2,1
+Jordan,Industrial_and_Manufacturing,2,1
+Jordan,Machine_Learning,2,1
+Lithuania,Security__eg_cybersecurity,2,2
+Lithuania,Planning_and_Scheduling,2,1
+Lithuania,Energy_Management,2,2
+Lithuania,Banking_and_Finance,2,2
+Latvia,Machine_Learning,2,1
+Latvia,All,2,1
+Morocco,Planning_and_Scheduling,2,2
+Morocco,Industrial_and_Manufacturing,2,1
+Morocco,Ontology_Engineering,2,0
+Morocco,Probabilistic_Reasoning,2,1
+Morocco,Logic_Programming,2,2
+Malaysia,Energy_Management,2,2
+Malaysia,Speech_Processing,2,1
+Norway,Security__eg_cybersecurity,2,2
+New Zealand,Transportation,2,2
+Panama,All,2,0
+Panama,Generic_and_Unspecified,2,0
+Peru,Probabilistic_Reasoning,2,2
+Peru,Transportation,2,1
+Philippines,Measuring_and_Testing,2,1
+Philippines,Business,2,2
+Poland,Speech_Processing,2,2
+Portugal,Energy_Management,2,2
+Romania,Control,2,2
+Romania,Business,2,1
+Serbia,Measuring_and_Testing,2,0
+Serbia,Computer_Vision,2,1
+Serbia,Transportation,2,2
+Serbia,Probabilistic_Reasoning,2,0
+Serbia,Personal_Devices_and_Computing,2,1
+Saudi Arabia,Machine_Learning,2,1
+Sweden,Ontology_Engineering,2,1
+Slovenia,Analytics_and_Algorithms,2,2
+Slovenia,Measuring_and_Testing,2,1
+Slovenia,Physical_Sciences_and_Engineering,2,1
+Slovakia,Industrial_and_Manufacturing,2,0
+Tunisia,Security__eg_cybersecurity,2,0
+Tunisia,Control,2,0
+Tunisia,Machine_Learning,2,0
+Tunisia,Generic_and_Unspecified,2,0
+Turkey,Speech_Processing,2,0
+Turkey,Probabilistic_Reasoning,2,0
+Ukraine,Life_Sciences,2,2
+Ukraine,Probabilistic_Reasoning,2,2
+Uruguay,Industrial_and_Manufacturing,2,2
+Uruguay,All,2,2
+South Africa,Telecommunications,2,0
+South Africa,Energy_Management,2,1
+South Africa,Security__eg_cybersecurity,2,2
+South Africa,Physical_Sciences_and_Engineering,2,1
+Argentina,Probabilistic_Reasoning,3,1
+Argentina,Logic_Programming,3,2
+Austria,Banking_and_Finance,3,2
+Austria,Probabilistic_Reasoning,3,3
+Belgium,Telecommunications,3,3
+Chile,Generic_and_Unspecified,3,1
+Colombia,Generic_and_Unspecified,3,0
+Colombia,Measuring_and_Testing,3,1
+Colombia,Business,3,0
+Colombia,Industrial_and_Manufacturing,3,1
+Colombia,Analytics_and_Algorithms,3,1
+Colombia,Physical_Sciences_and_Engineering,3,1
+Czechia,Control,3,2
+Greece,Probabilistic_Reasoning,3,2
+Greece,Ontology_Engineering,3,3
+Hong Kong,Telecommunications,3,3
+Croatia,Machine_Learning,3,3
+Hungary,Security__eg_cybersecurity,3,3
+Hungary,Business,3,3
+Hungary,Planning_and_Scheduling,3,3
+Israel,Banking_and_Finance,3,1
+Italy,Ontology_Engineering,3,1
+Jordan,All,3,2
+Lithuania,Business,3,2
+Lithuania,Measuring_and_Testing,3,1
+Morocco,Control,3,2
+Morocco,Banking_and_Finance,3,2
+Morocco,Physical_Sciences_and_Engineering,3,1
+Malaysia,Industrial_and_Manufacturing,3,2
+Malaysia,Physical_Sciences_and_Engineering,3,3
+Netherlands,Speech_Processing,3,3
+Netherlands,Banking_and_Finance,3,3
+Norway,Energy_Management,3,2
+Norway,Physical_Sciences_and_Engineering,3,1
+Norway,Business,3,2
+Norway,Planning_and_Scheduling,3,2
+Norway,Banking_and_Finance,3,3
+New Zealand,Speech_Processing,3,3
+New Zealand,Energy_Management,3,2
+New Zealand,Planning_and_Scheduling,3,2
+New Zealand,Control,3,1
+Peru,Logic_Programming,3,1
+Peru,Analytics_and_Algorithms,3,1
+Peru,Security__eg_cybersecurity,3,1
+Philippines,Generic_and_Unspecified,3,2
+Poland,Planning_and_Scheduling,3,1
+Portugal,Security__eg_cybersecurity,3,1
+Portugal,Planning_and_Scheduling,3,1
+Portugal,Business,3,1
+Romania,Computer_Vision,3,2
+Romania,Physical_Sciences_and_Engineering,3,2
+Romania,Telecommunications,3,3
+Romania,Ontology_Engineering,3,0
+Romania,Life_Sciences,3,3
+Romania,Energy_Management,3,1
+Serbia,Control,3,3
+Saudi Arabia,All,3,1
+Slovenia,Telecommunications,3,3
+Slovenia,Life_Sciences,3,2
+Turkey,Energy_Management,3,0
+Ukraine,Logic_Programming,3,3
+Ukraine,Personal_Devices_and_Computing,3,3
+South Africa,Computer_Vision,3,3
+South Africa,Banking_and_Finance,3,2
+South Africa,Logic_Programming,3,0
+Argentina,Analytics_and_Algorithms,4,3
+Austria,Logic_Programming,4,2
+Austria,Planning_and_Scheduling,4,3
+Austria,Knowledge_Representation,4,2
+Austria,Security__eg_cybersecurity,4,1
+Belgium,Analytics_and_Algorithms,4,4
+Belgium,Transportation,4,3
+Belgium,Life_Sciences,4,4
+Switzerland,Transportation,4,2
+Switzerland,Industrial_and_Manufacturing,4,3
+Switzerland,Physical_Sciences_and_Engineering,4,3
+Switzerland,Telecommunications,4,3
+Chile,Personal_Devices_and_Computing,4,1
+Czechia,Measuring_and_Testing,4,3
+Greece,Telecommunications,4,3
+Hong Kong,Computer_Vision,4,4
+Croatia,Measuring_and_Testing,4,3
+Hungary,Industrial_and_Manufacturing,4,4
+Hungary,Logic_Programming,4,4
+Hungary,Transportation,4,4
+Israel,Knowledge_Representation,4,1
+Israel,Physical_Sciences_and_Engineering,4,0
+Lithuania,Industrial_and_Manufacturing,4,4
+Lithuania,Physical_Sciences_and_Engineering,4,2
+Luxembourg,Ontology_Engineering,4,4
+Morocco,Business,4,4
+Morocco,Security__eg_cybersecurity,4,3
+Malaysia,Analytics_and_Algorithms,4,4
+Malaysia,Knowledge_Representation,4,3
+Norway,Probabilistic_Reasoning,4,3
+Norway,Logic_Programming,4,2
+New Zealand,Logic_Programming,4,3
+New Zealand,Knowledge_Representation,4,3
+New Zealand,Ontology_Engineering,4,3
+New Zealand,Physical_Sciences_and_Engineering,4,3
+Peru,Banking_and_Finance,4,1
+Poland,Banking_and_Finance,4,3
+Poland,Energy_Management,4,2
+Portugal,Physical_Sciences_and_Engineering,4,3
+Portugal,Probabilistic_Reasoning,4,4
+Serbia,Industrial_and_Manufacturing,4,4
+Sweden,Knowledge_Representation,4,2
+Sweden,Speech_Processing,4,4
+Slovenia,Personal_Devices_and_Computing,4,4
+Tunisia,All,4,0
+Turkey,Physical_Sciences_and_Engineering,4,0
+Austria,Business,5,4
+Belgium,Business,5,5
+Belgium,Planning_and_Scheduling,5,5
+Belgium,Generic_and_Unspecified,5,3
+Switzerland,Probabilistic_Reasoning,5,4
+Chile,Telecommunications,5,1
+Denmark,Banking_and_Finance,5,5
+Spain,Ontology_Engineering,5,4
+Finland,Ontology_Engineering,5,2
+Greece,Speech_Processing,5,4
+Greece,Industrial_and_Manufacturing,5,4
+Greece,Physical_Sciences_and_Engineering,5,3
+Greece,Energy_Management,5,4
+Greece,Planning_and_Scheduling,5,4
+Hong Kong,Personal_Devices_and_Computing,5,4
+Croatia,All,5,4
+Hungary,Physical_Sciences_and_Engineering,5,4
+Hungary,Probabilistic_Reasoning,5,5
+Ireland,Machine_Learning,5,4
+Israel,Ontology_Engineering,5,3
+Morocco,Analytics_and_Algorithms,5,4
+Malaysia,Security__eg_cybersecurity,5,4
+Malaysia,Ontology_Engineering,5,5
+Netherlands,Security__eg_cybersecurity,5,5
+Norway,Industrial_and_Manufacturing,5,3
+Norway,Life_Sciences,5,2
+Norway,Computer_Vision,5,2
+New Zealand,Banking_and_Finance,5,3
+New Zealand,Business,5,3
+Peru,Industrial_and_Manufacturing,5,1
+Peru,Planning_and_Scheduling,5,2
+Peru,Control,5,3
+Peru,Business,5,2
+Peru,Life_Sciences,5,2
+Philippines,Personal_Devices_and_Computing,5,3
+Poland,Knowledge_Representation,5,4
+Portugal,Industrial_and_Manufacturing,5,4
+Portugal,Transportation,5,5
+Portugal,Knowledge_Representation,5,4
+Romania,Probabilistic_Reasoning,5,1
+Serbia,Generic_and_Unspecified,5,1
+Slovenia,Computer_Vision,5,5
+Argentina,Life_Sciences,6,3
+Belgium,Physical_Sciences_and_Engineering,6,4
+Belgium,Industrial_and_Manufacturing,6,6
+Belgium,Personal_Devices_and_Computing,6,6
+Switzerland,Logic_Programming,6,2
+Switzerland,Banking_and_Finance,6,2
+Switzerland,Computer_Vision,6,2
+Switzerland,Analytics_and_Algorithms,6,3
+Switzerland,Control,6,3
+Switzerland,Planning_and_Scheduling,6,3
+Colombia,Life_Sciences,6,1
+Denmark,Physical_Sciences_and_Engineering,6,5
+Finland,Transportation,6,2
+Finland,Speech_Processing,6,3
+Hong Kong,Generic_and_Unspecified,6,5
+Hungary,Measuring_and_Testing,6,4
+Ireland,All,6,4
+Israel,Speech_Processing,6,1
+Lithuania,Computer_Vision,6,6
+Lithuania,Telecommunications,6,6
+Lithuania,Analytics_and_Algorithms,6,6
+Luxembourg,Transportation,6,5
+Luxembourg,Knowledge_Representation,6,6
+Morocco,Telecommunications,6,5
+Netherlands,Energy_Management,6,6
+Netherlands,Physical_Sciences_and_Engineering,6,6
+Norway,Telecommunications,6,5
+New Zealand,Analytics_and_Algorithms,6,6
+New Zealand,Industrial_and_Manufacturing,6,4
+New Zealand,Security__eg_cybersecurity,6,5
+Philippines,Computer_Vision,6,3
+Poland,Physical_Sciences_and_Engineering,6,5
+Portugal,Logic_Programming,6,5
+Russia,Energy_Management,6,5
+Slovenia,Generic_and_Unspecified,6,5
+Slovenia,Machine_Learning,6,6
+Argentina,Telecommunications,7,2
+Argentina,Personal_Devices_and_Computing,7,4
+Austria,Telecommunications,7,5
+Austria,Industrial_and_Manufacturing,7,4
+Belgium,Control,7,5
+Belgium,Measuring_and_Testing,7,5
+Switzerland,Life_Sciences,7,4
+Switzerland,Business,7,3
+Switzerland,Generic_and_Unspecified,7,2
+Denmark,Energy_Management,7,7
+Denmark,Logic_Programming,7,5
+Denmark,Planning_and_Scheduling,7,5
+Denmark,Security__eg_cybersecurity,7,7
+Greece,Control,7,7
+Greece,Measuring_and_Testing,7,5
+Greece,Analytics_and_Algorithms,7,5
+Italy,Speech_Processing,7,3
+Italy,Knowledge_Representation,7,1
+Morocco,Measuring_and_Testing,7,4
+Morocco,Generic_and_Unspecified,7,2
+Malaysia,Logic_Programming,7,6
+Malaysia,Banking_and_Finance,7,5
+Malaysia,Probabilistic_Reasoning,7,6
+Netherlands,Ontology_Engineering,7,7
+Netherlands,Knowledge_Representation,7,7
+Netherlands,Transportation,7,7
+Norway,Analytics_and_Algorithms,7,3
+Norway,Control,7,5
+Norway,Transportation,7,6
+Peru,Personal_Devices_and_Computing,7,4
+Poland,Security__eg_cybersecurity,7,4
+Poland,Business,7,4
+Ukraine,Generic_and_Unspecified,7,7
+South Africa,Business,7,4
+South Africa,Planning_and_Scheduling,7,4
+South Africa,Personal_Devices_and_Computing,7,5
+Bulgaria,Machine_Learning,8,8
+Finland,Knowledge_Representation,8,4
+Greece,Business,8,6
+Greece,Generic_and_Unspecified,8,3
+Hungary,Control,8,8
+Hungary,Analytics_and_Algorithms,8,6
+Morocco,Life_Sciences,8,4
+Mexico,Ontology_Engineering,8,5
+Malaysia,Telecommunications,8,8
+Malaysia,Planning_and_Scheduling,8,6
+Netherlands,Probabilistic_Reasoning,8,8
+Netherlands,Logic_Programming,8,8
+Norway,Generic_and_Unspecified,8,7
+Peru,Telecommunications,8,5
+Portugal,Measuring_and_Testing,8,6
+Sweden,Energy_Management,8,6
+Singapore,Energy_Management,8,7
+Argentina,Planning_and_Scheduling,9,5
+Austria,Generic_and_Unspecified,9,5
+Czechia,Machine_Learning,9,8
+Denmark,Probabilistic_Reasoning,9,8
+Finland,Energy_Management,9,7
+Hungary,Generic_and_Unspecified,9,8
+Israel,Probabilistic_Reasoning,9,7
+Israel,Industrial_and_Manufacturing,9,5
+Lithuania,Personal_Devices_and_Computing,9,9
+Lithuania,Life_Sciences,9,8
+Morocco,Computer_Vision,9,8
+Malaysia,Measuring_and_Testing,9,8
+New Zealand,Probabilistic_Reasoning,9,9
+New Zealand,Telecommunications,9,9
+Portugal,Control,9,9
+Sweden,Planning_and_Scheduling,9,5
+Argentina,Generic_and_Unspecified,10,2
+Argentina,Business,10,5
+Belgium,Computer_Vision,10,10
+Chile,Machine_Learning,10,2
+Colombia,Machine_Learning,10,2
+Denmark,Business,10,8
+Finland,Probabilistic_Reasoning,10,5
+Hungary,Telecommunications,10,8
+Luxembourg,Logic_Programming,10,10
+Luxembourg,Probabilistic_Reasoning,10,10
+Luxembourg,Energy_Management,10,9
+Malaysia,Transportation,10,10
+Malaysia,Control,10,10
+Malaysia,Life_Sciences,10,10
+Netherlands,Industrial_and_Manufacturing,10,10
+Norway,Measuring_and_Testing,10,6
+Peru,Physical_Sciences_and_Engineering,10,3
+Peru,Computer_Vision,10,6
+Sweden,Logic_Programming,10,6
+Sweden,Business,10,5
+Turkey,Logic_Programming,10,1
+Argentina,Computer_Vision,11,3
+Greece,Life_Sciences,11,8
+India,Energy_Management,11,6
+Luxembourg,Industrial_and_Manufacturing,11,11
+Netherlands,Planning_and_Scheduling,11,11
+Peru,Measuring_and_Testing,11,7
+Poland,Logic_Programming,11,10
+Poland,Transportation,11,10
+Portugal,Analytics_and_Algorithms,11,9
+Sweden,Banking_and_Finance,11,7
+Austria,Physical_Sciences_and_Engineering,12,8
+Czechia,All,12,10
+Denmark,Speech_Processing,12,10
+Italy,Probabilistic_Reasoning,12,7
+Lithuania,Generic_and_Unspecified,12,11
+Malaysia,Business,12,8
+Norway,Personal_Devices_and_Computing,12,7
+Peru,Generic_and_Unspecified,12,6
+Poland,Probabilistic_Reasoning,12,12
+Sweden,Security__eg_cybersecurity,12,7
+Slovenia,All,12,11
+Turkey,Industrial_and_Manufacturing,12,1
+Turkey,Security__eg_cybersecurity,12,0
+Argentina,Measuring_and_Testing,13,4
+Austria,Life_Sciences,13,9
+Chile,All,13,3
+Colombia,All,13,2
+Spain,Speech_Processing,13,12
+Finland,Security__eg_cybersecurity,13,8
+Israel,Planning_and_Scheduling,13,7
+India,Physical_Sciences_and_Engineering,13,8
+Luxembourg,Physical_Sciences_and_Engineering,13,13
+Luxembourg,Analytics_and_Algorithms,13,12
+Morocco,Personal_Devices_and_Computing,13,8
+Netherlands,Control,13,13
+Portugal,Telecommunications,13,10
+Portugal,Generic_and_Unspecified,13,8
+Sweden,Probabilistic_Reasoning,13,6
+Turkey,Transportation,13,2
+Austria,Analytics_and_Algorithms,14,11
+Denmark,Industrial_and_Manufacturing,14,11
+Finland,Physical_Sciences_and_Engineering,14,9
+France,Ontology_Engineering,14,8
+Hong Kong,Machine_Learning,14,9
+Hungary,Life_Sciences,14,10
+Luxembourg,Security__eg_cybersecurity,14,14
+Netherlands,Business,14,14
+Poland,Industrial_and_Manufacturing,14,13
+Sweden,Physical_Sciences_and_Engineering,14,9
+Argentina,Physical_Sciences_and_Engineering,15,7
+Austria,Computer_Vision,15,14
+Brazil,Ontology_Engineering,15,8
+Switzerland,Personal_Devices_and_Computing,15,3
+Israel,Logic_Programming,15,8
+Italy,Banking_and_Finance,15,5
+Mexico,Speech_Processing,15,7
+Malaysia,Generic_and_Unspecified,15,10
+Netherlands,Generic_and_Unspecified,15,15
+Poland,Control,15,14
+Romania,Generic_and_Unspecified,15,4
+Singapore,Ontology_Engineering,15,6
+Slovakia,Machine_Learning,15,3
+Turkey,Control,15,1
+Spain,Banking_and_Finance,16,12
+Hungary,Personal_Devices_and_Computing,16,11
+Hungary,Computer_Vision,16,10
+Italy,Logic_Programming,16,6
+Mexico,Knowledge_Representation,16,8
+Netherlands,Telecommunications,16,16
+New Zealand,Measuring_and_Testing,16,14
+Philippines,Machine_Learning,16,5
+Portugal,Computer_Vision,16,13
+Singapore,Speech_Processing,16,10
+Slovakia,All,16,3
+Spain,Planning_and_Scheduling,18,15
+Spain,Knowledge_Representation,18,16
+Greece,Computer_Vision,18,15
+Italy,Planning_and_Scheduling,18,8
+Lithuania,Machine_Learning,18,16
+Portugal,Personal_Devices_and_Computing,18,15
+Sweden,Industrial_and_Manufacturing,18,15
+Hong Kong,All,20,14
+Israel,Business,20,8
+Italy,Physical_Sciences_and_Engineering,20,8
+Italy,Energy_Management,20,8
+Luxembourg,Telecommunications,20,20
+Morocco,Machine_Learning,20,13
+Poland,Measuring_and_Testing,20,14
+Turkey,Planning_and_Scheduling,20,2
+Turkey,Banking_and_Finance,20,2
+Turkey,Computer_Vision,20,4
+Austria,Personal_Devices_and_Computing,25,19
+Belgium,Machine_Learning,25,21
+Bulgaria,Generic_and_Unspecified,25,21
+Switzerland,Machine_Learning,25,7
+Israel,Security__eg_cybersecurity,25,18
+India,Speech_Processing,25,16
+Malaysia,Personal_Devices_and_Computing,25,21
+Turkey,Analytics_and_Algorithms,25,1
+Austria,Transportation,28,21
+Finland,Business,28,10
+Israel,Measuring_and_Testing,28,13
+Italy,Business,28,10
+Luxembourg,Business,28,28
+Mexico,Banking_and_Finance,28,15
+Poland,Analytics_and_Algorithms,28,20
+Sweden,Analytics_and_Algorithms,28,18
+Taiwan,Banking_and_Finance,28,22
+Spain,Transportation,53,49
+France,Industrial_and_Manufacturing,53,35
+France,Banking_and_Finance,53,36
+Italy,Control,53,23
+Italy,Telecommunications,53,25
+Romania,All,53,10
+Russia,Analytics_and_Algorithms,53,49
+Singapore,Probabilistic_Reasoning,53,36
+Taiwan,Security__eg_cybersecurity,53,41
+Taiwan,Speech_Processing,53,47

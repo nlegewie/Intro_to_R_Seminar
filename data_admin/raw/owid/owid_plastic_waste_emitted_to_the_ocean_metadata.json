@@ -1,0 +1,28 @@
+{
+  "chart": {
+    "title": "Plastic waste emitted to the ocean",
+    "subtitle": "This is an annual estimate of plastic emissions. A country's total does not include waste that is exported overseas, which may be at higher risk of entering the ocean.",
+    "citation": "Meijer et al. (2021)",
+    "originalChartUrl": "https://ourworldindata.org/explorers/plastic-pollution?Metric=Plastic+emitted+to+ocean&Per+capita=false&Share+of+world+total=false&Source=OECD&country=USA~CHN~IND",
+    "selection": [
+      "United States",
+      "China",
+      "India"
+    ]
+  },
+  "columns": {
+    "Mismanaged waste emitted to the ocean (metric tons year-1)": {
+      "titleShort": "Plastic waste emitted to the ocean",
+      "titleLong": "Plastic waste emitted to the ocean",
+      "unit": "",
+      "timespan": "",
+      "type": "Integer",
+      "owidVariableId": 146457,
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “Plastic waste emitted to the ocean” [dataset]. Meijer et al. (2021) [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/146457.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-01-25",
+  "activeFilters": {}
+}

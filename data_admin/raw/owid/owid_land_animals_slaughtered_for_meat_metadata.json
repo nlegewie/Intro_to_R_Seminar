@@ -1,0 +1,37 @@
+{
+  "chart": {
+    "citation": "Food and Agriculture Organization of the United Nations (2025)",
+    "originalChartUrl": "https://ourworldindata.org/explorers/animal-welfare?Metric=Animals+slaughtered&Animal=All+land+animals&Per+capita=false&country=OWID_WRL~USA~CHN~IND~BRA~GBR",
+    "selection": [
+      "World",
+      "United States",
+      "China",
+      "India",
+      "Brazil",
+      "United Kingdom"
+    ]
+  },
+  "columns": {
+    "Land animals slaughtered for meat": {
+      "titleShort": "Land animals slaughtered for meat",
+      "titleLong": "Land animals slaughtered for meat",
+      "descriptionShort": "Based on the country of production, not consumption.",
+      "descriptionKey": [
+        "Additional deaths that happen during meat and dairy production prior to the slaughter, for example due to disease or accidents, are not included."
+      ],
+      "shortUnit": "",
+      "unit": "animals",
+      "timespan": "1961-2023",
+      "type": "Integer",
+      "owidVariableId": 1025285,
+      "shortName": "n_animals_killed__metric_animals_killed__animal_all_land_animals__per_capita_false__estimate",
+      "lastUpdated": "2025-03-26",
+      "nextUpdate": "2026-03-26",
+      "citationShort": "Food and Agriculture Organization of the United Nations (2025) – processed by Our World in Data",
+      "citationLong": "Food and Agriculture Organization of the United Nations (2025) – processed by Our World in Data. “Land animals slaughtered for meat” [dataset]. Food and Agriculture Organization of the United Nations, “Production: Crops and livestock products” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1025285.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-01-23",
+  "activeFilters": {}
+}

@@ -1,0 +1,54 @@
+{
+  "chart": {
+    "title": "Share of people agreeing with the statement \"most people can be trusted\"",
+    "subtitle": "",
+    "citation": "Integrated Values Surveys (2024)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/self-reported-trust-attitudes?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "Norway",
+      "China",
+      "Sweden",
+      "Germany",
+      "Canada",
+      "United States",
+      "France",
+      "Mexico",
+      "Peru",
+      "Egypt",
+      "Ethiopia"
+    ]
+  },
+  "columns": {
+    "Agree \"Most people can be trusted\"": {
+      "titleShort": "Trust in others",
+      "titleLong": "Trust in others",
+      "descriptionShort": "% of respondents replying \"Most people can be trusted\" when asked \"Generally speaking, would you say that most people can be trusted or that you need to be very careful in dealing with people?\" Possible answers include \"Most people can be trusted\", \"Do not know\" and \"Need to be very careful\".",
+      "descriptionKey": [
+        "When available, we consider “Don’t know” and “No answer” to be valid response categories and include them in percentage calculations. “Missing” responses, however, are excluded from the set of possible answers.",
+        "The years in the data represent the latest year of each Integrated Values Surveys wave, which is not necessarily the year of the survey. For example, the 2022 wave (IVS wave 7) includes surveys conducted between 2017 and 2022. This is done to improve comparability across waves."
+      ],
+      "descriptionProcessing": "We collected the data by merging the World Values Survey and the European Values Study, following the methodology described in the [Integrated Values Surveys (IVS) website](https://www.worldvaluessurvey.org/WVSEVStrend.jsp).\n\nWe processed the indicators from microdata of the IVS using Stata. Weights are applied for each country.\n\nWe consider “Don’t know” and “No answer” to be valid response categories and include them in percentage calculations. “Missing” responses, however, are excluded from the set of possible answers.\n\nWe processed the years in the data to represent the latest year of each IVS wave, which is not necessarily the year of the survey. For example, the 2022 wave (IVS wave 7) includes surveys conducted between 2017 and 2022.\n",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1984-2022",
+      "type": "Numeric",
+      "owidVariableId": 1076233,
+      "shortName": "trust",
+      "lastUpdated": "2025-06-27",
+      "nextUpdate": "2026-06-27",
+      "citationShort": "Integrated Values Surveys (2024) – with major processing by Our World in Data",
+      "citationLong": "Integrated Values Surveys (2024) – with major processing by Our World in Data. “Trust in others – Integrated Values Surveys” [dataset]. Integrated Values Surveys, “Integrated Values Surveys (IVS) Version 4” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1076233.metadata.json"
+    },
+    "1076233-annotations": {
+      "titleShort": "1076233-annotations",
+      "titleLong": "1076233-annotations",
+      "type": "SeriesAnnotation",
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “1076233-annotations” [dataset].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/undefined.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-04-11",
+  "activeFilters": {}
+}

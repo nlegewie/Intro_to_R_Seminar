@@ -1,0 +1,121 @@
+country,disclosed_investment,estimated_investment,num_patent_applications,num_patent_granted,n_companies
+United Arab Emirates,2567,3700,NA,NA,NA
+Argentina,42,7262,43,17,NA
+Australia,2995,6070,4300,2927,NA
+Austria,886,2234,83,61,NA
+Belgium,1953,4014,32,25,NA
+Bulgaria,16,57,33,29,NA
+Bermuda,134,185,NA,NA,1
+Brazil,2574,4231,875,535,NA
+Canada,14203,39254,4339,2290,2
+Switzerland,3058,9227,37,12,5
+Chile,602,778,13,3,NA
+China (mainland),63938,96156,440526,188268,NA
+Colombia,56,705,13,2,NA
+Cyprus,74,93,NA,NA,NA
+Czechia,375,540,12,10,NA
+Germany,10410,19626,5111,2295,7
+Denmark,996,2461,137,124,1
+Egypt,59,71,NA,NA,NA
+Spain,1981,5968,480,416,NA
+Estonia,320,429,1,1,NA
+Finland,2535,11712,215,111,1
+France,10941,26848,1356,851,3
+United Kingdom,24181,39505,3048,1354,11
+Ghana,71,99,NA,NA,NA
+Greece,279,1062,60,47,NA
+Croatia,345,1028,5,4,NA
+Hungary,247,613,39,31,NA
+Indonesia,271,800,2,1,NA
+India,35711,57233,877,613,NA
+Ireland,1364,2216,6,4,8
+Iceland,125,130,NA,NA,NA
+Israel,15772,25690,154,65,1
+Italy,433,1366,360,114,NA
+Japan,7218,10386,22622,15071,9
+Kenya,96,150,1,1,NA
+South Korea,8647,14771,38919,24918,2
+Lithuania,337,388,30,27,NA
+Luxembourg,103,1082,175,170,NA
+Mexico,711,967,678,365,NA
+Malta,137,186,NA,NA,NA
+Mauritius,66,89,NA,NA,NA
+Malaysia,381,621,74,65,NA
+Nigeria,66,146,NA,NA,NA
+Netherlands,2163,8944,164,160,5
+Norway,1672,3720,34,21,NA
+New Zealand,1257,2169,63,51,NA
+Philippines,58,75,19,7,NA
+Poland,446,887,124,93,NA
+Portugal,624,1109,50,37,NA
+Romania,101,125,53,10,NA
+Russia,99,190,1124,1062,NA
+Saudi Arabia,2105,19316,3,1,NA
+Singapore,10227,16003,642,426,NA
+Serbia,53,97,27,5,NA
+Slovakia,89,99,16,3,NA
+Slovenia,35,44,12,11,NA
+Sweden,9976,36798,140,76,2
+Thailand,60,76,1,0,NA
+Trinidad and Tobago,27,43,NA,NA,NA
+Turkey,97,336,175,14,NA
+Taiwan,351,784,2887,2376,2
+United States,425152,764953,78339,58746,587
+Vietnam,42,90,NA,NA,NA
+South Africa,490,983,164,156,NA
+Barbados,0,18,NA,NA,NA
+Ethiopia,0,0,NA,NA,NA
+Guernsey,0,0,NA,NA,NA
+Guatemala,0,5,NA,NA,NA
+Madagascar,0,5,NA,NA,NA
+Panama,0,1,2,0,NA
+Paraguay,0,8,NA,NA,NA
+Senegal,0,3,NA,NA,NA
+Azerbaijan,0,0,1,0,NA
+Bahrain,0,120,NA,NA,NA
+Bosnia and Herzegovina,0,0,NA,NA,NA
+Costa Rica,0,0,2,0,NA
+Dominican Republic,0,1,NA,NA,NA
+Algeria,0,0,NA,NA,NA
+Georgia,0,10,NA,NA,NA
+Iran,0,0,1,1,NA
+Iraq,0,0,NA,NA,NA
+Jamaica,0,0,NA,NA,NA
+Cambodia,0,0,NA,NA,NA
+Oman,0,1,1,0,NA
+El Salvador,0,1,NA,NA,NA
+Tanzania,0,0,NA,NA,NA
+Uganda,0,0,NA,NA,NA
+Uzbekistan,0,0,NA,NA,NA
+Zambia,0,1,NA,NA,NA
+Belarus,2,12,NA,NA,NA
+Botswana,2,3,NA,NA,NA
+Jordan,2,3,3,2,NA
+Lebanon,2,3,NA,NA,NA
+Seychelles,3,58,NA,NA,NA
+Tajikistan,3,3,NA,NA,NA
+Saint Kitts and Nevis,4,4,NA,NA,NA
+Puerto Rico,4,5,NA,NA,NA
+Kuwait,7,7,NA,NA,NA
+Qatar,7,9,NA,NA,NA
+Tunisia,8,9,4,0,NA
+Pakistan,9,32,NA,NA,NA
+Peru,9,11,31,16,NA
+Uruguay,10,112,2,2,NA
+Cayman Islands (the),12,24,NA,NA,NA
+Sri Lanka,12,13,1,1,NA
+Kazakhstan,13,16,NA,NA,NA
+Albania,14,24,NA,NA,NA
+Belize,20,30,NA,NA,NA
+Ukraine,20,40,55,54,NA
+Armenia,22,26,NA,NA,NA
+Latvia,23,30,2,1,NA
+Bangladesh,1,2,NA,NA,NA
+Côte d'Ivoire,1,1,NA,NA,NA
+Ecuador,1,2,NA,NA,NA
+Honduras,1,1,NA,NA,NA
+Morocco,1,3,29,16,NA
+North Macedonia,1,1,NA,NA,NA
+Mongolia,1,1,NA,NA,NA
+Venezuela,1,1,NA,NA,NA
+Zimbabwe,1,1,NA,NA,NA

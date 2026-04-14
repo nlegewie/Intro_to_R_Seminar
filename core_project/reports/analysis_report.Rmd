@@ -1,0 +1,61 @@
+---
+title: "Globale Ungleichheit — Analysen"
+author: "Vorname Nachname"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r pakete}
+library(tidyverse)
+library(here)
+```
+
+<!--
+  HINWEIS: Dieses Dokument wird im Laufe des Semesters schrittweise aufgebaut.
+  Zu Beginn schreibst du Code direkt in die Chunks hier.
+  Ab der zweiten Semesterhälfte wirst du deine Skripte (scripts/) aus diesem
+  Dokument heraus per source() aufrufen, anstatt den Code hier zu duplizieren.
+  Dein Dozent erklärt dir diesen Übergang, wenn es so weit ist.
+-->
+
+
+## Daten einlesen
+
+```{r daten-einlesen}
+# Datensatz einlesen
+# owid_data <- read_csv(here("data", "owid_data.csv"))
+```
+
+
+## Erste Erkundung
+
+```{r erste-erkundung}
+# Datensatz inspizieren
+# glimpse(owid_data)
+```
+
+
+## Hausaufgabe 1
+
+
+
+## Hausaufgabe 2
+
+
+
+## Hausaufgabe 3
+
+

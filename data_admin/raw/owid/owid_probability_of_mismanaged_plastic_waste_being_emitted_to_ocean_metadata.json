@@ -1,0 +1,28 @@
+{
+  "chart": {
+    "title": "Probability of mismanaged plastic waste being emitted to ocean",
+    "subtitle": "Mismanaged plastic waste includes materials burned in open pits, dumped into seas or open waters, or disposed of in unsanitary landfills and dumpsites. A country's total does not include waste that is exported overseas, which may be at higher risk of entering the ocean.",
+    "citation": "Meijer et al. (2021)",
+    "originalChartUrl": "https://ourworldindata.org/explorers/plastic-pollution?Metric=Probability+of+ocean+pollution&Per+capita=false&Share+of+world+total=false&Source=OECD&country=USA~CHN~IND",
+    "selection": [
+      "United States",
+      "China",
+      "India"
+    ]
+  },
+  "columns": {
+    "Probability of plastic being emitted to ocean": {
+      "titleShort": "Probability of mismanaged plastic waste being emitted to ocean",
+      "titleLong": "Probability of mismanaged plastic waste being emitted to ocean",
+      "unit": "",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 146455,
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “Probability of mismanaged plastic waste being emitted to ocean” [dataset]. Meijer et al. (2021) [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/146455.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-01-25",
+  "activeFilters": {}
+}

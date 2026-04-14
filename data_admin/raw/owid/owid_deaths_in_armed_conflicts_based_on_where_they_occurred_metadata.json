@@ -1,0 +1,39 @@
+{
+  "chart": {
+    "title": "Deaths in armed conflicts based on where they occurred",
+    "subtitle": "Included are deaths of combatants and civilians due to fighting in [armed conflicts](#dod:armed-conflict-ucdp) that were ongoing that year.",
+    "citation": "Uppsala Conflict Data Program (2025); geoBoundaries (2023)",
+    "originalChartUrl": "https://ourworldindata.org/explorers/countries-in-conflict-data?Measure=Conflict+deaths&Conflict+type=All+armed+conflicts&Conflict+sub-type=Across+all+sub-types&country=AFG~ETH~SYR~UKR",
+    "selection": [
+      "Afghanistan",
+      "Ethiopia",
+      "Syria",
+      "Ukraine"
+    ]
+  },
+  "columns": {
+    "Deaths in ongoing conflicts (best estimate) - Conflict type: all": {
+      "titleShort": "Deaths in ongoing conflicts (best estimate) - Conflict type: all",
+      "titleLong": "Deaths in ongoing conflicts (best estimate) - Conflict type: all",
+      "descriptionShort": "The best estimate of the number of deaths of combatants and civilians due to fighting in interstate, intrastate, extrasystemic, non-state conflicts, and one-sided violence that were ongoing that year.",
+      "descriptionKey": [
+        "An armed conflict is defined by the [Uppsala Conflict Data Program (UCDP)](https://ucdp.uu.se/) as a disagreement between organized groups, or between one organized group and civilians, that causes at least 25 deaths during a year. This includes combatant and civilian deaths due to fighting.",
+        "This includes [interstate conflicts](#dod:interstate-ucdp), [civil conflicts](#dod:intrastate-ucdp), [non-state conflicts](#dod:nonstate-ucdp), [violence against civilians](#dod:onesided-ucdp), and [colonial conflicts](#dod:extrasystemic-ucdp).",
+        "UCDP identifies conflict deaths [based on news reports, other contemporary sources, and academic research](https://www.uu.se/en/department/peace-and-conflict-research/research/ucdp/ucdp-methodology).",
+        "We show here the \"best\" death estimates as identified by UCDP. They also report high and low estimates."
+      ],
+      "descriptionProcessing": "UCDP provides geographical coordinates of each conflict event. We have mapped these coordinates to countries by means of the geoBoundaries dataset.\n\nIn some instances, the event's coordinates fall within the borders of a country. Other times, the event's coordinates fall outside the borders of a country. In the latter case, we have mapped the event to the country that is closest to the event's coordinates.\n\nConflict event with id \"53238\" and relid \"PAK-2003-1-345-88\" was assigned to \"Siachen-Saltoro\" by geoBoundaries. We have mapped it to \"Pakistan\" following the text in the `where_description` field from UCDP, which refers to \"Giang sector in Siachen, Pakistani Kashmir\".",
+      "unit": "deaths",
+      "timespan": "1989-2024",
+      "type": "Integer",
+      "owidVariableId": 1075299,
+      "shortName": "number_deaths_ongoing_conflicts__conflict_type_all",
+      "lastUpdated": "2025-06-13",
+      "citationShort": "Uppsala Conflict Data Program (2025); geoBoundaries (2023) – processed by Our World in Data",
+      "citationLong": "Uppsala Conflict Data Program (2025); geoBoundaries (2023) – processed by Our World in Data. “Deaths in ongoing conflicts (best estimate) - Conflict type: all” [dataset]. Uppsala Conflict Data Program, “Georeferenced Event Dataset v25.1”; geoBoundaries, “geoBoundaries - Comprehensive Global Administrative Zones (CGAZ) 6.0.0” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1075299.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-01-23",
+  "activeFilters": {}
+}

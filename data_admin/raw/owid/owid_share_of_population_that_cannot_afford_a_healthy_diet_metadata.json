@@ -1,0 +1,46 @@
+{
+  "chart": {
+    "title": "Share of population that cannot afford a healthy diet",
+    "subtitle": "The cost of a healthy diet is the lowest-cost set of foods available that would meet requirements in dietary guidelines from governments and public health agencies. A diet is defined as unaffordable when its cost, plus basic non-food needs like housing and transportation, exceeds daily income.",
+    "citation": "FAO and World Bank (2025), using data and methods from Bai et al. (2024)",
+    "originalChartUrl": "https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&Cost+or+Affordability=Affordability&Affordability+metric=Share+that+cannot+afford&country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR",
+    "selection": [
+      "Nigeria",
+      "Bangladesh",
+      "India",
+      "Ethiopia",
+      "Mexico",
+      "United States",
+      "Brazil",
+      "United Kingdom"
+    ]
+  },
+  "columns": {
+    "Share of the population who cannot afford a healthy diet": {
+      "titleShort": "Share of the population who cannot afford a healthy diet",
+      "titleLong": "Share of the population who cannot afford a healthy diet",
+      "descriptionShort": "Percentage of the total population unable to afford a healthy diet. A diet is considered unaffordable when the diet cost plus expenditures for basic non-food needs exceed income per capita per day.",
+      "descriptionKey": [
+        "A healthy diet meets nutritional standards set by dietary guidelines, with sufficient diversity and quantity within and between food groups to achieve nutrient adequacy and protect against diet-related diseases.",
+        "Non-food expenses are estimated by looking at how much low-income people typically spend on things like housing, clothing, and transportation.",
+        "This amount is calculated as the average share of non-food expenditure for a low-income consumer, multiplied by the international poverty line.",
+        "The average share of non-food expenditure is based on the spending habits of specific income groups (quintiles):\n- In upper-middle-income and high-income countries, the first quintile of consumers is considered (the poorest 20% of consumers), where people spend around 54% of their income on non-food needs.\n- In low-income and lower-middle-income countries, the second quintile is considered (the second lowest 20% of consumers), where people spend about 37% and 44% of their income on non-food needs, respectively.",
+        "The international poverty lines (in [international-$](#dod:int_dollar_abbreviation) at 2017 prices) are:\n- For low-income countries: $2.15/day.\n- For lower-middle-income countries: $3.65/day.\n- For upper-middle-income countries: $6.85/day.\n- For high-income countries: $24.36/day.",
+        "A value of zero indicates a null or a small number rounded down at the current precision level."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "2017-2024",
+      "type": "Numeric",
+      "owidVariableId": 1108562,
+      "shortName": "percent_of_the_population_who_cannot_afford_a_healthy_diet",
+      "lastUpdated": "2025-08-04",
+      "nextUpdate": "2026-08-04",
+      "citationShort": "FAO and World Bank (2025), using data and methods from Bai et al. (2024) – with minor processing by Our World in Data",
+      "citationLong": "FAO and World Bank (2025), using data and methods from Bai et al. (2024) – with minor processing by Our World in Data. “Share of the population who cannot afford a healthy diet” [dataset]. Herforth et al. (2022), adapted by World Bank, “Food Prices for Nutrition 4.0” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1108562.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-01-23",
+  "activeFilters": {}
+}

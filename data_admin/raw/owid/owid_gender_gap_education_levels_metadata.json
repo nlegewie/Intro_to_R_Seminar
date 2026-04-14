@@ -1,0 +1,182 @@
+{
+  "chart": {
+    "title": "Gender gap in primary, secondary and tertiary education",
+    "subtitle": "Share of boys or girls within the relevant age group who are enrolled in [primary](#dod:primary-education), [lower secondary](#dod:lower-secondary-education), [upper secondary](#dod:upper-secondary-education), and [tertiary](#dod:tertiary-education) education.",
+    "note": "This is given as the 'gross' rate, which includes children of any age entering the level of education; this can result in percentages greater than 100 because children may enter education late or repeat a year.",
+    "citation": "Multiple sources compiled by World Bank (2024); Lee and Lee (2016); UNESCO Institute for Statistics (2025)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/gender-gap-education-levels?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "World"
+    ]
+  },
+  "columns": {
+    "Combined gross enrolment ratio for tertiary education, female": {
+      "titleShort": "Girls in tertiary education",
+      "titleLong": "Girls in tertiary education",
+      "descriptionKey": [
+        "Total enrolment in tertiary education regardless of age expressed as a percentage of the population in the 5-year age group immediately following upper secondary education."
+      ],
+      "descriptionProcessing": "Historical data up to the year 1985 has been sourced from 'Human Capital in the Long Run' by Lee and Lee (2016). This historical data was then combined with recent estimates provided by the World Bank.\n\nFor the period before 1985, regional aggregates were computed by Our World in Data through yearly population-weighted averages, where annual values are proportionally adjusted to emphasize the influence of larger populations.",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1820-2022",
+      "type": "Numeric",
+      "owidVariableId": 808864,
+      "shortName": "f_tertiary_enrollment_rates_combined_wb",
+      "lastUpdated": "2023-07-17",
+      "citationShort": "Multiple sources compiled by World Bank (2024); Lee and Lee (2016) – with major processing by Our World in Data",
+      "citationLong": "Multiple sources compiled by World Bank (2024); Lee and Lee (2016) – with major processing by Our World in Data. “Girls in tertiary education” [dataset]. UNESCO Institute for Statistics, “World Development Indicators”; Lee and Lee, “Human Capital in the Long Run” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/808864.metadata.json"
+    },
+    "Combined gross enrolment ratio for tertiary education, male": {
+      "titleShort": "Boys in tertiary education",
+      "titleLong": "Boys in tertiary education",
+      "descriptionKey": [
+        "Total enrolment in tertiary education regardless of age expressed as a percentage of the population in the 5-year age group immediately following upper secondary education."
+      ],
+      "descriptionProcessing": "Historical data up to the year 1985 has been sourced from 'Human Capital in the Long Run' by Lee and Lee (2016). This historical data was then combined with recent estimates provided by the World Bank.\n\nFor the period before 1985, regional aggregates were computed by Our World in Data through yearly population-weighted averages, where annual values are proportionally adjusted to emphasize the influence of larger populations.",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1820-2022",
+      "type": "Numeric",
+      "owidVariableId": 808865,
+      "shortName": "m_tertiary_enrollment_rates_combined_wb",
+      "lastUpdated": "2023-07-17",
+      "citationShort": "Multiple sources compiled by World Bank (2024); Lee and Lee (2016) – with major processing by Our World in Data",
+      "citationLong": "Multiple sources compiled by World Bank (2024); Lee and Lee (2016) – with major processing by Our World in Data. “Boys in tertiary education” [dataset]. UNESCO Institute for Statistics, “World Development Indicators”; Lee and Lee, “Human Capital in the Long Run” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/808865.metadata.json"
+    },
+    "Combined total net enrolment rate, primary, female": {
+      "titleShort": "Net enrollment rate in primary education among girls",
+      "titleLong": "Net enrollment rate in primary education among girls",
+      "descriptionShort": "Percentage of girls of official primary school age who are enrolled in [primary education](#dod:primary-education).",
+      "descriptionKey": [
+        "Net enrollment rate for primary school is calculated by dividing the number of students of official school age enrolled in primary education by the population of the age group which officially corresponds to primary education, and multiplying by 100."
+      ],
+      "descriptionProcessing": "Historical data up to the year 1985 has been sourced from 'Human Capital in the Long Run' by Lee and Lee (2016). This historical data was then combined with recent estimates provided by the World Bank.\n\nFor the period before 1985, regional aggregates were computed by Our World in Data through yearly population-weighted averages, where annual values are proportionally adjusted to emphasize the influence of larger populations.",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1820-2024",
+      "type": "Numeric",
+      "owidVariableId": 808861,
+      "shortName": "f_primary_enrollment_rates_combined_wb",
+      "lastUpdated": "2023-07-17",
+      "citationShort": "UNESCO Institute for Statistics (2025); Lee and Lee (2016) – with major processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025); Lee and Lee (2016) – with major processing by Our World in Data. “Net enrollment rate in primary education among girls” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education”; Lee and Lee, “Human Capital in the Long Run” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/808861.metadata.json"
+    },
+    "Combined total net enrolment rate, primary, male": {
+      "titleShort": "Net enrollment rate in primary education among boys",
+      "titleLong": "Net enrollment rate in primary education among boys",
+      "descriptionShort": "Percentage of boys of official primary school age who are enrolled in [primary education](#dod:primary-education).",
+      "descriptionKey": [
+        "Net enrollment rate for primary school is calculated by dividing the number of students of official school age enrolled in primary education by the population of the age group which officially corresponds to primary education, and multiplying by 100."
+      ],
+      "descriptionProcessing": "Historical data up to the year 1985 has been sourced from 'Human Capital in the Long Run' by Lee and Lee (2016). This historical data was then combined with recent estimates provided by the World Bank.\n\nFor the period before 1985, regional aggregates were computed by Our World in Data through yearly population-weighted averages, where annual values are proportionally adjusted to emphasize the influence of larger populations.",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1820-2024",
+      "type": "Numeric",
+      "owidVariableId": 808862,
+      "shortName": "m_primary_enrollment_rates_combined_wb",
+      "lastUpdated": "2023-07-17",
+      "citationShort": "UNESCO Institute for Statistics (2025); Lee and Lee (2016) – with major processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025); Lee and Lee (2016) – with major processing by Our World in Data. “Net enrollment rate in primary education among boys” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education”; Lee and Lee, “Human Capital in the Long Run” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/808862.metadata.json"
+    },
+    "Net enrollment rate in lower secondary education among boys": {
+      "titleShort": "Net enrollment rate in lower secondary education among boys",
+      "titleLong": "Net enrollment rate in lower secondary education among boys",
+      "descriptionShort": "Percentage of boys of official lower secondary school age who are enrolled in [lower secondary education](#dod:lower-secondary-education).",
+      "descriptionKey": [
+        "The net enrollment rate shows what percentage of children are enrolled at the education level intended for their age.",
+        "It compares children enrolled at the correct level for their age to the total population in that same age group. For example, a primary school net enrollment of 90% means 90% of children between the ages of 6 and 11 years are enrolled in primary school. Children who are not enrolled in school or are enrolled at another education level are not counted here.",
+        "The highest possible value is 100%, which would mean all children of the right age are enrolled where they should be. High rates indicate that most children are progressing through school at the expected pace.",
+        "A rate of 90% doesn't necessarily mean 10% of children are out of school entirely — some may be enrolled at different levels (either higher or lower) than expected for their age, but these students aren't counted in the net rate.",
+        "The data comes from school administrative records that track enrollment by individual age, combined with population estimates from national statistics offices or UN sources."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1970-2024",
+      "type": "Numeric",
+      "owidVariableId": 1030900,
+      "shortName": "total_net_enrolment_rate__lower_secondary__male__pct",
+      "lastUpdated": "2025-05-01",
+      "nextUpdate": "2026-05-01",
+      "citationShort": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data. “Net enrollment rate in lower secondary education among boys” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1030900.metadata.json"
+    },
+    "Net enrollment rate in lower secondary education among girls": {
+      "titleShort": "Net enrollment rate in lower secondary education among girls",
+      "titleLong": "Net enrollment rate in lower secondary education among girls",
+      "descriptionShort": "Percentage of girls of official lower secondary school age who are enrolled in [lower secondary education](#dod:lower-secondary-education).",
+      "descriptionKey": [
+        "The net enrollment rate shows what percentage of children are enrolled at the education level intended for their age.",
+        "It compares children enrolled at the correct level for their age to the total population in that same age group. For example, a primary school net enrollment of 90% means 90% of children between the ages of 6 and 11 years are enrolled in primary school. Children who are not enrolled in school or are enrolled at another education level are not counted here.",
+        "The highest possible value is 100%, which would mean all children of the right age are enrolled where they should be. High rates indicate that most children are progressing through school at the expected pace.",
+        "A rate of 90% doesn't necessarily mean 10% of children are out of school entirely — some may be enrolled at different levels (either higher or lower) than expected for their age, but these students aren't counted in the net rate.",
+        "The data comes from school administrative records that track enrollment by individual age, combined with population estimates from national statistics offices or UN sources."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1970-2024",
+      "type": "Numeric",
+      "owidVariableId": 1030898,
+      "shortName": "total_net_enrolment_rate__lower_secondary__female__pct",
+      "lastUpdated": "2025-05-01",
+      "nextUpdate": "2026-05-01",
+      "citationShort": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data. “Net enrollment rate in lower secondary education among girls” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1030898.metadata.json"
+    },
+    "Net enrollment rate in upper secondary education among boys": {
+      "titleShort": "Net enrollment rate in upper secondary education among boys",
+      "titleLong": "Net enrollment rate in upper secondary education among boys",
+      "descriptionShort": "Percentage of boys of official upper secondary school age who are enrolled in [upper secondary education](#dod:upper-secondary-education).",
+      "descriptionKey": [
+        "The net enrollment rate shows what percentage of children are enrolled at the education level intended for their age.",
+        "It compares children enrolled at the correct level for their age to the total population in that same age group. For example, a primary school net enrollment of 90% means 90% of children between the ages of 6 and 11 years are enrolled in primary school. Children who are not enrolled in school or are enrolled at another education level are not counted here.",
+        "The highest possible value is 100%, which would mean all children of the right age are enrolled where they should be. High rates indicate that most children are progressing through school at the expected pace.",
+        "A rate of 90% doesn't necessarily mean 10% of children are out of school entirely — some may be enrolled at different levels (either higher or lower) than expected for their age, but these students aren't counted in the net rate.",
+        "The data comes from school administrative records that track enrollment by individual age, combined with population estimates from national statistics offices or UN sources."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1970-2024",
+      "type": "Numeric",
+      "owidVariableId": 1030914,
+      "shortName": "total_net_enrolment_rate__upper_secondary__male__pct",
+      "lastUpdated": "2025-05-01",
+      "nextUpdate": "2026-05-01",
+      "citationShort": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data. “Net enrollment rate in upper secondary education among boys” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1030914.metadata.json"
+    },
+    "Net enrollment rate in upper secondary education among girls": {
+      "titleShort": "Net enrollment rate in upper secondary education among girls",
+      "titleLong": "Net enrollment rate in upper secondary education among girls",
+      "descriptionShort": "Percentage of girls of official upper secondary school age who are enrolled in [upper secondary education](#dod:upper-secondary-education).",
+      "descriptionKey": [
+        "The net enrollment rate shows what percentage of children are enrolled at the education level intended for their age.",
+        "It compares children enrolled at the correct level for their age to the total population in that same age group. For example, a primary school net enrollment of 90% means 90% of children between the ages of 6 and 11 years are enrolled in primary school. Children who are not enrolled in school or are enrolled at another education level are not counted here.",
+        "The highest possible value is 100%, which would mean all children of the right age are enrolled where they should be. High rates indicate that most children are progressing through school at the expected pace.",
+        "A rate of 90% doesn't necessarily mean 10% of children are out of school entirely — some may be enrolled at different levels (either higher or lower) than expected for their age, but these students aren't counted in the net rate.",
+        "The data comes from school administrative records that track enrollment by individual age, combined with population estimates from national statistics offices or UN sources."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1970-2024",
+      "type": "Numeric",
+      "owidVariableId": 1030912,
+      "shortName": "total_net_enrolment_rate__upper_secondary__female__pct",
+      "lastUpdated": "2025-05-01",
+      "nextUpdate": "2026-05-01",
+      "citationShort": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data",
+      "citationLong": "UNESCO Institute for Statistics (2025) – with minor processing by Our World in Data. “Net enrollment rate in upper secondary education among girls” [dataset]. UNESCO Institute for Statistics, “UNESCO Institute for Statistics (UIS) - Education” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1030912.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-03-20",
+  "activeFilters": {}
+}

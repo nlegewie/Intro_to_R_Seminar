@@ -1,0 +1,40 @@
+{
+  "chart": {
+    "title": "Share of the population with basic handwashing facilities",
+    "subtitle": "Proportion of people with access to a handwashing facility with soap and water available at home.",
+    "citation": "WHO/UNICEF Joint Monitoring Programme for Water Supply, Sanitation and Hygiene (2025)",
+    "originalChartUrl": "https://ourworldindata.org/explorers/water-and-sanitation?Resource=Handwashing+facilities&Level+of+Use%2FAccess=Basic&Residence=Total&Relative+to+population=Share+of+population&country=IND~USA~KEN~OWID_WRL~BGD~ZAF~CHN",
+    "selection": [
+      "India",
+      "United States",
+      "Kenya",
+      "World",
+      "Bangladesh",
+      "South Africa",
+      "China"
+    ]
+  },
+  "columns": {
+    "Share of the population with basic handwashing facilities": {
+      "titleShort": "Access to basic handwashing facilities",
+      "titleLong": "Access to basic handwashing facilities",
+      "descriptionShort": "Proportion of people with access to a handwashing facility with soap and water available at home.",
+      "descriptionKey": [
+        "A basic handwashing facility is defined as a facility with soap and water available on premises."
+      ],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "2000-2024",
+      "type": "Numeric",
+      "owidVariableId": 1132800,
+      "shortName": "hyg_bas__residence_total",
+      "lastUpdated": "2025-12-08",
+      "nextUpdate": "2027-12-08",
+      "citationShort": "WHO/UNICEF Joint Monitoring Programme for Water Supply, Sanitation and Hygiene (2025) – processed by Our World in Data",
+      "citationLong": "WHO/UNICEF Joint Monitoring Programme for Water Supply, Sanitation and Hygiene (2025) – processed by Our World in Data. “Access to basic handwashing facilities” [dataset]. World Health Organization/UNICEF Joint Monitoring Programme for Water Supply, Sanitation and Hygiene, “WHO/UNICEF Joint Monitoring Programme for Water Supply, Sanitation and Hygiene (JMP) 2000-2024 report” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1132800.metadata.json"
+    }
+  },
+  "dateDownloaded": "2026-01-25",
+  "activeFilters": {}
+}
