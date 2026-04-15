@@ -16,6 +16,7 @@ Du musst GitHub nicht kennen und kein Git benutzen. Alles funktioniert auch, wen
 - [Was ist dieses Repository?](#was-ist-dieses-repository)
 - [Wie du die Dateien herunterlädst](#wie-du-die-dateien-herunterlädst)
 - [Aufbau des Repositorys](#aufbau-des-repositorys)
+- [Weitere Referenzmaterialien](#weitere-referenzmaterialien)
 - [Wie das Seminar funktioniert](#wie-das-seminar-funktioniert)
 - [Kern- und Bonusaufgaben](#kern--und-bonusaufgaben)
 - [Tastaturkürzel](#tastaturkürzel)
@@ -58,10 +59,11 @@ Du richtest einmalig dein eigenes RStudio-Projekt ein — der Ordner, in dem all
 → [Projekt einrichten](setup/project_setup.md)
 
 
-**Schritt 5 — Tastaturkürzel zur Hand nehmen**
+**Schritt 5 — Tastaturkürzel und Paket-Cheatsheets zur Hand nehmen**
 
-Tastaturkürzel sparen von Anfang an Zeit. Drucke die Liste aus oder halte sie offen.
+Tastaturkürzel sparen von Anfang an Zeit. Die Paket-Cheatsheets sind dein Nachschlagewerk für den Rest des Semesters.
 → [Tastaturkürzel](resources/cheatsheets/keyboard_shortcuts.md)
+→ [Tidyverse-Cheatsheets (alle Pakete)](resources/cheatsheets/tidyverse_cheatsheets.md)
 
 
 Wenn du bei einem Schritt nicht weiterkommst: [Fehlerbehebung](resources/troubleshooting/reset_and_recover.md)
@@ -134,8 +136,8 @@ Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 └── resources/                   ← Referenzmaterialien, Hilfe, Nachschlagen
     ├── troubleshooting/         ← Fehlerbehebung (bei Problemen hier suchen)
     ├── cookbooks/               ← Rezeptbücher: Codebeispiele zum Nachschlagen
-    ├── cheatsheets/             ← Kurzübersichten
-    └── other/                   ← Leitfäden, Erklärungen, KI-Nutzungshinweise
+    ├── cheatsheets/             ← Kurzübersichten: Tastaturkürzel + alle Tidyverse-Pakete
+    └── other/                   ← Leitfäden, Erklärungen, Code-Stil, KI-Nutzung
 ```
 
 **Die wichtigste Unterscheidung:**
@@ -147,6 +149,21 @@ Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 | `core_project_snapshots/` | Vollständige, funktionierende Versionen des Projekts nach jeder Sitzung — als Rettungsanker |
 
 **Das Wichtigste:** Deine eigene Arbeit findet nicht in diesem heruntergeladenen Ordner statt, sondern in deiner eigenen Kopie des Projekts, die du separat auf deinem Computer einrichtest. Die [Projekteinrichtung](setup/project_setup.md) führt dich Schritt für Schritt durch diesen Prozess.
+
+---
+
+## Weitere Referenzmaterialien
+
+Im Ordner `resources/other/` findest du Leitfäden und Erklärungen, die im Laufe des Semesters relevant werden:
+
+| Dokument | Inhalt |
+|----------|--------|
+| [Häufige Fehler](resources/other/common_errors.md) | Galerie typischer Anfängerfehler mit Erklärungen und Lösungen |
+| [Interpretation von Grafiken und Tabellen](resources/other/interpretation_workflow.md) | Schritt-für-Schritt-Anleitung: beschreiben → vergleichen → deuten → einordnen |
+| [Code-Stil und Kommentare](resources/other/code_style.md) | Warum Code-Stil wichtig ist, wie du sinnvoll kommentierst, und wie `styler` automatisch formatiert |
+| [Buddy-Leitfaden](resources/other/buddy_feedback_guide.md) | Wie das Buddy-System funktioniert und wie ihr euch gegenseitig am besten helft |
+| [Verantwortungsvoller Umgang mit KI](resources/other/using_genai.md) | Was erlaubt ist, was nicht, und wie du KI sinnvoll zum Lernen einsetzt |
+| [Zugänglichkeit](resources/other/accessibility.md) | Hinweise zu Schriftarten, Themes und Hilfsmitteln für Studierende mit Legasthenie |
 
 ---
 
@@ -247,8 +264,12 @@ Es behandelt unter anderem:
 - „Das hat letzte Woche noch funktioniert" — systematisches Debuggen
 - Kernprojekt aus einem Snapshot wiederherstellen
 
+Außerdem: Eine kompakte Galerie der häufigsten Anfängerfehler mit Erklärungen und Lösungen: [Häufige Fehler](resources/other/common_errors.md)
+
 Der Link zu diesem Dokument steht auch in jeder Sitzungsanleitung und im Kernprojekt.
 
-**Buddy-System:** Im Seminar arbeitest du mit einer Buddy-Partner*in zusammen. Wenn du feststeckst, ist dein Buddy die erste Anlaufstelle.
+**Du kommst nicht weiter?** Tipps, wie du eine gute Frage stellst und wo du nach Lösungen suchen kannst: [Um Hilfe bitten — richtig und effektiv](resources/troubleshooting/asking_for_help.md)
+
+**Buddy-System:** Im Seminar arbeitest du mit einer Buddy-Partner*in zusammen. Wenn du feststeckst, ist dein Buddy die erste Anlaufstelle. Wie das genau funktioniert und wie ihr euch gegenseitig am besten helft: [Buddy-Leitfaden](resources/other/buddy_feedback_guide.md)
 
 **Im Seminar fragen:** Ich bin während der Sitzungen verfügbar und komme gerne vorbei, um bei Problemen zu helfen.

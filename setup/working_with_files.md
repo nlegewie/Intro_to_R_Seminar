@@ -155,4 +155,6 @@ Wie du dein Arbeitsprojekt einrichtest, erklärt der nächste Schritt: [Projekte
 
 ---
 
+Wenn du trotzdem Probleme mit Dateipfaden bekommst (z. B. „Datei nicht gefunden"-Fehler): [Fehlerbehebung](../resources/troubleshooting/reset_and_recover.md#datei-nicht-gefunden)
+
 **Nächster Schritt:** [Dein Arbeitsprojekt einrichten](project_setup.md)

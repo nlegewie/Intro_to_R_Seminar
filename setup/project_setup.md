@@ -125,7 +125,7 @@ Jetzt öffnest du das Projekt zum ersten Mal:
 
 ### Woher weißt du, dass du im richtigen Projekt bist?
 
-Schau in die **obere rechte Ecke** von RStudio. Dort steht der Name deines Projekts (z. B. `[dein name]_projekt`). Wenn dort `Project: (None)` steht, bist du in keinem Projekt — öffne die `.Rproj`-Datei erneut.
+Schau in die **obere rechte Ecke** von RStudio. Dort steht der Name deines Projekts (z. B. `[dein name]_projekt`). Wenn dort `Project: (None)` steht, bist du in keinem Projekt — öffne die `.Rproj`-Datei erneut. Wenn du später „Datei nicht gefunden"-Fehler bekommst, ist das fast immer die Ursache: [Fehlerbehebung](../resources/troubleshooting/reset_and_recover.md#datei-nicht-gefunden)
 
 Außerdem: Im Bereich **Files** (unten rechts) siehst du genau die Dateien und Ordner, die in deinem Projektordner liegen. Wenn du dort `scripts/`, `data/`, `reports/` usw. siehst, bist du richtig.
 
