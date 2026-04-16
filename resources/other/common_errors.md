@@ -4,6 +4,8 @@ Diese Seite sammelt Fehler, die fast jeder R-Anfängerin und jedem R-Anfänger p
 
 Wenn du einen Fehler bekommst, der hier nicht steht: [Fehlerbehebung und Wiederherstellung](../troubleshooting/reset_and_recover.md)
 
+Viele Fehler entstehen, weil ein Objekt einen anderen Typ hat als erwartet. Hintergrundwissen dazu: [Objekte in R: Vektoren, Tibbles, Listen und mehr](r_objekte.md)
+
 ---
 
 ## 1. Vergessene Klammer
@@ -254,5 +256,9 @@ owid_data |>
 ---
 
 ## 13. Datei nicht gefunden
+
+> **Nachschlagewerk:** Eine vollständige Referenz aller häufigen Operatoren (`<-`, `==`, `|>`, `%in%`, …) und Basis-Funktionen (`is.na()`, `as.numeric()`, `mean()`, …) findest du in der [R-Referenz](../cheatsheets/r_referenz.md).
+
+
 
 Siehe den ausführlichen Abschnitt in der [Fehlerbehebung](../troubleshooting/reset_and_recover.md#datei-nicht-gefunden) — die drei häufigsten Ursachen und ihre Lösungen sind dort Schritt für Schritt erklärt.

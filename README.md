@@ -64,6 +64,7 @@ Du richtest einmalig dein eigenes RStudio-Projekt ein — der Ordner, in dem all
 Tastaturkürzel sparen von Anfang an Zeit. Die Paket-Cheatsheets sind dein Nachschlagewerk für den Rest des Semesters.
 → [Tastaturkürzel](resources/cheatsheets/keyboard_shortcuts.md)
 → [Tidyverse-Cheatsheets (alle Pakete)](resources/cheatsheets/tidyverse_cheatsheets.md)
+→ [R-Referenz: Operatoren, Basis- und Statistikfunktionen](resources/cheatsheets/r_referenz.md)
 
 
 Wenn du bei einem Schritt nicht weiterkommst: [Fehlerbehebung](resources/troubleshooting/reset_and_recover.md)
@@ -160,6 +161,7 @@ Im Ordner `resources/other/` findest du Leitfäden und Erklärungen, die im Lauf
 
 | Dokument | Inhalt |
 |----------|--------|
+| [Objekte in R](resources/other/r_objekte.md) | Was sind Vektoren, Tibbles, Faktoren, Listen, NA und NULL — und wann begegnet dir was? |
 | [Häufige Fehler](resources/other/common_errors.md) | Galerie typischer Anfängerfehler mit Erklärungen und Lösungen |
 | [Interpretation von Grafiken und Tabellen](resources/other/interpretation_workflow.md) | Schritt-für-Schritt-Anleitung: beschreiben → vergleichen → deuten → einordnen |
 | [Code-Stil und Kommentare](resources/other/code_style.md) | Warum Code-Stil wichtig ist, wie du sinnvoll kommentierst, und wie `styler` automatisch formatiert |
@@ -206,7 +208,7 @@ Die Unterscheidung ist in jeder Sitzung, jeder Hausaufgabe und im Abschlussberic
 
 Tastaturkürzel sparen enorm viel Zeit und reduzieren Frustration. Wir empfehlen, die wichtigsten von Anfang an zu lernen.
 
-Die vollständige Übersicht: [RStudio-Tastaturkürzel](resources/cheatsheets/keyboard_shortcuts.md)
+Die vollständige Übersicht: [RStudio-Tastaturkürzel](resources/cheatsheets/keyboard_shortcuts.md) · [Tidyverse-Cheatsheets](resources/cheatsheets/tidyverse_cheatsheets.md) · [R-Referenz: Operatoren & Funktionen](resources/cheatsheets/r_referenz.md)
 
 Die allerwichtigsten auf einen Blick:
 

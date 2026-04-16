@@ -91,3 +91,7 @@ Die vollständige Sammlung aller Posit-Cheatsheets (inkl. PDF-Downloads) findest
 **[→ posit.co/resources/cheatsheets](https://posit.co/resources/cheatsheets/)**
 
 Dort gibt es auch übersetzte Versionen (Deutsch, Spanisch, Portugiesisch u. a.) für viele Pakete.
+
+---
+
+Siehst du eine Funktion und weißt nicht, was sie tut? Die **[R-Referenz: Operatoren, Basis- und Statistikfunktionen](r_referenz.md)** erklärt die häufigsten R-Grundbausteine außerhalb des Tidyverse.

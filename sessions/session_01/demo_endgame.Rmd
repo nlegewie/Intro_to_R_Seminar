@@ -1,0 +1,386 @@
+---
+title: "Globale Ungleichheit — Was können wir aus Daten lernen?"
+subtitle: "Eine Vorschau auf das, was du am Ende dieses Seminars selbst bauen kannst"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: hide
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo       = TRUE,
+  warning    = FALSE,
+  message    = FALSE,
+  fig.width  = 9,
+  fig.height = 5.5
+)
+
+# here() sonst am falschen Ort: Ohne .Rproj im Repo-Stamm findet {here} z. B.
+# core_project/ — dann existiert data/owid_data.csv nicht am erwarteten Ort.
+# Beim Kniten ist knitr::current_input() gesetzt → daraus den echten Ordner dieser Sitzung ableiten.
+if (requireNamespace("here", quietly = TRUE)) {
+  inp <- tryCatch(knitr::current_input(), error = function(e) "")
+  if (length(inp) && nzchar(inp)) {
+    rmd_path <- if (file.exists(inp)) normalizePath(inp) else normalizePath(file.path(getwd(), inp))
+    if (!is.na(rmd_path) && file.exists(rmd_path)) {
+      session_root <- dirname(rmd_path)
+      marker <- file.path(session_root, "session_01.Rproj")
+      if (file.exists(marker)) {
+        oldwd <- getwd()
+        setwd(session_root)
+        tryCatch(
+          here::i_am("session_01.Rproj"),
+          finally = setwd(oldwd)
+        )
+      }
+    }
+  }
+}
+
+
+# Nur für mich zum Erstellen des Outputs: rmarkdown::render(here::here("demo_endgame.Rmd"))
+
+```
+
+```{r pakete}
+library(tidyverse)
+library(here)
+library(knitr)
+
+# Optional: von der Konsole rendern (nicht aus diesem Chunk ausführen).
+# `here()` zeigt auf den Ordner der *aktiven* .Rproj-Datei — Pfade nicht doppeln:
+#
+# • session_01.Rproj geöffnet:
+#     rmarkdown::render(here::here("demo_endgame.Rmd"))
+# • Repo-Stamm / Shell-CWD = Intro_to_R_Seminar:
+#     rmarkdown::render(here::here("sessions", "session_01", "demo_endgame.Rmd"))
+#
+# Fehler ".../session_01/sessions/session_01/..."? Zweite Variante mit geöffnetem session_01.Rproj benutzt.
+```
+
+```{r datenvorbereitung}
+# Rohdaten einlesen
+owid_roh <- read_csv(
+  here("data", "owid_data.csv"),
+  show_col_types = FALSE
+)
+
+# world_region ist nur für ~140 Länder befüllt → Referenztabelle, dann Join
+region_lookup <- owid_roh |>
+  filter(!is.na(world_region)) |>
+  distinct(country, world_region)
+
+# inner_join: nur echte Länder, OWID-Aggregate ("World", …) fallen weg
+owid_laender <- owid_roh |>
+  select(-world_region) |>
+  inner_join(region_lookup, by = "country")
+
+owid_laender <- owid_laender |>
+  mutate(
+    bip_pro_kopf = gdp / population,
+    region = world_region
+  ) |>
+  filter(year >= 1990, year <= 2020)
+
+# Zwischenstand speichern (so arbeitest du später mit Skripten + source())
+saveRDS(owid_laender, here("data", "owid_bereinigt.rds"))
+
+# Ab hier: ein Objekt `owid` für alle Grafiken
+owid <- owid_laender
+```
+
+---
+
+## Was ist das hier?
+
+Dieses Dokument zeigt, was du am Ende dieses Semesters selbst erstellen kannst — in R, mit echten Daten, in einem reproduzierbaren Dokument wie diesem.
+
+Es verwendet Daten von [Our World in Data](https://ourworldindata.org): einen Datensatz mit fast 200 Ländern und Messungen von den 1990er Jahren bis heute. Einkommen, Ungleichheit, Lebenserwartung, Kindersterblichkeit, CO₂-Emissionen — all das ist darin enthalten.
+
+**Der Code für jede Grafik und Tabelle ist in diesem Dokument versteckt.** Du kannst ihn jederzeit aufklappen, indem du auf *Code* klickst — du siehst dann den echten R-Code (nicht nur `source()`). Am Ende des Semesters wirst du verstehen, was jede Zeile tut — und deinen eigenen Bericht damit bauen können.
+
+---
+
+## 1 · Wie ungleich ist die Welt — und wo?
+
+Der Gini-Koeffizient misst Einkommensungleichheit auf einer Skala von 0 (jede Person hat dasselbe Einkommen) bis 1 (eine Person hat alles). Ein Wert über 0,45 gilt als hoch; die meisten Industrieländer liegen zwischen 0,25 und 0,35.
+
+```{r grafik-gini-region, fig.height=4.5}
+# Benanntes Vektor: Schlüssel = exakter Wert in `region`/`fill`/`color`,
+# Wert = Hex-Farbe. scale_*_manual(values = region_farben) ordnet jeder Region dieselbe Farbe in allen Grafiken.
+region_farben <- c(
+  "Africa"        = "#E07B39",
+  "Asia"          = "#C3533A",
+  "Europe"        = "#4472C4",
+  "North America" = "#70AD47",
+  "Oceania"       = "#9B59B6",
+  "South America" = "#F4C430"
+)
+
+gini_region_2015 <- owid |>
+  filter(year == 2015, !is.na(gini)) |>
+  group_by(region) |>
+  summarise(
+    gini_mittel = mean(gini, na.rm = TRUE),
+    n_laender = n()
+  ) |>
+  mutate(region = fct_reorder(region, gini_mittel))
+
+grafik_gini_region <- ggplot(
+  gini_region_2015,
+  aes(x = gini_mittel, y = region, fill = region)
+) +
+  geom_col(show.legend = FALSE, width = 0.6) +
+  geom_text(
+    aes(label = paste0(round(gini_mittel, 2), "  (n=", n_laender, ")")),
+    hjust = -0.1,
+    size = 3.2,
+    color = "grey30"
+  ) +
+  scale_fill_manual(values = region_farben) +
+  scale_x_continuous(
+    limits = c(0, 0.65),
+    breaks = seq(0, 0.6, 0.1),
+    labels = scales::number_format(accuracy = 0.1)
+  ) +
+  labs(
+    title = "Einkommensungleichheit nach Weltregion, 2015",
+    subtitle = "Mittlerer Gini-Koeffizient (0 = vollständige Gleichheit, 1 = vollständige Ungleichheit)",
+    x = "Gini-Koeffizient (Mittelwert der Länder in der Region)",
+    y = NULL,
+    caption = "Quelle: Our World in Data"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    panel.grid.major.y = element_blank(),
+    plot.caption = element_text(color = "grey60", size = 9)
+  )
+
+grafik_gini_region
+```
+
+Lateinamerika und Afrika weisen im Durchschnitt deutlich höhere Ungleichheit auf als Europa — aber innerhalb jeder Region gibt es erhebliche Unterschiede. Diese Variation ist der Ausgangspunkt für viele Analysen im Seminar.
+
+---
+
+## 2 · Wer sind die ungleichsten Länder der Welt?
+
+Die folgende Tabelle zeigt die **zehn Länder mit der höchsten** und die **zehn Länder mit der niedrigsten** Einkommensungleichheit im Jahr 2015.
+
+```{r tabelle-gini-rangliste}
+tabelle_gini <- owid |>
+  filter(year == 2015, !is.na(gini), !is.na(region)) |>
+  select(Land = country, Region = region, Gini = gini) |>
+  arrange(desc(Gini))
+
+tabelle_gini_top10 <- tabelle_gini |>
+  slice_head(n = 10) |>
+  mutate(Rang = row_number(), .before = Land)
+
+tabelle_gini_bottom10 <- tabelle_gini |>
+  slice_tail(n = 10) |>
+  mutate(Rang = (nrow(tabelle_gini) - 9):nrow(tabelle_gini), .before = Land)
+
+kable(
+  tabelle_gini_top10,
+  digits  = 3,
+  caption = "Tabelle 1a: Zehn Länder mit der höchsten Einkommensungleichheit, 2015",
+  col.names = c("Rang", "Land", "Region", "Gini")
+)
+
+kable(
+  tabelle_gini_bottom10,
+  digits  = 3,
+  caption = "Tabelle 1b: Zehn Länder mit der niedrigsten Einkommensungleichheit, 2015",
+  col.names = c("Rang", "Land", "Region", "Gini")
+)
+```
+
+Fällt dir auf, aus welchen Regionen die Länder mit sehr niedriger Ungleichheit stammen? Und was haben die Länder am oberen Ende der Rangliste gemeinsam?
+
+---
+
+## 3 · Hat sich die Lebenserwartung angenähert?
+
+Einer der deutlichsten Trends der letzten Jahrzehnte: In fast allen Ländern der Welt steigt die Lebenserwartung — aber von sehr unterschiedlichen Ausgangspunkten.
+
+```{r grafik-lebenserwartung}
+laender_auswahl <- c(
+  "Germany", "United States", "Brazil",
+  "China", "India", "Nigeria"
+)
+
+grafik_lebenserwartung <- owid |>
+  filter(
+    country %in% laender_auswahl,
+    !is.na(life_expectancy_birth)
+  ) |>
+  ggplot(aes(x = year, y = life_expectancy_birth,
+             color = country, group = country)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.5, alpha = 0.7) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_y_continuous(limits = c(35, 85), breaks = seq(40, 85, 10)) +
+  labs(
+    title = "Lebenserwartung bei Geburt, 1990–2020",
+    subtitle = "Sechs Länder aus verschiedenen Weltregionen und Einkommensniveaus",
+    x = NULL,
+    y = "Lebenserwartung (Jahre)",
+    color = "Land",
+    caption = "Quelle: Our World in Data"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "right",
+    plot.caption = element_text(color = "grey60", size = 9)
+  )
+
+grafik_lebenserwartung
+```
+
+China und Indien haben in drei Jahrzehnten enorme Sprünge gemacht. Nigeria startete von einem deutlich niedrigeren Niveau. Der Abstand zu Deutschland und den USA ist kleiner geworden — aber er existiert noch. Konvergenz findet statt, aber sie ist unvollständig.
+
+---
+
+## 4 · Wirtschaftliche Entwicklung und Kindersterblichkeit
+
+Es gibt kaum einen stärkeren statistischen Zusammenhang in der Entwicklungsforschung: Reiche Länder haben fast ausnahmslos niedrige Kindersterblichkeit, arme Länder fast ausnahmslos hohe. Aber es gibt Ausnahmen — und die sind besonders interessant.
+
+```{r grafik-scatter, fig.height=6}
+grafik_scatter <- owid |>
+  filter(
+    year == 2015,
+    !is.na(bip_pro_kopf),
+    !is.na(child_mortality_rate),
+    !is.na(population)
+  ) |>
+  ggplot(aes(
+    x = bip_pro_kopf,
+    y = child_mortality_rate,
+    color = region,
+    size = population
+  )) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(
+    aes(group = 1),
+    method = "loess",
+    se = FALSE,
+    color = "grey40",
+    linewidth = 0.8,
+    linetype = "dashed"
+  ) +
+  scale_x_log10(
+    labels = scales::dollar_format(prefix = "$", big.mark = ".", decimal.mark = ","),
+    breaks = c(500, 2000, 10000, 50000)
+  ) +
+  scale_y_continuous(breaks = seq(0, 150, 25)) +
+  scale_color_manual(values = region_farben) +
+  scale_size_continuous(
+    range = c(1, 12),
+    guide = guide_legend(title = "Bevölkerung"),
+    labels = scales::label_number(scale = 1e-6, suffix = " Mio.")
+  ) +
+  labs(
+    title = "Wirtschaftliche Entwicklung und Kindersterblichkeit, 2015",
+    subtitle = "Jeder Punkt ist ein Land. Punktgröße = Bevölkerung. x-Achse: logarithmische Skala.",
+    x = "BIP pro Kopf (USD, logarithmisch)",
+    y = "Kindersterblichkeit (Todesfälle unter 5 Jahren pro 1.000 Lebendgeburten)",
+    color = "Weltregion",
+    caption = "Quelle: Our World in Data"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.caption = element_text(color = "grey60", size = 9)
+  )
+
+grafik_scatter
+```
+
+Auf der x-Achse ist das BIP pro Kopf *logarithmisch* skaliert — das heißt, der Abstand zwischen \$500 und \$5.000 ist genauso groß wie zwischen \$5.000 und \$50.000. Das spiegelt wider, wie der menschliche Lebensstandard sich anfühlt: Der Unterschied zwischen arm und mittelarm ist viel größer als der zwischen mittelreich und reich.
+
+Welche Länder fallen dir als Ausreißer auf? Länder, die reicher sind als man angesichts ihrer Kindersterblichkeit erwarten würde — oder umgekehrt?
+
+---
+
+## 5 · Drei Dimensionen globaler Ungleichheit auf einmal
+
+Ungleichheit ist mehrdimensional. Einkommensungleichheit, Kindersterblichkeit und Lebenserwartung zeigen verschiedene Aspekte — und nicht immer dasselbe Bild.
+
+```{r grafik-indikatoren, fig.height=5}
+indikator_labels <- c(
+  "child_mortality_rate"    = "Kindersterblichkeit\n(Todesfälle / 1.000 Lebendgeburten)",
+  "gini"                    = "Gini-Koeffizient\n(Einkommensungleichheit)",
+  "life_expectancy_birth"   = "Lebenserwartung\nbei Geburt (Jahre)"
+)
+
+grafik_indikatoren <- owid |>
+  filter(year == 2015, !is.na(region)) |>
+  select(country, region, child_mortality_rate, gini, life_expectancy_birth) |>
+  pivot_longer(
+    cols = c(child_mortality_rate, gini, life_expectancy_birth),
+    names_to = "indikator",
+    values_to = "wert"
+  ) |>
+  filter(!is.na(wert)) |>
+  ggplot(aes(x = fct_reorder(region, wert, .fun = median), y = wert,
+             fill = region)) +
+  geom_boxplot(alpha = 0.7, outlier.size = 0.8, show.legend = FALSE) +
+  scale_fill_manual(values = region_farben) +
+  facet_wrap(~indikator, scales = "free_y",
+             labeller = labeller(indikator = indikator_labels)) +
+  labs(
+    title = "Drei Dimensionen globaler Ungleichheit nach Weltregion, 2015",
+    subtitle = "Jeder Punkt: ein Land. Box: mittlere 50 % der Verteilung.",
+    x = NULL,
+    y = NULL,
+    caption = "Quelle: Our World in Data"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    axis.text.x = element_text(angle = 30, hjust = 1),
+    strip.text = element_text(size = 9),
+    plot.caption = element_text(color = "grey60", size = 9)
+  )
+
+grafik_indikatoren
+```
+
+Für jede Region zeigt die Box die mittleren 50 % der Länder; die Linie in der Mitte ist der Median. Je breiter die Box, desto heterogener ist die Region. Wie unterscheidet sich Asien von Afrika? Was fällt dir bei Europa auf?
+
+---
+
+## Was du dafür gebraucht hast
+
+Dieses Dokument — mehrere Grafiken, Tabellen und der gesamte dazugehörige Code — basiert auf einem Handvoll Werkzeuge, die du im Seminar lernst:
+
+| Werkzeug | Was es tut | Wann du es lernst |
+|----------|-----------|-------------------|
+| `read_csv()` | Datensatz einlesen | Session 2 |
+| `filter()` | Zeilen auswählen | Session 3 |
+| `group_by()` + `summarise()` | Daten zusammenfassen | Session 4 |
+| `mutate()` | Neue Variablen berechnen | Session 4 |
+| `arrange()` + `slice()` | Sortieren und Ausschneiden | Session 5 |
+| `ggplot()` + `geom_*()` | Grafiken erstellen | Sessions 6–7 |
+| `pivot_longer()` | Tabellen umstrukturieren | Session 8 |
+| `fct_reorder()` | Reihenfolge in Grafiken steuern | Session 9 |
+| `source()` + `here()` | Logik in Skripte auslagern (wie im Abschlussbericht) | Session 3 |
+| R Markdown | Code und Text zusammenführen | Sessions 2, 10 |
+
+Im **Abschlussbericht** wirst du viel Logik in `.R`-Skripte legen und sie mit `source()` einbinden — damit bleibt der Bericht übersichtlich. Für diese **Live-Vorschau** steht der Code direkt im Dokument, damit du ihn beim Aufklappen sofort siehst.
+
+Am Ende des Semesters wirst du einen eigenen Bericht wie diesen erstellen — mit deiner eigenen Frage, deiner eigenen Länderauswahl, deinen eigenen Grafiken.
+
+---
+
+*Daten: Our World in Data · Analyse: R + Tidyverse · Dokument: R Markdown*
