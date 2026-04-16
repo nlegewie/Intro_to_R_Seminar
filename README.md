@@ -68,6 +68,8 @@ Tastaturkürzel sparen von Anfang an Zeit. Die Paket-Cheatsheets sind dein Nachs
 
 Wenn du bei einem Schritt nicht weiterkommst: [Fehlerbehebung](resources/troubleshooting/reset_and_recover.md)
 
+Wenn du mit der Installation fertig bist, kannst du dir diese Startseite zu Ende durchlesen und schon mal den Rest des Repositorys durchstöbern.
+
 ---
 
 ## Was ist dieses Repository?
