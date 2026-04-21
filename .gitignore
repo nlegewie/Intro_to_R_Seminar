@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Rendered outputs in session folders (keep source .Rmd files only)
+sessions/**/*.html
