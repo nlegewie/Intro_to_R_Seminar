@@ -7,6 +7,7 @@ Dieses Repository ist deine zentrale Anlaufstelle für das gesamte Seminar. Hier
 Du musst GitHub nicht kennen und kein Git benutzen. Alles funktioniert auch, wenn du die Dateien einfach herunterlädst.
 
 **Etwas funktioniert nicht?** Direkt zur [Fehlerbehebung und Wiederherstellung](resources/troubleshooting/reset_and_recover.md) — diese Seite hilft dir bei den häufigsten Problemen, Schritt für Schritt.
+Du hast einen Fehler entdeckt oder etwas funktioniert nicht im Repo (z.B. ein Link)? [Schreib mir kurz, was kaputt ist](https://github.com/nlegewie/Intro_to_R_Seminar/issues/new)
 
 ---
 

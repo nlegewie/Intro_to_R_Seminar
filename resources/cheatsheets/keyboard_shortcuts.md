@@ -28,7 +28,6 @@ Diese funktionieren in fast allen Programmen auf deinem Computer.
 | Speichern | Ctrl + S | Cmd + S |
 | Alles markieren | Ctrl + A | Cmd + A |
 | Suchen | Ctrl + F | Cmd + F |
-| Suchen und Ersetzen | Ctrl + H | Cmd + Shift + H |
 
 
 ### Text markieren

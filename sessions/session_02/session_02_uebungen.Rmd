@@ -1,0 +1,488 @@
+---
+title: "Session 2 — Erste Schritte"
+subtitle: "Wir finden uns erst mal zurecht"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r pakete, include=FALSE}
+library(tidyverse)
+```
+
+---
+
+## Einleitung: Wir erkunden den Motor
+
+R ist mehr als eine Programmiersprache — es ist ein Werkzeug zum Denken mit Zahlen. Bevor wir echte Datensätze einlesen, lernen wir die Grundbausteine kennen: Berechnungen, Objekte und Vektoren.
+
+Die Fragen, die uns durch das Seminar begleiten, sind real: Wie reich oder arm ist ein Land wirklich? Was versteht man unter globalem Durchschnitt? Und was verrät uns ein Mittelwert — und was nicht?
+
+In dieser Session rechnen wir mit echten Zahlen zur globalen Armut und zum BIP. Für heute ist kein Datensatz nötig — alle Werte tippen wir selbst ein.
+
+---
+
+## Übung 1 · R als Taschenrechner
+
+Du kannst R direkt wie einen Taschenrechner benutzen: Tippe einen Ausdruck in einen Code-Block, führe ihn mit dem grünen Pfeil oben rechts (oder `Ctrl+Enter` / `Cmd+Enter`) aus, und R gibt das Ergebnis in der Konsole aus.
+
+R kennt die üblichen Rechenregeln — Punkt vor Strich, Klammern zuerst. Die wichtigsten Operatoren:
+
+| Operator | Bedeutung | Beispiel | Ergebnis |
+|----------|-----------|---------|---------|
+| `+` `-` `*` `/` | Grundrechenarten | `10 / 4` | `2.5` |
+| `^` | Potenz | `2^8` | `256` |
+| `sqrt()` | Quadratwurzel | `sqrt(81)` | `9` |
+
+```{r uebung-01-beispiel}
+# So sieht einfaches Rechnen in R aus:
+10 + 5
+12 * 3
+100 / 4
+```
+<br>
+
+**Aufgaben:** Berechne jetzt selbst: fülle den Code Chunk unten aus und führe den Code aus, indem du auf den grünen Pfeil oben rechts klickst.
+
+a) $47 + 13 \times 8$
+b) $(47 + 13) \times 8$
+c) $\sqrt{144}$
+d) $2^{10}$
+
+```{r uebung-01-taschenrechner}
+# a)
+
+# b)
+
+# c)
+
+# d)
+
+```
+
+**Warum ist das wichtig?**
+
+Wir führen oft Berechnungen durch, um Variablen zu verarbeiten oder in leicht anderer Form darzustellen. Dafür ist es gut zu wissen, dass R die üblichen Rechenregeln befolgt.
+
+---
+
+## Übung 2 · Vektoren erstellen
+
+Ein **Vektor** ist eine Folge von Werten desselben Typs — zum Beispiel `r c(1, 2, 3)` oder `r c("Apfel", "Orange", "Banane")`. Vektoren sind der kleinste Baustein in R: Jede Spalte (d.h., jede Variable) in einem Datensatz ist im Hintergrund ein Vektor.
+
+### Wie du einen Vektor erstellst
+
+Du erstellst ihn mit `c()` (von *combine*). Mit `<-` weist du dem Vektor einen Namen zu — das Ergebnis einer solchen Zuweisung heißt **Objekt**. Wenn du in R ein PObjekt einmal per `<-` erstellt hast, steht es dir für den Rest der Session zur Verfügung. Wenn du R Studio schließt und beim nächsten Mal wieder öffnest, musst du das Objekt erneut erstellen. (Um nicht immer wieder den gleichen Code eintippen zu müssen, erstellen wir "Skripte", in denen wir den Code speichern und von dort ausführen. Dazu bald mehr.)
+
+```r
+# Allgemeines Muster:
+mein_vektor <- c(wert1, wert2, wert3)
+```
+<br>
+
+Danach kannst du den Vektor mit seinem Namen aufrufen, um ihn zu sehen:
+
+```r
+mein_vektor
+```
+<br>
+
+Mit `names()` kannst du jedem Wert eine Beschriftung geben:
+
+```r
+names(mein_vektor) <- c("Beschriftung1", "Beschriftung2", "Beschriftung3")
+```
+<br>
+
+Kleines Beispiel in Aktion:
+
+```{r uebung-02-beispiel}
+bip_beispiel <- c(50000, 15000, 5000)
+names(bip_beispiel) <- c("Kanada", "Uruguay", "Niger")
+bip_beispiel
+```
+<br>
+
+### Deine Aufgabe
+
+Wir arbeiten mit dem **BIP pro Kopf** (in USD, ca. 2020) für sechs Länder.
+
+| Land    | BIP pro Kopf (USD) |
+|---------|-------------------|
+| Germany | 46 753            |
+| Brazil  | 14 163            |
+| India   |  6 461            |
+| USA     | 63 543            |
+| Mexico  | 16 785            |
+| Nigeria |  5 024            |
+
+a) Erstelle einen Vektor `bip` mit den sechs Werten (in der Reihenfolge der Tabelle).
+b) Vergib mit `names()` die Ländernamen als Beschriftungen.
+c) Rufe `bip` auf — was siehst du?
+
+```{r uebung-02-objekte}
+# a) Vektor erstellen
+
+# b) Namen vergeben
+
+# c) Vektor aufrufen
+
+```
+
+---
+
+## Übung 3 · Vom Vektor zur Tabelle: Tidy Data
+
+Der benannte Vektor aus Übung 2 ist nützlich für schnelle Berechnungen — aber er hat zwei wichtige Einschränkung: **(1) Er kann nur eine Variable auf einmal speichern** und **(2) wichtige Infos (zu was die Werte gehören) sind nicht direkt abrufbar.**
+
+Stell dir vor, du willst nicht nur das BIP, sondern auch die Bevölkerungszahl oder die Region dazuspeichern. Mit einzelnen Vektoren wächst der Code schnell unübersichtlich, und es ist leicht, den Überblick zu verlieren, welche Werte zusammengehören.
+
+Das ist der Grund, warum in der Datenanalyse fast immer mit **Tabellen** gearbeitet wird — nicht mit benannten Vektoren.
+
+### Das Tidy-Data-Prinzip
+
+In R (und im Tidyverse) gilt das Prinzip **Tidy Data**:
+
+> **Eine Zeile = eine Beobachtung. Eine Spalte = eine Variable.**
+
+Für unsere sechs Länder bedeutet das: eine Zeile pro Land, eine Spalte für `land`, eine für `bip` — und wenn wir später mehr Variablen hinzufügen, "kleben" wir einfach weitere Spalten an die Tabelle.
+
+### Wie du einen Tibble erstellst
+
+Ein **Tibble** ist R-Sprache für eine Tabelle (eine modernere Version des klassischen `data.frame`). Du erstellst ihn mit `tibble()` aus dem Tidyverse:
+
+```r
+# Allgemeines Muster:
+meine_tabelle <- tibble(
+  spalte1 = c(wert1, wert2, wert3),
+  spalte2 = c(wert4, wert5, wert6)
+)
+```
+<br>
+
+Mit `$` kannst du eine einzelne Spalte aus einem Tibble herausgreifen — das Ergebnis ist wieder ein Vektor:
+
+```r
+meine_tabelle$spalte1
+```
+<br>
+
+Kleines Beispiel in Aktion — dieselben Daten wie in Übung 2, jetzt als Tabelle:
+
+```{r uebung-03-beispiel}
+bip_tabelle_beispiel <- tibble(
+  land = c("Reiches Land", "Mittleres Land", "Armes Land"),
+  bip  = c(50000, 15000, 5000)
+)
+
+bip_tabelle_beispiel        # zeigt die ganze Tabelle
+bip_tabelle_beispiel$bip    # greift nur auf die bip-Spalte zu (= Vektor)
+```
+<br>
+
+Der Vorteil: Du kannst dir zum Beispiel nur Werte reicher Länder ausgeben lassen. Wie das geht, lernen wir bald!
+
+### Deine Aufgabe
+
+a) Erstelle einen Tibble `bip_daten` mit zwei Spalten: `land` und `bip` — mit denselben sechs Ländern wie in Übung 2.
+b) Rufe `bip_daten` auf. Wie sieht die Ausgabe im Vergleich zum Vektor aus Übung 2 aus?
+c) Greife mit `$` auf die `bip`-Spalte zu. Was bekommst du zurück?
+
+```{r uebung-03-tibble}
+# a) Tibble erstellen
+
+# b) Tibble aufrufen
+
+# c) bip-Spalte mit $ herausgreifen
+
+```
+
+> **Merke:** Ab jetzt arbeiten wir fast immer mit Tibbles — sie sind die Grundlage aller Analysen im Seminar. Benannte Vektoren kennst du jetzt, wirst du aber im späteren Verlauf des Kurses kaum noch einsetzen.
+
+---
+
+## Übung 4 · Lagemaße
+
+### Wie du Lagemaße berechnest
+
+Lagemaße fassen einen Vektor mit einer einzigen Zahl zusammen. Wir haben in Statistik 1 einige Lagemaße kennengelernt, wie z.B. das arithmetische Mittel und der Median. Diese Werte können wir in R mit den folgenden Funktionen berechnen.
+
+Die Funktionen in R folgen alle demselben Muster: `funktionsname(vektor)`. Du kannst ihnen entweder einen freistehenden Vektor übergeben — oder eine Spalte aus einem Tibble mit `$`:
+
+| Funktion | Was sie berechnet | Beispiel mit Tibble-Spalte |
+|----------|------------------|--------------------------|
+| `mean(x)` | Arithmetischer Mittelwert | `mean(bip_tabelle_beispiel$bip)` |
+| `median(x)` | Mittlerer Wert (sortiert) | `median(bip_tabelle_beispiel$bip)` |
+| `min(x)` | Kleinstwert | `min(bip_tabelle_beispiel$bip)` |
+| `max(x)` | Größtwert | `max(bip_tabelle_beispiel$bip)` |
+| `which.min(x)` | Index des kleinsten Werts | `which.min(bip_tabelle_beispiel$bip)` |
+| `which.max(x)` | Index des größten Werts | `which.max(bip_tabelle_beispiel$bip)` |
+
+```{r uebung-04-beispiel}
+# Lagemaße auf eine Tibble-Spalte anwenden:
+mean(bip_tabelle_beispiel$bip)
+median(bip_tabelle_beispiel$bip)
+
+# which.max() gibt die Position (Zeilennummer) des größten Werts in der Spalte zurück.
+# Diese Zahl speichern wir in einer Variable — der Name ist frei wählbar (hier: idx_max):
+idx_max <- which.max(bip_tabelle_beispiel$bip)
+idx_max   # z.B. 1 — der höchste Wert steht in Zeile 1
+
+# Mit eckigen Klammern [] "fragst du" den Vektor bip_tabelle_beispiel$land an der Position idx_max ab:
+bip_tabelle_beispiel$land[idx_max]   # "Reiches Land"
+
+# Dasselbe für das Minimum (eigener Variablenname, z.B. idx_min):
+idx_min <- which.min(bip_tabelle_beispiel$bip)
+bip_tabelle_beispiel$land[idx_min]   # "Armes Land"
+```
+<br>
+
+**Lesen des Musters:** `tabelle$spalte[position]` — zuerst die Spalte mit `$`, dann in `[]` die Zeilennummer, die `which.max()` oder `which.min()` geliefert hat.
+
+### Deine Aufgabe
+
+Nutze jetzt den Tibble `bip_daten` aus Übung 3.
+
+a) Berechne Mittelwert, Median, Minimum und Maximum der `bip`-Spalte.
+b) Welches Land hat das höchste, welches das niedrigste BIP? Arbeite in zwei Schritten wie im Beispiel oben:
+   1. Speichere `which.max(bip_daten$bip)` bzw. `which.min(bip_daten$bip)` in einer Variable (z.B. `idx_max` und `idx_min`).
+   2. Hole den passenden Ländernamen mit `bip_daten$land[idx_max]` bzw. `bip_daten$land[idx_min]` — das ist dieselbe Logik wie `bip_tabelle_beispiel$land[idx_max]` oben, nur mit deinem Tibble `bip_daten`.
+
+```{r uebung-04-lagemasse}
+# a) Mittelwert, Median, Min, Max
+
+# b) Land mit dem höchsten BIP (zwei Schritte: which.max, dann $land[...])
+
+# b) Land mit dem niedrigsten BIP (zwei Schritte: which.min, dann $land[...])
+
+```
+
+---
+
+## Übung 5 · Interpretation — Mittelwert vs. Median
+
+> **👥 Partneraufgabe — kein Code notwendig**
+
+In Übung 4 hast du den Mittelwert und den Median der `bip`-Spalte berechnet.
+
+**Diskutiere mit deiner Nachbarperson:**
+
+- Ist der Mittelwert größer oder kleiner als der Median?
+- Was sagt uns das über die Verteilung der Werte?
+- Welcher der beiden Werte beschreibt das "typische" Land in dieser Gruppe besser — und warum?
+
+---
+
+## Übung 6 · Armutsquoten vergleichen
+
+Die folgende Tabelle zeigt Armutsquoten für **Nigeria im Jahr 2018** nach vier verschiedenen Armutsschwellen (Anteil der Bevölkerung unterhalb der Schwelle, in Prozent):
+
+| Schwelle                              | Wert  |
+|---------------------------------------|-------|
+| Internationale Armutsgrenze ($2,15)   | 40,1  |
+| Untere Mitteleinkommensgrenze ($3,65) | 72,8  |
+| $4,00-Schwelle                        | 79,6  |
+| 50 % des Medianeinkommens             | 87,3  |
+
+a) Erstelle einen Tibble `armut_nigeria` mit zwei Spalten: `schwelle` (Schwellenname als Text) und `anteil` (der Prozentwert) — wie in Übung 3.
+b) Berechne Mittelwert, Minimum und Maximum der `anteil`-Spalte — wie in Übung 4.
+c) Erkläre kurz (in einem Kommentar): Warum unterscheiden sich die vier Werte so stark?
+
+```{r uebung-06-armutsquoten}
+# a) Tibble erstellen
+
+# b) Lagemaße
+
+# c) Kommentar: Warum unterscheiden sich die Werte?
+#
+
+```
+
+---
+
+## Übung 7 · Ggplot-Einstieg
+
+Wir vergleichen die **Lebenserwartung bei Geburt** (in Jahren, ca. 2020) für acht Länder. Der Tibble ist bereits vorbereitet — du musst ihn nur ausführen.
+
+```{r uebung-07-lebenserwartung-daten, echo=TRUE}
+lebenserwartung <- tibble(
+  land            = c("Germany", "Brazil", "Mexico", "China",
+                      "India", "Nigeria", "Egypt", "Japan"),
+  lebenserwartung = c(81.3, 76.1, 75.7, 77.5, 69.7, 54.3, 72.8, 83.9)
+)
+```
+
+### Wie du ein Ergebnis speicherst
+
+Du kannst das Ergebnis einer Berechnung mit `<-` unter einem Namen speichern — genau wie bei Vektoren und Tibbles. Dann kannst du es später weiterverwenden:
+
+```r
+mein_mittelwert <- mean(mein_tibble$meine_spalte)
+mein_mittelwert   # gibt den gespeicherten Wert aus
+```
+<br>
+
+**Aufgaben:**
+
+a) Berechne den Mittelwert der `lebenserwartung`-Spalte und speichere ihn als `mittelwert_le`.
+b) Ersetze im folgenden Code-Block `DEIN_WERT` an allen drei Stellen durch `mittelwert_le` (den Objektnamen, nicht die Zahl), und entferne dann `eval=FALSE` aus dem Block-Header, damit der Code ausgeführt wird. *Tip*: Nutze die Suchfunktion in R Studio, um die Werte zu suchen und zu ersetzen (Ctrl/Cmd+F).
+
+```{r uebung-07-a-mittelwert}
+# a) Mittelwert berechnen und speichern
+
+```
+
+```{r uebung-07-b-grafik, eval=FALSE}
+# b) DEIN_WERT durch mittelwert_le ersetzen, eval=FALSE aus dem Block-Header entfernen
+lebenserwartung |>
+  ggplot(aes(x = fct_reorder(land, lebenserwartung), y = lebenserwartung)) +
+  geom_col(fill = "#4472C4", alpha = 0.85) +
+  geom_hline(yintercept = DEIN_WERT, color = "#E07B39", linewidth = 1, linetype = "dashed") +
+  annotate(
+    "text",
+    x = 0.6, y = DEIN_WERT + 1.2,
+    label = paste0("Mittelwert: ", round(DEIN_WERT, 1), " Jahre"),
+    hjust = 0, color = "#E07B39", size = 3.5
+  ) +
+  coord_flip() +
+  labs(
+    title    = "Lebenserwartung bei Geburt, ca. 2020",
+    subtitle = "Acht Länder im Vergleich",
+    x        = NULL,
+    y        = "Lebenserwartung (Jahre)",
+    caption  = "Quelle: Our World in Data"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+---
+
+## Übung 8 · Tabellen und Vektoren überprüfen
+
+Wenn du Daten von Hand eintippst, kann sich leicht ein Fehler einschleichen — ein Wert zu viel, einer zu wenig. Es lohnt sich, das kurz zu überprüfen.
+
+`nrow()` gibt die Anzahl der Zeilen eines Tibbles zurück — also die Anzahl der Beobachtungen:
+
+```r
+nrow(mein_tibble)
+```
+
+`length()` gibt die Anzahl der Elemente eines Vektors zurück. Auf einen Tibble angewendet zählt es die Spalten — weniger nützlich. Auf eine Tibble-Spalte angewendet (mit `$`) zählt es die Zeilen:
+
+```r
+length(mein_tibble$spalte)   # = nrow(mein_tibble)
+```
+
+**Aufgaben:**
+
+a) Wende `nrow()` auf `bip_daten` (Übung 3) und auf `lebenserwartung` (Übung 7) an. Stimmt die Anzahl der Zeilen mit der Anzahl der Länder überein?
+b) Was passiert, wenn du `length(bip_daten$bip)` ausführst? Bekommst du dasselbe Ergebnis wie mit `nrow()`?
+c) Was passiert, wenn du `length("Hallo")` ausführst? Und `length(c(1, 2, 3))`? Kannst du das Ergebnis erklären?
+
+```{r uebung-08-verif}
+# a) nrow() auf bip_daten und lebenserwartung
+
+# b) length() auf eine Tibble-Spalte
+
+# c) Experimente mit length()
+
+```
+
+---
+
+## Bonus-Übungen
+
+Bonus-Aufgaben sind freiwillig und für alle, die mehr entdecken und ausprobieren möchten. Wenn du noch nicht mit den anderen Aufgaben fertig bist, bitte schließe erst die ab bevor du mit den Bonus-Aufgaben beginnst.
+<br>
+
+### Bonus 1 · `round()` und `abs()`
+
+**Aufgaben:** 
+
+a) Was machen die Funktionen `round()` und `abs()`? Probiere sie aus:
+
+```{r bonus-01, eval=FALSE}
+round(3.14159, digits = 2)
+round(3.14159, digits = 0)
+abs(-42)
+abs(c(-5, 3, -1, 7))
+```
+
+b) Wende `round()` auf die Spalte `lebenserwartung` aus `lebenserwartung` an und speichere das Ergebnis in einer neuen Spalte `lebenserwartung_gerundet`.
+
+```{r bonus-01-round}
+
+# a) round() auf lebenserwartung anwenden
+
+```
+
+
+---
+
+### Bonus 2 · Typumwandlung (*type coercion*)
+
+Du weißt schon: Ein Vektor darf nur **einen** Datentyp enthalten (Zahlen, Text, …). Was passiert, wenn du verschiedene Typen in `c()` mischst?
+
+R muss sich für **einen** gemeinsamen Typ entscheiden und wandelt dabei automatisch Werte um — das nennt man auf Englisch **type coercion** (auf Deutsch: **automatische Typumwandlung**). Typische Regel: Sobald **Text** (`"..."`) dabei ist, werden Zahlen in Text umgewandelt, damit alles „passt".
+
+```{r bonus-02-beispiel}
+# Nur Zahlen → alles bleibt numerisch
+c(1, 2, 3)
+
+# Zahl + Text → R macht aus allem Text (coercion nach character)
+c(1, 2, "drei")
+```
+
+Wenn du in einem Vektor, der eigentlich Zahlen beinhalten sollte, `""` um die Ziffer siehst, dann weißt du, dass etwas schiefgelaufen ist und du es mit einem Text-Vektor zu tun hast.
+<br>
+
+**Aufgabe:** Führe den folgenden Code aus. Vergleiche die Ausgabe mit dem Mini-Beispiel oben. Nutze `class()`, um den Typ des Vektors zu sehen.
+
+```{r bonus-02, eval=FALSE}
+gemischt <- c(1, 2, "drei")
+gemischt
+class(gemischt)
+```
+
+*Schreibe in einem Kommentar mit eigenen Worten: Was hat R mit den Zahlen `1` und `2` gemacht, und warum? (Du musst den Begriff „type coercion" nicht auswendig kennen — beschreibe einfach das Verhalten.)*
+
+---
+
+### Bonus 3 ⚠️ · `weighted.mean()` — Recherche-Aufgabe
+
+Der einfache Mittelwert behandelt alle Länder gleich, unabhängig von ihrer Bevölkerungsgröße. Das kann zu verzerrten Ergebnissen führen.
+
+**Aufgabe:** Recherchiere die Funktion `weighted.mean()` in der R-Hilfe (`?weighted.mean`) oder online.
+
+- Wie unterscheidet sich `mean(bip_daten$bip)` von `weighted.mean(bip_daten$bip, w = bevoelkerung)`?
+- Wann wäre ein gewichteter Mittelwert sinnvoller?
+
+*Schreibe eine kurze Antwort (2–3 Sätze) in einem Kommentar:*
+
+```{r bonus-03, eval=FALSE}
+# Bevölkerungszahlen (in Mio., grob) in derselben Reihenfolge wie bip_daten
+bevoelkerung <- c(83, 213, 1380, 331, 129, 206)
+
+# Vergleiche:
+mean(bip_daten$bip)
+weighted.mean(bip_daten$bip, w = bevoelkerung)
+
+# Kommentar: Warum ist der gewichtete Mittelwert hier sinnvoller?
+#
+```

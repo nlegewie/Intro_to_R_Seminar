@@ -1,0 +1,266 @@
+---
+title: "Session 2 — Erste Schritte"
+subtitle: "Übungsblatt: MUSTERLÖSUNGEN"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r pakete, include=FALSE}
+library(tidyverse)
+```
+
+---
+
+## Übung 1 · R als Taschenrechner
+
+```{r uebung-01-taschenrechner}
+# a) Reihenfolge der Operationen: Punkt vor Strich
+47 + 13 * 8   # = 47 + 104 = 151
+
+# b) Klammern ändern die Auswertungsreihenfolge
+(47 + 13) * 8  # = 60 * 8 = 480
+
+# c) Quadratwurzel
+sqrt(144)  # = 12
+
+# d) Potenz
+2^10  # = 1024
+```
+
+---
+
+## Übung 2 · Vektoren erstellen
+
+```{r uebung-02-objekte}
+# a) Vektor erstellen
+bip <- c(46753, 14163, 6461, 63543, 16785, 5024)
+
+# b) Namen vergeben
+names(bip) <- c("Germany", "Brazil", "India", "USA", "Mexico", "Nigeria")
+
+# c) Vektor aufrufen
+bip
+```
+
+---
+
+## Übung 3 · Vom Vektor zur Tabelle: Tidy Data
+
+```{r uebung-03-tibble}
+# a) Tibble erstellen
+bip_daten <- tibble(
+  land = c("Germany", "Brazil", "India", "USA", "Mexico", "Nigeria"),
+  bip  = c(46753, 14163, 6461, 63543, 16785, 5024)
+)
+
+# b) Tibble aufrufen
+bip_daten
+# → Ausgabe zeigt Spaltentypen (chr / dbl) und Dimensionen (6 × 2)
+# → Kein Index über den Werten wie beim benannten Vektor
+
+# c) bip-Spalte mit $ herausgreifen
+bip_daten$bip
+# → gibt einen einfachen numerischen Vektor zurück
+```
+
+---
+
+## Übung 4 · Lagemaße
+
+```{r uebung-04-lagemasse}
+# a) Lagemaße auf die bip-Spalte des Tibbles anwenden
+mean(bip_daten$bip)    # ~25 455 USD
+median(bip_daten$bip)  # ~15 474 USD
+min(bip_daten$bip)     # 5 024 (Nigeria)
+max(bip_daten$bip)     # 63 543 (USA)
+
+# b) Land mit dem höchsten BIP
+idx_max <- which.max(bip_daten$bip)
+bip_daten$land[idx_max]   # "USA"
+
+# b) Land mit dem niedrigsten BIP
+idx_min <- which.min(bip_daten$bip)
+bip_daten$land[idx_min]   # "Nigeria"
+```
+
+---
+
+## Übung 5 · Interpretation — Mittelwert vs. Median
+
+> **👥 Partneraufgabe — kein Code notwendig**
+
+**Musterlösung / Erwartete Antworten:**
+
+- Der **Mittelwert** (~25 455 $) liegt deutlich über dem **Median** (~15 474 $).
+- Die Verteilung ist **rechtsschief** — wenige Länder mit sehr hohem BIP (USA, Deutschland) ziehen den Mittelwert nach oben.
+- Der Median beschreibt das "mittlere" Land besser, weil er von Ausreißern unbeeinflusst bleibt.
+- Übertrag auf globale Ebene: Der Welt-Mittelwert des BIP pro Kopf überschätzt, wie reich ein typisches Land wirklich ist.
+
+---
+
+## Übung 6 · Armutsquoten vergleichen
+
+```{r uebung-06-armutsquoten}
+# a) Tibble erstellen
+armut_nigeria <- tibble(
+  schwelle = c(
+    "Internationale Armutsgrenze ($2.15)",
+    "Untere Mitteleinkommensgrenze ($3.65)",
+    "$4.00-Schwelle",
+    "50% des Medianeinkommens"
+  ),
+  anteil = c(40.1, 72.8, 79.6, 87.3)
+)
+
+armut_nigeria
+
+# b) Lagemaße
+mean(armut_nigeria$anteil)  # ~69.95 %
+min(armut_nigeria$anteil)   # 40.1 % (strengste absolute Grenze)
+max(armut_nigeria$anteil)   # 87.3 % (relative Schwelle)
+
+# c) Warum unterscheiden sich die Werte so stark?
+# Die Schwellen messen unterschiedliche Konzepte:
+# - $2.15/Tag ist die absolute globale Armutsgrenze (extreme Armut)
+# - $3.65 und $4.00/Tag sind weitere absolute Schwellen für mittlere Einkommensländer
+# - 50% des Medianeinkommens ist eine *relative* Schwelle — sie misst
+#   Armut im Verhältnis zur Einkommensverteilung des Landes selbst.
+# Je höher oder "relativer" die Schwelle, desto mehr Menschen fallen darunter.
+```
+
+---
+
+## Übung 7 · Ggplot-Einstieg
+
+```{r uebung-07-lebenserwartung-daten}
+lebenserwartung <- tibble(
+  land            = c("Germany", "Brazil", "Mexico", "China",
+                      "India", "Nigeria", "Egypt", "Japan"),
+  lebenserwartung = c(81.3, 76.1, 75.7, 77.5, 69.7, 54.3, 72.8, 83.9)
+)
+```
+
+```{r uebung-07-a-mittelwert}
+# a) Mittelwert berechnen und speichern
+mittelwert_le <- mean(lebenserwartung$lebenserwartung)
+mittelwert_le  # ~73.9 Jahre
+```
+
+```{r uebung-07-b-grafik}
+# b) Grafik mit Mittelwert-Linie
+lebenserwartung |>
+  ggplot(aes(x = fct_reorder(land, lebenserwartung), y = lebenserwartung)) +
+  geom_col(fill = "#4472C4", alpha = 0.85) +
+  geom_hline(
+    yintercept = mittelwert_le,
+    color      = "#E07B39",
+    linewidth  = 1,
+    linetype   = "dashed"
+  ) +
+  annotate(
+    "text",
+    x     = 0.6,
+    y     = mittelwert_le + 1.2,
+    label = paste0("Mittelwert: ", round(mittelwert_le, 1), " Jahre"),
+    hjust = 0,
+    color = "#E07B39",
+    size  = 3.5
+  ) +
+  coord_flip() +
+  labs(
+    title    = "Lebenserwartung bei Geburt, ca. 2020",
+    subtitle = "Acht Länder im Vergleich",
+    x        = NULL,
+    y        = "Lebenserwartung (Jahre)",
+    caption  = "Quelle: Our World in Data"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+---
+
+## Übung 8 · Tabellen und Vektoren überprüfen
+
+```{r uebung-08-verif}
+# a) nrow() auf beide Tibbles
+nrow(bip_daten)        # 6 — 6 Länder ✓
+nrow(lebenserwartung)  # 8 — 8 Länder ✓
+
+# b) length() auf eine Tibble-Spalte = nrow()
+length(bip_daten$bip)  # 6 — identisch zu nrow(bip_daten) ✓
+
+# c) Experimente
+length("Hallo")           # 1 — ein Text ist ein Vektor der Länge 1
+length(c(1, 2, 3))        # 3
+length(c("a", "b", "c"))  # 3
+```
+
+---
+
+## Bonus-Übungen
+
+### Bonus 1 · `round()` und `abs()`
+
+```{r bonus-01}
+round(3.14159, digits = 2)  # 3.14
+round(3.14159, digits = 0)  # 3
+
+abs(-42)              # 42 — Absolutwert (immer positiv)
+abs(c(-5, 3, -1, 7)) # 5  3  1  7
+
+# round() rundet auf die angegebene Anzahl Dezimalstellen.
+# abs() gibt den Betrag (positiven Wert) einer Zahl zurück.
+```
+
+```{r bonus-01-round}
+# b) round() auf die Spalte lebenserwartung anwenden
+round(lebenserwartung$lebenserwartung, digits = 0)
+
+```
+
+---
+
+### Bonus 2 · Typumwandlung
+
+```{r bonus-02}
+gemischt <- c(1, 2, "drei")
+gemischt
+class(gemischt)  # "character"
+```
+
+---
+
+### Bonus 3 ⚠️ · `weighted.mean()`
+
+```{r bonus-03}
+# Bevölkerungszahlen (in Mio., grob) in derselben Reihenfolge wie bip_daten
+bevoelkerung <- c(83, 213, 1380, 331, 129, 206)
+
+# Vergleich:
+mean(bip_daten$bip)                          # ~25 455 USD — jedes Land gleich gewichtet
+weighted.mean(bip_daten$bip, w = bevoelkerung) # niedriger — Indien und Nigeria ziehen runter
+
+# Der gewichtete Mittelwert ist sinnvoller, wenn wir die "durchschnittliche
+# Person" beschreiben wollen, nicht das "durchschnittliche Land".
+# Indien und Nigeria haben sehr große Bevölkerungen, aber vergleichsweise
+# niedrige BIP-Werte — das zieht den gewichteten Mittelwert nach unten.
+# Für globale Wohlstandsstatistiken wird fast immer bevölkerungsgewichtet gerechnet.
+```
+

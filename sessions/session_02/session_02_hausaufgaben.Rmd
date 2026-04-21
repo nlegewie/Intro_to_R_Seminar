@@ -1,0 +1,190 @@
+---
+title: "Session 2 — Erste Schritte"
+subtitle: "Hausaufgaben: Tibbles, Lagemaße und erste Grafik"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r pakete, include=FALSE}
+library(tidyverse)
+```
+
+---
+
+## Hinweise
+
+Diese Hausaufgaben vertiefen, was wir in Session 2 erarbeitet haben: Tabellen (Tibbles) erstellen, Lagemaße berechnen und erste Erkenntnisse aus Zahlen gewinnen.
+
+- **Kernaufgaben (HA1–HA3):** Pflicht
+- **Bonusaufgaben (B-HA1–B-HA2):** Freiwillig, für alle, die mehr entdecken möchten.
+
+Gib das gerenderte HTML-Dokument auf Learnweb ab (Knit → HTML). Die Lösungen werde ich am Abend vor der folgenden Session auf GitHub zur Verfügung.
+
+---
+
+## HA1 · Armutsquoten für ein Land
+
+Die folgende Tabelle zeigt Armutsquoten für **Indien im Jahr 2019** nach vier Armutsschwellen (Anteil der Bevölkerung unterhalb der Schwelle, in Prozent):
+
+| Schwelle                              | Wert  |
+|---------------------------------------|-------|
+| Internationale Armutsgrenze ($2,15)   | 10,2  |
+| Untere Mitteleinkommensgrenze ($3,65) | 47,5  |
+| $4,00-Schwelle                        | 59,8  |
+| 50 % des Medianeinkommens             | 30,4  |
+
+**Aufgaben:**
+
+a) Erstelle einen Tibble `armut_indien` mit zwei Spalten: `schwelle` (Text) und `anteil` (Zahl).
+b) Berechne Mittelwert, Minimum und Maximum der `anteil`-Spalte.
+c) Schreibe in 2–3 Sätzen (als Kommentar): Was sagt dir die Bandbreite zwischen Minimum und Maximum über die Armutsmessung in Indien aus? Welche Schwelle findest du am aussagekräftigsten — und warum?
+
+```{r ha1-armutsquoten}
+# a) Tibble erstellen
+
+# b) Mittelwert, Min, Max der anteil-Spalte
+
+# c) Schriftliche Reflexion (als Kommentar):
+#
+
+```
+
+---
+
+## HA2 · Lebenserwartung — Mittelwert und Median
+
+Die folgende Tabelle zeigt die **Lebenserwartung bei Geburt** (in Jahren, ca. 2020) für zehn Länder:
+
+| Land           | Lebenserwartung |
+|----------------|----------------|
+| Japan          | 83.9           |
+| Switzerland    | 83.4           |
+| Germany        | 81.3           |
+| Brazil         | 76.1           |
+| China          | 77.5           |
+| Mexico         | 75.7           |
+| India          | 69.7           |
+| Egypt          | 72.8           |
+| Nigeria        | 54.3           |
+| Sierra Leone   | 52.2           |
+
+**Aufgaben:**
+
+a) Erstelle einen Tibble `le_10` mit zwei Spalten: `land` und `lebenserwartung`.
+b) Berechne Mittelwert und Median der `lebenserwartung`-Spalte.
+c) Schreibe in 2–3 Sätzen (als Kommentar): Was verrät die Differenz zwischen Mittelwert und Median über diese Ländergruppe? Welcher Wert beschreibt ein "typisches" Land besser?
+
+```{r ha2-lebenserwartung}
+# a) Tibble erstellen
+
+# b) Mittelwert und Median der lebenserwartung-Spalte
+
+# c) Reflexion (als Kommentar):
+#
+
+```
+
+---
+
+## HA3 · Eigenes BIP-Profil erstellen
+
+**Aufgabe:** Suche (z.B. bei [Our World in Data](https://ourworldindata.org/grapher/gdp-per-capita-worldbank) oder [Weltbank](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)) das BIP pro Kopf (kaufkraftbereinigt, in USD) für **mindestens 6 Länder deiner Wahl** aus einem Jahr zwischen 2015 und 2022.
+
+a) Erstelle einen Tibble `mein_bip` mit mindestens 6 Ländern und zwei Spalten: `land` und `bip`.
+b) Berechne die Gesamtsumme (`sum()`) und den Mittelwert.
+c) Ersetze im folgenden Plot-Template `DEIN_WERT` durch deinen berechneten Mittelwert und führe den Code aus.
+
+```{r ha3-eigenes-bip}
+# a) Eigener Tibble (mindestens 6 Länder)
+
+# b) Summe und Mittelwert der bip-Spalte
+
+```
+
+```{r ha3-plot, eval=FALSE}
+# c) DEIN_WERT durch deinen Mittelwert ersetzen, dann eval=FALSE entfernen
+tibble(
+  land = mein_bip$land,
+  bip  = mein_bip$bip
+) |>
+  ggplot(aes(x = fct_reorder(land, bip), y = bip)) +
+  geom_col(fill = "#4472C4", alpha = 0.85) +
+  geom_hline(yintercept = DEIN_WERT, color = "#E07B39", linewidth = 1, linetype = "dashed") +
+  annotate(
+    "text",
+    x = 0.6, y = DEIN_WERT * 1.03,
+    label = paste0("Mittelwert: $", round(DEIN_WERT, 0)),
+    hjust = 0, color = "#E07B39", size = 3.5
+  ) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar_format(big.mark = ".", decimal.mark = ",")) +
+  labs(
+    title    = "BIP pro Kopf meiner Länderauswahl",
+    subtitle = "Kaufkraftbereinigt (USD)",
+    x        = NULL,
+    y        = "BIP pro Kopf (USD, KKP)",
+    caption  = "Quelle: Weltbank / Our World in Data"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+---
+
+## Bonus-Hausaufgaben
+
+> Freiwillig — für alle, die tiefer einsteigen möchten.
+
+### B-HA1 · Standardabweichung und Varianz
+
+In der Statistik messen `sd()` (Standardabweichung) und `var()` (Varianz), wie weit die Werte um den Mittelwert streuen.
+
+**Aufgabe:** Wende `sd()` und `var()` auf die Spalte `le_10$lebenserwartung` aus HA2 an.
+
+- Was ist der Unterschied zwischen den beiden Werten?
+- Erkläre in eigenen Worten (1–2 Sätze als Kommentar), was eine hohe Standardabweichung in diesem Zusammenhang bedeutet.
+
+```{r b-ha1-streuung, eval=FALSE}
+# sd() und var() auf le_10$lebenserwartung
+
+# Kommentar:
+#
+
+```
+
+
+### B-HA2 ⚠️ · Texte mit `paste()` und `paste0()`
+
+R kann Texte und Zahlen kombinieren — sehr nützlich für Berichte.
+
+**Aufgabe:**
+
+a) Schau dir über die R-Hilfe (`?paste`), wie man mit `paste()` und `paste0()` Texte zusammenfügen kann.
+b) Berechne den Mittelwert der Spalte `mein_bip$bip` und speichere ihn als `mittelwert_bip`.
+c) Erstelle mit `paste0()` den Satz: `"Das mittlere BIP meiner Länderauswahl ist [Wert] USD."` — wobei `[Wert]` automatisch durch den berechneten Mittelwert ersetzt wird (auf 0 Dezimalstellen gerundet).
+c) Gib den Satz mit `cat()` aus.
+
+```{r b-ha2-paste, eval=FALSE}
+# a) Mittelwert berechnen
+
+# b) Satz zusammensetzen mit paste0()
+
+# c) Satz ausgeben mit cat()
+
+```
