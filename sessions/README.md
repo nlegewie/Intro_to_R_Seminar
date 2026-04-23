@@ -14,9 +14,15 @@ Folge diesen Schritten der Reihe nach. Du brauchst nicht alles auswendig wissen 
 
 Stelle sicher, dass du die aktuellen Sitzungsunterlagen hast.
 
-Neue Materialien werden jede Woche hinzugefügt. Wenn du das Repository schon heruntergeladen hast, lade es erneut als ZIP herunter und entpacke es — oder frage nach dem direkten Link zum Sitzungsordner.
+Neue Materialien werden jede Woche hinzugefügt. Du kannst diese neuen Unterlagen herunterladen, indem du: 
 
-→ Wie das Herunterladen funktioniert: [Hauptseite des Repositorys](../README.md#wie-du-die-dateien-herunterlädst)
+1. hier auf GitHub in den entsprechenden Sitzungsordner gehst
+2. Die URL kopierst
+3. Diesen Link hier klickst: https://download-directory.github.io
+4. Dort die URL des Sessionordners einfügst 
+5. Auf ENTER drückst. Der Ordner wird dann als ZIP heruntergeladen
+6. Die ZIP-Datei in deinen Seminar-Ordner in den Sessions-Ordner verschiebst
+7. Die ZIP-Datei dort entpackst.
 
 ---
 
@@ -74,7 +80,7 @@ Wenn du nicht weiterkommst:
 ### Wo finde ich die Lösungen?
 
 - **In-class-Lösungen** werden (wenn freigegeben) direkt im jeweiligen Sitzungsordner veröffentlicht, meist als `session_XX_uebungen_loesung.Rmd` (und ggf. als HTML-Version).
-- **Hausaufgaben-Lösungen** werden separat kommuniziert; orientiere dich an der Ansage im Seminar bzw. im Hausaufgabenblatt.
+- **Hausaufgaben-Lösungen** lade ich immer am Donnerstag auf Learnweb hoch.
 
 ---
 
