@@ -100,7 +100,7 @@ Hausaufgaben erledigst du **zu Hause, in deinem eigenen Kernprojekt** — nicht 
 
 Wechsle dann zu **deinem eigenen Kernprojekt** (dem Ordner, den du zu Beginn des Semesters einmalig eingerichtet hast — außerhalb des Repo-Ordners).
 
-> **Warum?** Die Sitzungsordner in diesem Repository werden wöchentlich aktualisiert. Alles, was du dort speicherst, kann beim nächsten Download überschrieben werden. Dein Kernprojekt ist dein dauerhafter Arbeitsplatz.
+> **Warum?** Die Sitzungsordner in diesem Repository werden regelmäßig aktualisiert. Alles, was du dort speicherst, kann beim nächsten Download des Repos überschrieben werden. Dein Kernprojekt ist dein dauerhafter Arbeitsplatz, daher sollte es nicht mit gelöscht werden. Daher der separate Ordner.
 
 Im Kernprojekt findest du passende Vorlagen für jede Hausaufgabe. Kopiere den Code aus dem Hausaufgabenblatt in die entsprechende Datei deines Kernprojekts, und arbeite dort weiter.
 

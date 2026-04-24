@@ -1,0 +1,199 @@
+---
+title: "Session 3 — Datensatz laden und erkunden"
+subtitle: "Übungsblatt: MUSTERLÖSUNGEN"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r pakete, include=FALSE}
+library(tidyverse)
+library(here)
+```
+
+---
+
+## Übung 1 · CSV laden und Objekt anlegen
+
+```{r uebung-01-laden}
+# a) CSV laden
+toy <- read_csv(here("data", "toy_data_session_03.csv"), show_col_types = FALSE)
+
+# b) Datensatz anzeigen
+toy
+
+# c) Objekttyp prüfen
+class(toy)
+```
+
+---
+
+## Übung 2 · Struktur erkunden
+
+```{r uebung-02-struktur}
+glimpse(toy)
+head(toy, 6)
+tail(toy, 6)
+nrow(toy)
+ncol(toy)
+names(toy)
+
+# Kurze Beobachtungen:
+# 1) toy hat 20 Zeilen (Länder) und 6 Spalten.
+# 2) country/region sind character; die Messvariablen sind numerisch.
+```
+
+---
+
+## Übung 3 · Datentypen verstehen
+
+```{r uebung-03-typen}
+class(toy$country)
+class(toy$region)
+class(toy$year)
+class(toy$gdp_per_capita)
+class(toy$life_expectancy_birth)
+
+# - Textvariablen: country, region
+# - Zahlvariablen: year, gdp_per_capita, life_expectancy_birth, child_mortality_rate
+# - mean() auf country ist nicht sinnvoll, weil country Text enthält.
+```
+
+---
+
+## Übung 4 · `[Verif]` Fehlende Werte prüfen
+
+```{r uebung-04-na}
+sum(is.na(toy$gdp_per_capita))
+sum(is.na(toy$life_expectancy_birth))
+sum(is.na(toy$child_mortality_rate))
+sum(is.na(toy))
+
+# Interpretation:
+# In diesem Toy-Datensatz fehlen keine Werte in den Kernvariablen.
+# Daher ist hier na.rm = TRUE nicht zwingend nötig.
+```
+
+---
+
+## Übung 5 · Erste Verteilungen mit Histogrammen
+
+```{r uebung-05-histogramme}
+# Lebenserwartung
+ggplot(toy, aes(x = life_expectancy_birth)) +
+  geom_histogram(bins = 10, fill = "#4472C4", color = "white", alpha = 0.9) +
+  labs(
+    title = "Verteilung der Lebenserwartung (Toy-Daten, 2015)",
+    x = "Lebenserwartung bei Geburt (Jahre)",
+    y = "Anzahl Länder",
+    caption = "Quelle: Session-3-Toy-Datensatz"
+  ) +
+  theme_minimal(base_size = 12)
+
+# BIP pro Kopf
+ggplot(toy, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 10, fill = "#E07B39", color = "white", alpha = 0.9) +
+  labs(
+    title = "Verteilung des BIP pro Kopf (Toy-Daten, 2015)",
+    x = "BIP pro Kopf (USD)",
+    y = "Anzahl Länder",
+    caption = "Quelle: Session-3-Toy-Datensatz"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+---
+
+## Übung 6 · 👥 Interpretation
+
+```{r uebung-06-interpretation}
+# 1) Bei der Lebenserwartung liegen viele Länder im mittleren bis höheren Bereich.
+# 2) Das BIP pro Kopf ist deutlich rechtsschiefer als die Lebenserwartung.
+# 3) Wenige Länder mit sehr hohem BIP ziehen die Verteilung nach rechts.
+```
+
+---
+
+## Übung 7 · Filtern und Minitabelle anzeigen
+
+```{r uebung-07-filter-select}
+toy_kurz <- toy |>
+  filter(year == 2015) |>
+  select(country, region, gdp_per_capita)
+
+toy_kurz <- toy_kurz |>
+  arrange(desc(gdp_per_capita))
+
+toy_kurz |>
+  slice_head(n = 5)
+```
+
+---
+
+## Übung 8 · `[Verif]` Vorher/Nachher prüfen
+
+```{r uebung-08-verif}
+nrow(toy)
+nrow(toy_kurz)
+
+ncol(toy)
+ncol(toy_kurz)
+
+names(toy_kurz)
+```
+
+---
+
+## Bonus-Übungen
+
+### Bonus 1 · `summary()` gezielt nutzen
+
+```{r bonus-01}
+summary(toy$life_expectancy_birth)
+summary(toy$gdp_per_capita)
+
+# Hilfreich sind vor allem: Median, Quartile und Max/Min.
+```
+
+---
+
+### Bonus 2 · Histogramm-Feintuning
+
+```{r bonus-02}
+ggplot(toy, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 6, fill = "#4472C4", color = "white")
+
+ggplot(toy, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 15, fill = "#E07B39", color = "white")
+
+# 6 bins zeigt den groben Trend; 15 bins zeigt feinere Struktur,
+# kann aber bei nur 20 Ländern schnell "unruhig" wirken.
+```
+
+---
+
+### Bonus 3 ⚠️ · Erste Korrelation
+
+```{r bonus-03}
+cor(toy$gdp_per_capita, toy$life_expectancy_birth)
+
+# Interpretation:
+# Der Zusammenhang ist positiv: Länder mit höherem BIP pro Kopf haben
+# tendenziell höhere Lebenserwartung.
+# Das bedeutet nicht automatisch Kausalität.
+```

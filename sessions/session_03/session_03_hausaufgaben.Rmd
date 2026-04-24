@@ -1,0 +1,202 @@
+---
+title: "Session 3 — Datensatz laden und erkunden"
+subtitle: "Hausaufgaben: Arbeiten im Kernprojekt"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r pakete, include=FALSE}
+library(tidyverse)
+library(here)
+```
+
+---
+
+## Sehr wichtig: Wo du diese Hausaufgaben machst
+
+Diese Hausaufgaben bearbeitest du **nicht im Sitzungsordner**.
+
+Arbeite stattdessen in deinem eigenen **Kernprojekt**:
+
+1. Öffne dein `core_project` in RStudio.
+2. Öffne dort die Datei `scripts/01_clean_data.R`.
+3. Schreibe deinen Hausaufgaben-Code in diese Datei (mit klaren Kommentaren).
+4. Wenn du Ergebnisse dokumentieren sollst, notiere sie in Kommentaren in `01_clean_data.R` oder in deinem Report-Entwurf.
+
+> Hintergrund: Der Sitzungsordner kann durch neue Downloads überschrieben werden. Dein Kernprojekt ist dein dauerhafter Arbeitsort.
+
+---
+
+## Abgabeformat
+
+- Gib ein **gerendertes HTML** aus deinem Kernprojekt ab.
+- Das HTML soll deine wichtigsten Outputs enthalten (Tabellen, kurze Interpretationen, ggf. Histogramme).
+- Dein Code muss in `scripts/01_clean_data.R` nachvollziehbar und von oben nach unten lauffähig sein.
+
+---
+
+## Kernaufgaben (Pflicht, ca. 90 Minuten)
+
+## HA1 · OWID-Datensatz laden und Struktur dokumentieren
+
+### Ziel
+
+Du lädst den größeren Datensatz im Kernprojekt und dokumentierst die Grundstruktur sauber.
+
+### Schritte
+
+a) Lade in `01_clean_data.R` die Datei `data/owid_data.csv` als Objekt `owid` mit:
+
+```r
+owid <- read_csv(here("data", "owid_data.csv"))
+```
+
+b) Führe diese Prüfungen aus und dokumentiere die Ergebnisse als Kommentar:
+
+- `nrow(owid)`
+- `ncol(owid)`
+- `names(owid)`
+- `glimpse(owid)`
+
+c) Notiere 3 Beobachtungen (z. B. Anzahl Länder/Jahre, auffällige Variablen, Datentypen).
+
+```{r ha1-struktur, eval=FALSE}
+# Beispiel-Chunk für dein Hausaufgaben-HTML (Code läuft im Kernprojekt)
+# owid <- read_csv(here("data", "owid_data.csv"), show_col_types = FALSE)
+# nrow(owid)
+# ncol(owid)
+# names(owid)
+# glimpse(owid)
+```
+
+---
+
+## HA2 · Fehlende Werte in Schlüsselvariablen prüfen
+
+### Ziel
+
+Du prüfst systematisch, wo Daten fehlen.
+
+### Schritte
+
+a) Berechne fehlende Werte für diese Variablen:
+
+- `gini`
+- `child_mortality_rate`
+- `life_expectancy_birth`
+
+b) Berechne zusätzlich den Prozentanteil fehlender Werte je Variable
+(`n_miss / nrow(owid) * 100`).
+
+c) Schreibe 3–5 Sätze:
+
+- Wo fehlen besonders viele Werte?
+- Welche Variable wirkt am robustesten?
+- Welche Konsequenz hat das für spätere Analysen?
+
+```{r ha2-na, eval=FALSE}
+# n_miss_gini <- sum(is.na(owid$gini))
+# n_miss_child <- sum(is.na(owid$child_mortality_rate))
+# n_miss_le <- sum(is.na(owid$life_expectancy_birth))
+#
+# pct_miss_gini <- n_miss_gini / nrow(owid) * 100
+# ...
+```
+
+---
+
+## HA3 · 2015-Querschnitt aufbereiten und visualisieren
+
+### Ziel
+
+Du erstellst einen kleinen Analyse-Ausschnitt aus dem echten Datensatz.
+
+### Schritte
+
+a) Erstelle ein Objekt `owid_2015` mit:
+
+- `year == 2015`
+- nur Ländern mit nicht-fehlender `world_region`
+- den Spalten `country`, `world_region`, `gdp`, `population`, `life_expectancy_birth`
+
+b) Erzeuge in `owid_2015` eine neue Variable `gdp_per_capita` mit:
+
+```r
+gdp / population
+```
+
+c) `[Verif]` Prüfe:
+
+- `nrow(owid_2015)`
+- `sum(is.na(owid_2015$gdp_per_capita))`
+- `summary(owid_2015$gdp_per_capita)`
+
+d) Erstelle ein Histogramm für `life_expectancy_birth` in `owid_2015` mit klaren Labels.
+
+e) Schreibe 3 Sätze Interpretation: Wo liegt die Verteilung, und gibt es auffällige Werte?
+
+```{r ha3-2015, eval=FALSE}
+# owid_2015 <- owid |>
+#   filter(year == 2015, !is.na(world_region)) |>
+#   select(country, world_region, gdp, population, life_expectancy_birth) |>
+#   mutate(gdp_per_capita = gdp / population)
+#
+# nrow(owid_2015)
+# sum(is.na(owid_2015$gdp_per_capita))
+# summary(owid_2015$gdp_per_capita)
+#
+# ggplot(owid_2015, aes(x = life_expectancy_birth)) +
+#   geom_histogram(...)
+```
+
+---
+
+## Bonus-Aufgaben (freiwillig)
+
+### B-HA1 · Zweites Histogramm + Vergleich
+
+Erstelle zusätzlich ein Histogramm für `gdp_per_capita` (aus `owid_2015`) und vergleiche es mit `life_expectancy_birth`:
+
+- Welche Verteilung ist schiefer?
+- Warum könnte das inhaltlich plausibel sein?
+
+```{r b-ha1, eval=FALSE}
+# ggplot(owid_2015, aes(x = gdp_per_capita)) +
+#   geom_histogram(...)
+```
+
+---
+
+### B-HA2 ⚠️ · Erste Korrelation + Reflexion
+
+Berechne:
+
+```r
+cor(owid_2015$gdp_per_capita, owid_2015$life_expectancy_birth, use = "complete.obs")
+```
+
+Schreibe 3–4 Sätze:
+
+- Richtung des Zusammenhangs (positiv/negativ)
+- grobe Stärke (schwach/mittel/stark)
+- warum das **keine Kausalität** beweist
+
+```{r b-ha2, eval=FALSE}
+# cor(...)
+```
