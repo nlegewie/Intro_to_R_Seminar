@@ -1,0 +1,74 @@
+---
+title: "Session 4 — Basis-Notizen (Draft)"
+subtitle: "Aus Session 3 verschobene Inhalte"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
+
+## Zweck dieses Dokuments
+
+Diese Datei sammelt Inhalte, die aus Session 3 verschoben wurden, weil sie laut Kurs-Outline erst in Session 4 eingefuehrt werden sollten.
+
+---
+
+## Verschobene Uebung: Fehlende Werte pruefen (`NA`)
+
+Auch wenn ein Datensatz "sauber" aussieht, solltest du immer kurz pruefen, ob NAs vorhanden sind. Die Funktion `is.na()` erlaubt es uns, zu pruefen, ob ein Wert fehlt.
+
+```r
+is.na(session_03_daten$country)
+sum(is.na(session_03_daten$country))
+sum(is.na(session_03_daten$gdp_per_capita))
+```
+
+### Aufgabe (fuer Session 4)
+
+a) Pruefe NAs fuer `gdp_per_capita`, `life_expectancy_birth` und `child_mortality_rate`.
+b) Berechne zusaetzlich die Gesamtzahl fehlender Werte im ganzen Datensatz (`sum(is.na(session_03_daten))`).
+c) Interpretiere kurz: Musst du dich in dieser Sitzung schon um fehlende Werte kuemmern?
+
+```{r session-04-na-draft, eval=FALSE}
+# a) NAs je zentraler Variable
+
+# b) NAs insgesamt
+
+# c) kurze Interpretation
+```
+
+
+
+### Der Pipe-Operator `|>` (Basis)
+
+In dieser Sitzung nutzen wir die Pipe in der einfachen Form:
+
+```r
+session_03_daten |>
+  ggplot(aes(x = life_expectancy_birth)) +
+  geom_histogram()
+```
+
+Die Pipe `|>` bedeutet: **Nimm das Objekt links und gib es als erstes Argument in die Funktion rechts.**
+
+Ohne Pipe waere das:
+
+```r
+ggplot(session_03_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram()
+```
+
+Beides funktioniert. Mit Pipe ist bei mehreren Schritten oft klarer lesbar.

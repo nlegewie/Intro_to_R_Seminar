@@ -13,6 +13,13 @@ output:
     number_sections: false
 ---
 
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo    = TRUE,

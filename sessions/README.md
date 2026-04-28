@@ -17,7 +17,7 @@ Stelle sicher, dass du die aktuellen Sitzungsunterlagen hast.
 Neue Materialien werden jede Woche hinzugefügt. Du kannst diese neuen Unterlagen herunterladen, indem du: 
 
 1. hier auf GitHub in den entsprechenden Sitzungsordner gehst
-2. Die URL kopierst
+2. Die URL kopierst. Entweder navigierst du zum Ordern der aktuellen Session und gehst dort oben im Browser ins Fenster für die URL-Eingabe, und kopierst den Link. Alternativ kannst du auch diesen Link hier kopieren und am Ende die Nummer für die aktuelle Sitzung eingeben: https://github.com/nlegewie/Intro_to_R_Seminar/tree/main/sessions/session_XX. Beachte, dass einstellige Zahlen im Format "0X" (also für Session 3: 03) auftauchen.
 3. Diesen Link hier klickst: https://download-directory.github.io
 4. Dort die URL des Sessionordners einfügst 
 5. Auf ENTER drückst. Der Ordner wird dann als ZIP heruntergeladen
@@ -79,7 +79,7 @@ Wenn du nicht weiterkommst:
 
 ### Wo finde ich die Lösungen?
 
-- **In-class-Lösungen** werden (wenn freigegeben) direkt im jeweiligen Sitzungsordner veröffentlicht, meist als `session_XX_uebungen_loesung.Rmd` (und ggf. als HTML-Version).
+- **In-class-Lösungen** werden direkt im jeweiligen Sitzungsordner veröffentlicht, meist als `session_XX_uebungen_loesung.Rmd` (und ggf. als HTML-Version).
 - **Hausaufgaben-Lösungen** lade ich immer am Donnerstag auf Learnweb hoch.
 
 ---
@@ -92,7 +92,7 @@ Hausaufgaben erledigst du **zu Hause, in deinem eigenen Kernprojekt** — nicht 
 
 ### Schritt 1 · Hausaufgabenblatt knitten
 
-Öffne `session_XX_hausaufgaben.Rmd` im Sitzungsordner und klicke auf **Knit**. Lies die Aufgaben durch.
+Öffne die .RProj-Datei im sessions Ordner, öffne dann `session_XX_hausaufgaben.Rmd` und klicke auf **Knit**. Hier kannst du die Aufgaben durchlesen um zu wissen, was zu tun ist.
 
 ---
 

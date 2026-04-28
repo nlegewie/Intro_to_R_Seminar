@@ -1,0 +1,95 @@
+---
+title: "Session 5 — Basis-Notizen (Draft)"
+subtitle: "Aus Session 3 verschobene Inhalte"
+author: "Seminar: Globale Ungleichheit"
+date: "Wintersemester 2025/26"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+    number_sections: false
+---
+
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
+
+## Zweck dieses Dokuments
+
+Diese Datei sammelt Inhalte, die aus Session 3 verschoben wurden, weil sie laut Kurs-Outline erst in Session 5 eingefuehrt werden sollten.
+
+---
+
+## Verschobene Uebung: Filtern und Minitabelle anzeigen
+
+### `filter()`
+
+`filter()` waehlt Zeilen nach einer Bedingung aus.
+
+```r
+mein_tibble |>
+  filter(bedingung)
+```
+
+### `select()`
+
+`select()` waehlt Spalten aus.
+
+```r
+mein_tibble |>
+  select(spalte_1, spalte_2, spalte_3)
+```
+
+### `arrange()` und `desc()`
+
+`arrange()` sortiert Zeilen, mit `desc(...)` absteigend.
+
+```r
+mein_tibble |>
+  arrange(desc(spalte))
+```
+
+### `slice_head()`
+
+`slice_head(n = 5)` zeigt die ersten 5 Zeilen.
+
+```r
+mein_tibble |>
+  slice_head(n = 5)
+```
+
+### Aufgabe (fuer Session 5)
+
+a) Erstelle ein Objekt `toy_kurz` mit den Spalten `country`, `region`, `gdp_per_capita`.
+b) Sortiere `toy_kurz` nach `gdp_per_capita` absteigend.
+c) Zeige die obersten 5 Zeilen.
+
+```{r session-05-filter-draft, eval=FALSE}
+# a) Kurzdatensatz mit 3 Spalten
+
+# b) Sortieren (absteigend)
+
+# c) Top 5 anzeigen
+```
+
+---
+
+## Verschobene Uebung: `[Verif]` Vorher/Nachher pruefen
+
+a) Vergleiche `nrow(session_03_daten)` mit `nrow(toy_kurz)`.
+b) Vergleiche `ncol(session_03_daten)` mit `ncol(toy_kurz)`.
+c) Pruefe mit `names(toy_kurz)`, ob genau die gewuenschten 3 Spalten enthalten sind.
+
+```{r session-05-verif-draft, eval=FALSE}
+# a) Zeilenvergleich
+
+# b) Spaltenvergleich
+
+# c) Spaltennamen pruefen
+```

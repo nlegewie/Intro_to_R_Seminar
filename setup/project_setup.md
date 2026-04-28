@@ -92,11 +92,12 @@ Dokumente/
         ├── README_project.md
         ├── data/
         ├── scripts/
-        │   ├── 01_clean_data.R
-        │   ├── 02_analysis.R
-        │   └── 03_helpers.R
-        ├── reports/
-        │   └── analysis_report.Rmd
+        │   ├── 01_homework_clean_data.R
+        │   ├── 02_homework_analysis.R
+        │   └── 03_homework_helpers.R
+        ├── core_project.Rmd
+        ├── final_report/
+        │   └── final_report.Rmd
         └── output/
             ├── figures/
             └── tables/
@@ -127,7 +128,7 @@ Jetzt öffnest du das Projekt zum ersten Mal:
 
 Schau in die **obere rechte Ecke** von RStudio. Dort steht der Name deines Projekts (z. B. `[dein name]_projekt`). Wenn dort `Project: (None)` steht, bist du in keinem Projekt — öffne die `.Rproj`-Datei erneut. Wenn du später „Datei nicht gefunden"-Fehler bekommst, ist das fast immer die Ursache: [Fehlerbehebung](../resources/troubleshooting/reset_and_recover.md#datei-nicht-gefunden)
 
-Außerdem: Im Bereich **Files** (unten rechts) siehst du genau die Dateien und Ordner, die in deinem Projektordner liegen. Wenn du dort `scripts/`, `data/`, `reports/` usw. siehst, bist du richtig.
+Außerdem: Im Bereich **Files** (unten rechts) siehst du genau die Dateien und Ordner, die in deinem Projektordner liegen. Wenn du dort `scripts/`, `data/`, `final_report/` usw. siehst, bist du richtig.
 
 ---
 
@@ -155,11 +156,11 @@ list.files()
 
 Du solltest etwas sehen wie:
 ```
-[1] "data"       "mein_projekt.Rproj"  "output"
-[4] "README_project.md"  "reports"    "scripts"
+[1] "core_project.Rmd"  "data"       "final_report"  "mein_projekt.Rproj"
+[5] "output"            "README_project.md"  "scripts"
 ```
 
-Wenn die Ordner `data`, `scripts`, `reports` und `output` auftauchen: Alles ist an seinem Platz.
+Wenn die Ordner `data`, `scripts`, `final_report` und `output` auftauchen: Alles ist an seinem Platz.
 
 ---
 
@@ -215,7 +216,8 @@ Das öffnet RStudio mit dem richtigen Arbeitsverzeichnis, den richtigen Dateien 
 |--------|----------------|
 | `data/` | Datensätze: die OWID-Daten und ggf. eigene gefilterte Versionen |
 | `scripts/` | R-Skripte für Datenbereinigung und Analyse |
-| `reports/` | R-Markdown-Dokumente, z. B. der Analysebericht und später der Abschlussbericht |
+| `final_report/` | R-Markdown zum Semesterbericht (Anleitung + `final_report.Rmd`) |
+| `core_project.Rmd` | Laufende Hausaufgaben: Text/Interpretationen; kann Outputs aus `scripts/` einbinden |
 | `output/figures/` | Grafiken, die dein Code erzeugt |
 | `output/tables/` | Tabellen, die dein Code erzeugt |
 

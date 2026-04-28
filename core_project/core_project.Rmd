@@ -1,0 +1,125 @@
+---
+title: "Kernprojekt — Hausaufgaben & Interpretationen"
+subtitle: "Code kommt aus `scripts/` · Text kommt hierher"
+author: "Vorname Nachname"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: show
+    number_sections: false
+---
+
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+
+library(tidyverse)
+library(here)
+
+source(here("scripts", "01_homework_clean_data.R"))
+source(here("scripts", "02_homework_analysis.R"))
+source(here("scripts", "03_homework_helpers.R"))
+
+
+```
+
+
+## Session 3 — HA1 · Struktur des OWID-Datensatzes
+
+### Beobachtungen zum OWID-Datensatz (HA1 C)
+
+<!-- PLATZHALTER HA1: Hier deine drei Beobachtungen als Fliesstext (kein R-Code nötig). -->
+
+**Beobachtung 1:** [Hier einfügen.]
+
+**Beobachtung 2:** [Hier einfügen.]
+
+**Beobachtung 3:** [Hier einfügen.]
+
+---
+
+## Session 3 — HA2 · Fehlende Werte
+
+### Einordnung der fehlenden Werte (HA2 C)
+
+[Hier einfügen.]
+
+---
+
+## Session 3 — HA3 · Histogramm Lebenserwartung (HA3 A)
+
+<!-- PLATZHALTER HA3 A: Hier in der Mitte des folgenden Codes kannst du dein Grafik-Objekt für HA3 A einfügen. Ändere sonst nichts in diesem Code-Block. -->
+
+```{r ha3-life-expectancy-histogram, fig.width=8, fig.height=4.5, eval=exists("life_expectancy_histogram")}
+
+
+[Ersetze diesen Text durch das Grafik-Objekt, dass du für HA3 A erstellt hast.]
+
+
+```
+
+
+### Interpretation (HA3 D)
+
+<!-- PLATZHALTER HA3: Hier deine Interpretation des Histogramms. -->
+
+[Hier deinen Text einfügen.]
+
+---
+
+## Session 3 — Bonus · BIP pro Kopf (B-HA1)
+
+### Abbildung
+
+<!-- PLATZHALTER B-HA1: Hier in der Mitte des folgenden Codes kannst du dein Grafik-Objekt für B-HA1 einfügen. Ändere sonst nichts in diesem Code-Block. -->
+
+```{r b-ha1-gdp-per-capita-histogram, fig.width=8, fig.height=4.5, eval=exists("gdp_per_capita_histogram")}
+
+
+[Ersetze diesen Text durch das Grafik-Objekt, das du für B-HA1 erstellt hast.]
+
+
+```
+
+### Vergleich mit Lebenserwartung (B-HA1)
+
+<!-- PLATZHALTER B-HA1: Hier deinen Vergleich und deine Begründung. -->
+
+[Hier einfügen.]
+
+---
+
+## Session 3 — Bonus · Histogramm-Auflösung (`bins`) (B-HA2)
+
+### Abbildungen (B-HA2)
+
+<!-- PLATZHALTER B-HA2: Hier in der Mitte des folgenden Codes kannst du deine beiden Grafik-Objekte für B-HA2 einfügen. Ändere sonst nichts in diesem Code-Block. -->
+
+```{r b-ha2-life-expectancy-bins-10, fig.width=8, fig.height=4.5, eval=exists("life_expectancy_bins10")}
+
+
+[Ersetze diesen Text durch das Grafik-Objekt, das du für B-HA2 erstellt hast.]
+
+
+```
+
+
+### Reflexion (B-HA2)
+
+<!-- PLATZHALTER B-HA2: Hier deine Reflexion zu den beiden Histogrammen. -->
+
+[Hier deinen Text einfügen.]

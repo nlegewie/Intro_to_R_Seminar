@@ -109,7 +109,7 @@ Das zeigt, dass du selbst nachgedacht hast, und hilft der helfenden Person, Ding
 >
 > Die Fehlermeldung: `Error in filter(...): object 'owid_data' not found`
 >
-> Ich habe R neu gestartet und das gesamte Skript `01_clean_data.R` ausgeführt — dort steht `owid_data <- read_csv(...)`, und das läuft ohne Fehler. Trotzdem findet R `owid_data` in meinem Analyse-Skript nicht.
+> Ich habe R neu gestartet und das gesamte Skript `01_homework_clean_data.R` ausgeführt — dort steht `owid <- read_csv(...)`, und das läuft ohne Fehler. Trotzdem findet R `owid` in meinem Analyse-Skript nicht.
 >
 > Was übersehe ich?
 

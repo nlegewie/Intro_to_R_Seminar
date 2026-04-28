@@ -6,7 +6,7 @@
 
 # Dieses Skript enthält die eigentliche Analyse: Zusammenfassungen,
 # Gruppierungen, Visualisierungen und statistische Auswertungen.
-# Voraussetzung: 01_clean_data.R wurde bereits ausgeführt.
+# Voraussetzung: 01_homework_clean_data.R wurde bereits ausgeführt.
 
 
 ###***********************************###

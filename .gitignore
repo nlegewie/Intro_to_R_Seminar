@@ -5,3 +5,6 @@
 
 # Rendered outputs in session folders (keep source .Rmd files only)
 sessions/**/*.html
+
+# Knit output from core project template (students render locally)
+core_project/**/*.html

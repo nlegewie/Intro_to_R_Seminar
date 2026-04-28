@@ -13,6 +13,13 @@ output:
     number_sections: false
 ---
 
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo    = TRUE,
@@ -30,24 +37,21 @@ library(here)
 
 ## Bevor du startest (wichtig)
 
-Ab dieser Sitzung arbeitest du für die Übungen **im Skript** (nicht primär in den Rmd-Chunks).
+Ab dieser Sitzung arbeitest du für die Übungen **im Skript**.
 
 ### Workflow in dieser Sitzung
 
-1. Öffne `session_03.Rproj`.
-2. Öffne dieses Übungsblatt `session_03_uebungen.Rmd` zum Lesen der Aufgaben.
-3. Öffne das Skript-Template `scripts/session_03_uebungen_template.R`.
-4. Schreibe deinen Code in die passenden Abschnitte im Skript.
-5. Führe Zeilen/Blöcke aus dem Skript mit `Ctrl+Enter` / `Cmd+Enter` aus.
-6. Nutze die Chunks im Rmd optional für kurze Notizen oder zum Sammeln von finalem Code.
-
-> Wichtig: Du schreibst **nicht** in das HTML. Das HTML ist nur die Aufgabenansicht.
+1. Vergewissere dich, dass du im richtigen Projekt bist, d.h. dass du `session_03.Rproj` geöffnet hast. Im Hauptfenster von RStudio (nicht hier im geknitteten Dokument) sollte oben rechts klein "session_03" stehen.
+2. Öffne das Skript-Template `session_03_uebungen_template.R` im `scripts`-Ordner. Das kannst du über das kleine Ordner-Icon oben links im Hauptfenster von RStudio machen. Klicke erst auf das Icon, gehe dann in den `scripts`-Ordner und öffne dort das Template.
+3. Führe am Anfang einmal die beiden library()-Befehle aus, um die Pakete `tidyverse` und `here` zu laden.
+4. Wenn du gleich nach und nach die Aufgaben bearbeitest, schreibe deinen Code in die passenden Abschnitte im Skript.
+5. Führe Zeilen/Blöcke aus dem Skript aus, indem du sie markierst und dann `Ctrl+Enter` / `Cmd+Enter` drückst.
 
 ---
 
-## Einleitung: Wir öffnen den Datensatz-Motorraum
+## Einleitung: Unser R-Benteuer beginnt!
 
-In Session 2 hast du Werte von Hand als Vektor oder Tibble eingegeben. Ab heute arbeiten wir mit einer echten Datei (`.csv`): Wir laden Daten ein, prüfen die Struktur und schauen uns erste Verteilungen an.
+In Session 2 hast du Werte von Hand als Vektor oder Tibble eingegeben. Ab heute arbeiten wir mit echten Daten aus einer echten Datei (`.csv`): Wir laden Daten ein, prüfen die Struktur und schauen uns erste Verteilungen an.
 
 Der Fokus liegt auf dem **Workflow**:
 
@@ -56,244 +60,427 @@ Der Fokus liegt auf dem **Workflow**:
 - einfache Visualisierungen erstellen
 - Ergebnisse kurz inhaltlich einordnen
 
-> **Arbeitsregel:** Alle Kernaufgaben zuerst im Skript lösen (`scripts/session_03_uebungen_template.R`). Das Übungsblatt ist deine Schritt-für-Schritt-Anleitung.
+> **Arbeitsregel:** Alle Kernaufgaben zuerst im Skript lösen (`scripts/session_03_uebungen_template.R`). Dieses Übungsblatt ist deine Anleitung, aber hier arbeitest du nicht.
+
+### Wo sind wir im Workflow?
+
+In Session 3 gehen wir durch diese Schritte:
+
+1. **Script + Projekt** richtig aufsetzen
+2. **Daten laden** mit der Funktion (`read_csv()`)
+3. **Struktur und Datentypen prüfen** mit den Funktionen `glimpse()`, `head()`, `tail()`, `nrow()`, `ncol()`)
+4. **Debugging** (typische Fehler erkennen und beheben)
+5. **Erste eigene Visualisierung** mit `ggplot()`
+6. **Kurz interpretieren und sauber kommentieren**
 
 ---
 
-## Übung 1 · CSV laden und Objekt anlegen
+## Übung 1 · Script/Projekt-Workflow und CSV laden
 
 ### Was ist neu?
 
-Ein CSV ist eine Textdatei mit tabellarischen Daten. Mit `read_csv()` (aus tidyverse) laden wir sie in R als Tibble.
+Ein CSV ist eine Textdatei mit tabellarischen Daten. Daten werden sehr häufig in diesem Format abgespeichert. Mit `read_csv()` (aus tidyverse) laden wir sie in R als Tibble.
 
-Für den Dateipfad nutzen wir `here()`:
+```r
+
+read_csv("der/Pfad/zur/datei/data/die_du_laden_willst.csv")
+
+```
+
+
+Für den Dateipfad nutzen wir `here()` und fügen dann den Ordnernamen und den Dateinamen ein, jeweils in Anführungszeichen:
 
 ```r
 here("data", "toy_data_session_03.csv")
 ```
 
-Das baut den Pfad relativ zum geöffneten Projekt (`session_03.Rproj`) und verhindert viele "Datei nicht gefunden"-Fehler.
+Das baut den Pfad relativ zum geöffneten Projekt (in diesem Fall: `session_03.Rproj`) und verhindert viele "Datei nicht gefunden"-Fehler. 
 
-### Deine Aufgabe
+Wenn wir einen Datensatz laden, sollten wir ihn direkt einem Objekt zuweisen, damit wir ihn immer wieder verwenden können. Falls du es seit letzter Woche vergessen hast, hier noch mal zur Erinnerung ein Beispiel für eine Zuweisung:
 
-a) Lade `data/toy_data_session_03.csv` in ein Objekt namens `toy`.
-b) Gib `toy` aus.
-c) Prüfe mit `class(toy)`, welchen Objekttyp du erhalten hast.
+```r
+mein_vektor <- c(1, 2, 3)
+```
 
-```{r uebung-01-laden}
-# a) CSV laden
+Dieser Befehl erstellt das Objekt `mein_vektor` und weist ihm den Wert `c(1, 2, 3)` zu.
+Wenn du das Objekt `mein_vektor` aufrufst, siehst du den Wert `1, 2, 3`.
 
-# b) Datensatz anzeigen
+### Deine Aufgaben
 
-# c) Objekttyp prüfen
+a) Lade `data/toy_data_session_03.csv` in ein Objekt namens `session_03_daten`.
+b) Lass dir `session_03_daten` ausgeben.
+c) Prüfe mit `class()`, welcher Objekttyp das neue Objekt ist.
+
+Schreibe den Code für die Aufgaben a) bis c) in das Skript `scripts/session_03_uebungen_template.R`.
+
+<br>
+
+<details>
+<summary><strong>Tip 1</strong></summary>
+
+Arbeite in drei Schritten:
+1. `read_csv(here(...))` dem neuen Objekt `session_03_daten` zuweisen  
+2. Objektname allein ausführen  
+3. `class(session_03_daten)` ausführen
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+
+# a) CSV laden und Objekt anlegen
+
+session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
+
+# b) session_03_daten ausgeben
+
+session_03_daten
+
+# c) class() von session_03_daten pruefen
+
+class(session_03_daten)
 
 ```
 
+</details>
+
 ---
 
-## Übung 2 · Struktur erkunden: Was steckt drin?
+## Übung 2 · Funktionen zur Daten-Erkundung
 
-### Warum das wichtig ist
+### Warum wollen wir die Struktur des Datensatzes kennen?
 
-Bevor du analysierst, musst du wissen:
+Bevor du mit dem Analysieren loslegst, solltest du immer erst mal verstehen, wie deine Daten aussehen:
 
 - Wie viele Zeilen und Spalten gibt es?
 - Wie heißen die Variablen?
 - Welchen Datentyp hat jede Variable?
 
+Diese Informationen helfen dir dabei zu verstehen, mit was für Daten du es eigentlich zu tun hast. Diese Dinge zu ermitteln gehört immer zu den ersten Schritten, wenn du mit einem neuen Datensatz arbeitest.
+
+### Nützliche Funktionen zur Erkundung von Datensätzen
+
+- `glimpse()`: Zeigt eine Übersicht über die Variablen des Datensatzes, deren Typ und einige Beispielwerte.
+- `head()`: Zeigt die ersten Zeilen des Datensatzes. `head(session_03_daten, 10)` zeigt z.B. die ersten 10 Zeilen.
+- `tail()`: Zeigt die letzten Zeilen des Datensatzes. `tail(session_03_daten, 10)` zeigt z.B. die letzten 10 Zeilen.
+- `nrow()`: Zeigt die Anzahl der Zeilen im Datensatz.
+- `ncol()`: Zeigt die Anzahl der Spalten im Datensatz.
+
+
 ### Deine Aufgabe
 
-Nutze die folgenden Funktionen auf `toy`:
+Wendest die folgenden Funktionen auf `session_03_daten` an:
 
-- `glimpse(toy)`
-- `head(toy, 6)`
-- `tail(toy, 6)`
-- `nrow(toy)`, `ncol(toy)`
-- `names(toy)`
+- `glimpse()`
+- `head()`, um die ersten 5 Zeilen des Datensatzes anzusehen
+- `tail()`, um die letzten 5 Zeilen des Datensatzes anzusehen
+- `nrow()`, `ncol()`
 
-Schreibe anschließend 2 kurze Beobachtungen als Kommentar in den Chunk
-(z. B. "Es gibt X Länder", "Variable Y ist numeric", ...).
+Schreibe anschließend 2 kurze Beobachtungen als Kommentar in das Skript `scripts/session_03_uebungen_template.R` (z. B. "Es gibt X Länder", "Variable Y ist numeric", ...).. Kommentare werden mit `#` eingeleitet, damit R sie beim Ausführen von Befehlen ignoriert.
 
-```{r uebung-02-struktur}
-# Struktur prüfen
+<br>
 
+<details>
+<summary><strong>Tip</strong></summary>
 
-# Kurze Beobachtungen:
-# 1)
-# 2)
+Rufe jede Funktion einmal auf `session_03_daten` auf.  
+Für `head()` und `tail()` gib als zweites Argument `5` an.
 
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+glimpse(session_03_daten)
+head(session_03_daten, 5)
+tail(session_03_daten, 5)
+nrow(session_03_daten)
+ncol(session_03_daten)
+
+# Beobachtung 1: ...
+# Beobachtung 2: ...
 ```
+
+</details>
 
 ---
 
-## Übung 3 · Datentypen verstehen (character vs numeric)
+## Übung 3 · Funktionen und Datentypen
 
-Wir greifen einzelne Spalten mit `$` heraus:
+Wie du dich vielleicht erinnerst, können wir mit `$` einzelne Spalten aus einem Tibble herausgreifen:
 
 ```r
-toy$country
-toy$gdp_per_capita
+session_03_daten$country
+session_03_daten$gdp_per_capita
 ```
 
 Mit `class()` siehst du den Datentyp einer Spalte.
 
 ### Deine Aufgabe
 
-a) Prüfe die Klassen von `toy$country`, `toy$region`, `toy$year`, `toy$gdp_per_capita`, `toy$life_expectancy_birth`.
+a) Prüfe die Klassen von `country`, `region`, `year`, `gdp_per_capita`, `life_expectancy_birth` im Datensatz `session_03_daten`.
 b) Welche Variablen sind Text (`character`), welche sind Zahlen (`numeric` oder `integer`)?
-c) Warum wäre `mean(toy$country)` unsinnig?
-
-```{r uebung-03-typen}
-# a) Klassen prüfen
+c) Warum wäre `mean(session_03_daten$country)` unsinnig? Tip: Versuch es einfach mal aus, indem du für `country` und `gdp_per_capita` jeweils `mean()` berechnest.
 
 
-# b/c) kurze Einordnung:
-# - Textvariablen:
-# - Zahlvariablen:
-# - Warum mean() auf country nicht sinnvoll ist:
+<br>
 
+<details>
+<summary><strong>Tip</strong></summary>
+
+Nutze für a) jeweils `class(session_03_daten$...)` mit allen angegebenen Variablen.  
+Für c) wende `mean()` einmal auf `country` und einmal auf `gdp_per_capita` an mit `mean(session_03_daten$...)`.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+class(session_03_daten$country)
+class(session_03_daten$region)
+class(session_03_daten$year)
+class(session_03_daten$gdp_per_capita)
+class(session_03_daten$life_expectancy_birth)
+
+mean(session_03_daten$country)
+mean(session_03_daten$gdp_per_capita)
 ```
+
+</details>
 
 ---
 
-## Übung 4 · `[Verif]` Fehlende Werte prüfen
+## Übung 4 · Debugging: Typischer Ladefehler
 
-Auch wenn ein Datensatz "sauber" aussieht: immer kurz prüfen, ob NAs vorhanden sind.
+Fehler lesen und beheben ist ein sehr wichtiger Teil der Datenanalyse. In dieser Übung provozierst du bewusst einen typischen Fehler und behebst ihn.
 
-Muster:
+### Deine Aufgaben
+
+a) Fuehre zuerst absichtlich diesen falschen Befehl aus:
 
 ```r
-sum(is.na(mein_tibble$spalte))
+read_csv(here("data", "toy_data_session03.csv"))
 ```
 
-### Deine Aufgabe
+b) Lies die Fehlermeldung genau: Was ist das Problem?
+c) Korrigiere den Dateinamen und lade den Datensatz wieder korrekt in `session_03_daten`.
+d) Schreibe als Kommentar eine kurze Fehlerregel in dein Skript (z. B. "Dateiname genau pruefen, Gross/Kleinschreibung beachten").
 
-a) Prüfe NAs für `gdp_per_capita`, `life_expectancy_birth`, `child_mortality_rate`.
-b) Berechne zusätzlich die Gesamtzahl fehlender Werte im ganzen Datensatz (`sum(is.na(toy))`).
-c) Interpretiere kurz: Brauchst du in dieser Sitzung schon `na.rm = TRUE`?
+<br>
 
-```{r uebung-04-na}
-# a) NAs je zentraler Variable
+<details>
+<summary><strong>Tip</strong></summary>
 
-# b) NAs insgesamt
+Der absichtliche Fehler ist in der Endung des Dateinamens: `session03`. Hier hat sich ein Tippfehler eingeschlichen. Falls er dir nicht auffällt, schau auf deiner Festplatte im Ordner `session_03/data` nach, wie die Datei richtig heißt.  
 
-# c) kurze Interpretation:
-#
+</details>
 
+<br>
+
+<details>
+<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+
+```r
+# absichtlich falsch:
+read_csv(here("data", "toy_data_session03.csv"))
+
+# korrigiert:
+session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
+
+# Fehlerregel:
+# Dateinamen immer exakt prüfen (Unterstriche, Groß/Kleinschreibung, Endung).
 ```
+
+</details>
 
 ---
 
 ## Übung 5 · Erste Verteilungen mit Histogrammen
 
-Ein Histogramm zeigt, wie sich Werte verteilen.
-
-### Base-R (kurz)
+Ein Histogramm zeigt, wie sich Werte verteilen. Solche und viele andere Visualisierungen können wir in R mit dem grandiosen Paket `ggplot2` erstellen, das als Teil des `tidyverse` Pakets bereits geladen ist. So sieht der Befehl aus, um ein einfaches Histogramm der Lebenserwartung zu erstellen:
 
 ```r
-hist(toy$life_expectancy_birth)
-```
-
-### Tidyverse / ggplot2
-
-```r
-ggplot(toy, aes(x = life_expectancy_birth)) +
+ggplot(session_03_daten, aes(x = life_expectancy_birth)) +
   geom_histogram()
 ```
 
+Gehen wir kurz Schritt für Schritt durch, was hier passiert: 
+
+- `ggplot()` ist die Grundfunktion, um Visualisierungen zu erstellen. 
+- Als erstes nennen wir der Funktion den Datensatz, aus dem wir etwas visualisieren möchten; hier `session_03_daten`. 
+- Mit `aes()` legen wir fest, mit welchen Variablen wir arbeiten möchten. Dabei sind meist `aes(x = ...)` und `aes(y = ...)` die wichtigsten, weil wir so die Achsen der Visualisierung festlegen. Beim Histogramm brauchen wir nur die x-Achse, weil wir ja die Verteilung der Werte auf einer Variable visualisieren möchten.
+- `geom_histogram()` ist die `ggplot`-Funktion, die das Histogramm erstellt.
+- `ggplot()` baut Visualisierungen Schritt für Schritt auf. Die einzelnen Schritte werden durch das `+` verbunden.
+
+Wenn wir einen Plot verstaendlicher machen wollen, nutzen wir `labs()`:
+
+```r
+ggplot(session_03_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram() + 
+  labs(
+    title = "Titel der Grafik",
+    x = "Beschriftung x-Achse",
+    y = "Beschriftung y-Achse",
+    caption = "Quelle: Our World in Data"
+  )
+)
+```
+
+`labs()` fügt also gut lesbare Beschriftungen hinzu.
+
+Ok, jetzt versuchen wir es mit deinen eigenen Histogrammen!
+
+
 ### Deine Aufgabe
 
-a) Erstelle ein Histogramm der Lebenserwartung mit `ggplot2`.
-b) Ergänze sinnvolle Labels (`title`, `x`, `y`, `caption`) und ein klares Theme (`theme_minimal()`).
+a) Erstelle ein Histogramm der Kindessterblichkeit mit `ggplot2`.
+b) Gib dem Plot in a) mit `labs()` einen Titel, Achsenbeschriftungen und eine Quellenangabe.
 c) Erstelle ein zweites Histogramm für `gdp_per_capita`.
 
-```{r uebung-05-histogramme}
-# a/b) Lebenserwartung
+<br>
 
+<details>
+<summary><strong>Tip</strong></summary>
 
-# c) gdp_per_capita
+Nutze jeweils das gleiche Grundmuster:  
+`ggplot(session_03_daten, aes(x = ...)) + geom_histogram()`  
+und ergänze danach `+ labs(...)`. Für die Labels der X- und Y-Achse kannst du den jeweilen Variablennamen (X-Achse) und "Anzahl Beobachtungen" (Y-Achse) verwenden. Quelle ist, wie oben im Beispiel auch angegeben, "Our World in Data".
 
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+ggplot(session_03_daten, aes(x = child_mortality_rate)) +
+  geom_histogram(bins = 20, fill = "#4472C4", color = "white") +
+  labs(
+    title = "Verteilung der Kindessterblichkeit",
+    x = "Kindessterblichkeit",
+    y = "Anzahl Beobachtungen",
+    caption = "Quelle: Our World in Data"
+  )
+
+ggplot(session_03_daten, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 20, fill = "#E07B39", color = "white") +
+  labs(
+    title = "Verteilung des BIP pro Kopf",
+    x = "BIP pro Kopf",
+    y = "Anzahl Beobachtungen",
+    caption = "Quelle: Our World in Data"
+  )
 ```
+
+</details>
 
 ---
 
-## Übung 6 · 👥 Interpretation: Was sagen die Verteilungen?
+## Übung 6 · Interpretation: Was sagen die Verteilungen?
 
-> **Partneraufgabe — kein neuer Code notwendig**
+> **👥 Partneraufgabe — kein neuer Code notwendig**
 
 Schaut euch eure Histogramme aus Übung 5 an und besprecht:
 
-- Wo liegen die meisten Länder bei der Lebenserwartung?
+- Wo liegen die meisten Länder bei der Kindessterblichkeit?
 - Ist die Verteilung eher symmetrisch oder schief?
 - Wie unterscheidet sich das Bild bei `gdp_per_capita`?
-- Warum könnte `gdp_per_capita` oft stärker schief verteilt sein?
+- Was lernt ihr aus diesen beiden Visualisierungen über globale Ungleichheit?
 
-Schreibt 3 kurze Stichpunkte als Kommentar:
+Schreibt 3 kurze Stichpunkte als Kommentar (mit `#`) in das Skript `scripts/session_03_uebungen_template.R`.
 
-```{r uebung-06-interpretation}
-# 1)
-# 2)
-# 3)
+<br>
+
+<details>
+<summary><strong>Tip</strong></summary>
+
+Beschreibt erst die Form (z. B. schief/symmetrisch), dann den Vergleich der beiden Variablen, und dann eure inhaltliche Einschätzung.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+# Bei child_mortality_rate liegen viele Laender im unteren Bereich, mit Werten bei der Kindersterblichkeit unter ~2%.
+# Die Verteilung wirkt rechtsschief, mit wenigen Ländern bei sehr hohen Werten.
+# gdp_per_capita ist ebenfalls rechtsschief, aber weniger stark als child_mortality_rate.
 ```
+
+</details>
 
 ---
 
-## Übung 7 · Filtern und Minitabelle anzeigen
+## Übung 7 · Code-Kommentare: Was und warum
 
-Jetzt kombinieren wir mehrere Schritte:
+In dieser Sitzung fuehrst du erstmals ein eigenes Skript systematisch aus. Deshalb sollten wir kurz über gute Kommentare sprechen.
 
-1. Auf ein Jahr filtern (`year == 2015`)
-2. Spalten auswählen (`country`, `region`, `gdp_per_capita`)
-3. 5 Zeilen anzeigen (`slice_head(n = 5)`)
+Schreibe in dein Skript:
 
-### Deine Aufgabe
+- fuer jede Übung eine kurze Abschnittsüberschrift,
+- mindestens 2 Kommentare, die erklären **warum** etwas gemacht wird (nicht nur was der Code tut).
 
-a) Erstelle ein Objekt `toy_kurz` mit genau diesen 3 Spalten.
-b) Sortiere `toy_kurz` nach `gdp_per_capita` absteigend.
-c) Zeige die obersten 5 Zeilen.
+Beispiel:
 
-```{r uebung-07-filter-select}
-# a) Kurzdatensatz mit 3 Spalten
+```r
+# Schlecht: wiederholt nur den Code
+# Datensatz laden
+session_03_daten <- read_csv(...)
 
-# b) Sortieren (absteigend)
-
-# c) Top 5 anzeigen
-
+# Besser: erklaert den Grund
+# Wir laden die CSV zuerst, damit alle spaeteren Auswertungen auf demselben Objekt basieren.
+session_03_daten <- read_csv(...)
 ```
 
----
+<br>
 
-## Übung 8 · `[Verif]` Vorher/Nachher prüfen
+<details>
+<summary><strong>Tip</strong></summary>
 
-Wenn du filterst oder auswählst, solltest du immer kurz verifizieren, ob das Ergebnis plausibel ist.
+Füge vor jedem Übungsblock eine Kommentar-Überschrift ein und erkläre bei mindestens zwei Stellen den Zweck des folgenden Codes.
 
-### Deine Aufgabe
+</details>
 
-a) Vergleiche `nrow(toy)` mit `nrow(toy_kurz)`.
-b) Vergleiche `ncol(toy)` mit `ncol(toy_kurz)`.
-c) Prüfe mit `names(toy_kurz)`, ob genau die gewünschten 3 Spalten enthalten sind.
+<br>
 
-```{r uebung-08-verif}
-# a) Zeilenvergleich
+<details>
+<summary><strong>Lösung</strong></summary>
 
-# b) Spaltenvergleich
+```r
+# === Übung 2: Datensatz strukturell erkunden ===
+# Wir prüfen zuerst die Struktur, damit wir später wissen, welche Variablen numerisch sind.
+glimpse(session_03_daten)
 
-# c) Spaltennamen prüfen
-
+# Wir schauen Zeilenanzahl und Spaltenanzahl an, um die Größe des Datensatzes einzuordnen.
+nrow(session_03_daten)
+ncol(session_03_daten)
 ```
+
+</details>
 
 ---
 
 ## Bonus-Übungen
 
-Bonus-Aufgaben sind freiwillig. Erst die Kernaufgaben fertigstellen.
-
 ### Bonus 1 · `summary()` gezielt nutzen
 
-Nutze `summary()` für die zwei numerischen Variablen:
+Die Funktion `summary()` aus Base R gibt dir einen schnellen Überblick über die Verteilung der Werte in einer Variablen. Nutze `summary()` für die zwei numerischen Variablen:
 
-- `toy$life_expectancy_birth`
-- `toy$gdp_per_capita`
+- `session_03_daten$life_expectancy_birth`
+- `session_03_daten$gdp_per_capita`
 
 Welche Kennzahlen helfen dir am meisten für eine schnelle Orientierung?
 
@@ -304,11 +491,41 @@ Welche Kennzahlen helfen dir am meisten für eine schnelle Orientierung?
 #
 ```
 
+<details>
+<summary><strong>Tip 1 (Hinweis)</strong></summary>
+
+`summary()` zeigt u. a. Minimum, Median, Mittelwert und Maximum.  
+Notiere kurz, welche dieser Kennzahlen dir für den schnellen Überblick am meisten helfen.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+
+```r
+summary(session_03_daten$life_expectancy_birth)
+summary(session_03_daten$gdp_per_capita)
+
+# Notiz:
+# Besonders hilfreich sind Median und Quartile, weil sie robuster gegen Ausreißer sind.
+```
+
+</details>
+
 ---
 
 ### Bonus 2 · Histogramm-Feintuning
 
-Erstelle zwei Histogramme für `gdp_per_capita`:
+Histogramme gruppieren Werte einer metrischen Variable und zeigen dann die Häufigkeit je Gruppe an. In `ggplot`s `geom_histogram()` können wir die Größe der Gruppen mit dem Argument `bins` festlegen.
+
+```r
+ggplot(session_03_daten, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 6)
+```
+
+Erstelle zwei Histogramme für `session_03_daten$gdp_per_capita`:
 
 - eins mit `bins = 6`
 - eins mit `bins = 15`
@@ -324,20 +541,44 @@ Welche Einstellung ist informativer und warum?
 #
 ```
 
+<details>
+<summary><strong>Tip 1 (Hinweis)</strong></summary>
+
+Nutze denselben Code zweimal und ändere nur `bins`.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+
+```r
+ggplot(session_03_daten, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 6)
+
+ggplot(session_03_daten, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 15)
+
+# kurze Begründung:
+# Mit mehr bins sieht man mehr Detailstruktur, mit weniger bins den groben Trend.
+```
+
+</details>
+
 ---
 
 ### Bonus 3 ⚠️ · Erste Korrelation (nur Exploration)
 
-Berechne testweise die Korrelation zwischen `gdp_per_capita` und `life_expectancy_birth`:
+Berechne testweise die Korrelation zwischen `session_03_daten$gdp_per_capita` und `session_03_daten$life_expectancy_birth`:
 
 ```r
-cor(toy$gdp_per_capita, toy$life_expectancy_birth)
+cor(session_03_daten$gdp_per_capita, session_03_daten$life_expectancy_birth)
 ```
 
 Schreibe 2 Sätze:
 
-- Ist das Vorzeichen positiv oder negativ?
-- Was bedeutet das **nicht**? (Hinweis: Korrelation ist keine Kausalität.)
+- Interpretiere das Ergebnis: Stärke und Richtung.
 
 ```{r bonus-03, eval=FALSE}
 # Korrelation berechnen
@@ -345,3 +586,27 @@ Schreibe 2 Sätze:
 # kurze Interpretation:
 #
 ```
+
+<details>
+<summary><strong>Tip 1 (Hinweis)</strong></summary>
+
+Berechne zuerst `cor(...)` und bewerte dann Richtung und Stärke. Beachte, dass Korrelation keine Kausalität impliziert.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+
+```r
+cor(session_03_daten$gdp_per_capita, session_03_daten$life_expectancy_birth)
+
+# Interpretation:
+# Die Korrelation ist positiv: hoeheres BIP pro Kopf geht tendenziell mit
+# hoeherer Lebenserwartung einher.
+# Die Korrelation ist sehr stark (r = 0.82)
+# Das bedeutet nicht automatisch, dass BIP die Ursache ist.
+```
+
+</details>

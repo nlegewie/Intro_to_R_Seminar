@@ -1,8 +1,10 @@
 # Globale Ungleichheit — Eine Einführung in die statistische Datenauswertung mit R
 
-Herzlich Willkommen im Seminar "Globale Ungleichheit – Eine Einführung in die statistische Datenauswertung mit R". Das Seminar führt in die statistische Datenanalyse mit der Programmiersprache R ein, anhand des Themas globale Ungleichheit.
+Herzlich Willkommen im Seminar "Globale Ungleichheit – Eine Einführung in die statistische Datenauswertung mit R". Das Seminar führt in die statistische Datenanalyse mit der Programmiersprache R ein, anhand des Themas globale Ungleichheit. Als Datenbasis dient der [Our World in Data](https://ourworldindata.org)-Datensatz mit Daten zu fast 200 Ländern über mehrere Jahrzehnte.
 
-Dieses Repository ist deine zentrale Anlaufstelle für das gesamte Seminar. Hier findest du alle Materialien, die du brauchst: Installationsanleitungen für die nötige Software (R und RStudio), Sitzungsunterlagen, Datensätze, Übungen, Hausaufgaben und Referenzmaterialien.
+Dieses GitHub-Repository ist deine zentrale Anlaufstelle für das gesamte Seminar. Hier findest du alle Materialien, die du brauchst: Installationsanleitungen für die nötige Software (R und RStudio), Sitzungsunterlagen, Datensätze, Übungen, Hausaufgaben und Referenzmaterialien. Ein GitHub-Repository ist nichts anderes als ein strukturierter Ordner im Internet, aus dem du Dateien herunterladen kannst.
+
+Am Ende des Semesters wirst du in der Lage sein, echte Daten zu importieren, zu bereinigen, zu analysieren und zu visualisieren — und deine Ergebnisse in einem professionellen, reproduzierbaren Dokument zu präsentieren.
 
 Du musst GitHub nicht kennen und kein Git benutzen. Alles funktioniert auch, wenn du die Dateien einfach herunterlädst.
 
@@ -74,16 +76,6 @@ Wenn du mit der Installation fertig bist, kannst du dir diese Startseite zu Ende
 
 ---
 
-## Was ist dieses Repository?
-
-Ein GitHub-Repository ist nichts anderes als ein strukturierter Ordner im Internet, aus dem du Dateien herunterladen kannst. Du musst nicht verstehen, wie GitHub funktioniert. Du musst keine Befehle eintippen. Du lädst die Dateien herunter — fertig.
-
-Dieses Repository enthält alle Materialien für das Seminar. Als Datenbasis dient der [Our World in Data](https://ourworldindata.org)-Datensatz mit Daten zu fast 200 Ländern über mehrere Jahrzehnte.
-
-Am Ende des Semesters wirst du in der Lage sein, echte Daten zu importieren, zu bereinigen, zu analysieren und zu visualisieren — und deine Ergebnisse in einem professionellen, reproduzierbaren Dokument zu präsentieren.
-
----
-
 ## Wie du die Dateien herunterlädst
 
 Bevor du etwas herunterlädst: Eine wichtige Unterscheidung, die du von Anfang an verstehen solltest.
@@ -92,7 +84,7 @@ Dieses Repository enthält die **Kursmaterialien** — Sitzungsunterlagen, Codeb
 
 Was du hier **nicht** ablegen solltest: alles, was du langfristig behalten willst. Hausaufgaben, laufende Analysen und der Abschlussbericht gehören in dein separates Arbeitsprojekt, das du einmalig an einem anderen Ort einrichtest. Die Anleitung dafür findest du unter [Projekteinrichtung](setup/project_setup.md).
 
-Diese Trennung ist wichtig, weil die Kursmaterialien im Laufe des Semesters wöchentlich ergänzt werden. Wenn du den Ordner neu herunterlädst, werden Änderungen in Sitzungsordnern überschrieben — dein Arbeitsprojekt an einem anderen Ort bleibt davon unberührt.
+Diese Trennung ist wichtig, weil die Kursmaterialien im Laufe des Semesters wöchentlich ergänzt werden. Wenn du das Repository neu herunterlädst, werden Änderungen in Sitzungsordnern überschrieben — dein Arbeitsprojekt bleibt davon unberührt, wenn du es an einem anderen Ort abgelegt hast.
 
 **Gesamte Kursmaterialien herunterladen**
 
@@ -104,11 +96,9 @@ Du musst Git nicht installieren. Du musst nichts eintippen. Der Download funktio
 
 **Neue Sitzungsunterlagen aufrufen**
 
-Jede Woche kommen neue Sitzungsmaterialien hinzu. Du hast zwei Möglichkeiten:
+Jede Woche kommen neue Sitzungsmaterialien hinzu.
 
-*Einfacher Weg:* Der Dozent teilt zu Beginn jeder Sitzung einen direkten Link zum Sitzungsordner auf GitHub. Du kannst Anweisungen und Codebeispiele direkt im Browser lesen — ohne herunterzuladen.
 
-*Wenn du offline arbeiten möchtest:* Lade das vollständige ZIP erneut herunter und entpacke es in deinen Kursmaterialien-Ordner (aber nicht in dein Arbeitsprojekt). Da jede Sitzung einen eigenen nummerierten Ordner hat, überschreibt nichts, was schon da war.
 
 **Mit Git arbeiten (optional, für Fortgeschrittene)**
 

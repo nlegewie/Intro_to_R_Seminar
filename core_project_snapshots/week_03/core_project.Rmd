@@ -1,0 +1,106 @@
+---
+title: "Kernprojekt — Snapshot Woche 03"
+subtitle: "Vollständig bearbeiteter Stand (Core + Bonus)"
+author: "Beispielabgabe"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: show
+    number_sections: false
+---
+
+<style>
+body {
+  font-size: 18px;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo    = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+
+library(tidyverse)
+library(here)
+
+source(here("scripts", "01_homework_clean_data.R"))
+source(here("scripts", "02_homework_analysis.R"))
+source(here("scripts", "03_homework_helpers.R"))
+```
+
+## Session 3 — HA1 · Struktur des OWID-Datensatzes
+
+### Beobachtungen zum OWID-Datensatz (HA1 C)
+
+**Beobachtung 1:** Der Datensatz ist groß und deckt viele Länder über mehrere Jahre ab. Dadurch sind Vergleiche über Zeit und zwischen Ländern möglich.
+
+**Beobachtung 2:** Es gibt sowohl numerische Variablen (z. B. `gini`, `life_expectancy_birth`) als auch kategoriale Variablen (z. B. `country`, `world_region`).
+
+**Beobachtung 3:** Nicht alle Variablen sind vollständig. Vor allem bei Ungleichheits- und Gesundheitsindikatoren gibt es fehlende Werte, die später bei der Interpretation berücksichtigt werden müssen.
+
+---
+
+## Session 3 — HA2 · Fehlende Werte
+
+### Einordnung der fehlenden Werte (HA2 C)
+
+Die fehlenden Werte sind ungleich über die drei Schlüsselvariablen verteilt. Der Gini-Koeffizient hat typischerweise die größte Lücke, während bei `life_expectancy_birth` meist deutlich mehr Beobachtungen vorliegen. Für spätere Analysen bedeutet das, dass je nach Variable unterschiedliche Fallzahlen verwendet werden. Ergebnisse sollten deshalb immer mit einem kurzen Hinweis zur Datenverfügbarkeit eingeordnet werden.
+
+Zusätzliche Übersicht:
+
+```{r ha2-na-summary}
+na_summary |>
+  mutate(pct_missing_formatiert = format_percent(pct_missing)) |>
+  select(variable, n_missing, pct_missing_formatiert)
+```
+
+---
+
+## Session 3 — HA3 · Histogramm Lebenserwartung (HA3 A)
+
+```{r ha3-life-expectancy-histogram, fig.width=8, fig.height=4.5}
+life_expectancy_histogram
+```
+
+### Interpretation (HA3 D)
+
+Der Hauptbereich der Verteilung liegt im mittleren bis höheren Bereich der Lebenserwartung. Gleichzeitig gibt es eine kleinere Gruppe von Beobachtungen mit deutlich niedrigeren Werten. Das spricht dafür, dass Gesundheitschancen global weiterhin ungleich verteilt sind und nicht alle Länder gleichermaßen von Verbesserungen profitieren.
+
+---
+
+## Session 3 — Bonus · BIP pro Kopf (B-HA1)
+
+### Abbildung
+
+```{r b-ha1-gdp-per-capita-histogram, fig.width=8, fig.height=4.5}
+gdp_per_capita_histogram
+```
+
+### Vergleich mit Lebenserwartung (B-HA1)
+
+Die Verteilung von `gdp_per_capita` ist deutlich rechtsschiefer als die Verteilung der Lebenserwartung. Das ist inhaltlich plausibel, weil wenige sehr wohlhabende Länder die obere Verteilungsspitze stark nach rechts ziehen, während die Lebenserwartung typischerweise in einem engeren Bereich liegt.
+
+---
+
+## Session 3 — Bonus · Histogramm-Auflösung (`bins`) (B-HA2)
+
+### Abbildungen (B-HA2)
+
+```{r b-ha2-life-expectancy-bins-10, fig.width=8, fig.height=4.5}
+life_expectancy_bins10
+```
+
+```{r b-ha2-life-expectancy-bins-40, fig.width=8, fig.height=4.5}
+life_expectancy_bins40
+```
+
+### Reflexion (B-HA2)
+
+Mit `bins = 10` sieht man den groben Verlauf sehr schnell, was für einen ersten Überblick hilfreich ist. Mit `bins = 40` erkennt man mehr Detailstruktur, die Darstellung wirkt aber unruhiger und kann schneller überinterpretierbar sein. Für den Einstieg würde ich eine mittlere Anzahl an Klassen wählen (z. B. 20–25), um Lesbarkeit und Detailtiefe sinnvoll zu balancieren.

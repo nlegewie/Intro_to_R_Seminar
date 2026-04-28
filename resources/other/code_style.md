@@ -190,7 +190,7 @@ install.packages("styler")
 
 ```r
 library(styler)
-styler::style_file("scripts/01_clean_data.R")
+styler::style_file("scripts/01_homework_clean_data.R")
 ```
 
 ### Was `styler` macht
