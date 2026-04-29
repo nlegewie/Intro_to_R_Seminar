@@ -20,4 +20,4 @@ library(here)
 ##### ***DATEN EINLESEN*** #####
 ###*****************************###
 
-# owid_data <- read_csv(here("data", "owid_data.csv"))
+

@@ -86,22 +86,22 @@ Wir schauen uns jetzt den kompletten `Our World in Data`-Datensatz an, mit dem w
 
 #### HA1 A: OWID-Datensatz laden
 
-Lade in `scripts/01_homework_clean_data.R` die Datei `data/owid_data.csv` als Objekt `owid` mit:
+Lade in `scripts/01_homework_clean_data.R` die Datei `data/owid_data.csv` als Objekt `owid_daten` mit:
 
 ```r
-owid <- read_csv(here("data", "owid_data.csv"))
+owid_daten <- read_csv(here("data", "owid_data.csv"))
 ```
 
 <br>
 
 #### HA1 B: Grundstruktur systematisch prüfen
 
-Führe diese Prüfungen aus und dokumentiere die Ergebnisse als Kommentar:
+Nutze die folgenden Funktionen, um die Grundstruktur des Datensatzes zu prüfen. Dokumentiere die Ergebnisse als Kommentar.
 
-- `nrow(owid)`
-- `ncol(owid)`
-- `names(owid)`
-- `glimpse(owid)`
+- `nrow()`
+- `ncol()`
+- `names()`
+- `glimpse()`
 
 <br>
 
@@ -112,9 +112,9 @@ Notiere 3 Beobachtungen (z. B. Anzahl Länder/Jahre, auffällige Variablen, Date
 <br>
 
 <details>
-<summary><strong>Tip Hinweis</strong></summary>
+<summary><strong>Tip</strong></summary>
 
-Starte mit dem bereits gegebenen Ladebefehl (`owid <- read_csv(...)`).  
+Starte mit dem bereits gegebenen Ladebefehl (`owid_daten <- read_csv(...)`).  
 Rufe danach die 4 Prüf-Funktionen jeweils **einzeln** auf: `nrow()`, `ncol()`, `names()`, `glimpse()`.
 
 </details>
@@ -125,11 +125,11 @@ Rufe danach die 4 Prüf-Funktionen jeweils **einzeln** auf: `nrow()`, `ncol()`, 
 <summary><strong>Lösung</strong></summary>
 
 ```r
-owid <- read_csv(here("data", "owid_data.csv"), show_col_types = FALSE)
-nrow(owid)
-ncol(owid)
-names(owid)
-glimpse(owid)
+owid_daten <- read_csv(here("data", "owid_data.csv"))
+nrow(owid_daten)
+ncol(owid_daten)
+names(owid_daten)
+glimpse(owid_daten)
 ```
 
 </details>
@@ -159,7 +159,7 @@ Berechne fehlende Werte für diese Variablen:
 #### HA2 B: Prozentanteile fehlender Werte berechnen
 
 Berechne zusätzlich den Prozentanteil fehlender Werte je Variable
-(`n_miss / nrow(owid) * 100`).
+(`n_miss / nrow(owid_daten) * 100`).
 
 <br>
 
@@ -174,11 +174,11 @@ Schreibe 3-5 Sätze **in `core_project.Rmd`** im Abschnitt „Session 3 — HA2�
 <br>
 
 <details>
-<summary><strong>Tip 1 (Hinweis)</strong></summary>
+<summary><strong>Tip</strong></summary>
 
 Mache es in zwei Schritten:  
 1. `n_miss_* <- sum(is.na(...))`  
-2. `pct_miss_* <- n_miss_* / nrow(owid) * 100`  
+2. `pct_miss_* <- n_miss_* / nrow(owid_daten) * 100`  
 
 `*` steht hier für die verschiedenen Variablen (`gini`, `child_mortality_rate`, `life_expectancy_birth`). Lege je Variable ein eigenes Objekt an (`gini`, `child`, `le`).
 
@@ -187,17 +187,19 @@ Mache es in zwei Schritten:
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
-n_miss_gini <- sum(is.na(owid$gini))
-n_miss_child <- sum(is.na(owid$child_mortality_rate))
-n_miss_le <- sum(is.na(owid$life_expectancy_birth))
+n_miss_gini <- sum(is.na(owid_daten$gini))
+n_miss_child <- sum(is.na(owid_daten$child_mortality_rate))
+n_miss_le <- sum(is.na(owid_daten$life_expectancy_birth))
 
-pct_miss_gini <- n_miss_gini / nrow(owid) * 100
-pct_miss_child <- n_miss_child / nrow(owid) * 100
-pct_miss_le <- n_miss_le / nrow(owid) * 100
+pct_miss_gini <- n_miss_gini / nrow(owid_daten) * 100
+pct_miss_child <- n_miss_child / nrow(owid_daten) * 100
+pct_miss_le <- n_miss_le / nrow(owid_daten) * 100
 ```
+
+Alle drei Variablen haben viele fehlende Werte. Das kommt vor allem daher, dass die Variablen nur für manche Jahre verfügbar sind. Wir werden in späteren Analysen also immer schauen müssen, welche Informationen wir überhaupt zur Verfügung haben.
 
 </details>
 
@@ -215,7 +217,7 @@ Du erstellst ein einfaches, aber inhaltlich aussagekraeftiges Output aus dem ech
 
 #### HA3 A: Erstes Histogramm erstellen
 
-Erzeuge in **`scripts/02_homework_analysis.R`** ein Histogramm fuer `life_expectancy_birth` aus `owid` mit `ggplot() + geom_histogram()`. Weise es dem Objekt `life_expectancy_histogram` zu (dieser Name wird in `core_project.Rmd` zum Anzeigen verwendet).
+Erzeuge in **`scripts/02_homework_analysis.R`** ein Histogramm fuer `life_expectancy_birth` aus `owid_daten` mit `ggplot() + geom_histogram()`. Weise es dem Objekt `life_expectancy_histogram` zu (dieser Name wird in `core_project.Rmd` zum Anzeigen verwendet).
 
 <br>
 
@@ -227,15 +229,17 @@ Erweitere in **`scripts/02_homework_analysis.R`** den Code für das Histogramm `
 - sinnvolle Achsenbeschriftungen (`x`, `y`)
 - eine Quellenangabe im `caption`
 
+Nenne diesen beschrifteten Plot `life_expectancy_histogram_labels`
+
 <br>
 
 #### HA3 C: Plausibilitaetschecks durchführen
 
 Fuehre folgende Checks aus (im **Daten-** oder **Analyse-Skript**, wo es dir logisch erscheint — oft nach dem Laden in `01_homework_clean_data.R` oder direkt vor der Grafik in `02_homework_analysis.R`):
 
-- `nrow(owid)`
-- `summary(owid$life_expectancy_birth)`
-- `class(owid$life_expectancy_birth)`
+- `nrow(owid_daten)`
+- `summary(owid_daten$life_expectancy_birth)`
+- `class(owid_daten$life_expectancy_birth)`
 
 <br>
 
@@ -252,16 +256,16 @@ Schreibe 3 Sätze Interpretation **in `core_project.Rmd`** unter dem Platzhalter
 <details>
 <summary><strong>Hinweis</strong></summary>
 
-Nutze direkt `owid` als Datensatz in `ggplot()`.
+Nutze direkt `owid_daten` als Datensatz in `ggplot()`.
 
 Grundmuster:
 - `ggplot(datensatz, aes(x = variable)) + geom_histogram()`
 - danach `+ labs(...)`
 
 Fuer die Verifikation:
-- `nrow(owid)`
-- `summary(owid$life_expectancy_birth)`
-- `class(owid$life_expectancy_birth)`
+- `nrow(owid_daten)`
+- `summary(owid_daten$life_expectancy_birth)`
+- `class(owid_daten$life_expectancy_birth)`
 
 </details>
 
@@ -271,19 +275,24 @@ Fuer die Verifikation:
 <summary><strong>Lösung</strong></summary>
 
 ```r
-nrow(owid)
-summary(owid$life_expectancy_birth)
-class(owid$life_expectancy_birth)
 
-life_expectancy_histogram <- ggplot(owid, aes(x = life_expectancy_birth)) +
+life_expectancy_histogram <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram(bins = 25, fill = "#4472C4", color = "white")
+
+
+life_expectancy_histogram_labels <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
   geom_histogram(bins = 25, fill = "#4472C4", color = "white") +
   labs(
     title = "Verteilung der Lebenserwartung im OWID-Datensatz",
     x = "Lebenserwartung bei Geburt (Jahre)",
     y = "Anzahl Beobachtungen",
     caption = "Quelle: Our World in Data"
-  ) +
-  theme_minimal()
+  )
+
+nrow(owid_daten)
+summary(owid_daten$life_expectancy_birth)
+class(owid_daten$life_expectancy_birth)
+
 ```
 
 </details>
@@ -296,28 +305,31 @@ life_expectancy_histogram <- ggplot(owid, aes(x = life_expectancy_birth)) +
 
 ### B-HA1 · Zweites Histogramm + Vergleich
 
-Erstelle in **`scripts/02_homework_analysis.R`** zusaetzlich ein Histogramm fuer `gdp_per_capita` (aus `owid`) und weise es dem Objekt `gdp_per_capita_histogram` zu. **Vergleiche** die Verteilungen schriftlich **in `core_project.Rmd`** (Platzhalter B-HA1):
+Erstelle in **`scripts/02_homework_analysis.R`** zusaetzlich ein Histogramm fuer `gdp` (aus `owid_daten`) und weise es dem Objekt `gdp_per_capita_histogram` zu. **Vergleiche** die Verteilungen schriftlich **in `core_project.Rmd`** (Platzhalter B-HA1):
 
-- Welche Verteilung ist schiefer?
-- Warum könnte das inhaltlich plausibel sein?
+- Was können wir aus diesen beiden Verteilungen für Informationen ziehen?
 
 <br>
 
 <details>
-<summary><strong>Tip 1 (Hinweis)</strong></summary>
+<summary><strong>Tip</strong></summary>
 
-Nutze denselben Aufbau wie beim ersten Histogramm, aber mit `x = gdp_per_capita`.
+Nutze denselben Aufbau wie beim ersten Histogramm, aber mit `x = gdp`.
 
 </details>
 
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
-gdp_per_capita_histogram <- ggplot(owid, aes(x = gdp_per_capita)) +
+gdp_histogram <- ggplot(owid_daten, aes(x = gdp)) +
   geom_histogram()
+
+Die Interpretation ist nicht so einfach, weil hier viele Jahre in die Verteilung einfließen. Einfacher wäre es, die Verteilungen jeweils für ein Jahr zu betrachten.
+Wir können trotzdem sehen: Im Gegensatz zur Lebenserwartung ist die Verteilung von GDP pro Kopf stark rechtsschief. Es gibt viele Länder-Jahres-Kombinationen mit sehr niedrigem GDP pro Kopf, aber nur relativ wenige mit sehr hohem GDP pro Kopf. Insofern verhält sich die Verteilung von GDP pro Kopf genau spiegelbildlich zu der Verteilung der Lebenserwartung.
+
 ```
 
 </details>
@@ -336,8 +348,8 @@ Erstelle in **`scripts/02_homework_analysis.R`** zwei Histogramme fuer `life_exp
 Du kannst dich beim Aufbau an folgendem Muster orientieren (musst es aber in Zuweisungen an die beiden Objekte packen):
 
 ```r
-ggplot(owid, aes(x = life_expectancy_birth)) + geom_histogram(bins = 10)
-ggplot(owid, aes(x = life_expectancy_birth)) + geom_histogram(bins = 40)
+ggplot(owid_daten, aes(x = life_expectancy_birth)) + geom_histogram(bins = 10)
+ggplot(owid_daten, aes(x = life_expectancy_birth)) + geom_histogram(bins = 40)
 ```
 
 <br>
@@ -351,7 +363,7 @@ Schreibe 3-4 Saetze **in `core_project.Rmd`** (Platzhalter B-HA2):
 <br>
 
 <details>
-<summary><strong>Tip 1 (Hinweis)</strong></summary>
+<summary><strong>Tip</strong></summary>
 
 Nutze denselben Plotcode zweimal und aendere nur den `bins`-Wert — speichere die Ergebnisse als `life_expectancy_bins10` und `life_expectancy_bins40`, damit `core_project.Rmd` sie anzeigen kann.
 
@@ -360,13 +372,13 @@ Nutze denselben Plotcode zweimal und aendere nur den `bins`-Wert — speichere d
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
-life_expectancy_bins10 <- ggplot(owid, aes(x = life_expectancy_birth)) +
+life_expectancy_bins10 <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
   geom_histogram(bins = 10)
 
-life_expectancy_bins40 <- ggplot(owid, aes(x = life_expectancy_birth)) +
+life_expectancy_bins40 <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
   geom_histogram(bins = 40)
 ```
 

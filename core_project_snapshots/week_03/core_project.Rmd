@@ -43,7 +43,7 @@ source(here("scripts", "03_homework_helpers.R"))
 
 **Beobachtung 2:** Es gibt sowohl numerische Variablen (z. B. `gini`, `life_expectancy_birth`) als auch kategoriale Variablen (z. B. `country`, `world_region`).
 
-**Beobachtung 3:** Nicht alle Variablen sind vollständig. Vor allem bei Ungleichheits- und Gesundheitsindikatoren gibt es fehlende Werte, die später bei der Interpretation berücksichtigt werden müssen.
+**Beobachtung 3:** Nicht alle Variablen sind vollständig. Vor allem bei Ungleichheits- und Gesundheitsindikatoren gibt es fehlende Werte, die später bei Analysevorhaben berücksichtigt werden müssen.
 
 ---
 
@@ -51,27 +51,31 @@ source(here("scripts", "03_homework_helpers.R"))
 
 ### Einordnung der fehlenden Werte (HA2 C)
 
-Die fehlenden Werte sind ungleich über die drei Schlüsselvariablen verteilt. Der Gini-Koeffizient hat typischerweise die größte Lücke, während bei `life_expectancy_birth` meist deutlich mehr Beobachtungen vorliegen. Für spätere Analysen bedeutet das, dass je nach Variable unterschiedliche Fallzahlen verwendet werden. Ergebnisse sollten deshalb immer mit einem kurzen Hinweis zur Datenverfügbarkeit eingeordnet werden.
-
-Zusätzliche Übersicht:
-
-```{r ha2-na-summary}
-na_summary |>
-  mutate(pct_missing_formatiert = format_percent(pct_missing)) |>
-  select(variable, n_missing, pct_missing_formatiert)
-```
+Die fehlenden Werte sind ungleich über die drei Schlüsselvariablen verteilt. Der Gini-Koeffizient hat typischerweise die größte Lücke, während bei `life_expectancy_birth` meist deutlich mehr Beobachtungen vorliegen. Das kommt vor allem daher, dass die Variablen nur für manche Jahre verfügbar sind. Wir werden in späteren Analysen also immer schauen müssen, welche Informationen wir überhaupt zur Verfügung haben.
 
 ---
 
 ## Session 3 — HA3 · Histogramm Lebenserwartung (HA3 A)
 
 ```{r ha3-life-expectancy-histogram, fig.width=8, fig.height=4.5}
+
 life_expectancy_histogram
+
 ```
+
+
+## Session 3 — HA3 · Histogramm Lebenserwartung beschriften (HA3 B)
+
+```{r ha3-life-expectancy-histogram, fig.width=8, fig.height=4.5}
+
+life_expectancy_histogram_labels
+
+```
+
 
 ### Interpretation (HA3 D)
 
-Der Hauptbereich der Verteilung liegt im mittleren bis höheren Bereich der Lebenserwartung. Gleichzeitig gibt es eine kleinere Gruppe von Beobachtungen mit deutlich niedrigeren Werten. Das spricht dafür, dass Gesundheitschancen global weiterhin ungleich verteilt sind und nicht alle Länder gleichermaßen von Verbesserungen profitieren.
+Der Hauptbereich der Verteilung liegt im mittleren bis höheren Bereich der Lebenserwartung. Gleichzeitig gibt es eine kleinere Gruppe von Beobachtungen mit sehr niedrigen Werten. Die Verteilung ist also asymmetrisch und linksschief. Der Modus liegt bei knapp unter 75 Jahren. Die Verteilung zeigt die Lebenserwartung aller Länder über alle Jahre hinweg und ist daher nicht direkt interpretierbar.
 
 ---
 
@@ -79,13 +83,15 @@ Der Hauptbereich der Verteilung liegt im mittleren bis höheren Bereich der Lebe
 
 ### Abbildung
 
-```{r b-ha1-gdp-per-capita-histogram, fig.width=8, fig.height=4.5}
-gdp_per_capita_histogram
+```{r b-ha1-gdp-histogram, fig.width=8, fig.height=4.5}
+
+gdp_histogram
+
 ```
 
 ### Vergleich mit Lebenserwartung (B-HA1)
 
-Die Verteilung von `gdp_per_capita` ist deutlich rechtsschiefer als die Verteilung der Lebenserwartung. Das ist inhaltlich plausibel, weil wenige sehr wohlhabende Länder die obere Verteilungsspitze stark nach rechts ziehen, während die Lebenserwartung typischerweise in einem engeren Bereich liegt.
+Die Verteilung von `gdp` ist stark rechtsschief. 
 
 ---
 

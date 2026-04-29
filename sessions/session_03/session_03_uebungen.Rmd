@@ -96,7 +96,7 @@ here("data", "toy_data_session_03.csv")
 
 Das baut den Pfad relativ zum geöffneten Projekt (in diesem Fall: `session_03.Rproj`) und verhindert viele "Datei nicht gefunden"-Fehler. 
 
-Wenn wir einen Datensatz laden, sollten wir ihn direkt einem Objekt zuweisen, damit wir ihn immer wieder verwenden können. Falls du es seit letzter Woche vergessen hast, hier noch mal zur Erinnerung ein Beispiel für eine Zuweisung:
+Wenn wir einen Datensatz laden, sollten wir ihn direkt einem Objekt zuweisen, damit wir ihn immer wieder verwenden und weiterverarbeiten können. Falls du es seit letzter Woche vergessen hast, hier noch mal zur Erinnerung ein Beispiel für eine Zuweisung:
 
 ```r
 mein_vektor <- c(1, 2, 3)
@@ -116,7 +116,7 @@ Schreibe den Code für die Aufgaben a) bis c) in das Skript `scripts/session_03_
 <br>
 
 <details>
-<summary><strong>Tip 1</strong></summary>
+<summary><strong>Tip</strong></summary>
 
 Arbeite in drei Schritten:
 1. `read_csv(here(...))` dem neuen Objekt `session_03_daten` zuweisen  
@@ -170,6 +170,8 @@ Diese Informationen helfen dir dabei zu verstehen, mit was für Daten du es eige
 - `nrow()`: Zeigt die Anzahl der Zeilen im Datensatz.
 - `ncol()`: Zeigt die Anzahl der Spalten im Datensatz.
 
+
+Das alles sind Funktionen. Funktionen sind Befehle, die du in R ausführen kannst. `mean()` berechnet zum Beispiel den Mittelwert von Werten. Bei fast allen Funktionen gibst du als erstes Argument den Namen des Objekts, auf das die Funktion angewendet werden soll. Du schreibst ihn in die Klammern nach dem Funktionsnamen. Zum Beispiel so: `mean(c(1, 2, 3))` berechnet den Mittelwert von 1, 2 und 3.
 
 ### Deine Aufgabe
 
@@ -288,7 +290,7 @@ Der absichtliche Fehler ist in der Endung des Dateinamens: `session03`. Hier hat
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
 # absichtlich falsch:
@@ -492,7 +494,7 @@ Welche Kennzahlen helfen dir am meisten für eine schnelle Orientierung?
 ```
 
 <details>
-<summary><strong>Tip 1 (Hinweis)</strong></summary>
+<summary><strong>Tip</strong></summary>
 
 `summary()` zeigt u. a. Minimum, Median, Mittelwert und Maximum.  
 Notiere kurz, welche dieser Kennzahlen dir für den schnellen Überblick am meisten helfen.
@@ -502,14 +504,14 @@ Notiere kurz, welche dieser Kennzahlen dir für den schnellen Überblick am meis
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
 summary(session_03_daten$life_expectancy_birth)
 summary(session_03_daten$gdp_per_capita)
 
 # Notiz:
-# Besonders hilfreich sind Median und Quartile, weil sie robuster gegen Ausreißer sind.
+# Besonders hilfreich sind oft Median und Quartile, weil sie robuster gegen Ausreißer sind.
 ```
 
 </details>
@@ -542,7 +544,7 @@ Welche Einstellung ist informativer und warum?
 ```
 
 <details>
-<summary><strong>Tip 1 (Hinweis)</strong></summary>
+<summary><strong>Tip</strong></summary>
 
 Nutze denselben Code zweimal und ändere nur `bins`.
 
@@ -551,7 +553,7 @@ Nutze denselben Code zweimal und ändere nur `bins`.
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
 ggplot(session_03_daten, aes(x = gdp_per_capita)) +
@@ -588,7 +590,7 @@ Schreibe 2 Sätze:
 ```
 
 <details>
-<summary><strong>Tip 1 (Hinweis)</strong></summary>
+<summary><strong>Tip</strong></summary>
 
 Berechne zuerst `cor(...)` und bewerte dann Richtung und Stärke. Beachte, dass Korrelation keine Kausalität impliziert.
 
@@ -597,7 +599,7 @@ Berechne zuerst `cor(...)` und bewerte dann Richtung und Stärke. Beachte, dass 
 <br>
 
 <details>
-<summary><strong>Tip 2 (voller Beispielcode)</strong></summary>
+<summary><strong>Lösung</strong></summary>
 
 ```r
 cor(session_03_daten$gdp_per_capita, session_03_daten$life_expectancy_birth)
@@ -606,7 +608,7 @@ cor(session_03_daten$gdp_per_capita, session_03_daten$life_expectancy_birth)
 # Die Korrelation ist positiv: hoeheres BIP pro Kopf geht tendenziell mit
 # hoeherer Lebenserwartung einher.
 # Die Korrelation ist sehr stark (r = 0.82)
-# Das bedeutet nicht automatisch, dass BIP die Ursache ist.
+# Das bedeutet nicht automatisch, dass BIP die Ursache ist. Es besteht erstmal nur ein statistischer Zusammenhang.
 ```
 
 </details>

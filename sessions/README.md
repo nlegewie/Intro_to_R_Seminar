@@ -23,6 +23,7 @@ Neue Materialien werden jede Woche hinzugefügt. Du kannst diese neuen Unterlage
 5. Auf ENTER drückst. Der Ordner wird dann als ZIP heruntergeladen
 6. Die ZIP-Datei in deinen Seminar-Ordner in den Sessions-Ordner verschiebst
 7. Die ZIP-Datei dort entpackst.
+8. Die ZIP-Datei löschst.
 
 ---
 
@@ -56,8 +57,6 @@ Das erzeugt eine HTML-Datei im selben Ordner. Diese kannst du im Browser lesen �
 
 Schau im Unterordner `scripts/` nach. Wenn dort `.R`-Dateien liegen, werden sie in der Aufgabenstellung erwähnt — öffne sie dann zusätzlich zum Übungsblatt.
 
-In den ersten Sitzungen gibt es noch keine Skripte (der ganze Code steht direkt im `.Rmd`). Ab Session 8 lernst du, wie du deinen Code sinnvoll in Skripte auslagert.
-
 ---
 
 ### Schritt 5 · Übungen bearbeiten
@@ -79,8 +78,7 @@ Wenn du nicht weiterkommst:
 
 ### Wo finde ich die Lösungen?
 
-- **In-class-Lösungen** werden direkt im jeweiligen Sitzungsordner veröffentlicht, meist als `session_XX_uebungen_loesung.Rmd` (und ggf. als HTML-Version).
-- **Hausaufgaben-Lösungen** lade ich immer am Donnerstag auf Learnweb hoch.
+- Im geknitteten Übungsdokument sind zu jeder Übung ein Tip und die Lösung verfügbar. Scrolle einfach zum Ende der Übung und klicke darauf, wenn du nicht weiterkommen solltest.
 
 ---
 
@@ -102,7 +100,10 @@ Wechsle dann zu **deinem eigenen Kernprojekt** (dem Ordner, den du zu Beginn des
 
 > **Warum?** Die Sitzungsordner in diesem Repository werden regelmäßig aktualisiert. Alles, was du dort speicherst, kann beim nächsten Download des Repos überschrieben werden. Dein Kernprojekt ist dein dauerhafter Arbeitsplatz, daher sollte es nicht mit gelöscht werden. Daher der separate Ordner.
 
-Im Kernprojekt findest du passende Vorlagen für jede Hausaufgabe. Kopiere den Code aus dem Hausaufgabenblatt in die entsprechende Datei deines Kernprojekts, und arbeite dort weiter.
+- Öffne im Kernprojekt-Ordner zuerst die .Rproj-Datei.
+- Öffne dann die drei Skripte im scripts-Ordner des Kernprojekts
+- Führe die library()-Befehle am Anfang des `01_homework_clean_data.R`-Skripts aus (markieren und dann `Strg+ENTER/Cmd+ENTER` drücken)
+- Bearbeite die Aufgaben, indem du in den Skripten Code hinzufügst. In den Aufgaben steht jeweils, in welchem Skript du Code hinzufügen sollst, um die Aufgabe zu lösen.
 
 → Wie du dein Kernprojekt eingerichtet hast: [Projekteinrichtung](../setup/project_setup.md)
 → Etwas durcheinander geraten? [Kernprojekt aus einem Snapshot wiederherstellen](../resources/troubleshooting/reset_and_recover.md)
@@ -111,7 +112,10 @@ Im Kernprojekt findest du passende Vorlagen für jede Hausaufgabe. Kopiere den C
 
 ### Schritt 3 · Abgabe
 
-Wenn du mit den Hausaufgaben fertig bist, knitte das Dokument in deinem Kernprojekt zu HTML und reiche die HTML-Datei wie angegeben ein.
+Wenn du mit den Hausaufgaben fertig bist, gehst du wie folgt vor: 
+- Öffne das `core_project.Rmd` Dokument in RStudio.
+- Knitte das Dokument in deinem Kernprojekt zu HTML. Wenn du alles richtig gemacht hast, sollte es durchlaufen und ein neues Fenster mit der HTML-Datei sollte sich öffnen.
+- Reiche die HTML-Datei auf Learnweb ein. Du findest die HTML-Datei in deinem Kernprojekt-Ordner.
 
 ---
 

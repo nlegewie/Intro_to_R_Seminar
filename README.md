@@ -16,7 +16,6 @@ Du hast einen Fehler entdeckt oder etwas funktioniert nicht im Repo (z.B. ein Li
 ## Inhaltsverzeichnis
 
 - [Hier geht's los — was du als Erstes tun solltest](#start-hier)
-- [Was ist dieses Repository?](#was-ist-dieses-repository)
 - [Wie du die Dateien herunterlädst](#wie-du-die-dateien-herunterlädst)
 - [Aufbau des Repositorys](#aufbau-des-repositorys)
 - [Weitere Referenzmaterialien](#weitere-referenzmaterialien)
@@ -26,6 +25,7 @@ Du hast einen Fehler entdeckt oder etwas funktioniert nicht im Repo (z.B. ein Li
 - [Zugänglichkeit: Hinweise für Studierende mit Legasthenie oder ähnlichen Bedingungen](#zugänglichkeit)
 - [Hintergrundlektüre: Globale Ungleichheit](#hintergrundlektüre)
 - [Fehlerbehebung](#fehlerbehebung)
+- [Wer noch nicht genug hat: Datacamp](#wer-noch-nicht-genug-hat-datacamp)
 
 ---
 
@@ -268,3 +268,11 @@ Der Link zu diesem Dokument steht auch in jeder Sitzungsanleitung und im Kernpro
 **Buddy-System:** Im Seminar arbeitest du mit einer Buddy-Partner*in zusammen. Wenn du feststeckst, ist dein Buddy die erste Anlaufstelle. Wie das genau funktioniert und wie ihr euch gegenseitig am besten helft: [Buddy-Leitfaden](resources/other/buddy_feedback_guide.md)
 
 **Im Seminar fragen:** Ich bin während der Sitzungen verfügbar und komme gerne vorbei, um bei Problemen zu helfen.
+
+---
+
+## Wer noch nicht genug hat: Datacamp
+
+Wenn ihr noch mehr R lernen wollt oder andere Statistik-Softwares ausprobieren wollt, könnt ihr mal Datacamp ausprobieren. Datacamp ist eine Online-Plattform mit Lernkursen für Statistiksoftware wie R, Python, und vieles mehr. Ihr müsst keine Mitgliegschaft abschließen oder irgendwas kündigen sondern könnt einfach das komplette Angebot nutzen, wenn ihr mögt. Benutzt einfach mit eurer Uni-Mailadresse folgenden Link:
+
+https://www.datacamp.com/groups/shared_links/563eb7dbab6c6e6c10a5239f80e181718e3b46f94d548c257f7540fdf3b25e86
