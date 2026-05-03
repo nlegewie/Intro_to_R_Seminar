@@ -1,0 +1,379 @@
+# Session 3 — Datensatz laden und erkunden
+
+**Hausaufgaben: Arbeiten im Kernprojekt** · Seminar: Globale Ungleichheit · Wintersemester 2025/26
+
+---
+
+<h2 id="inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+
+- [Sehr wichtig: Wo du diese Hausaufgaben machst](#wo-hausaufgaben)
+- [Abgabeformat](#abgabeformat)
+- [Kernaufgaben](#kernaufgaben)
+- [HA1 · OWID-Datensatz laden und Struktur dokumentieren](#ha1)
+- [HA2 · Fehlende Werte in Schlüsselvariablen prüfen](#ha2)
+- [HA3 · Verteilungen im OWID-Datensatz visualisieren](#ha3)
+- [Bonus-Aufgaben (freiwillig)](#bonus-aufgaben)
+  - [B-HA1 · Zweites Histogramm + Vergleich](#b-ha1)
+  - [B-HA2 · Plot-Feintuning: Bins vergleichen](#b-ha2)
+
+---
+
+<h2 id="wo-hausaufgaben">Sehr wichtig: Wo du diese Hausaufgaben machst</h2>
+
+Du hast dieses Dokument zwar im `sessions/`-Ordner geöffnet und kannst hier die Anweisungen lesen, aber die Hausaufgaben bearbeitest du **nicht** in dieser Datei. Arbeite stattdessen in deinem eigenen **Kernprojekt** (`core_project/` bzw. der Ordner mit deiner `.Rproj`-Datei).
+
+### Schritt-für-Schritt (bitte genau in dieser Reihenfolge)
+
+1. **Projekt öffnen:** Navigiere zu deinem Kernprojekt und öffne die `.Rproj`-Datei in RStudio (z. B. `intro-to-r.Rproj`). Öffne `core_project.Rmd`, aber klicke **NICHT** auf **Knit**. Lass stattdessen diese Anleitung offen (z. B. diese `.md`-Seite auf GitHub oder das geknittete HTML aus der `session_03_hausaufgaben.Rmd`) – hier kannst du die Aufgabenstellung lesen und dir Tips holen, wenn du nicht weiterkommst.
+2. **Code schreiben — nur in den Skripten unter `scripts/`:**
+    Öffne die folgenden drei Skripte in RStudio. Du kannst das über das kleine Ordner-Icon oben links machen.
+   - `scripts/01_homework_clean_data.R` — alles rund um **Daten laden, Struktur prüfen, fehlende Werte zählen** (HA1 und HA2).
+   - `scripts/02_homework_analysis.R` — alles rund um **Grafiken und spätere Auswertungen** (HA3 und die Bonusaufgaben).
+   - `scripts/03_homework_helpers.R` — vorerst meist leer; Hilfsfunktionen kommen später im Semester.
+   
+3. **Interpretationen schreiben — nur in `core_project.Rmd`:** Alle **schriftlichen Antworten** (Beobachtungen, Sätze zur Einordnung, Interpretation der Histogramme, Bonus-Texte) schreibst du **ausschließlich** in die Datei **`core_project.Rmd`** im Hauptordner deines Kernprojekts (dieselbe Ebene wie `data/`, `scripts/`, `final_report/`). Dort findest du **Platzhalter** mit klaren Überschriften (z. B. „HA1 — Beobachtung 1“). Ersetze die Platzhalter `[Hier einfügen.]` bzw. `[Hier deinen Text einfügen.]` durch deinen Text.
+   - **Nicht** in `#`-Kommentaren in den `.R`-Skripten ausführliche Interpretationen schreiben — Kurzkommentare im Code sind erlaubt, aber die **Abgabe-Texte** gehören ins `core_project.Rmd`.
+4. Setze die Grafik-Objekte, die du in den Skripten erstellt hast, in die entsprechenden Platzhalter in `core_project.Rmd` ein. Unten in diesem Dokument hier findest du genauere Anweisungen dazu.
+5. **Ergebnis prüfen:** Klicke in `core_project.Rmd` auf **Knit** (Stricken). Du solltest ein Dokument mit deinem Text und deiner/deinen Grafik/en sehen.
+
+
+
+### Kurzüberblick: Welche Datei wofür?
+
+| Datei | Inhalt |
+|-------|--------|
+| `scripts/01_homework_clean_data.R` | R-Code zu HA1, HA2 (laden, `nrow`/`ncol`/`glimpse`, fehlende Werte …) |
+| `scripts/02_homework_analysis.R` | R-Code zu HA3 und Bonus (Histogramme als Objekte speichern) |
+| `scripts/03_homework_helpers.R` | Später; optional leer lassen |
+| `core_project.Rmd` | **Alle** schriftlichen Interpretationen, erzeugte Grafik-Objekte + Knit zeigt den Text und die Grafiken – die Früchte deiner Arbeit 🥳 |
+
+---
+
+<h2 id="abgabeformat">Abgabeformat</h2>
+
+- Gib das **geknittete HTML** ab, das aus **`core_project.Rmd`** erzeugt wurde (nachdem deine Skripte unter `scripts/` vollständig sind und du die Grafik-Objekte in `core_project.Rmd` eingefügt hast).
+- Das HTML soll die **Abbildungen** aus HA3, eventuell Grafiken aus den Bonusaufgaben, sowie deine **Texte** anstelle der Platzhalter enthalten.
+- Dein Code in `scripts/01_homework_clean_data.R` und `scripts/02_homework_analysis.R` darf keine Fehler enthalten, sonst wird das Knitten fehlschlagen.
+
+---
+
+<h2 id="kernaufgaben">Kernaufgaben</h2>
+
+<h2 id="ha1">HA1 · OWID-Datensatz laden und Struktur dokumentieren</h2>
+
+### Ziel
+
+Wir schauen uns jetzt den kompletten `Our World in Data`-Datensatz an, mit dem wir dieses Semester arbeiten werden. Das erste Ziel ist, den Datensatz zu laden und seine Grundstruktur zu dokumentieren.
+
+### Aufgaben
+
+#### HA1 A: OWID-Datensatz laden
+
+Lade in `scripts/01_homework_clean_data.R` die Datei `data/owid_data.csv` als Objekt `owid_daten` mit:
+
+```r
+owid_daten <- read_csv(here("data", "owid_data.csv"))
+```
+
+<br>
+
+#### HA1 B: Grundstruktur systematisch prüfen
+
+Nutze die folgenden Funktionen, um die Grundstruktur des Datensatzes zu prüfen. Dokumentiere die Ergebnisse als Kommentar.
+
+- `nrow()`
+- `ncol()`
+- `names()`
+- `glimpse()`
+
+<br>
+
+#### HA1 C: Drei Beobachtungen dokumentieren
+
+Notiere 3 Beobachtungen (z. B. Anzahl Länder/Jahre, auffällige Variablen, Datentypen) **in `core_project.Rmd`** unter den Platzhaltern „HA1 — Beobachtung 1/2/3“ — nicht nur als Kommentar im Skript.
+
+<br>
+
+<details>
+<summary><strong>Tip</strong></summary>
+
+Starte mit dem bereits gegebenen Ladebefehl (`owid_daten <- read_csv(...)`).  
+Rufe danach die 4 Prüf-Funktionen jeweils **einzeln** auf: `nrow()`, `ncol()`, `names()`, `glimpse()`.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+owid_daten <- read_csv(here("data", "owid_data.csv"))
+nrow(owid_daten)
+ncol(owid_daten)
+names(owid_daten)
+glimpse(owid_daten)
+```
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h2 id="ha2">HA2 · Fehlende Werte in Schlüsselvariablen prüfen</h2>
+
+### Ziel
+
+Du prüfst systematisch, wo Daten fehlen.
+
+### Aufgaben
+
+#### HA2 A: Fehlende Werte je Schlüsselvariable zählen
+
+Berechne fehlende Werte für diese Variablen:
+
+- `gini`
+- `child_mortality_rate`
+- `life_expectancy_birth`
+
+<br>
+
+#### HA2 B: Prozentanteile fehlender Werte berechnen
+
+Berechne zusätzlich den Prozentanteil fehlender Werte je Variable
+(`n_miss / nrow(owid_daten) * 100`).
+
+<br>
+
+#### HA2 C: Ergebnisse einordnen
+
+Schreibe 3-5 Sätze **in `core_project.Rmd`** im Abschnitt „Session 3 — HA2“ (Platzhalter für die Einordnung):
+
+- Wo fehlen besonders viele Werte?
+- Welche Variable wirkt am robustesten?
+- Welche Konsequenz hat das für spätere Analysen?
+
+<br>
+
+<details>
+<summary><strong>Tip</strong></summary>
+
+Mache es in zwei Schritten:  
+1. `n_miss_* <- sum(is.na(...))`  
+2. `pct_miss_* <- n_miss_* / nrow(owid_daten) * 100`  
+
+`*` steht hier für die verschiedenen Variablen (`gini`, `child_mortality_rate`, `life_expectancy_birth`). Lege je Variable ein eigenes Objekt an (`gini`, `child`, `le`).
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+n_miss_gini <- sum(is.na(owid_daten$gini))
+n_miss_child <- sum(is.na(owid_daten$child_mortality_rate))
+n_miss_le <- sum(is.na(owid_daten$life_expectancy_birth))
+
+pct_miss_gini <- n_miss_gini / nrow(owid_daten) * 100
+pct_miss_child <- n_miss_child / nrow(owid_daten) * 100
+pct_miss_le <- n_miss_le / nrow(owid_daten) * 100
+```
+
+Alle drei Variablen haben viele fehlende Werte. Das kommt vor allem daher, dass die Variablen nur für manche Jahre verfügbar sind. Wir werden in späteren Analysen also immer schauen müssen, welche Informationen wir überhaupt zur Verfügung haben.
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h2 id="ha3">HA3 · Verteilungen im OWID-Datensatz visualisieren</h2>
+
+### Ziel
+
+Du erstellst ein einfaches, aber inhaltlich aussagekraeftiges Output aus dem echten Datensatz: ein Histogramm mit klarer Beschriftung plus kurze Interpretation.
+
+### Aufgaben
+
+#### HA3 A: Erstes Histogramm erstellen
+
+Erzeuge in **`scripts/02_homework_analysis.R`** ein Histogramm fuer `life_expectancy_birth` aus `owid_daten` mit `ggplot() + geom_histogram()`. Weise es dem Objekt `life_expectancy_histogram` zu (dieser Name wird in `core_project.Rmd` zum Anzeigen verwendet).
+
+<br>
+
+#### HA3 B: Plot aussagekraeftig beschriften
+
+Erweitere in **`scripts/02_homework_analysis.R`** den Code für das Histogramm `life_expectancy_histogram`, indem du folgende Beschriftungen hinzufügst:
+
+- einen klaren Titel
+- sinnvolle Achsenbeschriftungen (`x`, `y`)
+- eine Quellenangabe im `caption`
+
+Nenne diesen beschrifteten Plot `life_expectancy_histogram_labels`
+
+<br>
+
+#### HA3 C: Plausibilitaetschecks durchführen
+
+Fuehre folgende Checks aus (im **Daten-** oder **Analyse-Skript**, wo es dir logisch erscheint — oft nach dem Laden in `01_homework_clean_data.R` oder direkt vor der Grafik in `02_homework_analysis.R`):
+
+- `nrow(owid_daten)`
+- `summary(owid_daten$life_expectancy_birth)`
+- `class(owid_daten$life_expectancy_birth)`
+
+<br>
+
+#### HA3 D: Verteilung in Worten interpretieren
+
+Schreibe 3 Sätze Interpretation **in `core_project.Rmd`** unter dem Platzhalter „Session 3 — HA3 · Interpretation“:
+
+- Wo liegt der Hauptbereich der Verteilung?
+- Gibt es eher viele mittlere Werte oder viele Extremwerte?
+- Was koennte das inhaltlich fuer globale Ungleichheit bedeuten?
+
+<br>
+
+<details>
+<summary><strong>Hinweis</strong></summary>
+
+Nutze direkt `owid_daten` als Datensatz in `ggplot()`.
+
+Grundmuster:
+- `ggplot(datensatz, aes(x = variable)) + geom_histogram()`
+- danach `+ labs(...)`
+
+Fuer die Verifikation:
+- `nrow(owid_daten)`
+- `summary(owid_daten$life_expectancy_birth)`
+- `class(owid_daten$life_expectancy_birth)`
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+
+life_expectancy_histogram <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram(bins = 25, fill = "#4472C4", color = "white")
+
+
+life_expectancy_histogram_labels <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram(bins = 25, fill = "#4472C4", color = "white") +
+  labs(
+    title = "Verteilung der Lebenserwartung im OWID-Datensatz",
+    x = "Lebenserwartung bei Geburt (Jahre)",
+    y = "Anzahl Beobachtungen",
+    caption = "Quelle: Our World in Data"
+  )
+
+nrow(owid_daten)
+summary(owid_daten$life_expectancy_birth)
+class(owid_daten$life_expectancy_birth)
+
+```
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h2 id="bonus-aufgaben">Bonus-Aufgaben (freiwillig)</h2>
+
+<h3 id="b-ha1">B-HA1 · Zweites Histogramm + Vergleich</h3>
+
+Erstelle in **`scripts/02_homework_analysis.R`** zusaetzlich ein Histogramm fuer `gdp` (aus `owid_daten`) und weise es dem Objekt `gdp_per_capita_histogram` zu. **Vergleiche** die Verteilungen schriftlich **in `core_project.Rmd`** (Platzhalter B-HA1):
+
+- Was können wir aus diesen beiden Verteilungen für Informationen ziehen?
+
+<br>
+
+<details>
+<summary><strong>Tip</strong></summary>
+
+Nutze denselben Aufbau wie beim ersten Histogramm, aber mit `x = gdp`.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+gdp_per_capita_histogram <- ggplot(owid_daten, aes(x = gdp)) +
+  geom_histogram()
+```
+
+Die Interpretation ist nicht so einfach, weil hier viele Jahre in die Verteilung einfließen. Einfacher wäre es, die Verteilungen jeweils für ein Jahr zu betrachten.
+Wir können trotzdem sehen: Im Gegensatz zur Lebenserwartung ist die Verteilung von GDP pro Kopf stark rechtsschief. Es gibt viele Länder-Jahres-Kombinationen mit sehr niedrigem GDP pro Kopf, aber nur relativ wenige mit sehr hohem GDP pro Kopf. Insofern verhält sich die Verteilung von GDP pro Kopf genau spiegelbildlich zu der Verteilung der Lebenserwartung.
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h3 id="b-ha2">B-HA2 ⚠️ · Plot-Feintuning: Bins vergleichen</h3>
+
+Erstelle in **`scripts/02_homework_analysis.R`** zwei Histogramme fuer `life_expectancy_birth` mit unterschiedlicher Aufloesung und weise sie **zwingend** diesen Objektnamen zu (damit `core_project.Rmd` sie beim Knitten findet):
+
+- `life_expectancy_bins10` — Histogramm mit `bins = 10`
+- `life_expectancy_bins40` — Histogramm mit `bins = 40`
+
+Du kannst dich beim Aufbau an folgendem Muster orientieren (musst es aber in Zuweisungen an die beiden Objekte packen):
+
+```r
+ggplot(owid_daten, aes(x = life_expectancy_birth)) + geom_histogram(bins = 10)
+ggplot(owid_daten, aes(x = life_expectancy_birth)) + geom_histogram(bins = 40)
+```
+
+<br>
+
+Schreibe 3-4 Saetze **in `core_project.Rmd`** (Platzhalter B-HA2):
+
+- Welches Histogramm wirkt informativer?
+- Was veraendert sich bei vielen vs. wenigen `bins`?
+- Welche Einstellung wuerdest du fuer einen Erstueberblick waehlen?
+
+<br>
+
+<details>
+<summary><strong>Tip</strong></summary>
+
+Nutze denselben Plotcode zweimal und aendere nur den `bins`-Wert — speichere die Ergebnisse als `life_expectancy_bins10` und `life_expectancy_bins40`, damit `core_project.Rmd` sie anzeigen kann.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+life_expectancy_bins10 <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram(bins = 10)
+
+life_expectancy_bins40 <- ggplot(owid_daten, aes(x = life_expectancy_birth)) +
+  geom_histogram(bins = 40)
+```
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>

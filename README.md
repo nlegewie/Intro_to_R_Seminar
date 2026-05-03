@@ -276,3 +276,5 @@ Der Link zu diesem Dokument steht auch in jeder Sitzungsanleitung und im Kernpro
 Wenn ihr noch mehr R lernen wollt oder andere Statistik-Softwares ausprobieren wollt, könnt ihr mal Datacamp ausprobieren. Datacamp ist eine Online-Plattform mit Lernkursen für Statistiksoftware wie R, Python, und vieles mehr. Ihr müsst keine Mitgliegschaft abschließen oder irgendwas kündigen sondern könnt einfach das komplette Angebot nutzen, wenn ihr mögt. Benutzt einfach mit eurer Uni-Mailadresse folgenden Link:
 
 https://www.datacamp.com/groups/shared_links/563eb7dbab6c6e6c10a5239f80e181718e3b46f94d548c257f7540fdf3b25e86
+
+Das Buch [R for Data Science](https://r4ds.hadley.nz) ist auch eine super Quelle, um weiter in R einzusteigen. Es ist online umsonst verfügbar.
