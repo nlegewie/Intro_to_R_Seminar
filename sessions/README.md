@@ -17,7 +17,7 @@ Neue Materialien werden jede Woche hinzugefügt. So bekommst du die aktuellen Un
 1. Navigiere hier auf GitHub in den Ordner der aktuellen Sitzung.
 2. Kopiere die URL. Du kannst auch diesen Link anpassen: `https://github.com/nlegewie/Intro_to_R_Seminar/tree/main/sessions/session_XX` — ersetze `XX` durch die aktuelle Sitzungsnummer (einstellige Zahlen im Format `0X`, also z. B. `03` für Session 3).
 3. Öffne diesen Link: [https://download-directory.github.io](https://download-directory.github.io)
-4. Füge die kopiierte URL dort ein und drücke **Enter**. Der Sitzungsordner wird als ZIP heruntergeladen.
+4. Füge die kopierte URL dort ein und drücke **Enter**. Der Sitzungsordner wird als ZIP heruntergeladen.
 5. Verschiebe die ZIP-Datei in deinen Seminar-Ordner.
 6. Entpacke die ZIP-Datei dort.
 7. Lösche die ZIP-Datei.
@@ -35,7 +35,7 @@ Jeder Sitzungsordner enthält:
 | Datei / Ordner | Inhalt |
 |----------------|--------|
 | `session_XX.Rproj` | RStudio-Projektdatei — immer zuerst öffnen |
-| `session_XX.md` | Aufgabenblatt mit Übungen und Hausaufgaben — lies es hier auf GitHub |
+| `README.md` | Aufgabenblatt mit Übungen und Hausaufgaben — auf GitHub erscheint es **unter der Ordnerliste**, sobald du `sessions/session_XX/` öffnest (kein zusätzlicher Klick nötig) |
 | `scripts/session_XX_skript.R` | Das Skript, in dem du deinen Code schreibst |
 | `data/` | Datensätze für die Sitzung |
 
@@ -43,14 +43,16 @@ Jeder Sitzungsordner enthält:
 
 ### Schritt 3 · Aufgabenblatt lesen
 
-Öffne `session_XX.md` direkt hier auf GitHub (klicke im Sitzungsordner auf die Datei). Das Dokument enthält:
+Öffne in deinem Browser den Ordner `sessions/session_XX/` auf GitHub ([Beispiel Session 3](https://github.com/nlegewie/Intro_to_R_Seminar/tree/main/sessions/session_03)). Dort wird die Datei **`README.md`** automatisch **unterhalb der Liste der Dateien und Ordner** angezeigt — Scrollen zum Lesen, kein eigener Dateiklick nötig. Das Dokument enthält:
 
 - Das **Endprodukt** der Sitzung — damit weißt du von Anfang an, worauf du hinarbeitest.
 - Alle **Übungen** für die Sitzung.
 - Alle **Hausaufgaben**.
 - Tipps und Lösungen als aufklappbare Abschnitte direkt unterhalb jeder Aufgabe.
 
-> Du arbeitest nicht in dieser Datei. Das Aufgabenblatt ist deine Anleitung — dein Code gehört ins Skript.
+> Du arbeitest nicht in der `README.md`. Das Aufgabenblatt ist deine Anleitung — dein Code gehört ins Skript.
+
+> Hinweis: In Unterordnern (z.B. `data/`) gibt es oft eine **weitere** `README.md`, die dort unter der Liste erscheint — das sind kurze Infos zu den Datendateien, nicht das Haupt-Aufgabenblatt der Sitzung.
 
 ---
 
@@ -63,7 +65,7 @@ Markiere alle Zeilen dieses Abschnitts und drücke `Ctrl+Enter` / `Cmd+Enter`.
 Der SETUP-Abschnitt lädt:
 - die benötigten Pakete (`library(...)`)
 - den vollständigen OWID-Datensatz (`owid_daten`)
-- den Toy-Datensatz für die Übungen (`session_XX_daten`)
+- den Toy-Datensatz für die Übungen (in Session 3 heißt das Objekt z.B. `session_03_daten` — im Skript wie in der Aufgabenstellung nachschauen)
 
 > Führe den SETUP-Abschnitt **jedes Mal** aus, wenn du eine neue RStudio-Sitzung startest.
 
@@ -87,13 +89,13 @@ Wenn du nicht weiterkommst:
 
 ## Ablauf der Hausaufgaben
 
-Die Hausaufgaben sind im selben Aufgabenblatt (`session_XX.md`) wie die Übungen — im Abschnitt **Hausaufgaben**. Du bearbeitest sie zu Hause im selben Skript `scripts/session_XX_skript.R`, im Abschnitt **HAUSAUFGABEN**.
+Die Hausaufgaben stehen **in derselben** `README.md` wie die Übungen — im Abschnitt **Hausaufgaben**. Du bearbeitest sie zu Hause im selben Skript `scripts/session_XX_skript.R`, im Abschnitt **HAUSAUFGABEN**.
 
 ---
 
 ### Schritt 1 · Aufgabenblatt nochmals lesen
 
-Öffne `session_XX.md` auf GitHub und lies den Hausaufgaben-Abschnitt durch, um zu wissen, was zu tun ist.
+Öffne den Sitzungsordner auf GitHub (wie in Schritt 3) und lies in der dort angezeigten `README.md` den Abschnitt **Hausaufgaben**.
 
 ---
 
@@ -124,12 +126,12 @@ Wenn du fertig bist:
 Sitzung:
   1. Materialien herunterladen
   2. session_XX.Rproj doppelklicken → RStudio öffnet sich
-  3. session_XX.md auf GitHub lesen — Endprodukt und Aufgaben verstehen
+  3. sessions/session_XX/ auf GitHub öffnen — README.md unter der Ordnerliste lesen (Endprodukt, Aufgaben)
   4. SETUP-Abschnitt im Skript ausführen
   5. Übungen im Skript bearbeiten
 
 Hausaufgaben (zu Hause):
-  1. session_XX.md auf GitHub lesen — Hausaufgaben-Abschnitt
+  1. sessions/session_XX/ auf GitHub — README.md, Abschnitt Hausaufgaben
   2. session_XX.Rproj öffnen, SETUP ausführen
   3. Hausaufgaben im Skript bearbeiten und Ergebnisse als Kommentare festhalten
   4. Skript (und ggf. Grafiken) auf Learnweb einreichen

@@ -119,11 +119,11 @@ Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 | Ordner | Zweck |
 |--------|-------|
 | `setup/` | R und RStudio installieren, Dateien/Pfade verstehen |
-| `sessions/session_XX/` | Pro Woche: `session_XX.Rproj`, Aufgabenblatt (`session_XX.md` oder bis zur Umstellung `*_uebungen.Rmd`/`*_hausaufgaben.*`), Daten in `data/`, dein Arbeitsskript in `scripts/` |
+| `sessions/session_XX/` | Pro Woche: `session_XX.Rproj`, **`README.md`** (Aufgabenblatt; auf GitHub unter der Ordnerliste sichtbar) oder bis zur Umstellung zusätzlich `*_uebungen.Rmd`/`*_hausaufgaben.*`, Daten in `data/`, dein Arbeitsskript in `scripts/` |
 | `full_data/` | Zentrale Ablage des großen `owid_data.csv` — kopieren, wenn die Aufgaben ihn im Sitzungsordner erwarten |
 | `resources/` | Troubleshooting, Tastenkürzel, Leitfäden (Interpretation, KI-Nutzung, Code-Stil, …) |
 
-**So arbeitest du:** Übungen und Hausaufgaben stehen zusammen auf **einem** Aufgabenblatt (aktuell vor allem als `session_XX.md` auf GitHub zum Lesen; ältere Sitzungen nutzen noch R Markdown zum Lesen nach dem Knitten). Deinen Code schreibst du in **ein** Skript pro Sitzung — z.B. [`sessions/session_03/scripts/session_03_skript.R`](sessions/session_03/scripts/session_03_skript.R). Öffne **immer zuerst** die `session_XX.Rproj`‑Datei im Sitzungsordner, damit `here()` die richtigen Pfade findet.
+**So arbeitest du:** Übungen und Hausaufgaben stehen zusammen auf **einem Aufgabenblatt** als **`README.md`** im jeweiligen Sitzungsordner — auf GitHub wird es unter der Liste der Ordner und Dateien angezeigt (kein Extra-Klick). Ältere Sitzungen können zusätzlich `.Rmd`‑Dateien haben (zum Lesen ggf. knitten). Deinen Code schreibst du in **ein** Skript pro Sitzung — z.B. [`sessions/session_03/scripts/session_03_skript.R`](sessions/session_03/scripts/session_03_skript.R). Öffne **immer zuerst** die `session_XX.Rproj`‑Datei im Sitzungsordner, damit `here()` die richtigen Pfade findet.
 
 Details, Download und Abgabe: **[Sitzungen — wie du mit den Unterlagen arbeitest](sessions/README.md)**.
 
@@ -156,7 +156,7 @@ Grober Ablauf pro Woche:
 1. **Rückblick** (wie im Seminar vereinbart): offene Fragen zur Hausaufgabe oder zum letzten Stoff
 2. **Sitzungsordner haben** (`sessions/session_XX/`) — entweder beim ersten Mal gesamtes Repo oder nur den neuen Unterordner heruntergeladen ([Anleitung](sessions/README.md))
 3. **`session_XX.Rproj` öffnen** — Projekt aktivieren (oben rechts in RStudio der Sitzungsname)
-4. **Aufgabenblatt lesen** — `session_XX.md` direkt auf GitHub (kein Rendern nötig) oder bei älteren Sitzungen die `.Rmd`‑Dateien knitten zum Lesen
+4. **Aufgabenblatt lesen** — Sitzungsordner `sessions/session_XX/` auf GitHub öffnen; die **`README.md`** steht dort unterhalb der Liste (bei älteren Sitzungen ggf. `.Rmd` knitten zum Lesen)
 5. **`SETUP` im Skript ausführen** — Libraries und Daten laden (steht immer ganz oben in `scripts/session_XX_skript.R`)
 6. **Übungen** — Code in die markierten Abschnitte **ÜBUNGEN** schreiben
 7. **Hausaufgaben** — zu Hause im selben Skript unter **HAUSAUFGABEN**, Abgabe wie im Aufgabenblatt beschrieben
@@ -164,7 +164,7 @@ Grober Ablauf pro Woche:
 Typischer Inhalt eines Sitzungsordners:
 
 - `session_XX.Rproj`
-- Aufgabenblatt (je nach Stand: `session_XX.md` und/oder `*_uebungen.Rmd`/`*_hausaufgaben.Rmd`)
+- Haupt-Aufgabenblatt **`README.md`** (und bei älteren Sitzungen ggf. `*_uebungen.Rmd`/`*_hausaufgaben.Rmd`)
 - `scripts/session_XX_skript.R` — deine eine Datei für Code diese Woche (bei älteren Sitzungen ggf. noch `*_template.R`)
 - `data/` — Toy-Daten für die Übung; oft zusätzlich Anweisungen, wenn `owid_data.csv` aus `full_data/` kopiert werden soll
 
