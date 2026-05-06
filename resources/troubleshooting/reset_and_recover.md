@@ -19,7 +19,7 @@ Hier bist du richtig, wenn etwas nicht funktioniert. Such dir dein Problem in de
 | `library()` schlägt fehl | [→ Paketprobleme](#paket-lässt-sich-nicht-installieren) |
 | Code hat letzte Woche funktioniert, heute nicht mehr | [→ Umgebung zurücksetzen](#code-hat-letzte-woche-funktioniert-heute-nicht) |
 | R Markdown lässt sich nicht knitten | [→ Knit-Fehler](#r-markdown-lässt-sich-nicht-knitten) |
-| Projekt ist kaputt — ich will von vorne anfangen | [→ Snapshot wiederherstellen](#kernprojekt-aus-snapshot-wiederherstellen) |
+| Sitzungsskript kaputt oder durcheinander — von vorne anfangen | [→ Sitzungsordner sauber zurücksetzen](#sitzungsordner-reset) |
 
 ---
 
@@ -68,27 +68,21 @@ Error: cannot open file 'data/owid_data.csv': No such file or directory
 Warning message: In read.csv(...) : file not found
 ```
 
-Das ist einer der häufigsten Fehler — und er hat fast immer eine von drei Ursachen. Die Lösung hängt davon ab, wo du gerade arbeitest: in den **Sitzungsübungen** (im Kursmaterialien-Ordner) oder in deinem **Arbeitsprojekt** (für Hausaufgaben und den Abschlussbericht).
+Das ist einer der häufigsten Fehler — und er hat fast immer eine von drei Ursachen. Im Seminar arbeitest du **im jeweiligen Sitzungsordner** (`sessions/session_XX/`); später im Semester kann es für den Abschlussbericht noch ein **eigenes Projekt** geben — die folgenden Schritte gelten vor allem für Sitzungen.
 
-### Ursache 1: Du hast eine .R-Datei direkt geöffnet, ohne den zugehörigen Ordner als Kontext zu setzen
+### Ursache 1: Das RStudio-Projekt ist nicht geöffnet (falscher Arbeitskontext)
 
-**Test:** Schau in die obere rechte Ecke von RStudio. Steht dort `Project: (None)`?
+**Test:** Schau in die obere rechte Ecke von RStudio. Steht dort `Project: (None)` oder ein anderer Projektname als deine aktuelle Sitzung?
 
-Wenn ja, weiß RStudio nicht, von wo aus es relative Pfade wie `data/owid_data.csv` auflösen soll.
+Wenn das Projekt nicht stimmt (oder `(None)`), weiß `here()` nicht, von wo aus es Pfade wie `data/owid_data.csv` aufbauen soll.
 
-**Wenn du gerade Sitzungsübungen machst:**
-1. Schließe RStudio
-2. Navigiere im Datei-Explorer (Windows) oder Finder (macOS) zum Sitzungsordner, z. B. `kursmaterialien/sessions/session_03/`
-3. Öffne dort die Skriptdatei — RStudio startet ohne Projektzugehörigkeit, aber du kannst das Arbeitsverzeichnis manuell setzen:
-```r
-setwd("pfad/zum/sitzungsordner")
-```
-Oder noch besser: Nutze direkt den **Files-Browser** in RStudio (unten rechts), navigiere zum Sitzungsordner, und klicke auf **More → Set As Working Directory**.
+**Lösung (empfohlen):**
+1. Schließe RStudio (optional, aber oft am klarsten)
+2. Öffne im Datei-Explorer (Windows) oder Finder (macOS) den Ordner `sessions/session_XX/`
+3. **Doppelklicke auf `session_XX.Rproj`** — RStudio öffnet sich mit dem richtigen Projektwurzel-Verzeichnis
+4. Öffne dein Skript aus `scripts/` und führe den **SETUP-Abschnitt** erneut aus
 
-**Wenn du im Arbeitsprojekt arbeitest:**
-1. Schließe RStudio
-2. Navigiere zu deinem Projektordner (`mein_projekt/` oder wie du ihn benannt hast)
-3. Doppelklicke auf die **`.Rproj`-Datei** — RStudio öffnet sich mit dem richtigen Kontext
+Notnagel (wenn keine `.Rproj` greift): Im **Files-Panel** (unten rechts) zum Sitzungsordner navigieren → **More → Set As Working Directory**. Besser bleibt immer die `.Rproj`-Datei.
 
 ### Ursache 2: Die Datei liegt nicht dort, wo der Code sie erwartet
 
@@ -99,18 +93,20 @@ list.files("data")
 Siehst du die erwartete Datei in der Ausgabe? Wenn nicht, stimmt entweder der Ordnername oder der Dateiname nicht.
 
 **Lösung:**
-- Öffne den **Files-Browser** in RStudio (unten rechts) und prüfe, ob die Datei im richtigen Unterordner liegt
-- Bei Sitzungsübungen: Die Datei sollte in `sessions/session_XX/data/` liegen
-- Im Arbeitsprojekt: Die Datei sollte in `mein_projekt/data/` liegen
-- Wenn die Datei woanders liegt: Kopiere sie in den richtigen Ordner
+- Öffne den **Files-Browser** in RStudio und prüfe `session_XX/data/`
+- **Toy-Daten** (Übungen) liegen dort mit Namen wie `toy_data_session_03.csv`
+- **`owid_data.csv` für Hausaufgaben:** Wenn die Aufgabenstellung ihn im Sitzungs-`data/` erwartet er aber fehlt, kopiere ihn aus **`full_data/owid_data.csv`** des Repositories in **`sessions/session_XX/data/`** (siehe auch die `README.md` im jeweiligen `data/`-Ordner)
+- **Dateiname exakt prüfen** — z. B. `toy_data_session_03.csv` vs. `toy_data_session03.csv`
 
-### Ursache 3: `here()` wird nicht geladen (nur im Arbeitsprojekt relevant)
+### Ursache 3: `here()` wird nicht geladen
 
-Im Arbeitsprojekt verwenden wir `here()` für Dateipfade. Dafür muss das Paket geladen sein. Stelle sicher, dass am Anfang deines Skripts steht:
+Die Sitzungs-Skripte nutzen **`here()`** für Pfade. Dafür muss das Paket geladen sein. Stelle sicher, dass früh im SETUP-Abschnitt steht:
+
 ```r
 library(here)
 ```
-Ohne diesen Befehl kennt R die Funktion `here()` nicht. In Sitzungsübungen verwenden wir `here()` nicht — dort werden Pfade direkt relativ zum Sitzungsordner angegeben.
+
+Ohne `library(here)` meldet R `could not find function "here"` oder verwendet andere Suchpfade. Nach `library(here)` den SETUP-Abschnitt noch einmal von oben ausführen.
 
 ---
 
@@ -226,7 +222,7 @@ Das ist der klassische „es hat doch letzte Woche noch geklappt"-Fehler. Ursach
 
 Wenn du auf **Knit** klickst und ein Fehler auftritt, erscheint unten in RStudio ein rotes Fenster mit der Fehlermeldung.
 
-**Wichtig:** Der Knit-Prozess läuft in einer komplett neuen, leeren R-Sitzung. Das bedeutet: Alles, was dein Dokument braucht (Pakete, Daten, Variablen), muss im Dokument selbst definiert sein bzw. durch `source()` im Setup-Chunk ausgewführt werden.
+**Wichtig:** Der Knit-Prozess läuft in einer komplett neuen, leeren R-Sitzung. Das bedeutet: Alles, was dein Dokument braucht (Pakete, Daten, Variablen), muss im Dokument selbst definiert sein bzw. durch `source()` im Setup-Chunk ausgeführt werden.
 
 **Häufige Ursachen:**
 
@@ -245,32 +241,33 @@ Wenn du auf **Knit** klickst und ein Fehler auftritt, erscheint unten in RStudio
 
 ---
 
-## Kernprojekt aus Snapshot wiederherstellen
+<h2 id="sitzungsordner-reset">Sitzungsordner oder Skript zurücksetzen</h2>
 
-Wenn dein Kernprojekt so kaputt ist, dass du nicht weißt, wo du anfangen sollst, kannst du es aus einem Snapshot wiederherstellen. Snapshots sind vollständige, funktionierende Versionen des Projekts nach jeder Sitzung — sie befinden sich im Ordner `kursmaterialien/core_project_snapshots/`.
+Wenn dein **Sitzungs-Skript** unübersichtlich geworden ist, du versehentlich viel zerstört hast oder gar nicht weißt, wo du weiterarbeiten sollst, musst du kein zweites „Kernprojekt" pflegen — arbeite sauber wieder im **gleichen Kursrepository**, nur mit einem frischen Sitzungsordner oder einem frischen Skript-Template.
 
-**Schritt 1 — Den richtigen Snapshot finden**
+**Schritt 1 — Eigenes behalten, was dir wichtig ist**
 
-Öffne `kursmaterialien/core_project_snapshots/` und wähle den Ordner für die letzte Sitzung, nach der dein Projekt noch funktioniert hat.
+Benenne deinen aktuellen Sitzungsordner um oder kopiere z. B. `scripts/session_XX_skript.R` und deine **`output/`**-Grafiken an einen Ort **außerhalb** des Ordners, den du gleich überschreiben wirst (`Desktop`, `Downloads`, eigener Unterordner).
 
-**Schritt 2 — Deine eigene Arbeit sichern (optional)**
+**Schritt 2 — Sitzungsmaterial neu holen**
 
-Kopiere deine eigenen Dateien (z. B. angepasste Skripte oder Daten) aus dem kaputten Projekt an einen sicheren Ort, bevor du weitermachst.
+- Lade den **aktuellen Stand** vom GitHub-Repository herunter ([ZIP gesamt](https://github.com/nlegewie/Intro_to_R_Seminar/archive/refs/heads/main.zip) oder nur den Ordner `sessions/session_XX/` mit dem [ZIP-Tool für einzelne Ordner](https://download-directory.github.io), siehe auch [sessions/README.md](../../sessions/README.md)).
 
-**Schritt 3 — Snapshot kopieren**
+**Schritt 3 — Einsetzen**
 
-1. Navigiere im Datei-Explorer (Windows) oder Finder (macOS) zum Snapshot-Ordner
-2. Kopiere den gesamten Inhalt (alle Ordner und Dateien)
-3. Öffne deinen Projektordner (`mein_projekt/`)
-4. Füge die kopierten Dateien ein — bestehende Dateien werden überschrieben
+- Ersetze deinen alten `sessions/session_XX/`-Ordner durch die frisch heruntergeladene Version **oder** kopiere nur die Dateien, die kaputt waren (z. B. nur `scripts/session_XX_skript.R`‑Template aus dem neuen ZIP).
 
-**Schritt 4 — Eigene Arbeit zurückkopieren**
+**Schritt 4 — Daten ergänzen**
 
-Falls du in Schritt 2 eigene Dateien gesichert hast, kopiere sie zurück in die richtigen Ordner.
+- Liegt **`owid_data.csv`** im `data/` dieser Sitzung nicht mehr dabei oder war nicht im ZIP: kopiere sie aus **`full_data/owid_data.csv`** in **`sessions/session_XX/data/`** (sofern das Aufgabenblatt oder die `README` im `data/`-Ordner das verlangt).
 
-**Schritt 5 — Projekt neu öffnen**
+**Schritt 5 — Projekt wieder öffnen**
 
-Doppelklicke auf die `.Rproj`-Datei und prüfe, ob alles wieder funktioniert.
+- **`session_XX.Rproj`** doppelklicken und im Skript wieder **SETUP ausführen**, dann weiterarbeiten.
+
+**Musterlösung zum Vergleich (falls im Repo vorhanden):** Bei manchen Sitzungen gibt es z. B. `scripts/session_XX_skript_loesung.R` zum Abgleich — nicht kopieren-abgeben, nur zum Lesen gegenprüfen.
+
+**Wiederherstellung eigener Arbeit:** Wenn du in Schritt 1 Text oder Code gesichert hast, kannst du Abschnitte **manuell** zurück in das neue `session_XX_skript.R` übernehmen.
 
 ---
 
@@ -292,7 +289,7 @@ Wenn du nicht weißt, wo das Problem liegt, gehe systematisch vor. Schau außerd
 
 7. **Fehlermeldung googeln** — Kopiere den Kerntext der Fehlermeldung (ohne spezifische Variablennamen) in eine Suchmaschine. Du bist fast garantiert nicht die erste Person mit diesem Problem.
 
-8. **K Ifragen**: Kopiere die Fehlermeldung und einen Teil Output, der deine Datenstruktur zeigt, in ein LLM deines Vertrauens und bitte es, dir die Fehlermeldung zu erklären. **Empfehlung**: Bitte die KI nur um eine Erklärung des Fehler und verbiete ihr explizit, dir die Lösung zu sagen. So kannst du selber knobeln und wirst im Laufe des Semesters sehr viel mehr lernen.
+8. **KI fragen:** Kopiere die Fehlermeldung und einen kurzen Ausschnitt, der deine Datenstruktur zeigt, in ein LLM deines Vertrauens und bitte es, dir die Fehlermeldung zu erklären. **Empfehlung:** Bitte die KI nur um eine **Erklärung** des Fehlers und bitte sie explizit **nicht**, dir die fertige Lösung zu geben — so knobelst du selbst weiter und lernst nachhaltiger.
 
 9. **Dozenten fragen** — mit einer konkreten Fehlermeldung und einer Beschreibung, was du bereits versucht hast.
 

@@ -15,7 +15,7 @@ Du hast einen Fehler entdeckt oder etwas funktioniert nicht im Repo (z.B. ein Li
 
 ## Inhaltsverzeichnis
 
-- [Hier geht's los — was du als Erstes tun solltest](#start-hier)
+- [Hier geht's los — was du als Erstes tun solltest](#hier-gehts-los)
 - [Wie du die Dateien herunterlädst](#wie-du-die-dateien-herunterlädst)
 - [Aufbau des Repositorys](#aufbau-des-repositorys)
 - [Weitere Referenzmaterialien](#weitere-referenzmaterialien)
@@ -31,12 +31,12 @@ Du hast einen Fehler entdeckt oder etwas funktioniert nicht im Repo (z.B. ein Li
 
 ## Hier geht's los
 
-Für den Einstieg gibt es fünf Einrichtungsschritte, die du einmalig in dieser Reihenfolge durchführst. Danach kannst du losziehen in dein Rbenteuer (get it? get it?).
+Mit den folgenden Schritten richtest du Software und Grundlagen ein — am besten vor der ersten Sitzung, in dieser Reihenfolge. Danach gilt der Ablauf in [sessions/README.md](sessions/README.md) für jede Woche. Auf geht's in dein Rbenteuer (get it? get it?).
 
 
 > **Einrichtungsreihenfolge:**
 
-> [1 · R installieren](setup/install_r.md) → [2 · RStudio installieren](setup/install_rstudio.md) → [3 · Dateien & Ordner verstehen](setup/working_with_files.md) → [4 · Projekt einrichten](setup/project_setup.md) → [5 · Tastenkürzel zur Hand nehmen](resources/cheatsheets/keyboard_shortcuts.md)
+> [1 · R installieren](setup/install_r.md) → [2 · RStudio installieren](setup/install_rstudio.md) → [3 · Dateien & Ordner verstehen](setup/working_with_files.md) → [4 · Tastenkürzel zur Hand nehmen](resources/cheatsheets/keyboard_shortcuts.md) → [5 · Ablauf der Sitzungen](sessions/README.md)
 
 
 **Schritt 1 — R installieren**
@@ -56,13 +56,7 @@ Bevor du loslegst: Wo du Dateien speicherst und wie Pfade funktionieren, ist ein
 → [Dateien und Ordner verstehen](setup/working_with_files.md)
 
 
-**Schritt 4 — Dein Arbeitsprojekt einrichten**
-
-Du richtest einmalig dein eigenes RStudio-Projekt ein — der Ordner, in dem alle deine Analysen, Hausaufgaben und der Abschlussbericht entstehen. Sitzungsübungen machst du in den Sitzungsordnern (`sessions/session_XX/`), alles Eigene im Arbeitsprojekt.
-→ [Projekt einrichten](setup/project_setup.md)
-
-
-**Schritt 5 — Tastaturkürzel und Paket-Cheatsheets zur Hand nehmen**
+**Schritt 4 — Tastaturkürzel und Paket-Cheatsheets zur Hand nehmen**
 
 Tastaturkürzel sparen von Anfang an Zeit. Die Paket-Cheatsheets sind dein Nachschlagewerk für den Rest des Semesters.
 → [Tastaturkürzel](resources/cheatsheets/keyboard_shortcuts.md)
@@ -78,14 +72,6 @@ Wenn du mit der Installation fertig bist, kannst du dir diese Startseite zu Ende
 
 ## Wie du die Dateien herunterlädst
 
-Bevor du etwas herunterlädst: Eine wichtige Unterscheidung, die du von Anfang an verstehen solltest.
-
-Dieses Repository enthält die **Kursmaterialien** — Sitzungsunterlagen, Codebeispiele, Referenzdokumente. Du arbeitest in den Sitzungen direkt in den Sitzungsordnern (`sessions/session_XX/`). Das ist in Ordnung, weil Übungen kurzlebige Scratch-Arbeit sind — du brauchst sie danach nicht mehr.
-
-Was du hier **nicht** ablegen solltest: alles, was du langfristig behalten willst. Hausaufgaben, laufende Analysen und der Abschlussbericht gehören in dein separates Arbeitsprojekt, das du einmalig an einem anderen Ort einrichtest. Die Anleitung dafür findest du unter [Projekteinrichtung](setup/project_setup.md).
-
-Diese Trennung ist wichtig, weil die Kursmaterialien im Laufe des Semesters wöchentlich ergänzt werden. Wenn du das Repository neu herunterlädst, werden Änderungen in Sitzungsordnern überschrieben — dein Arbeitsprojekt bleibt davon unberührt, wenn du es an einem anderen Ort abgelegt hast.
-
 **Gesamte Kursmaterialien herunterladen**
 
 1. Klicke oben auf der GitHub-Seite auf den grünen Button **„Code"**
@@ -94,17 +80,18 @@ Diese Trennung ist wichtig, weil die Kursmaterialien im Laufe des Semesters wöc
 
 Du musst Git nicht installieren. Du musst nichts eintippen. Der Download funktioniert wie jede andere Datei aus dem Internet.
 
-**Neue Sitzungsunterlagen aufrufen**
+**VORSICHT:** Wenn du das Repo vorher schon einmal heruntergeladen hast, Übungen oder Hausaufgaben dort bearbeitet hast und später den **kompletten** Ordner wieder durch eine neue ZIP vom gleichen Repo ersetzt, sind jene Arbeiten überschrieben. Sichere deine Arbeit (z.B. eigener Ordner kopieren), oder lade nur die **neue Sitzung** oder einzelne Dateien nach ([Anleitung Sitzungen](sessions/README.md)).
 
-Jede Woche kommen neue Sitzungsmaterialien hinzu.
+**Neue Sitzungsunterlagen (pro Woche)**
 
-
+Jede Woche kommen Materialien unter `sessions/session_XX/` hinzu — mit Aufgabenblatt, Daten und Skript. So holst du dir nur einen Sitzungsordner als ZIP oder aktualisierst dein lokales Repo: Schritt für Schritt in [sessions/README.md](sessions/README.md) (ZIP über [download-directory](https://download-directory.github.io)).
 
 **Mit Git arbeiten (optional, für Fortgeschrittene)**
 
-Wenn du Git kennst, kannst du das Repository klonen und mit `git pull` jede Woche automatisch aktualisieren:
+Wenn du Git kennst, kannst du das Repository klonen und mit `git pull` neue Inhalte holen:
+
 ```
-git clone https://github.com/[dozent/repo-name].git
+git clone https://github.com/nlegewie/Intro_to_R_Seminar.git
 ```
 Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 
@@ -114,35 +101,33 @@ Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 
 ```
 /
-├── README.md                    ← du bist hier
-├── syllabus/                    ← Syllabus und Kursübersicht
-├── setup/                       ← Installation und Einrichtung (hier starten!)
-├── sessions/                    ← Unterlagen für jede Sitzung
+├── README.md          ← diese Seite
+├── setup/             ← Installation, Umgang mit Dateien und Pfaden — Start hier
+├── sessions/          ← Material pro Sitzung (siehe unten und [sessions/README.md](sessions/README.md))
 │   ├── session_01/
 │   ├── session_02/
 │   └── ...
-├── homework/                    ← Hausaufgaben
-│   ├── hw_01/
-│   └── ...
-├── final_report/                ← Anleitung und Vorlage für den Abschlussbericht
-├── core_project/                ← Projektvorlage: einmalig kopieren, dann außerhalb des Repo-Ordners arbeiten
-├── core_project_snapshots/      ← Rettungsanker: vollständige Versionen nach jeder Sitzung
-└── resources/                   ← Referenzmaterialien, Hilfe, Nachschlagen
-    ├── troubleshooting/         ← Fehlerbehebung (bei Problemen hier suchen)
-    ├── cookbooks/               ← Rezeptbücher: Codebeispiele zum Nachschlagen
-    ├── cheatsheets/             ← Kurzübersichten: Tastaturkürzel + alle Tidyverse-Pakete
-    └── other/                   ← Leitfäden, Erklärungen, Code-Stil, KI-Nutzung
+├── full_data/         ← Vollständiger OWID-Datensatz (`owid_data.csv`) — ggf. in den `data/`‑Ordner der jeweiligen Sitzung kopieren
+└── resources/         ← Referenzmaterialien, Hilfe
+    ├── troubleshooting/
+    ├── cheatsheets/
+    └── other/
 ```
 
-**Die wichtigste Unterscheidung:**
+**Die wichtigsten Ordner**
 
 | Ordner | Zweck |
 |--------|-------|
-| `sessions/` | Sitzungsunterlagen mit Übungen und Beispieldatensätzen — hier arbeitest du während der Sitzung; Übungen sind kurzlebig und müssen nicht aufbewahrt werden |
-| `core_project/` | Vorlage für dein Arbeitsprojekt — du kopierst diesen Ordner einmalig an einen anderen Ort und arbeitest dort |
-| `core_project_snapshots/` | Vollständige, funktionierende Versionen des Projekts nach jeder Sitzung — als Rettungsanker |
+| `setup/` | R und RStudio installieren, Dateien/Pfade verstehen |
+| `sessions/session_XX/` | Pro Woche: `session_XX.Rproj`, Aufgabenblatt (`session_XX.md` oder bis zur Umstellung `*_uebungen.Rmd`/`*_hausaufgaben.*`), Daten in `data/`, dein Arbeitsskript in `scripts/` |
+| `full_data/` | Zentrale Ablage des großen `owid_data.csv` — kopieren, wenn die Aufgaben ihn im Sitzungsordner erwarten |
+| `resources/` | Troubleshooting, Tastenkürzel, Leitfäden (Interpretation, KI-Nutzung, Code-Stil, …) |
 
-**Das Wichtigste:** Deine eigene Arbeit findet nicht in diesem heruntergeladenen Ordner statt, sondern in deiner eigenen Kopie des Projekts, die du separat auf deinem Computer einrichtest. Die [Projekteinrichtung](setup/project_setup.md) führt dich Schritt für Schritt durch diesen Prozess.
+**So arbeitest du:** Übungen und Hausaufgaben stehen zusammen auf **einem** Aufgabenblatt (aktuell vor allem als `session_XX.md` auf GitHub zum Lesen; ältere Sitzungen nutzen noch R Markdown zum Lesen nach dem Knitten). Deinen Code schreibst du in **ein** Skript pro Sitzung — z.B. [`sessions/session_03/scripts/session_03_skript.R`](sessions/session_03/scripts/session_03_skript.R). Öffne **immer zuerst** die `session_XX.Rproj`‑Datei im Sitzungsordner, damit `here()` die richtigen Pfade findet.
+
+Details, Download und Abgabe: **[Sitzungen — wie du mit den Unterlagen arbeitest](sessions/README.md)**.
+
+Später im Semester kommen **R Markdown**, `source()` und ein **eigener Ordner für den Abschlussbericht** dazu — das wird im Kurs eingeführt, nicht von Anfang an vorausgesetzt.
 
 ---
 
@@ -164,22 +149,26 @@ Im Ordner `resources/other/` findest du Leitfäden und Erklärungen, die im Lauf
 
 ## Wie das Seminar funktioniert
 
-Jede Sitzung folgt demselben Grundprinzip:
+Jede Sitzung hat einen **eigenen analytischen Bogen**: Es gibt eine inhaltliche Frage, ihr lernt mit einem **Toy-Datensatz** die nötigen R-Schritte, und in der **Hausaufgabe** wendet ihr dasselbe am **vollen OWID-Datensatz** an. Am Anfang des Aufgabenblatts siehst du, **welches Ergebnis** ihr anstrebt (z.B. eine bestimmte Grafik).
 
-1. **Besprechung Hausaufgaben**: Hier besprechen wir mögliche Schwierigkeiten, die ihr mit Übungen der letzten Sitzung hattet
-2. **Sitzungsordner öffnen** (`sessions/session_XX/`) — dort findest du Anweisungen und Übungen für die jeweilige Sitzung
-3. **Übungen durchführen** — mit einem kleinen, übersichtlichen Datensatz direkt im Sitzungsordner
-4. **Analyse im Kernprojekt** — das Gelernte auf den echten OWID-Datensatz anwenden
-5. **Hausaufgaben** — die Analyse zu Hause fertigstellen und einreichen
+Grober Ablauf pro Woche:
 
-Jede Sitzung enthält:
-- `instructions.md` — Schritt-für-Schritt-Anleitung für die Sitzung
-- `exercises.md` — Übungsaufgaben
-- `scripts/` — R-Skripte für die Sitzung
-- `data/` — der Übungsdatensatz für diese Sitzung
-- `solutions_optional/` — optionale Musterlösungen (werden nach der Sitzung oder nach der Abgabefrist veröffentlicht)
+1. **Rückblick** (wie im Seminar vereinbart): offene Fragen zur Hausaufgabe oder zum letzten Stoff
+2. **Sitzungsordner haben** (`sessions/session_XX/`) — entweder beim ersten Mal gesamtes Repo oder nur den neuen Unterordner heruntergeladen ([Anleitung](sessions/README.md))
+3. **`session_XX.Rproj` öffnen** — Projekt aktivieren (oben rechts in RStudio der Sitzungsname)
+4. **Aufgabenblatt lesen** — `session_XX.md` direkt auf GitHub (kein Rendern nötig) oder bei älteren Sitzungen die `.Rmd`‑Dateien knitten zum Lesen
+5. **`SETUP` im Skript ausführen** — Libraries und Daten laden (steht immer ganz oben in `scripts/session_XX_skript.R`)
+6. **Übungen** — Code in die markierten Abschnitte **ÜBUNGEN** schreiben
+7. **Hausaufgaben** — zu Hause im selben Skript unter **HAUSAUFGABEN**, Abgabe wie im Aufgabenblatt beschrieben
 
-**Wenn du eine Sitzung verpasst hast oder etwas nicht funktioniert:** Im Ordner `core_project_snapshots/` findest du vollständige, funktionierende Versionen des Kernprojekts nach jeder Woche. Du kannst damit jederzeit dort weitermachen, wo du sein solltest — ohne den verpassten Stoff manuell nacharbeiten zu müssen.
+Typischer Inhalt eines Sitzungsordners:
+
+- `session_XX.Rproj`
+- Aufgabenblatt (je nach Stand: `session_XX.md` und/oder `*_uebungen.Rmd`/`*_hausaufgaben.Rmd`)
+- `scripts/session_XX_skript.R` — deine eine Datei für Code diese Woche (bei älteren Sitzungen ggf. noch `*_template.R`)
+- `data/` — Toy-Daten für die Übung; oft zusätzlich Anweisungen, wenn `owid_data.csv` aus `full_data/` kopiert werden soll
+
+**Orientierung nachholen oder „von vorne" im Sitzungsordner:** Lade den betreffenden `session_XX`‑Ordner frisch vom Repository (oder aus dem Backup deiner Abgabe). Es gibt kein separates „Kernprojekt" und keine Snapshot-Ordner mehr — die Arbeitsweise ist bewusst schlank gehalten.
 
 ---
 
@@ -257,11 +246,11 @@ Es behandelt unter anderem:
 - „Datei nicht gefunden"-Fehler
 - Pakete lassen sich nicht installieren
 - „Das hat letzte Woche noch funktioniert" — systematisches Debuggen
-- Kernprojekt aus einem Snapshot wiederherstellen
+- R Markdown lässt sich nicht knitten (sobald ihr Rmd im Kurs nutzt)
 
 Außerdem: Eine kompakte Galerie der häufigsten Anfängerfehler mit Erklärungen und Lösungen: [Häufige Fehler](resources/other/common_errors.md)
 
-Der Link zu diesem Dokument steht auch in jeder Sitzungsanleitung und im Kernprojekt.
+Der Link zu diesem Dokument steht auch in der [Sitzungsanleitung](sessions/README.md) und an passenden Stellen im Repository.
 
 **Du kommst nicht weiter?** Tipps, wie du eine gute Frage stellst und wo du nach Lösungen suchen kannst: [Um Hilfe bitten — richtig und effektiv](resources/troubleshooting/asking_for_help.md)
 
@@ -273,7 +262,7 @@ Der Link zu diesem Dokument steht auch in jeder Sitzungsanleitung und im Kernpro
 
 ## Wer noch nicht genug hat: Datacamp
 
-Wenn ihr noch mehr R lernen wollt oder andere Statistik-Softwares ausprobieren wollt, könnt ihr mal Datacamp ausprobieren. Datacamp ist eine Online-Plattform mit Lernkursen für Statistiksoftware wie R, Python, und vieles mehr. Ihr müsst keine Mitgliegschaft abschließen oder irgendwas kündigen sondern könnt einfach das komplette Angebot nutzen, wenn ihr mögt. Benutzt einfach mit eurer Uni-Mailadresse folgenden Link:
+Wenn ihr noch mehr R lernen wollt oder andere Statistik-Softwares ausprobieren wollt, könnt ihr mal Datacamp ausprobieren. Datacamp ist eine Online-Plattform mit Lernkursen für Statistiksoftware wie R, Python, und vieles mehr. Ihr müsst keine Mitgliedschaft abschließen oder etwas kündigen, sondern könnt bei Interesse das Angebot testen — Details siehe Link. Benutzt einfach mit eurer Uni-Mailadresse folgenden Link:
 
 https://www.datacamp.com/groups/shared_links/563eb7dbab6c6e6c10a5239f80e181718e3b46f94d548c257f7540fdf3b25e86
 
