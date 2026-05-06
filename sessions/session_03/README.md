@@ -43,22 +43,13 @@ Am Ende dieser Sitzung wirst du:
 
 ### Zielddiagramm: Verteilung der Lebenserwartung 2015
 
-> **Hinweis für Lehrkraft:** Hier Bild `output/life_expectancy_histogram_2015.png` einfügen, nachdem es erstellt wurde.
+So (oder sehr ähnlich) soll deine **Zielgrafik** nach den Hausaufgaben aussehen — ohne dass hier schon der R‑Code zur Erzeugung steht (den entwickelst du in HA3):
 
-Der folgende Code (aus den Hausaufgaben) erzeugt dieses Diagramm:
+![Verteilung der Lebenserwartung bei Geburt (2015) — Referenzgrafik zur Zieldarstellung dieser Sitzung](figures/preview_le_histogram_2015.png)
 
-```r
-ggplot(owid_2015, aes(x = life_expectancy_birth)) +
-  geom_histogram(bins = 25, fill = "#4472C4", color = "white") +
-  labs(
-    title = "Verteilung der Lebenserwartung bei Geburt (2015)",
-    x = "Lebenserwartung bei Geburt (Jahre)",
-    y = "Anzahl Länder",
-    caption = "Quelle: Our World in Data"
-  )
-```
+*Bildbasis: gleicher OWID‑Datensatz und Jahr 2015 wie in den Hausaufgaben; ohne Code im Aufgabenblatt. Form und Beschriftung entsprechen dem, worauf ihr hinarbeitet — die inhaltliche Deutung erfolgt später in HA3.*
 
-*Das Histogramm zeigt die Verteilung der Lebenserwartung aller Länder im OWID-Datensatz für das Jahr 2015. Die meisten Länder liegen bei über 65 Jahren, wenige noch deutlich darunter. Die Verteilung ist linksschief. Was bedeutet das für globale Ungleichheit? Das wirst du in HA3 D herausfinden.*
+*Kurze Orientierung ohne Spoiler zur Auswertung: Es geht darum, die **Verteilung** der Lebenserwartung vieler Länder in einem Jahr sichtbar und **beschriftet** zu machen — so, dass andere dein Diagramm ohne R verstehen können.*
 
 ---
 
