@@ -26,7 +26,9 @@ library(here)
 ###******************************************###
 
 # owid_daten wird in den Hausaufgaben verwendet.
-owid_daten <- read_csv(here("data", "owid_data.csv"))
+# Pfad zur zentralen Datei im Kursrepository (einmal gespeichert, alle Sitzungen):
+# Projekt-Stamm ist dieser Sitzungsordner → zwei Ebenen nach oben zum Repo-Stamm → full_data/
+owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 ###*************************************###

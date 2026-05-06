@@ -107,7 +107,7 @@ Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 │   ├── session_01/
 │   ├── session_02/
 │   └── ...
-├── full_data/         ← Vollständiger OWID-Datensatz (`owid_data.csv`) — ggf. in den `data/`‑Ordner der jeweiligen Sitzung kopieren
+├── full_data/         ← Vollständiger OWID-Datensatz (`owid_data.csv`) — eine Kopie für alle Sitzungen; wird von den Skripten per relativen Pfad geladen (`../../full_data/…`), nicht in jedem `session_XX/data/` dupliziert
 └── resources/         ← Referenzmaterialien, Hilfe
     ├── troubleshooting/
     ├── cheatsheets/
@@ -120,7 +120,7 @@ Das ist aber kein Muss. Alle Inhalte funktionieren ohne Git.
 |--------|-------|
 | `setup/` | R und RStudio installieren, Dateien/Pfade verstehen |
 | `sessions/session_XX/` | Pro Woche: `session_XX.Rproj`, **`README.md`** (Aufgabenblatt; auf GitHub unter der Ordnerliste sichtbar) oder bis zur Umstellung zusätzlich `*_uebungen.Rmd`/`*_hausaufgaben.*`, Daten in `data/`, dein Arbeitsskript in `scripts/` |
-| `full_data/` | Zentrale Ablage des großen `owid_data.csv` — kopieren, wenn die Aufgaben ihn im Sitzungsordner erwarten |
+| `full_data/` | Zentrale Ablage von `owid_data.csv`; Sitzungs-Skripte greifen darauf zu, solange Repo-Struktur erhalten bleibt (siehe [sessions/README](sessions/README.md)) |
 | `resources/` | Troubleshooting, Tastenkürzel, Leitfäden (Interpretation, KI-Nutzung, Code-Stil, …) |
 
 **So arbeitest du:** Übungen und Hausaufgaben stehen zusammen auf **einem Aufgabenblatt** als **`README.md`** im jeweiligen Sitzungsordner — auf GitHub wird es unter der Liste der Ordner und Dateien angezeigt (kein Extra-Klick). Ältere Sitzungen können zusätzlich `.Rmd`‑Dateien haben (zum Lesen ggf. knitten). Deinen Code schreibst du in **ein** Skript pro Sitzung — z.B. [`sessions/session_03/scripts/session_03_skript.R`](sessions/session_03/scripts/session_03_skript.R). Öffne **immer zuerst** die `session_XX.Rproj`‑Datei im Sitzungsordner, damit `here()` die richtigen Pfade findet.
@@ -166,7 +166,7 @@ Typischer Inhalt eines Sitzungsordners:
 - `session_XX.Rproj`
 - Haupt-Aufgabenblatt **`README.md`** (und bei älteren Sitzungen ggf. `*_uebungen.Rmd`/`*_hausaufgaben.Rmd`)
 - `scripts/session_XX_skript.R` — deine eine Datei für Code diese Woche (bei älteren Sitzungen ggf. noch `*_template.R`)
-- `data/` — Toy-Daten für die Übung; oft zusätzlich Anweisungen, wenn `owid_data.csv` aus `full_data/` kopiert werden soll
+- `data/` — vor allem Toy-Daten für die Übung; der **volle** `owid_data.csv` liegt zentral unter **`full_data/`** auf Repo-Ebene (Pfad aus dem Skript wie `here(.., "..", "full_data", …)`, siehe jeweilige Sitzung)
 
 **Orientierung nachholen oder „von vorne" im Sitzungsordner:** Lade den betreffenden `session_XX`‑Ordner frisch vom Repository (oder aus dem Backup deiner Abgabe). Es gibt kein separates „Kernprojekt" und keine Snapshot-Ordner mehr — die Arbeitsweise ist bewusst schlank gehalten.
 

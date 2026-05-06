@@ -68,13 +68,15 @@ Error: cannot open file 'data/owid_data.csv': No such file or directory
 Warning message: In read.csv(...) : file not found
 ```
 
+Ähnliche Meldungen gibt es beim OWID‑Laden, wenn `full_data/owid_data.csv` vom Sitzungsordner aus nicht erreichbar ist (falscher Entpack‑Ordner oder nur Sitzungs‑ZIP ohne Gesamtrepo).
+
 Das ist einer der häufigsten Fehler — und er hat fast immer eine von drei Ursachen. Im Seminar arbeitest du **im jeweiligen Sitzungsordner** (`sessions/session_XX/`); später im Semester kann es für den Abschlussbericht noch ein **eigenes Projekt** geben — die folgenden Schritte gelten vor allem für Sitzungen.
 
 ### Ursache 1: Das RStudio-Projekt ist nicht geöffnet (falscher Arbeitskontext)
 
 **Test:** Schau in die obere rechte Ecke von RStudio. Steht dort `Project: (None)` oder ein anderer Projektname als deine aktuelle Sitzung?
 
-Wenn das Projekt nicht stimmt (oder `(None)`), weiß `here()` nicht, von wo aus es Pfade wie `data/owid_data.csv` aufbauen soll.
+Wenn das Projekt nicht stimmt (oder `(None)`), weiß `here()` nicht, von wo aus es Pfade bauen soll — etwa `data/toy_data_….csv` im Sitzungsordner oder **`../../full_data/owid_data.csv`** relativ zum Projekt‑Stamm.
 
 **Lösung (empfohlen):**
 1. Schließe RStudio (optional, aber oft am klarsten)
@@ -95,7 +97,7 @@ Siehst du die erwartete Datei in der Ausgabe? Wenn nicht, stimmt entweder der Or
 **Lösung:**
 - Öffne den **Files-Browser** in RStudio und prüfe `session_XX/data/`
 - **Toy-Daten** (Übungen) liegen dort mit Namen wie `toy_data_session_03.csv`
-- **`owid_data.csv` für Hausaufgaben:** Wenn die Aufgabenstellung ihn im Sitzungs-`data/` erwartet er aber fehlt, kopiere ihn aus **`full_data/owid_data.csv`** des Repositories in **`sessions/session_XX/data/`** (siehe auch die `README.md` im jeweiligen `data/`-Ordner)
+- **OWID für Hausaufgaben:** Das Skript erwartet `full_data/owid_data.csv` **zwei Ebenen über** dem Sitzungsordner (also `sessions` und `full_data` liegen unter derselben Repo-Wurzel). Fehlt die Datei oder der Ordner `full_data/`: **komplettes Repository entpacken** oder `full_data/` neben `sessions/` legen (siehe [sessions/README.md](../../sessions/README.md) und die `data/README.md` der Sitzung)
 - **Dateiname exakt prüfen** — z. B. `toy_data_session_03.csv` vs. `toy_data_session03.csv`
 
 ### Ursache 3: `here()` wird nicht geladen
@@ -259,7 +261,7 @@ Benenne deinen aktuellen Sitzungsordner um oder kopiere z. B. `scripts/session
 
 **Schritt 4 — Daten ergänzen**
 
-- Liegt **`owid_data.csv`** im `data/` dieser Sitzung nicht mehr dabei oder war nicht im ZIP: kopiere sie aus **`full_data/owid_data.csv`** in **`sessions/session_XX/data/`** (sofern das Aufgabenblatt oder die `README` im `data/`-Ordner das verlangt).
+- Fehlt die zentrale Datei **`full_data/owid_data.csv`**: Repository vollständig neu herunterladen/entpacken oder den Ordner **`full_data/`** mit **`owid_data.csv`** wieder neben **`sessions/`** ablegen — nicht mehr nötig, die CSV in jeden `session_XX/data/` zu kopieren.
 
 **Schritt 5 — Projekt wieder öffnen**
 

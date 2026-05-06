@@ -43,7 +43,7 @@ Am Ende dieser Sitzung wirst du:
 
 ### Zielddiagramm: Verteilung der Lebenserwartung 2015
 
-So (oder sehr ähnlich) soll deine **Zielgrafik** nach den Hausaufgaben aussehen — ohne dass hier schon der R‑Code zur Erzeugung steht (den entwickelst du in HA3):
+So (oder sehr ähnlich) soll deine **Zielgrafik** nach den Hausaufgaben aussehen:
 
 ![Verteilung der Lebenserwartung bei Geburt (2015) — Referenzgrafik zur Zieldarstellung dieser Sitzung](figures/preview_le_histogram_2015.png)
 
@@ -64,6 +64,9 @@ Alle Code-Aufgaben dieser Sitzung bearbeitest du in **einem einzigen Skript**:
 1. Vergewissere dich, dass du das Projekt `session_03.Rproj` geöffnet hast. Oben rechts in RStudio sollte klein **„session_03"** stehen.
 2. Öffne das Skript `scripts/session_03_skript.R`. Klicke dazu oben links auf das kleine Ordner-Icon in RStudio, gehe in den `scripts`-Ordner und öffne dort die Datei.
 3. **Führe zuerst den SETUP-Abschnitt aus** — er ist am Anfang des Skripts klar mit `SETUP — ZUERST AUSFÜHREN!` markiert. Markiere alle Zeilen bis zur nächsten Sektion und drücke `Ctrl+Enter` / `Cmd+Enter`. Damit werden Pakete geladen und beide Datensätze (Übungen und Hausaufgaben) vorbereitet.
+
+   > **`owid_data.csv` liegt zentral unter `full_data/`** im Hauptordner des Repos (nicht in `sessions/session_03/data/`). Dein Projekt sollte diese Struktur haben: Ordner **`full_data/`** und Ordner **`sessions/`** unter derselben übergeordneten Ebene. Wenn beim Laden ein Fehler „Datei nicht gefunden“ kommt, stimmt diese Ordnerstruktur vermutlich nicht — siehe [Datenhinweise](data/README.md) und [Fehlerbehebung](../../resources/troubleshooting/reset_and_recover.md).
+
 4. Bearbeite dann die Übungen der Reihe nach in den Abschnitten `ÜBUNGEN`.
 5. Die Hausaufgaben bearbeitest du zu Hause im Abschnitt `HAUSAUFGABEN`.
 
@@ -75,7 +78,7 @@ Tipps und Lösungen findest du als aufklappbare Abschnitte direkt unterhalb jede
 
 ---
 
-<h2 id="einleitung">Einleitung: Unser R-Abenteuer beginnt!</h2>
+<h2 id="einleitung">Einleitung: Unser Rbenteuer beginnt!</h2>
 
 In Session 2 hast du Werte von Hand als Vektor eingegeben. Ab heute arbeiten wir mit echten Daten aus einer echten Datei: Wir laden einen CSV-Datensatz, prüfen seine Struktur und erstellen erste Visualisierungen.
 
@@ -118,7 +121,7 @@ Ein Datensatz sollte immer einem Objekt zugewiesen werden, damit wir ihn weiterv
 mein_vektor <- c(1, 2, 3)
 ```
 
-Genauso:
+Das alles zusammengesetzt erlaubt uns, die Daten zu laden und in einem Objekt zu speichern:
 
 ```r
 session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
@@ -128,8 +131,10 @@ session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 
 Schreibe den Code für a) bis c) in den Abschnitt **Ü1** in `scripts/session_03_skript.R`.
 
-a) Lade `data/toy_data_session_03.csv` in ein Objekt namens `session_03_daten`.
-b) Lass dir `session_03_daten` ausgeben (tippe einfach den Objektnamen und führe die Zeile aus).
+a) Lade `data/toy_data_session_03.csv` in ein Objekt namens `session_03_daten`.  
+
+b) Lass dir `session_03_daten` ausgeben (tippe einfach den Objektnamen und führe die Zeile aus).  
+
 c) Prüfe mit `class()`, welcher Objekttyp das neue Objekt ist.
 
 <br>
@@ -237,14 +242,14 @@ ncol(session_03_daten)
 
 <h3 id="ue3">Ü3 · Datentypen verstehen</h3>
 
-Mit `$` greifst du einzelne Spalten aus einem Tibble heraus:
+Mit `$` greifst du einzelne Spalten (=Variablen) aus einem Tibble heraus. Zum Beispiel greifen die folgenden beiden Befehle die Spalten `country` und `gdp_per_capita` heraus.
 
 ```r
 session_03_daten$country
 session_03_daten$gdp_per_capita
 ```
 
-Mit `class()` siehst du den Datentyp einer Spalte:
+Die so angewählten Spalten kannst du direkt in Funktionen einspeisen. Zum Beispiel kannst du mit `class()` den Datentyp einer Spalte sehen:
 
 ```r
 class(session_03_daten$country)
@@ -254,11 +259,11 @@ class(session_03_daten$country)
 
 Schreibe den Code in den Abschnitt **Ü3** in `scripts/session_03_skript.R`.
 
-a) Prüfe die Klassen von `country`, `region`, `year`, `gdp_per_capita` und `life_expectancy_birth`.
-b) Welche Variablen sind Text (`character`), welche sind Zahlen (`numeric` oder `integer`)?
-c) Warum wäre `mean(session_03_daten$country)` unsinnig? Probiere es aus: Berechne `mean()` einmal auf `country` und einmal auf `gdp_per_capita` und vergleiche die Ergebnisse.
+a) Prüfe die Klassen von `country`, `region`, `year`, `gdp_per_capita` und `life_expectancy_birth`.  
 
-> **👥 Partneraufgabe:** Besprich mit deiner Nachbar:in: Was kannst du mit jeder Variablen machen, was nicht? Notiere 1–2 Beispiele als Kommentar.
+b) Welche Variablen sind Text (`character`), welche sind Zahlen (`numeric` oder `integer`)?  
+
+c) Warum wäre `mean(session_03_daten$country)` unsinnig? Probiere es aus: Berechne `mean()` einmal auf `country` und einmal auf `gdp_per_capita` und vergleiche die Ergebnisse.
 
 <br>
 
@@ -365,7 +370,7 @@ ggplot(session_03_daten, aes(x = life_expectancy_birth)) +
 - `geom_histogram()` zeichnet das Histogramm.
 - `+` verbindet Schichten der Grafik.
 
-Mit `labs()` fügen wir sinnvolle Beschriftungen hinzu:
+Mit `labs()` (von engl. *labels*) fügen wir sinnvolle Beschriftungen hinzu:
 
 ```r
 ggplot(session_03_daten, aes(x = life_expectancy_birth)) +
@@ -383,7 +388,9 @@ ggplot(session_03_daten, aes(x = life_expectancy_birth)) +
 Schreibe den Code in den Abschnitt **Ü5** in `scripts/session_03_skript.R`.
 
 a) Erstelle ein Histogramm von `child_mortality_rate` aus `session_03_daten`.
+
 b) Füge dem Histogramm aus a) mit `labs()` einen Titel, Achsenbeschriftungen und eine Quellenangabe hinzu.
+
 c) Erstelle ein zweites Histogramm für `gdp_per_capita`.
 
 <br>
@@ -481,6 +488,7 @@ In dieser Sitzung führst du erstmals ein vollständiges Skript durch. Gute Komm
 Schreibe in deinen Abschnitt **Ü7** in `scripts/session_03_skript.R`:
 
 - Für jede Übung eine kurze Abschnittsüberschrift
+
 - Mindestens 2 Kommentare, die erklären **warum** etwas gemacht wird (nicht nur was)
 
 Schlechtes Beispiel:
@@ -567,6 +575,7 @@ In `geom_histogram()` legt `bins` fest, wie viele Gruppen gebildet werden.
 Erstelle zwei Histogramme für `gdp_per_capita`:
 
 - eins mit `bins = 6`
+
 - eins mit `bins = 15`
 
 Welche Einstellung ist informativer? Notiere deine Begründung als Kommentar.
