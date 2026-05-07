@@ -22,7 +22,7 @@ Neue Materialien werden jede Woche hinzugefügt. So bekommst du die aktuellen Un
 6. Entpacke die ZIP-Datei dort.
 7. Lösche die ZIP-Datei.
 
-> **Hausaufgaben mit dem vollen OWID-Datensatz (z. B. ab Session 3):** Die große Datei `owid_data.csv` liegt **einmal zentral** im Ordner **`full_data/`** neben **`sessions/`** im Hauptordner des Repositories. Die Skripte laden sie mit Pfaden wie `here(.., "..", "full_data", "owid_data.csv")`.
+> **Hausaufgaben mit dem vollen OWID-Datensatz (z. B. ab Session 3):** Die große Datei `owid_data.csv` liegt **einmal zentral** im Ordner **`full_data/`** neben **`sessions/`** im Hauptordner des Repositories. Die Skripte laden sie mit Pfaden wie `here("..", "..", "full_data", "owid_data.csv")`.
 >
 > Das funktioniert nur, wenn du die **Ordnerstruktur des gesamten Repos** behältst. **Empfehlung:** Lade die **komplette** Repository-ZIP (GitHub-Starseite → grüner Button **Code** → **Download ZIP**) und packe sie so aus, dass nebeneinander stehen z. B. `sessions/`, `full_data/` und `setup/`. Wenn du wirklich **nur** einen Sitzungsordner als ZIP einzeln herunterlädst, fehlt `full_data/` — dann musst du `owid_data.csv` zusätzlich besorgen und unter `…/full_data/owid_data.csv` ablegen (**neben** deinem übergeordneten `sessions/`-Ordner), wie in der `data/README.md` der jeweiligen Sitzung beschrieben.
 
