@@ -266,4 +266,18 @@ Wenn ihr noch mehr R lernen wollt oder andere Statistik-Softwares ausprobieren w
 
 https://www.datacamp.com/groups/shared_links/563eb7dbab6c6e6c10a5239f80e181718e3b46f94d548c257f7540fdf3b25e86
 
+Hier ist eine Liste mit Datacamp-Kursen, mit denen ihr starten könntet:
+
+- Introduction to the Tidyverse (David Robinson)
+- Introduction to Importing Data in R (Filip Schouwenaars) 
+- Transforming Data with dplyr (James Chapman) 
+- Reshaping Data with tidyr (Jerome Boeye) 
+- Joining data with dplyr Cleaning data in R (Maggie Matsui) 
+- Introduction to Data Visualization with ggplot2 (Rick Scavetta) 
+- Categorical Data in the Tidyverse (Emily Robinson) 
+- Dealing with missing data in R (David Campos und weitere) 
+- Communicating with Data in the Tidyverse (Timo Grossenbacher) 
+- Foundations of Functional Programming with purrr 
+- Exploratory Data Analysis with R (Andrew Bray)
+
 Das Buch [R for Data Science](https://r4ds.hadley.nz) ist auch eine super Quelle, um weiter in R einzusteigen. Es ist online umsonst verfügbar.

@@ -41,7 +41,7 @@ Am Ende dieser Sitzung wirst du:
 
 ---
 
-### Zielddiagramm: Verteilung der Lebenserwartung 2015
+### Zieldiagramm: Verteilung der Lebenserwartung 2015
 
 So (oder sehr ähnlich) soll deine **Zielgrafik** nach den Hausaufgaben aussehen:
 

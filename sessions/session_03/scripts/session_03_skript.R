@@ -21,9 +21,9 @@ library(tidyverse)
 library(here)
 
 
-###******************************************###
+###****************************************** ###
 ##### Vollständigen OWID-Datensatz laden #####
-###******************************************###
+###****************************************** ###
 
 # owid_daten wird in den Hausaufgaben verwendet.
 # Pfad zur zentralen Datei im Kursrepository (einmal gespeichert, alle Sitzungen):
@@ -40,11 +40,6 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 
 
-###*******************###
-##### ***ÜBUNGEN*** #####
-###*******************###
-
-
 ###***********************###
 ##### Ü1 · Datensatz laden #####
 ###***********************###
@@ -52,13 +47,17 @@ session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 # a) Lade toy_data_session_03.csv in ein Objekt namens session_03_daten.
 #    (Du hast das bereits im SETUP getan — hier übst du den Ladebefehl selbst.)
 
+session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 
 
 # b) Lass dir session_03_daten ausgeben.
 
+session_03_daten
 
 
 # c) Prüfe mit class(), welcher Objekttyp das ist.
+
+class(session_03_daten)
 
 
 
@@ -70,11 +69,17 @@ session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 # Wende auf session_03_daten an:
 # glimpse(), head() (erste 5 Zeilen), tail() (letzte 5 Zeilen), nrow(), ncol()
 
+glimpse(session_03_daten)
+head(session_03_daten, 5)
+tail(session_03_daten, 5)
+nrow(session_03_daten)
+ncol(session_03_daten)
 
 
 # Notiere 2 kurze Beobachtungen als Kommentar:
-# Beobachtung 1:
-# Beobachtung 2:
+# Beobachtung 1: Der Toy-Datensatz hat 20 Zeilen und 6 Spalten (Länder plus Messvariablen).
+# Beobachtung 2: country und region sind Text (character); year und die drei Messgrößen sind numerisch.
+
 
 
 
@@ -86,14 +91,24 @@ session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 # a) Prüfe die Klassen von: country, region, year, gdp_per_capita,
 #    life_expectancy_birth
 
+class(session_03_daten$country)
+class(session_03_daten$region)
+class(session_03_daten$year)
+class(session_03_daten$gdp_per_capita)
+class(session_03_daten$life_expectancy_birth)
 
 
 # b) Berechne mean() auf country und gdp_per_capita — was passiert?
 
+mean(session_03_daten$country)
+mean(session_03_daten$gdp_per_capita)
 
 
 # Partneraufgabe: Was kannst du mit jeder Variablen machen, was nicht?
 # Notiere 1-2 Beispiele als Kommentar:
+# Mit numerischen Variablen (gdp_per_capita, life_expectancy_birth) sind Mittelwert, Histogramm
+# oder Korrelation möglich. Mit Text (country) ergibt mean() keine sinnvolle Zahl.
+
 
 
 
@@ -103,17 +118,22 @@ session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 ###**********************************###
 
 # a) Führe diesen absichtlich falschen Befehl aus:
-read_csv(here("data", "toy_data_session03.csv"))
+# Hinweis: In der Unterrichtsphase aktiv ausführen. Für einen Durchlauf des
+# Gesamtskripts ist die Zeile auskommentiert, sonst bricht hier alles ab.
+#
+# read_csv(here("data", "toy_data_session03.csv"))
 
 # b) Diagnose (was ist das Problem?):
-#
+# Falsche Zeichenkette im Dateinamen (Unterstrich fehlt: session03 statt session_03).
 
 # c) Korrigiert laden:
 
+session_03_daten <- read_csv(here("data", "toy_data_session_03.csv"))
 
 
 # d) Fehlerregel als Kommentar:
-#
+# Dateinamen immer Zeichen für Zeichen prüfen — Unterstriche, Groß-/Kleinschreibung, Endung `.csv`.
+
 
 
 
@@ -124,13 +144,32 @@ read_csv(here("data", "toy_data_session03.csv"))
 
 # a) Histogramm von child_mortality_rate aus session_03_daten:
 
+ggplot(session_03_daten, aes(x = child_mortality_rate)) +
+  geom_histogram(bins = 20, fill = "#4472C4", color = "white")
 
 
 # b) Füge labs() hinzu (Titel, x-Achse, y-Achse, Quellenangabe):
 
+ggplot(session_03_daten, aes(x = child_mortality_rate)) +
+  geom_histogram(bins = 20, fill = "#4472C4", color = "white") +
+  labs(
+    title = "Verteilung der Kindessterblichkeit",
+    x = "Kindessterblichkeit",
+    y = "Anzahl Beobachtungen",
+    caption = "Quelle: Our World in Data"
+  )
 
 
 # c) Histogramm von gdp_per_capita:
+
+ggplot(session_03_daten, aes(x = gdp_per_capita)) +
+  geom_histogram(bins = 20, fill = "#E07B39", color = "white") +
+  labs(
+    title = "Verteilung des BIP pro Kopf",
+    x = "BIP pro Kopf (USD)",
+    y = "Anzahl Beobachtungen",
+    caption = "Quelle: Our World in Data"
+  )
 
 
 
@@ -141,9 +180,10 @@ read_csv(here("data", "toy_data_session03.csv"))
 
 # Partneraufgabe — kein neuer Code notwendig.
 # Besprich mit deiner Nachbar:in und halte 3 Beobachtungen als Kommentar fest:
-# 1.
-# 2.
-# 3.
+# 1. Bei child_mortality_rate liegen die meisten Länder bei niedrigen Werten; wenige sehr hohe Werte.
+# 2. Die Verteilung der Kindessterblichkeit ist rechtsschief.
+# 3. gdp_per_capita wirkt ebenfalls rechtsschief — Ungleichheit zeigt sich in beiden Dimensionen.
+
 
 
 
@@ -155,6 +195,16 @@ read_csv(here("data", "toy_data_session03.csv"))
 # Geh durch dein Skript und ergänze:
 # - Für jede Übung eine kurze Abschnittsüberschrift
 # - Mindestens 2 Kommentare, die erklären WARUM (nicht nur was) etwas gemacht wird
+
+# === Übung 2: Datensatz strukturell erkunden ===
+# Wir prüfen zuerst die Struktur, damit wir wissen, welche Variablen numerisch sind
+# und welche Grafiken später sinnvoll sind.
+
+glimpse(session_03_daten)
+
+# Wir notieren nrow/ncol explizit, um die Datengröße gegen andere Datensätze abzuschätzen.
+nrow(session_03_daten)
+ncol(session_03_daten)
 
 
 
