@@ -12,10 +12,12 @@
 - [Wo du arbeitest](#wo-du-arbeitest)
 - [Einleitung](#einleitung)
 - [Hausaufgaben](#hausaufgaben)
-  - [HA1 · Datenstruktur erkunden](#ha1)
-  - [HA2 · Variablentypen verstehen](#ha2)
+  - [HA1 · Den Datensatz systematisch erkunden](#ha1)
+  - [HA2 · Variablentypen und ihre Tücken](#ha2)
   - [HA3 · Fehlende Werte untersuchen](#ha3)
-  - [HA4 · Kindermortalität visualisieren](#ha4)
+  - [HA4 · Histogramm: Verteilung des Wasserzugangs](#ha4)
+  - [HA5 · Linienplot: Entwicklung über die Zeit](#ha5)
+  - [HA6 · Streudiagramm: Wasserzugang und Lebenserwartung](#ha6)
   - [Bonus-Hausaufgaben](#bonus-hausaufgaben)
 - [Abgabe](#abgabe)
 
@@ -23,34 +25,29 @@
 
 <h2 id="endprodukt">Dein Endprodukt</h2>
 
-**Frage dieser Session:** Wie hat sich die Kindermortalität weltweit verteilt — und was verrät uns diese Verteilung über globale Ungleichheit?
+**Frage dieser Session:** Wie ist der Zugang zu sauberem Trinkwasser weltweit verteilt — und hängt das mit der Lebenserwartung zusammen?
 
-Am Ende dieser Hausaufgaben wirst du:
+Am Ende dieser Hausaufgaben wirst du drei Plots erstellt haben:
 
-- die Datenstruktur des OWID-Datensatzes systematisch verstehen
-- Variablentypen erkennen und erklären können
-- fehlende Werte gezielt untersuchen und einordnen können
-- ein aussagekräftiges, beschriftetes Histogramm der Kindermortalität erstellt haben
-
-So (oder sehr ähnlich) soll deine **Zielgrafik** aussehen — ein Histogramm der Kindermortalitätsrate aus dem Jahr 2015, das die globale Ungleichheit im Überleben von Kindern sichtbar macht:
+**Plot 1 — Histogramm:** Wie ist der Wasserzugang 2020 weltweit verteilt?
 
 ```
-Kindermortalität bei Geburt, 2015 (Todesfälle pro 100 Lebendgeburten)
-
 Anzahl Länder
-  30 |     ████
-  25 |     ████
-  20 |     ████
-  15 | ████████ ██
-  10 | ████████████ ██
-   5 | ██████████████████ ██    ██
+  50 |  ██
+  40 |  ████
+  30 |  ████                                  ████
+  20 |  ████                             ████████
+  10 |  ████               ██       ████████████
    0 +─────────────────────────────────────────────
-     0     20     40     60     80    100
+     0%    20%    40%    60%    80%   100%
+           Bevölkerungsanteil mit sicherem Wasserzugang
 ```
 
-*Diese ASCII-Skizze zeigt nur die ungefähre Form — dein ggplot-Histogramm wird deutlich schöner aussehen und muss beschriftet sein.*
+**Plot 2 — Linienplot:** Wie hat sich der Wasserzugang in ausgewählten Ländern seit 2000 entwickelt?
 
-Die Verteilung wird dir etwas zeigen, das auf den ersten Blick überrascht: Die Welt ist nicht einfach „arm" oder „reich" — es gibt eine tatsächliche **bimodale Struktur** in der Kindersterblichkeit. Schau genau hin.
+**Plot 3 — Streudiagramm:** Länder mit besserem Wasserzugang — leben ihre Einwohner:innen länger?
+
+*Die ASCII-Skizzen zeigen nur die ungefähre Form — deine ggplot-Grafiken werden deutlich schöner aussehen und müssen beschriftet sein.*
 
 ---
 
@@ -62,70 +59,74 @@ Alle Code-Aufgaben bearbeitest du in **einem einzigen Skript**:
 
 ### Schritt-für-Schritt
 
-1. Vergewissere dich, dass du das **korrekte RStudio-Projekt** geöffnet hast. Oben rechts in RStudio sollte der Projektname erscheinen. Wenn nicht: Öffne die `.Rproj`-Datei im Projektordner per Doppelklick.
+1. Vergewissere dich, dass du das korrekte RStudio-Projekt geöffnet hast. Oben rechts in RStudio sollte der Projektname erscheinen. Wenn nicht: Öffne die `.Rproj`-Datei per Doppelklick.
 2. Öffne das Skript `scripts/session_04_skript.R`.
-3. **Führe zuerst den SETUP-Abschnitt aus** — er ist im Skript mit `# SETUP — ZUERST AUSFÜHREN!` markiert. Dort werden Pakete geladen und der OWID-Datensatz eingelesen.
+3. **Führe zuerst den SETUP-Abschnitt aus** — er lädt die nötigen Pakete und den OWID-Datensatz.
 
-   > **`owid_data.csv` liegt unter `full_data/`** im Hauptordner des Repos, nicht im Session-Ordner. Wenn ein Fehler „Datei nicht gefunden" erscheint, stimmt wahrscheinlich der Pfad nicht — vergleiche deine Ordnerstruktur mit der im Repo und schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach.
+   > **`owid_data.csv` liegt unter `full_data/`** im Hauptordner des Repos. Wenn ein „Datei nicht gefunden"-Fehler erscheint, vergleiche deine Ordnerstruktur mit der im Repo und schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach.
 
-4. Bearbeite die Hausaufgaben danach der Reihe nach in den markierten Abschnitten `HA1` bis `HA4`.
+4. Bearbeite die Hausaufgaben der Reihe nach.
 
 > **Wichtig:** Schreibe deinen Code immer ins Skript, nicht in die Konsole. Nur so bleibt er gespeichert.
 
 ---
 
-<h2 id="einleitung">Einleitung: Daten richtig lesen, bevor man sie analysiert</h2>
+<h2 id="einleitung">Einleitung: Was steckt eigentlich in einem Datensatz?</h2>
 
-In Session 3 hast du gelernt, Daten zu laden und erste Histogramme zu erstellen. Diese Session geht tiefer: Bevor eine Analyse sinnvoll ist, müssen wir verstehen, **was** die Daten überhaupt sind — also welche Variablentypen vorliegen, wie die Datenstruktur aussieht und wo Werte fehlen.
+In Session 3 hast du einen Datensatz geladen und ein erstes Histogramm erstellt. Heute gehen wir einen Schritt zurück und fragen: **Was ist ein Datensatz in R überhaupt?** Welche Arten von Variablen gibt es — und warum spielt das eine Rolle? Und was passiert, wenn Werte fehlen?
 
-Das ist keine trockene Pflichtübung. Wer diesen Schritt überspringt, produziert regelmäßig Fehler, die schwer zu finden sind: falsche Berechnungen, irreführende Grafiken, Funktionen die abstürzen. Gute Datenanalyse beginnt immer mit einem systematischen Blick auf die Daten.
+Das klingt technisch, ist aber der Unterschied zwischen einer Analyse, die funktioniert, und einer, die einen kryptischen Fehler produziert.
 
-Und die substantielle Frage dieser Session ist alles andere als langweilig: **Kindermortalität** — also wie viele Kinder unter fünf Jahren pro 100 Lebendgeburten sterben — ist einer der deutlichsten Indikatoren für globale Ungleichheit. Hinter jeder Zahl stehen echte Leben.
+Unser inhaltlicher Fokus: **Zugang zu sauberem Trinkwasser** (`access_to_water`). Der Datensatz misst den Anteil der Bevölkerung, der Zugang zu sicher aufbereitetem Trinkwasser hat — von unter 2 % bis fast 100 %. Hinter diesen Zahlen steckt eine der grundlegendsten Dimensionen globaler Ungleichheit: Ob man sich darauf verlassen kann, dass das Wasser, das man trinkt, nicht krank macht.
 
 ---
 
 <h2 id="hausaufgaben">Hausaufgaben</h2>
 
-<h3 id="ha1">HA1 · Datenstruktur erkunden</h3>
+<h3 id="ha1">HA1 · Den Datensatz systematisch erkunden</h3>
 
-### Was ist neu?
+### Was ist ein Tibble?
 
-In dieser Aufgabe lernst du drei Funktionen kennen, mit denen du einen Datensatz systematisch *von außen* anschaust, bevor du ihn analysierst.
+Wenn du Daten mit `read_csv()` lädst, bekommst du kein gewöhnliches R-Objekt — du bekommst ein **Tibble**. Ein Tibble ist die tidyverse-Version eines klassischen `data.frame`. Es verhält sich fast gleich, gibt aber deutlich bessere Fehlermeldungen und zeigt beim Ausdrucken nur die ersten Zeilen und Spalten — kein Endlos-Output, der deine Konsole füllt.
+
+Zwei Funktionen helfen dir, einen Tibble systematisch kennen zu lernen:
 
 | Funktion | Was sie zeigt |
 |----------|--------------|
-| `glimpse()` | Kompakte Übersicht: Variablennamen, Typen, erste Werte |
-| `summary()` | Für numerische Variablen: Min, Max, Mittelwert, Median, NA-Anzahl |
-| `names()` | Alle Spaltennamen als Zeichenvektor |
-
-`summary()` ist dabei besonders praktisch: Sie zeigt dir auf einen Blick die Wertebereiche aller Variablen — und markiert fehlende Werte mit `NA's:`.
+| `glimpse(datensatz)` | Kompakte Übersicht: Spaltennamen, Typen, erste Werte — alles auf einen Blick |
+| `summary(datensatz)` | Für numerische Spalten: Min, Max, Mittelwert, Median — und die Anzahl der fehlenden Werte (`NA's`) |
 
 ### Deine Aufgaben
 
 Schreibe den Code in den Abschnitt **HA1** in `scripts/session_04_skript.R`.
 
-a) Wende `glimpse()` auf den OWID-Datensatz an. Notiere anschließend im Skript als Kommentar: Wie viele Zeilen und Spalten hat der Datensatz?
+a) Wende `glimpse()` auf den OWID-Datensatz an. Notiere als Kommentar im Skript: Wie viele Zeilen und Spalten hat der Datensatz?
 
-b) Wende `summary()` auf den gesamten Datensatz an. Lies die Ausgabe durch. Notiere als Kommentar: Welche Variable hat nach erster Sicht die meisten fehlenden Werte?
+b) Wende `summary()` auf den gesamten Datensatz an. Schau dir die Ausgabe für `access_to_water` an: Was sind Minimum, Maximum und Median?
 
-c) Lass dir alle Spaltennamen mit `names()` ausgeben.
+c) Wende `summary()` gezielt auf **eine einzige Spalte** an — nutze dafür `$`:
 
-d) Schreibe als Kommentar: Welche drei Variablen könnten für eine Analyse globaler Ungleichheit besonders interessant sein? Begründe kurz (je 1 Satz).
+```r
+summary(owid_daten$access_to_water)
+```
+
+Notiere als Kommentar: Was fällt dir an den Werten auf?
+
+d) Schreibe 2–3 Sätze als Kommentar: Was sagt der Wertebereich von `access_to_water` über globale Ungleichheit aus?
 
 <br>
 
 <details>
 <summary><strong>Tipp</strong></summary>
 
-Rufe jede Funktion einmal auf, z. B.:
+`glimpse()` und `summary()` können auf den ganzen Datensatz oder auf eine einzelne Spalte angewendet werden:
 
 ```r
-glimpse(owid_daten)
-summary(owid_daten)
-names(owid_daten)
+glimpse(owid_daten)           # ganzer Datensatz
+summary(owid_daten$access_to_water)  # nur eine Spalte
 ```
 
-Für d) gibt es keine einzig richtige Antwort — schreib auf, was dich inhaltlich interessiert.
+Für die Kommentare gibt es keine einzig richtige Antwort — schreib, was du siehst.
 
 </details>
 
@@ -139,14 +140,14 @@ glimpse(owid_daten)
 # Der Datensatz hat ca. 75.000 Zeilen und 77 Spalten (je nach Version leicht abweichend).
 
 summary(owid_daten)
-# Nach erster Sicht hat z. B. gini sehr viele fehlende Werte.
+# access_to_water: Min ~1%, Median ~79%, Max 100%
 
-names(owid_daten)
+summary(owid_daten$access_to_water)
 
-# Interessante Variablen für globale Ungleichheit:
-# gini — misst Einkommensungleichheit direkt.
-# child_mortality_rate — zeigt, ob Kinder überleben, stark mit Armut verknüpft.
-# gdp — erlaubt Vergleiche des wirtschaftlichen Entwicklungsstandes.
+# access_to_water reicht von gut 1% bis 100%. Das heißt: In manchen Ländern
+# hat fast die gesamte Bevölkerung sicheres Trinkwasser — in anderen weniger
+# als 2 von 100 Menschen. Das ist ein extremes Ausmaß globaler Ungleichheit,
+# das eine fundamentale Grundbedingung des Lebens betrifft.
 ```
 
 </details>
@@ -157,56 +158,55 @@ names(owid_daten)
 
 ---
 
-<h3 id="ha2">HA2 · Variablentypen verstehen</h3>
+<h3 id="ha2">HA2 · Variablentypen und ihre Tücken</h3>
 
 ### Was ist neu?
 
-In R hat jede Variable einen **Typ** (auch *Klasse* genannt). Der Typ bestimmt, was R damit machen kann:
+Jede Spalte in einem Tibble hat einen **Typ**. Der Typ bestimmt, was R damit machen kann — und was nicht:
 
-| Typ | Beschreibung | Beispiel |
-|-----|-------------|---------|
-| `numeric` / `dbl` | Zahlen mit Dezimalstellen | `72.3`, `0.04` |
-| `integer` / `int` | Ganze Zahlen | `2015`, `42` |
-| `character` / `chr` | Text | `"Germany"`, `"Asia"` |
-| `factor` | Kategorien mit definierten Stufen | `"niedrig"`, `"mittel"`, `"hoch"` |
-| `logical` | Wahr/Falsch | `TRUE`, `FALSE` |
+| Typ | Abkürzung in `glimpse()` | Beispiel |
+|-----|--------------------------|---------|
+| Ganze Zahlen | `<int>` | `2015`, `42` |
+| Dezimalzahlen | `<dbl>` | `72.3`, `0.04` |
+| Text | `<chr>` | `"Germany"`, `"Asia"` |
+| Kategorien (geordnet) | `<fct>` | `"niedrig"`, `"mittel"`, `"hoch"` |
+| Wahr/Falsch | `<lgl>` | `TRUE`, `FALSE` |
 
-Du kannst den Typ einer einzelnen Spalte mit `class()` oder `typeof()` prüfen. Mit `$` greifst du auf eine Spalte zu:
+Mit `class()` kannst du den Typ einer einzelnen Spalte abfragen:
 
 ```r
-class(owid_daten$country)
-class(owid_daten$year)
-class(owid_daten$child_mortality_rate)
+class(owid_daten$country)            # "character"
+class(owid_daten$access_to_water)    # "numeric"
 ```
 
-Warum ist das wichtig? Funktionen reagieren auf Typen. `mean()` funktioniert auf `numeric`, aber nicht auf `character`. `ggplot()` behandelt eine Variable als `factor` anders als als `numeric`. Falsche Typen sind eine häufige Fehlerquelle.
+Warum ist das wichtig? Weil R Fehlermeldungen produziert, wenn du Funktionen auf den falschen Typ anwendest — und weil ggplot2 Variablen je nach Typ anders darstellt. `year` als Zahl ergibt eine kontinuierliche Achse; `year` als Faktor ergibt diskrete Gruppen.
 
 ### Deine Aufgaben
 
 Schreibe den Code in den Abschnitt **HA2** in `scripts/session_04_skript.R`.
 
-a) Bestimme die Klasse dieser Variablen mit `class()`:
-   - `country`
-   - `year`
-   - `world_region`
-   - `child_mortality_rate`
-   - `gini`
-   - `democracy_score_string`
+a) Bestimme den Typ dieser Variablen mit `class()`:
 
-b) **Debugging-Aufgabe:** Der folgende Code produziert einen Fehler. Führe ihn aus, lies die Fehlermeldung und erkläre im Kommentar, was das Problem ist und wie es sich beheben ließe:
+- `country`
+- `year`
+- `world_region`
+- `access_to_water`
+- `democracy_score_string`
+
+b) **Debugging-Aufgabe:** Der folgende Code erzeugt einen Fehler. Führe ihn aus, lies die Fehlermeldung genau und erkläre im Kommentar, was das Problem ist — und wie man es beheben würde:
 
 ```r
-mean(owid_daten$country)
+mean(owid_daten$world_region)
 ```
 
-c) **Denk-Aufgabe (kein Code nötig):** Die Variable `democracy_score` enthält die Werte 0, 1, 2 und 3, die politische Regime beschreiben (0 = geschlossene Autokratie, 3 = liberale Demokratie). Was ist ihr aktueller Typ? Wäre es besser, sie als `factor` zu behandeln? Schreibe 2–3 Sätze als Kommentar.
+c) **Denk-Aufgabe (kein Code nötig):** `year` hat den Typ `integer` (ganze Zahl). In einem Linienplot wäre das sinnvoll — R behandelt es als fortlaufende Zeitachse. Aber was würde passieren, wenn `year` fälschlicherweise als `character` gespeichert wäre? Schreibe 2 Sätze als Kommentar.
 
 <br>
 
 <details>
 <summary><strong>Tipp zu b)</strong></summary>
 
-Lies die Fehlermeldung genau: Was sagt R über den Typ des Arguments? `mean()` erwartet numerische Werte. `country` enthält Text. Das Problem ist der Typ — nicht ein Tippfehler.
+Lies die Fehlermeldung: Was sagt R über den Typ des Arguments? `mean()` braucht Zahlen. `world_region` enthält Text. Das ist der Konflikt — kein Tippfehler, sondern ein Typ-Fehler.
 
 </details>
 
@@ -216,24 +216,21 @@ Lies die Fehlermeldung genau: Was sagt R über den Typ des Arguments? `mean()` e
 <summary><strong>Lösung</strong></summary>
 
 ```r
-class(owid_daten$country)            # "character"
-class(owid_daten$year)               # "integer"
-class(owid_daten$world_region)       # "character"
-class(owid_daten$child_mortality_rate) # "numeric"
-class(owid_daten$gini)               # "numeric"
+class(owid_daten$country)               # "character"
+class(owid_daten$year)                  # "integer"
+class(owid_daten$world_region)          # "character"
+class(owid_daten$access_to_water)       # "numeric"
 class(owid_daten$democracy_score_string) # "character"
 
-mean(owid_daten$country)
-# Fehlermeldung: argument is not numeric or logical...
-# Problem: `country` ist vom Typ `character` (Text). Der Mittelwert von
-# Ländernamen ergibt keinen Sinn. Man müsste eine numerische Variable wählen,
-# z. B. mean(owid_daten$child_mortality_rate, na.rm = TRUE).
+mean(owid_daten$world_region)
+# Fehlermeldung: argument is not numeric or logical: returning NA
+# Problem: world_region ist Text ("Africa", "Europe", ...). Den Mittelwert
+# von Regionsnamen zu berechnen ergibt keinen Sinn. Man müsste eine
+# numerische Variable wählen, z. B.: mean(owid_daten$access_to_water, na.rm = TRUE)
 
-# democracy_score ist aktuell numeric (0–3).
-# Als Faktor wäre es besser, weil die Kategorien nominal sind — die Abstände
-# zwischen 0 und 1 vs. 2 und 3 sind nicht unbedingt gleich groß.
-# Als numeric könnte R irreführende Berechnungen erlauben (z. B. einen
-# "mittleren Regimetyp"), die inhaltlich wenig Sinn ergeben.
+# Wenn year als character gespeichert wäre, würde R es nicht als Zeitachse
+# behandeln — ggplot würde jeden Jahreswert als separate Kategorie darstellen,
+# was den Linienplot zerstören oder komplett unlesbar machen würde.
 ```
 
 </details>
@@ -248,21 +245,21 @@ mean(owid_daten$country)
 
 ### Was ist neu?
 
-Fehlende Werte (`NA` — *Not Available*) sind in echten Datensätzen unvermeidlich. R behandelt sie konsequent: Fast jede Berechnung mit einem `NA` ergibt wieder `NA`:
+Fehlende Werte heißen in R `NA` (*Not Available*). Sie entstehen, weil Daten nicht für jedes Land und jedes Jahr erhoben wurden. Das ist normal — aber `NA` ist ansteckend: Fast jede Berechnung mit einem `NA` gibt wieder `NA` zurück:
 
 ```r
-mean(c(1, 2, NA))       # ergibt NA
-mean(c(1, 2, NA), na.rm = TRUE)  # ergibt 1.5
+mean(c(10, 20, NA))               # ergibt: NA
+mean(c(10, 20, NA), na.rm = TRUE) # ergibt: 15
 ```
 
-`na.rm = TRUE` weist R an, `NA`-Werte vor der Berechnung zu ignorieren (*remove*). Das ist oft sinnvoll — aber du solltest wissen, wie viele Werte dabei wegfallen.
+`na.rm = TRUE` weist R an, `NA`-Werte vor der Berechnung zu entfernen (*remove*). Das ist oft nötig — aber du solltest wissen, wie viele Werte dabei wegfallen.
 
-Nützliche Funktionen für fehlende Werte:
+Nützliche Funktionen:
 
 ```r
-is.na(vektor)                # gibt TRUE/FALSE für jeden Wert zurück
-sum(is.na(vektor))           # zählt die fehlenden Werte
-sum(is.na(vektor)) / length(vektor) * 100  # Prozentanteil
+is.na(spalte)                    # TRUE/FALSE für jeden Wert
+sum(is.na(spalte))               # Anzahl fehlender Werte
+sum(is.na(spalte)) / nrow(datensatz) * 100  # Prozentanteil
 ```
 
 ### Deine Aufgaben
@@ -271,51 +268,46 @@ Schreibe den Code in den Abschnitt **HA3** in `scripts/session_04_skript.R`.
 
 #### HA3 A: Fehlende Werte zählen
 
-Berechne die Anzahl fehlender Werte für diese vier Variablen:
+Berechne die Anzahl fehlender Werte für diese drei Variablen:
 
-- `child_mortality_rate`
-- `gini`
-- `gdp`
+- `access_to_water`
 - `life_expectancy_birth`
+- `gini`
 
-Speichere jedes Ergebnis in einem sinnvoll benannten Objekt, z. B. `n_miss_child`.
+Speichere jedes Ergebnis in einem sinnvoll benannten Objekt (z. B. `n_miss_water`).
 
 #### HA3 B: Prozentanteile berechnen
 
-Berechne für jede der vier Variablen den Anteil fehlender Werte in Prozent:
+Berechne den prozentualen Anteil fehlender Werte für jede der drei Variablen.
 
-```r
-n_miss_child / nrow(owid_daten) * 100
-```
+#### HA3 C: Mittelwert mit und ohne `na.rm`
 
-#### HA3 C: Mittelwert mit und ohne NA-Behandlung
+Berechne den Mittelwert von `access_to_water`:
 
-Berechne den Mittelwert von `child_mortality_rate`:
+1. Ohne `na.rm = TRUE` — was liefert R?
+2. Mit `na.rm = TRUE` — was ist der Wert?
 
-1. Ohne `na.rm = TRUE` — was passiert?
-2. Mit `na.rm = TRUE` — was ist das Ergebnis?
-
-Erkläre den Unterschied als Kommentar im Skript.
+Schreibe einen Kommentar, der den Unterschied erklärt.
 
 #### HA3 D: Interpretieren
 
-Schreibe **3–5 Sätze** als Kommentar:
+Schreibe **3–4 Sätze** als Kommentar:
 
-- Welche Variable hat die meisten fehlenden Werte?
-- Was könnte der Grund dafür sein? (Denk an: Für welche Länder oder Jahre könnte diese Information schwer zu erheben sein?)
-- Welche Konsequenz hat das für Analysen, die diese Variable verwenden?
+- Welche der drei Variablen hat die meisten fehlenden Werte?
+- Was könnte der Grund dafür sein? (Tipp: Wofür braucht man Haushaltsbefragungen — und wer hat die Kapazitäten, diese regelmäßig durchzuführen?)
+- Was bedeutet das für eine Analyse, die diese Variable verwendet?
 
 <br>
 
 <details>
 <summary><strong>Tipp</strong></summary>
 
-Gehe in zwei Schritten vor:
+Schema für alle drei Variablen:
 
-1. `n_miss_child <- sum(is.na(owid_daten$child_mortality_rate))`
-2. `pct_miss_child <- n_miss_child / nrow(owid_daten) * 100`
-
-Wiederhole das Muster für die anderen drei Variablen.
+```r
+n_miss_water <- sum(is.na(owid_daten$access_to_water))
+pct_miss_water <- n_miss_water / nrow(owid_daten) * 100
+```
 
 </details>
 
@@ -325,35 +317,31 @@ Wiederhole das Muster für die anderen drei Variablen.
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA3 A: Fehlende Werte zählen
-n_miss_child <- sum(is.na(owid_daten$child_mortality_rate))
-n_miss_gini  <- sum(is.na(owid_daten$gini))
-n_miss_gdp   <- sum(is.na(owid_daten$gdp))
+# HA3 A
+n_miss_water <- sum(is.na(owid_daten$access_to_water))
 n_miss_le    <- sum(is.na(owid_daten$life_expectancy_birth))
+n_miss_gini  <- sum(is.na(owid_daten$gini))
 
-# HA3 B: Prozentanteile
-pct_miss_child <- n_miss_child / nrow(owid_daten) * 100
-pct_miss_gini  <- n_miss_gini  / nrow(owid_daten) * 100
-pct_miss_gdp   <- n_miss_gdp   / nrow(owid_daten) * 100
+# HA3 B
+pct_miss_water <- n_miss_water / nrow(owid_daten) * 100
 pct_miss_le    <- n_miss_le    / nrow(owid_daten) * 100
+pct_miss_gini  <- n_miss_gini  / nrow(owid_daten) * 100
 
-# HA3 C: Mittelwert mit und ohne na.rm
-mean(owid_daten$child_mortality_rate)             # ergibt NA
-mean(owid_daten$child_mortality_rate, na.rm = TRUE) # ergibt einen Zahlenwert
-# Ohne na.rm = TRUE "infiziert" ein einziges NA das gesamte Ergebnis.
-# Mit na.rm = TRUE werden NA-Werte ignoriert und der Mittelwert aus den
-# verfügbaren Werten berechnet. Man sollte dabei wissen, wie viele Werte
-# wegfallen — sonst kann das Ergebnis irreführend sein.
+# HA3 C
+mean(owid_daten$access_to_water)             # NA
+mean(owid_daten$access_to_water, na.rm = TRUE) # ca. 70
+# Ohne na.rm = TRUE "infiziert" ein einziges NA das gesamte Ergebnis —
+# R gibt NA zurück, weil es nicht sicher sein kann, wie der fehlende Wert
+# das Ergebnis beeinflusst hätte. Mit na.rm = TRUE werden NAs ignoriert
+# und der Mittelwert aus den verfügbaren Werten berechnet.
 
-# HA3 D: Interpretation
-# gini hat mit Abstand die meisten fehlenden Werte.
-# Gini-Koeffizienten erfordern Haushaltsbefragungen, die aufwändig und teuer
-# sind — viele Länder, besonders ärmere oder von Konflikten betroffene,
-# erheben diese Daten seltener oder gar nicht.
-# Für Analysen mit gini müssen wir immer prüfen, welche Länder und Jahre
-# tatsächlich abgedeckt sind — sonst besteht das Risiko, nur über eine
-# verzerrte Auswahl von Ländern zu sprechen (z. B. nur reichere Länder,
-# die häufiger Daten erheben).
+# HA3 D
+# gini hat mit Abstand die meisten fehlenden Werte. Der Gini-Koeffizient
+# erfordert repräsentative Haushaltsbefragungen — ein aufwändiges und teures
+# Verfahren, das viele Länder nicht jedes Jahr durchführen können.
+# Reichere Länder haben dafür häufiger die Kapazität. Das bedeutet: Wenn wir
+# nur Länder mit vollständigen gini-Daten analysieren, schauen wir
+# möglicherweise nur auf einen wohlhabenden Ausschnitt der Welt.
 ```
 
 </details>
@@ -364,15 +352,11 @@ mean(owid_daten$child_mortality_rate, na.rm = TRUE) # ergibt einen Zahlenwert
 
 ---
 
-<h3 id="ha4">HA4 · Kindermortalität visualisieren</h3>
+<h3 id="ha4">HA4 · Histogramm: Verteilung des Wasserzugangs</h3>
 
 ### Ziel
 
-Du erstellst das Histogramm, das am Anfang dieser Seite angedeutet wird: eine beschriftete Visualisierung der Kindermortalitätsrate aus dem vollständigen OWID-Datensatz für das Jahr 2015.
-
-### Hintergrund: Was ist Kindermortalität?
-
-Die Variable `child_mortality_rate` gibt an, wie viele Kinder unter fünf Jahren pro 100 Lebendgeburten sterben. Ein Wert von `5` bedeutet: 5 von 100 geborenen Kindern sterben vor ihrem fünften Geburtstag. Diese Zahl ist einer der stärksten Indikatoren für globale Ungleichheit — sie hängt von Gesundheitsversorgung, Ernährung, Wasser, Sanitäranlagen und politischer Stabilität ab.
+Du erstellst ein beschriftetes Histogramm des Wasserzugangs für das Jahr 2020. Die Verteilung hat eine charakteristische Form — sie ist nicht einfach schief, sondern zeigt zwei Häufungspunkte, sogenannte **Bimodalität**: Eine Gruppe von Ländern mit sehr niedrigem Wasserzugang und eine große Gruppe mit sehr hohem. Das ist kein statistisches Artefakt — es ist eine Aussage über die Welt.
 
 ### Aufgaben
 
@@ -381,65 +365,52 @@ Schreibe den Code in den Abschnitt **HA4** in `scripts/session_04_skript.R`.
 Der Abschnitt enthält bereits diese vorbereitete Zeile — führe sie zuerst aus:
 
 ```r
-owid_2015 <- owid_daten |> filter(year == 2015)
+owid_2020 <- owid_daten |>
+  filter(year == 2020) |>
+  distinct(country, .keep_all = TRUE)
 ```
 
-> `filter()` wird in Session 5 ausführlich eingeführt. Hier nutzt du es als Vorgabe: Es wählt nur die Zeilen aus, in denen `year == 2015` gilt — ein Querschnitt für ein einziges Jahr.
+> `filter()` wählt nur Zeilen mit `year == 2020`. `distinct()` entfernt doppelte Ländereinträge, die im Rohdatensatz vorkommen können. Beide Funktionen lernst du in Session 5 ausführlich kennen — hier nutzt du sie als Vorgabe.
 
 #### HA4 A: Plausibilitätschecks
 
-Führe aus:
+Führe aus und notiere deine Beobachtungen als Kommentar:
 
-- `nrow(owid_2015)` — wie viele Länder gibt es für 2015?
-- `summary(owid_2015$child_mortality_rate)` — welche Wertebereiche siehst du?
-- `sum(is.na(owid_2015$child_mortality_rate))` — wie viele Länder fehlen?
+- `nrow(owid_2020)` — wie viele Länder für 2020?
+- `summary(owid_2020$access_to_water)` — welche Werte siehst du?
+- `sum(is.na(owid_2020$access_to_water))` — wie viele Länder fehlen?
 
-Notiere deine Beobachtungen kurz als Kommentar.
+#### HA4 B: Histogramm erstellen und beschriften
 
-#### HA4 B: Histogramm erstellen
+Erstelle ein Histogramm von `access_to_water` mit `ggplot()` + `geom_histogram()`. Experimentiere mit `bins` (probiere 15, 25, 35) und wähle den Wert, der die Verteilung am klarsten zeigt.
 
-Erstelle ein Histogramm von `child_mortality_rate` aus `owid_2015` mit `ggplot()` und `geom_histogram()`.
+Füge mit `labs()` hinzu:
 
-Experimentiere mit dem `bins`-Argument (probiere z. B. `bins = 20` und `bins = 30`) und entscheide dich für die Version, die die Verteilung deiner Meinung nach am klarsten zeigt.
+- `title` — einen informativen Titel
+- `subtitle` — das Jahr und was gemessen wird
+- `x` und `y` — sinnvolle Achsenbeschriftungen
+- `caption` — Quellenangabe
 
-#### HA4 C: Plot beschriften
+Vergib dem Plot das Objekt `water_histogram` und gib ihn aus.
 
-Erweitere den Plot mit `labs()`:
+#### HA4 C: Farbe und Interpretation
 
-- einen klaren, informativen Titel
-- sinnvolle Achsenbeschriftungen (`x`, `y`)
-- einen Untertitel (`subtitle`) mit dem Jahr
-- eine Quellenangabe im `caption`
+Passe die Balkenfarbe an: `fill = "steelblue", color = "white"` im `geom_histogram()`-Aufruf. Probiere auch andere Farben — welche findest du für das Thema passend?
 
-Weise den beschrifteten Plot dem Objekt `child_mortality_histogram` zu.
+Schreibe **3–4 Sätze Interpretation** als Kommentar:
 
-#### HA4 D: Farbe und Stil anpassen
+- Siehst du die zwei Häufungspunkte?
+- Was bedeutet die Lücke dazwischen?
+- Was sagt die Verteilung über globale Ungleichheit beim Wasserzugang?
 
-Verändere den Plot ästhetisch mit diesen Argumenten in `geom_histogram()`:
-
-```r
-geom_histogram(bins = 25, fill = "steelblue", color = "white")
-```
-
-Probiere auch andere Farben aus (z. B. `"#c0392b"`, `"#27ae60"`, oder ein anderes [Hex-Farbcode](https://colorpicker.me/)). Welche Farbe findest du für das Thema Kindermortalität angemessen?
-
-#### HA4 E: Verteilung interpretieren
-
-Schreibe **3–5 Sätze Interpretation** als Kommentar im Skript:
-
-- Wo liegt der Großteil der Länder?
-- Gibt es eine Gruppe von Ländern mit sehr hoher Kindermortalität?
-- Was sagt das über globale Ungleichheit?
-- Hat dich irgendetwas an der Verteilung überrascht?
-
-#### HA4 F: Plot speichern
+#### HA4 D: Plot speichern
 
 ```r
 dir.create(here("output"), showWarnings = FALSE)
 
 ggsave(
-  here("output", "child_mortality_histogram_2015.png"),
-  plot   = child_mortality_histogram,
+  here("output", "water_histogram_2020.png"),
+  plot   = water_histogram,
   width  = 8,
   height = 5
 )
@@ -450,23 +421,21 @@ ggsave(
 <details>
 <summary><strong>Tipp</strong></summary>
 
-Grundmuster für den Plot:
+Grundmuster:
 
 ```r
-child_mortality_histogram <- ggplot(owid_2015, aes(x = child_mortality_rate)) +
+water_histogram <- ggplot(owid_2020, aes(x = access_to_water)) +
   geom_histogram(bins = 25, fill = "steelblue", color = "white") +
   labs(
     title    = "...",
     subtitle = "...",
     x        = "...",
     y        = "...",
-    caption  = "Quelle: Our World in Data"
+    caption  = "Quelle: Our World in Data / WHO–UNICEF JMP"
   )
 
-child_mortality_histogram
+water_histogram
 ```
-
-Wenn `ggsave()` einen Fehler bringt, prüfe, ob `child_mortality_histogram` wirklich in deiner Umgebung existiert (oben rechts im *Environment*-Panel sichtbar). Wenn nicht, musst du die Zuweisung nochmal ausführen.
 
 </details>
 
@@ -476,45 +445,332 @@ Wenn `ggsave()` einen Fehler bringt, prüfe, ob `child_mortality_histogram` wirk
 <summary><strong>Lösung</strong></summary>
 
 ```r
-owid_2015 <- owid_daten |> filter(year == 2015)
+owid_2020 <- owid_daten |>
+  filter(year == 2020) |>
+  distinct(country, .keep_all = TRUE)
 
-# HA4 A: Plausibilitätschecks
-nrow(owid_2015)
-summary(owid_2015$child_mortality_rate)
-sum(is.na(owid_2015$child_mortality_rate))
-# Es gibt ca. 195–200 Länder für 2015, mit wenigen fehlenden Werten.
-# Die Werte reichen von unter 2 bis über 100 (Todesfälle pro 100 Lebendgeburten).
+# HA4 A
+nrow(owid_2020)
+summary(owid_2020$access_to_water)
+sum(is.na(owid_2020$access_to_water))
+# Ca. 215–220 Länder für 2020; wenige fehlende Werte.
+# Werte reichen von unter 2% bis 100%; Median um 79%.
 
-# HA4 B–D: Histogramm
-child_mortality_histogram <- ggplot(owid_2015, aes(x = child_mortality_rate)) +
-  geom_histogram(bins = 25, fill = "#c0392b", color = "white") +
+# HA4 B–C
+water_histogram <- ggplot(owid_2020, aes(x = access_to_water)) +
+  geom_histogram(bins = 25, fill = "steelblue", color = "white") +
   labs(
-    title    = "Kindermortalität weltweit (Kinder unter 5 Jahren)",
-    subtitle = "Jahr 2015 — Todesfälle pro 100 Lebendgeburten",
-    x        = "Kindermortalitätsrate (Todesfälle pro 100 Lebendgeburten)",
+    title    = "Zugang zu sauberem Trinkwasser weltweit",
+    subtitle = "Anteil der Bevölkerung mit sicher aufbereitetem Wasser, 2020",
+    x        = "Bevölkerungsanteil mit sicherem Wasserzugang (%)",
     y        = "Anzahl Länder",
-    caption  = "Quelle: Our World in Data / UN Inter-agency Group for Child Mortality Estimation"
+    caption  = "Quelle: Our World in Data / WHO–UNICEF Joint Monitoring Programme"
   )
 
-child_mortality_histogram
+water_histogram
 
-# HA4 E: Interpretation
-# Die meisten Länder haben eine Kindermortalität unter 20 pro 100 Lebendgeburten.
-# In den reichen Ländern liegt sie sogar unter 5.
-# Gleichzeitig gibt es eine kleine, aber deutlich sichtbare Gruppe von Ländern
-# mit Werten über 50 oder sogar über 80. Das sind meist Länder in Sub-Sahara-Afrika.
-# Die Verteilung ist stark rechtsschief: Wenige Länder haben extrem hohe Werte,
-# während die Mehrheit relativ niedrig liegt.
-# Das zeigt: Kindermortalität ist nicht gleichmäßig verteilt — es gibt tiefe
-# globale Ungleichheiten darin, ob Kinder ihren fünften Geburtstag erleben.
+# Die Verteilung ist bimodal: Es gibt eine Häufung von Ländern mit sehr niedrigem
+# Wasserzugang (unter 30%) und eine viel größere Häufung nahe 100%.
+# Der breite leere Bereich dazwischen zeigt, dass es kaum "mittelmäßigen"
+# Wasserzugang gibt — die Welt ist in diesem Bereich tatsächlich zweigeteilt.
+# Das spiegelt eine fundamentale globale Ungleichheit wider: Sauberes Wasser
+# ist in reichen Ländern eine Selbstverständlichkeit, in armen oft unerreichbar.
 
 dir.create(here("output"), showWarnings = FALSE)
 
 ggsave(
-  here("output", "child_mortality_histogram_2015.png"),
-  plot   = child_mortality_histogram,
+  here("output", "water_histogram_2020.png"),
+  plot   = water_histogram,
   width  = 8,
   height = 5
+)
+```
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h3 id="ha5">HA5 · Linienplot: Entwicklung über die Zeit</h3>
+
+### Ziel
+
+Ein Histogramm zeigt, wie eine Variable zu einem Zeitpunkt verteilt ist. Ein **Linienplot** zeigt, wie sie sich über die Zeit verändert. Du wirst sehen, dass Länder mit niedrigem Wasserzugang zwar Fortschritte machen — aber die Lücke zu den reichen Ländern riesig bleibt.
+
+### Was ist neu?
+
+`geom_line()` verbindet Datenpunkte zu einer Linie — sinnvoll, wenn die x-Achse eine Zeitvariable ist. Wenn mehrere Gruppen (z. B. Länder) im Datensatz sind, sagt man ggplot2 mit `color = country`, dass jede Gruppe eine eigene Linie bekommt:
+
+```r
+ggplot(daten, aes(x = year, y = variable, color = country)) +
+  geom_line()
+```
+
+### Aufgaben
+
+Schreibe den Code in den Abschnitt **HA5** in `scripts/session_04_skript.R`.
+
+Der Abschnitt enthält diese vorbereitete Zeile:
+
+```r
+fuenf_laender <- owid_daten |>
+  filter(
+    country %in% c("Germany", "Brazil", "India", "Nigeria", "Bangladesh"),
+    year >= 2000
+  ) |>
+  distinct(country, year, .keep_all = TRUE)
+```
+
+> `%in%` prüft, ob ein Wert in einem Vektor enthalten ist — hier: ob `country` zu den fünf genannten Ländern gehört. Auch das lernst du in Session 5 ausführlich.
+
+#### HA5 A: Plausibilitätschecks
+
+Führe aus:
+
+- `nrow(fuenf_laender)` — wie viele Zeilen?
+- `summary(fuenf_laender$access_to_water)` — Wertebereiche?
+- `sum(is.na(fuenf_laender$access_to_water))` — fehlende Werte?
+
+#### HA5 B: Linienplot erstellen
+
+Erstelle einen Linienplot mit `year` auf der x-Achse, `access_to_water` auf der y-Achse, und einer Linie pro Land. Beschrifte den Plot vollständig mit `labs()`.
+
+Weise den Plot dem Objekt `water_lineplot` zu.
+
+#### HA5 C: Plot speichern und interpretieren
+
+Speichere den Plot:
+
+```r
+ggsave(
+  here("output", "water_lineplot.png"),
+  plot   = water_lineplot,
+  width  = 9,
+  height = 5
+)
+```
+
+Schreibe **3–4 Sätze Interpretation** als Kommentar:
+
+- Welches Land hat den niedrigsten Wasserzugang — und hat er sich verbessert?
+- Welches Land zeigt den stärksten Anstieg?
+- Was fällt dir am Abstand zwischen den Ländern auf?
+
+<br>
+
+<details>
+<summary><strong>Tipp</strong></summary>
+
+Grundmuster für den Linienplot:
+
+```r
+water_lineplot <- ggplot(fuenf_laender, aes(x = year, y = access_to_water, color = country)) +
+  geom_line(linewidth = 1) +
+  labs(
+    title   = "...",
+    x       = "Jahr",
+    y       = "...",
+    color   = "Land",
+    caption = "Quelle: Our World in Data"
+  )
+
+water_lineplot
+```
+
+`linewidth = 1` macht die Linien etwas dicker und leichter lesbar.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+fuenf_laender <- owid_daten |>
+  filter(
+    country %in% c("Germany", "Brazil", "India", "Nigeria", "Bangladesh"),
+    year >= 2000
+  ) |>
+  distinct(country, year, .keep_all = TRUE)
+
+# HA5 A
+nrow(fuenf_laender)
+summary(fuenf_laender$access_to_water)
+sum(is.na(fuenf_laender$access_to_water))
+
+# HA5 B
+water_lineplot <- ggplot(fuenf_laender, aes(x = year, y = access_to_water, color = country)) +
+  geom_line(linewidth = 1) +
+  labs(
+    title   = "Entwicklung des Wasserzugangs seit 2000",
+    x       = "Jahr",
+    y       = "Bevölkerungsanteil mit sicherem Wasserzugang (%)",
+    color   = "Land",
+    caption = "Quelle: Our World in Data / WHO–UNICEF JMP"
+  )
+
+water_lineplot
+
+# Nigeria hat mit Abstand den niedrigsten Wasserzugang — unter 30% im Jahr 2000,
+# mit nur langsamen Fortschritten seither.
+# Indien zeigt den stärksten Aufwärtstrend: von ~38% auf über 70% in 20 Jahren.
+# Deutschland liegt die ganze Zeit nahe 100% und ist kaum von der Stelle gerückt —
+# weil es nichts mehr zu verbessern gibt.
+# Der Abstand zwischen Deutschland und Nigeria ist 2024 fast genauso groß wie 2000.
+# Das zeigt: Selbst wenn ärmere Länder Fortschritte machen, bleibt die absolute
+# Lücke dramatisch groß.
+
+ggsave(
+  here("output", "water_lineplot.png"),
+  plot   = water_lineplot,
+  width  = 9,
+  height = 5
+)
+```
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h3 id="ha6">HA6 · Streudiagramm: Wasserzugang und Lebenserwartung</h3>
+
+### Ziel
+
+Länder mit besserem Wasserzugang — leben ihre Einwohner:innen auch länger? Du erstellst ein Streudiagramm, das jeden Punkt als ein Land darstellt — und damit sichtbar macht, ob zwischen den beiden Variablen ein Zusammenhang besteht.
+
+### Was ist neu?
+
+`geom_point()` zeichnet einen Punkt pro Zeile im Datensatz. Mit `aes(x = ..., y = ...)` legst du die beiden Achsen fest. Optional kannst du mit `color = world_region` die Punkte nach Region einfärben — dann siehst du, ob der Zusammenhang innerhalb von Weltregionen anders aussieht.
+
+### Aufgaben
+
+Schreibe den Code in den Abschnitt **HA6** in `scripts/session_04_skript.R`.
+
+Der Abschnitt enthält diese vorbereitete Zeile:
+
+```r
+owid_2020_scatter <- owid_daten |>
+  filter(year == 2020) |>
+  distinct(country, .keep_all = TRUE) |>
+  filter(!is.na(access_to_water), !is.na(life_expectancy_birth))
+```
+
+> `!is.na()` bedeutet: "ist **nicht** NA" — also: behalte nur Zeilen, in denen der Wert vorhanden ist. Das ist die saubere Variante, NA-Probleme beim Plotten zu vermeiden.
+
+#### HA6 A: Plausibilitätschecks
+
+- `nrow(owid_2020_scatter)` — für wie viele Länder haben wir beide Variablen?
+- Schreibe als Kommentar: Was würde passieren, wenn wir die NAs nicht entfernen würden — würde der Plot trotzdem funktionieren? (Hinweis: Probiere es aus, wenn du möchtest.)
+
+#### HA6 B: Streudiagramm erstellen
+
+Erstelle ein Streudiagramm mit:
+
+- `access_to_water` auf der x-Achse
+- `life_expectancy_birth` auf der y-Achse
+- `color = world_region`, um Punkte nach Region einzufärben
+
+Beschrifte den Plot vollständig. Weise ihn dem Objekt `water_scatter` zu.
+
+#### HA6 C: Plot speichern und interpretieren
+
+```r
+ggsave(
+  here("output", "water_scatter.png"),
+  plot   = water_scatter,
+  width  = 9,
+  height = 6
+)
+```
+
+Schreibe **4–5 Sätze Interpretation** als Kommentar:
+
+- Gibt es einen erkennbaren Zusammenhang zwischen Wasserzugang und Lebenserwartung?
+- In welche Richtung geht er?
+- Gibt es Ausreißer — Länder, die nicht ins Muster passen?
+- Welche Weltregionen fallen besonders auf?
+
+<br>
+
+<details>
+<summary><strong>Tipp</strong></summary>
+
+Grundmuster:
+
+```r
+water_scatter <- ggplot(owid_2020_scatter, aes(x = access_to_water, y = life_expectancy_birth, color = world_region)) +
+  geom_point(alpha = 0.7, size = 2.5) +
+  labs(
+    title  = "...",
+    x      = "...",
+    y      = "...",
+    color  = "Weltregion",
+    caption = "Quelle: Our World in Data"
+  )
+
+water_scatter
+```
+
+`alpha = 0.7` macht die Punkte leicht durchsichtig — so sieht man überlappende Punkte besser. `size = 2.5` macht sie etwas größer.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+owid_2020_scatter <- owid_daten |>
+  filter(year == 2020) |>
+  distinct(country, .keep_all = TRUE) |>
+  filter(!is.na(access_to_water), !is.na(life_expectancy_birth))
+
+# HA6 A
+nrow(owid_2020_scatter)
+# Wenn wir NAs nicht entfernen würden, würde ggplot2 die Punkte mit NA in
+# einer der beiden Variablen einfach weglassen und eine Warnung ausgeben
+# ("Rows containing missing values removed"). Der Plot würde funktionieren,
+# aber es wäre unklar, wie viele Länder fehlen — explizites Entfernen
+# ist transparenter.
+
+# HA6 B
+water_scatter <- ggplot(owid_2020_scatter,
+    aes(x = access_to_water, y = life_expectancy_birth, color = world_region)) +
+  geom_point(alpha = 0.7, size = 2.5) +
+  labs(
+    title   = "Wasserzugang und Lebenserwartung im Jahr 2020",
+    x       = "Bevölkerungsanteil mit sicherem Wasserzugang (%)",
+    y       = "Lebenserwartung bei Geburt (Jahre)",
+    color   = "Weltregion",
+    caption = "Quelle: Our World in Data / WHO–UNICEF JMP / UN"
+  )
+
+water_scatter
+
+# Es gibt einen klaren positiven Zusammenhang: Länder mit höherem Wasserzugang
+# haben tendenziell auch eine höhere Lebenserwartung.
+# Die afrikanischen Länder (rot) häufen sich unten links — niedriger Wasserzugang,
+# niedrige Lebenserwartung. Europäische Länder liegen oben rechts.
+# Es gibt einige Ausreißer: Länder mit hohem Wasserzugang aber eher mittlerer
+# Lebenserwartung — möglicherweise wegen anderer Faktoren wie Ernährung oder
+# Gesundheitsversorgung.
+# Der Zusammenhang zeigt, dass Wasserzugang und Gesundheit eng verknüpft sind —
+# aber Kausalität lässt sich aus einem Streudiagramm allein nicht ableiten.
+
+ggsave(
+  here("output", "water_scatter.png"),
+  plot   = water_scatter,
+  width  = 9,
+  height = 6
 )
 ```
 
@@ -528,65 +784,40 @@ ggsave(
 
 <h2 id="bonus-hausaufgaben">Bonus-Hausaufgaben</h2>
 
-Diese Aufgaben sind freiwillig. Sie vertiefen das Thema und können die Grundlage für den späteren Abschlussbericht bilden.
+Diese Aufgaben sind freiwillig. Sie vertiefen das Thema und können Grundlage für den späteren Abschlussbericht sein.
 
 ---
 
-### B-HA1 · Zwei Verteilungen vergleichen
+### B-HA1 · Mittlere, Median und Streuung vergleichen
 
-Erstelle ein zweites Histogramm — diesmal für `gdp` aus `owid_2015` (das Bruttoinlandsprodukt pro Kopf).
+Berechne für `access_to_water` im Datensatz `owid_2020`:
 
-- Filtere zuerst auf Zeilen ohne fehlende Werte in `gdp`.
-- Vergleiche schriftlich als Kommentar: Wie unterscheidet sich die Verteilung von GDP von der Kindermortalität? Was bedeutet das für den Zusammenhang der beiden Variablen?
+- Mittelwert (`mean(..., na.rm = TRUE)`)
+- Median (`median(..., na.rm = TRUE)`)
+- Standardabweichung (`sd(..., na.rm = TRUE)`)
 
-<br>
+Schreibe 3–4 Sätze Kommentar: Warum weichen Mittelwert und Median voneinander ab — und was sagt die Standardabweichung über die Ungleichheit des Wasserzugangs aus?
 
-<details>
-<summary><strong>Lösung</strong></summary>
+---
+
+### B-HA2 ⚠️ · Trendlinie im Streudiagramm
+
+Füge dem Streudiagramm aus HA6 eine glatte Trendlinie hinzu:
 
 ```r
-owid_2015_gdp <- owid_2015 |> filter(!is.na(gdp))
-
-gdp_histogram <- ggplot(owid_2015_gdp, aes(x = gdp)) +
-  geom_histogram(bins = 30, fill = "#2980b9", color = "white") +
-  labs(
-    title   = "Verteilung des BIP pro Kopf (2015)",
-    x       = "BIP pro Kopf (KKP, konstante internationale $)",
-    y       = "Anzahl Länder",
-    caption = "Quelle: Our World in Data"
-  )
-
-gdp_histogram
-
-# GDP ist stark rechtsschief: Wenige sehr reiche Länder heben den Mittelwert.
-# Bei Kindermortalität hingegen ist die Schieflage anders — viele Länder mit
-# niedrigen Werten und wenige mit sehr hohen.
-# Beide Verteilungen zeigen globale Ungleichheit, aber auf spiegelbildliche Weise:
-# Reichtum konzentriert sich oben, Kindersterblichkeit konzentriert sich ebenfalls
-# oben — aber das "Oben" betrifft verschiedene Länder.
+water_scatter +
+  geom_smooth(method = "loess", color = "black", se = FALSE)
 ```
 
-</details>
+- Was zeigt die Kurve — ist der Zusammenhang linear?
+- Gibt es Bereiche, in denen die Lebenserwartung mit dem Wasserzugang besonders stark steigt?
+- Schreibe 3–4 Sätze Kommentar.
 
 ---
 
-### B-HA2 ⚠️ · `geom_density()` erkunden
+### B-HA3 ⚠️ · Eigene Länderauswahl für den Linienplot
 
-Schlage `geom_density()` in der ggplot2-Dokumentation nach (`?geom_density` oder online) und wende es auf `child_mortality_rate` aus `owid_2015` an.
-
-- Was zeigt die Dichtekurve im Vergleich zum Histogramm?
-- Siehst du Hinweise auf **zwei Häufungspunkte** (*Bimodalität*)? Was könnte das bedeuten?
-- Notiere 3–4 Sätze als Kommentar.
-
----
-
-### B-HA3 ⚠️ · Trendvergleich über zwei Jahre
-
-Erstelle zwei Histogramme — eines für 2000, eines für 2015 — und vergleiche die Verteilung von `child_mortality_rate` visuell.
-
-*Hinweis:* `filter(year == 2000)` gibt dir die Daten für 2000.
-
-Hat sich die Verteilung verschoben? In welche Richtung? Was sagt das über den weltweiten Fortschritt bei der Kindersterblichkeit?
+Wähle 4–6 Länder deiner Wahl und erstelle einen eigenen Linienplot der Wasserzugangsentwicklung seit 2000. Begründe als Kommentar, warum du genau diese Länder gewählt hast — und was der Vergleich zeigt.
 
 <br>
 
@@ -596,15 +827,18 @@ Hat sich die Verteilung verschoben? In welche Richtung? Was sagt das über den w
 
 <h2 id="abgabe">Abgabe</h2>
 
-Wenn du mit den Hausaufgaben fertig bist:
+Wenn du fertig bist:
 
 1. Speichere das Skript `scripts/session_04_skript.R` (`Ctrl+S` / `Cmd+S`).
-2. Stelle sicher, dass der Plot unter `output/child_mortality_histogram_2015.png` gespeichert wurde.
+2. Stelle sicher, dass alle drei Plots im Ordner `output/` gespeichert wurden:
+   - `water_histogram_2020.png`
+   - `water_lineplot.png`
+   - `water_scatter.png`
 3. Reiche auf Learnweb ein:
    - `scripts/session_04_skript.R`
-   - `output/child_mortality_histogram_2015.png`
+   - alle drei Plot-Dateien aus `output/`
 
-> **Falls etwas nicht funktioniert:** Lies zuerst die Fehlermeldung, frage deine Buddy-Partner:in, schlage in den [häufigen Fehlern](../../resources/other/common_errors.md) nach oder poste im Kurs-Forum.
+> **Falls etwas nicht funktioniert:** Lies zuerst die Fehlermeldung, frage deine Buddy-Partner:in, schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach oder melde dich im Kurs-Forum.
 
 ---
 

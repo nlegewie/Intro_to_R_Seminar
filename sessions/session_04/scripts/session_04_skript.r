@@ -45,9 +45,9 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###****************************************###
-##### HA1 · Datenstruktur erkunden #####
-###****************************************###
+###**************************************************###
+##### HA1 · Den Datensatz systematisch erkunden #####
+###**************************************************###
 
 
 ##### HA1 a · glimpse()
@@ -61,22 +61,24 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 ##### HA1 b · summary()
 
 # Wende summary() auf den gesamten Datensatz an.
-# Notiere als Kommentar: Welche Variable hat nach erster Sicht die meisten fehlenden Werte?
+# Schau dir die Ausgabe für access_to_water an: Was sind Minimum, Maximum und Median?
 
 
 
 
-##### HA1 c · names()
+##### HA1 c · summary() für eine Spalte
 
-# Lass dir alle Spaltennamen mit names() ausgeben.
+# Wende summary() gezielt auf eine einzige Spalte an — nutze dafür $:
+# summary(owid_daten$access_to_water)
+# Notiere als Kommentar: Was fällt dir an den Werten auf?
 
 
 
 
-##### HA1 d · Variablen für Ungleichheitsanalyse
+##### HA1 d · Wertebereich interpretieren
 
-# Schreibe als Kommentar: Welche drei Variablen könnten für eine Analyse
-# globaler Ungleichheit besonders interessant sein? Begründe kurz (je 1 Satz).
+# Schreibe 2–3 Sätze als Kommentar: Was sagt der Wertebereich von access_to_water
+# über globale Ungleichheit aus?
 #
 #
 #
@@ -84,23 +86,23 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###*****************************************###
-##### HA2 · Variablentypen verstehen #####
-###*****************************************###
+###***********************************************###
+##### HA2 · Variablentypen und ihre Tücken #####
+###***********************************************###
 
 
 ##### HA2 a · Klassen bestimmen
 
-# Bestimme die Klasse dieser Variablen mit class():
-# country, year, world_region, child_mortality_rate, gini, democracy_score_string
+# Bestimme den Typ dieser Variablen mit class():
+# country, year, world_region, access_to_water, democracy_score_string
 
 
 
 
 ##### HA2 b · Debugging-Aufgabe
 
-# Führe aus und erkläre im Kommentar, was das Problem ist und wie es sich beheben ließe:
-# mean(owid_daten$country)
+# Führe aus und erkläre im Kommentar, was das Problem ist und wie man es beheben würde:
+# mean(owid_daten$world_region)
 #
 #
 #
@@ -110,9 +112,9 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 ##### HA2 c · Denk-Aufgabe (kein Code nötig)
 
-# democracy_score enthält 0, 1, 2, 3 (politische Regime).
-# Was ist ihr aktueller Typ? Wäre es besser, sie als factor zu behandeln?
-# Schreibe 2–3 Sätze als Kommentar.
+# year hat den Typ integer. Was würde passieren, wenn year fälschlicherweise
+# als character gespeichert wäre — besonders in einem Linienplot?
+# Schreibe 2 Sätze als Kommentar.
 #
 #
 #
@@ -128,26 +130,25 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 ##### HA3 A · Fehlende Werte zählen
 
 # Berechne die Anzahl fehlender Werte für:
-# child_mortality_rate, gini, gdp, life_expectancy_birth
-# Speichere jedes Ergebnis in einem sinnvoll benannten Objekt, z. B. n_miss_child.
+# access_to_water, life_expectancy_birth, gini
+# Speichere jedes Ergebnis in einem sinnvoll benannten Objekt, z. B. n_miss_water.
 
 
 
 
 ##### HA3 B · Prozentanteile berechnen
 
-# Berechne für jede der vier Variablen den Anteil fehlender Werte in Prozent:
-# n_miss_child / nrow(owid_daten) * 100
+# Berechne den prozentualen Anteil fehlender Werte für jede der drei Variablen.
 
 
 
 
-##### HA3 C · Mittelwert mit und ohne NA-Behandlung
+##### HA3 C · Mittelwert mit und ohne na.rm
 
-# Berechne den Mittelwert von child_mortality_rate:
-# 1. Ohne na.rm = TRUE — was passiert?
-# 2. Mit na.rm = TRUE — was ist das Ergebnis?
-# Erkläre den Unterschied als Kommentar.
+# Berechne den Mittelwert von access_to_water:
+# 1. Ohne na.rm = TRUE — was liefert R?
+# 2. Mit na.rm = TRUE — was ist der Wert?
+# Schreibe einen Kommentar, der den Unterschied erklärt.
 #
 #
 #
@@ -157,10 +158,10 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 ##### HA3 D · Interpretieren
 
-# Schreibe 3–5 Sätze als Kommentar:
-# Welche Variable hat die meisten fehlenden Werte?
+# Schreibe 3–4 Sätze als Kommentar:
+# Welche der drei Variablen hat die meisten fehlenden Werte?
 # Was könnte der Grund dafür sein?
-# Welche Konsequenz hat das für Analysen?
+# Was bedeutet das für eine Analyse, die diese Variable verwendet?
 #
 #
 #
@@ -168,22 +169,24 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###***************************************************###
-##### HA4 · Kindermortalität visualisieren #####
-###***************************************************###
+###*********************************************************###
+##### HA4 · Histogramm: Verteilung des Wasserzugangs #####
+###*********************************************************###
 
-# filter() wird in Session 5 ausführlich eingeführt — hier nutze ihn als Vorgabe:
-owid_2015 <- owid_daten |> filter(year == 2015)
+# filter() und distinct() werden in Session 5 ausführlich eingeführt — hier als Vorgabe:
+owid_2020 <- owid_daten |>
+  filter(year == 2020) |>
+  distinct(country, .keep_all = TRUE)
 
 
 
 
 ##### HA4 A · Plausibilitätschecks
 
-# nrow(owid_2015)
-# summary(owid_2015$child_mortality_rate)
-# sum(is.na(owid_2015$child_mortality_rate))
-# Notiere deine Beobachtungen kurz als Kommentar.
+# nrow(owid_2020)
+# summary(owid_2020$access_to_water)
+# sum(is.na(owid_2020$access_to_water))
+# Notiere deine Beobachtungen als Kommentar.
 #
 #
 #
@@ -191,38 +194,23 @@ owid_2015 <- owid_daten |> filter(year == 2015)
 
 
 
-##### HA4 B · Histogramm erstellen
+##### HA4 B · Histogramm erstellen und beschriften
 
-# Erstelle ein Histogramm von child_mortality_rate aus owid_2015
-# mit ggplot() und geom_histogram().
-# Experimentiere mit bins (z. B. 20 und 30).
-
-
-
-
-##### HA4 C · Plot beschriften
-
-# Erweitere den Plot mit labs() (title, x, y, subtitle, caption).
-# Weise den beschrifteten Plot dem Objekt child_mortality_histogram zu:
+# Erstelle ein Histogramm von access_to_water mit ggplot() + geom_histogram().
+# Experimentiere mit bins (probiere 15, 25, 35).
+# Füge labs() hinzu (title, subtitle, x, y, caption).
+# Vergib dem Plot das Objekt water_histogram und gib ihn aus.
 
 
 
 
-##### HA4 D · Farbe und Stil anpassen
+##### HA4 C · Farbe und Interpretation
 
-# Verändere den Plot mit fill und color in geom_histogram(), z. B.:
-# geom_histogram(bins = 25, fill = "steelblue", color = "white")
-
-
-
-
-##### HA4 E · Verteilung interpretieren
-
-# Schreibe 3–5 Sätze Interpretation als Kommentar:
-# Wo liegt der Großteil der Länder?
-# Gibt es eine Gruppe von Ländern mit sehr hoher Kindermortalität?
-# Was sagt das über globale Ungleichheit?
-# Hat dich irgendetwas an der Verteilung überrascht?
+# Passe die Balkenfarbe an, z. B.: fill = "steelblue", color = "white"
+# Schreibe 3–4 Sätze Interpretation als Kommentar:
+# Siehst du die zwei Häufungspunkte?
+# Was bedeutet die Lücke dazwischen?
+# Was sagt die Verteilung über globale Ungleichheit beim Wasserzugang?
 #
 #
 #
@@ -230,17 +218,134 @@ owid_2015 <- owid_daten |> filter(year == 2015)
 
 
 
-##### HA4 F · Plot speichern
+##### HA4 D · Plot speichern
 
 # Erstelle den output/-Ordner und speichere den Plot:
 dir.create(here("output"), showWarnings = FALSE)
 
 ggsave(
-  here("output", "child_mortality_histogram_2015.png"),
-  plot   = child_mortality_histogram,
+  here("output", "water_histogram_2020.png"),
+  plot   = water_histogram,
   width  = 8,
   height = 5
 )
+
+
+
+
+###*********************************************************###
+##### HA5 · Linienplot: Entwicklung über die Zeit #####
+###*********************************************************###
+
+# %in% und filter() werden in Session 5 ausführlich eingeführt — hier als Vorgabe:
+fuenf_laender <- owid_daten |>
+  filter(
+    country %in% c("Germany", "Brazil", "India", "Nigeria", "Bangladesh"),
+    year >= 2000
+  ) |>
+  distinct(country, year, .keep_all = TRUE)
+
+
+
+
+##### HA5 A · Plausibilitätschecks
+
+# nrow(fuenf_laender)
+# summary(fuenf_laender$access_to_water)
+# sum(is.na(fuenf_laender$access_to_water))
+# Notiere deine Beobachtungen als Kommentar.
+#
+#
+#
+
+
+
+
+##### HA5 B · Linienplot erstellen
+
+# Erstelle einen Linienplot mit year auf der x-Achse, access_to_water auf der y-Achse,
+# und einer Linie pro Land (color = country).
+# Beschrifte den Plot vollständig mit labs().
+# Weise den Plot dem Objekt water_lineplot zu.
+
+
+
+
+##### HA5 C · Plot speichern und interpretieren
+
+# Speichere den Plot:
+ggsave(
+  here("output", "water_lineplot.png"),
+  plot   = water_lineplot,
+  width  = 9,
+  height = 5
+)
+
+# Schreibe 3–4 Sätze Interpretation als Kommentar:
+# Welches Land hat den niedrigsten Wasserzugang — und hat er sich verbessert?
+# Welches Land zeigt den stärksten Anstieg?
+# Was fällt dir am Abstand zwischen den Ländern auf?
+#
+#
+#
+
+
+
+
+###**********************************************************************###
+##### HA6 · Streudiagramm: Wasserzugang und Lebenserwartung #####
+###**********************************************************************###
+
+
+# filter() und !is.na() werden in Session 5 ausführlich eingeführt — hier als Vorgabe:
+owid_2020_scatter <- owid_daten |>
+  filter(year == 2020) |>
+  distinct(country, .keep_all = TRUE) |>
+  filter(!is.na(access_to_water), !is.na(life_expectancy_birth))
+
+
+
+
+##### HA6 A · Plausibilitätschecks
+
+# nrow(owid_2020_scatter)
+# Schreibe als Kommentar: Was würde passieren, wenn wir die NAs nicht entfernen würden?
+#
+#
+#
+
+
+
+
+##### HA6 B · Streudiagramm erstellen
+
+# Erstelle ein Streudiagramm mit:
+# access_to_water auf der x-Achse
+# life_expectancy_birth auf der y-Achse
+# color = world_region
+# Beschrifte den Plot vollständig. Weise ihn dem Objekt water_scatter zu.
+
+
+
+
+##### HA6 C · Plot speichern und interpretieren
+
+# Speichere den Plot:
+ggsave(
+  here("output", "water_scatter.png"),
+  plot   = water_scatter,
+  width  = 9,
+  height = 6
+)
+
+# Schreibe 4–5 Sätze Interpretation als Kommentar:
+# Gibt es einen erkennbaren Zusammenhang zwischen Wasserzugang und Lebenserwartung?
+# In welche Richtung geht er?
+# Gibt es Ausreißer — Länder, die nicht ins Muster passen?
+# Welche Weltregionen fallen besonders auf?
+#
+#
+#
 
 
 
@@ -250,11 +355,12 @@ ggsave(
 ###*************************************###
 
 
-##### B-HA1 · Zwei Verteilungen vergleichen
+##### B-HA1 · Mittlere, Median und Streuung vergleichen
 
-# Erstelle ein zweites Histogramm für gdp aus owid_2015.
-# Filtere zuerst auf Zeilen ohne fehlende Werte in gdp.
-# Vergleiche schriftlich als Kommentar mit der Kindermortalität:
+# Berechne für access_to_water im Datensatz owid_2020:
+# Mittelwert, Median, Standardabweichung (jeweils mit na.rm = TRUE).
+# Schreibe 3–4 Sätze Kommentar: Warum weichen Mittelwert und Median voneinander ab?
+# Was sagt die Standardabweichung über die Ungleichheit des Wasserzugangs aus?
 #
 #
 #
@@ -262,12 +368,14 @@ ggsave(
 
 
 
-##### B-HA2 ⚠️ · geom_density() erkunden
+##### B-HA2 ⚠️ · Trendlinie im Streudiagramm
 
-# Schlage geom_density() nach (?geom_density oder online) und wende es auf
-# child_mortality_rate aus owid_2015 an.
-# Was zeigt die Dichtekurve im Vergleich zum Histogramm?
-# Siehst du Hinweise auf Bimodalität? Notiere 3–4 Sätze als Kommentar.
+# Füge dem Streudiagramm aus HA6 eine glatte Trendlinie hinzu:
+# water_scatter +
+#   geom_smooth(method = "loess", color = "black", se = FALSE)
+# Was zeigt die Kurve — ist der Zusammenhang linear?
+# Gibt es Bereiche, in denen die Lebenserwartung besonders stark steigt?
+# Schreibe 3–4 Sätze Kommentar.
 #
 #
 #
@@ -275,12 +383,12 @@ ggsave(
 
 
 
-##### B-HA3 ⚠️ · Trendvergleich über zwei Jahre
+##### B-HA3 ⚠️ · Eigene Länderauswahl für den Linienplot
 
-# Erstelle zwei Histogramme — eines für 2000, eines für 2015.
-# filter(year == 2000) gibt dir die Daten für 2000.
-# Vergleiche die Verteilung von child_mortality_rate visuell.
-# Notiere als Kommentar: Hat sich die Verteilung verschoben? In welche Richtung?
+# Wähle 4–6 Länder deiner Wahl und erstelle einen eigenen Linienplot
+# der Wasserzugangsentwicklung seit 2000.
+# Begründe als Kommentar, warum du genau diese Länder gewählt hast —
+# und was der Vergleich zeigt.
 #
 #
 #
