@@ -156,13 +156,124 @@ summary(owid_daten$access_to_water)
 
 ---
 
-<h3 id="ha2">HA2 · Die Pipe (`|>`) kennenlernen</h3>
+<h3 id="ha2">HA2 · Mit `filter()` Zeilen auswählen</h3>
+
+### Was macht `filter()`?
+
+Ein Tibble wie `owid_daten` enthält viele Zeilen — für viele Länder und viele Jahre. Meist interessieren dich nicht alle auf einmal, sondern nur ein **Ausschnitt**: z. B. nur 2020, oder nur Länder mit sehr niedrigem Wasserzugang.
+
+`filter()` wählt **Zeilen** aus, für die eine Bedingung **wahr** (`TRUE`) ist. Alle anderen Zeilen werden verworfen. Das Ergebnis ist wieder ein Tibble — nur kleiner.
+
+| Bedingung | Bedeutung | Beispiel |
+|-----------|-----------|----------|
+| `==` | ist gleich | `year == 2020` |
+| `>` / `<` | größer / kleiner | `access_to_water < 30` |
+| `>=` / `<=` | größer-gleich / kleiner-gleich | `year >= 2000` |
+| `&` | UND (beides muss gelten) | `year == 2020 & access_to_water < 50` |
+| `%in%` | Wert ist in einer Liste | `country %in% c("Germany", "Nigeria")` |
+
+**Beispiel:** Nur Länderjahre mit weniger als 30% Wasserzugang:
+
+```r
+filter(owid_daten, access_to_water < 30)
+```
+
+**Beispiel:** Nur Deutschland und Nigeria, ab dem Jahr 2000:
+
+```r
+filter(owid_daten, country %in% c("Germany", "Nigeria"),
+                    year >= 2000
+  )
+```
+
+Mehrere Bedingungen in `filter()` werden mit einem **Komma** getrennt — das bedeutet logisch **UND**: Beide müssen erfüllt sein. Ein `&` funktioniert auch.
+
+### Deine Aufgaben
+
+Schreibe den Code in den Abschnitt **HA3** in `scripts/session_04_skript.R`.
+
+a) Filtere `owid_daten` auf das Jahr 2015. Speichere das Ergebnis in `owid_daten_2015` und prüfe mit `nrow()`, wie viele Zeilen übrig sind.
+
+b) Filtere auf alle Zeilen mit `access_to_water < 30` (weniger als 30 % der Bevölkerung mit sicherem Wasserzugang). Wie viele Zeilen ergeben sich? Was sagt dir diese Zahl über globale Ungleichheit?
+
+c) Filtere auf die Länder **Germany**, **India** und **Nigeria** — und nur für Jahre ab 2000 (`year >= 2000`). Speichere das Ergebnis in `owid_drei_laender_seit_2000`.
+
+d) Kombiniere zwei Bedingungen: Erstelle ein Tibble mit allen Zeilen für **2020**, in denen `access_to_water` **über 90** liegt. Speichere es als `owid_2020_hoher_wasserzugang`. Zähle die Zeilen mit `nrow()` und schreibe **1–2 Sätze** als Kommentar: Was für Länder könnten das sein?
+
+<br>
+
+<details>
+<summary><strong>Tipp</strong></summary>
+
+Zur Erinnerung: Du weist das Ergebnis eines Vorgangs (z.B. hier des Filterns) mit dem `<-` - Operator zu. Links davon steht der Name des Objekts, das du erschaffen möchtest (für die Aufgabe z.B. `owid_daten_2015`), rechts davon steht der Code für den Vorgang, den du durchführen möchtest (z.B. `filter(owid_daten, year == 2015)`).
+
+Für Aufgabe b) musst du zwei Funktionen ineinander schachteln: `nrow(filter(...))`. Keine Sorge, wir lernen in der nächsten Übung einen viel bessereren Weg kennen, das zu schreiben.
+
+Für Aufgabe d) brauchst du zwei Bedingungen in einem `filter()`-Aufruf — entweder mit Komma oder mit `&`:
+
+```r
+filter(owid_daten, year == 2020, access_to_water > 90)
+```
+
+Wenn du unsicher bist, ob dein Filter funktioniert hat: `glimpse()` oder `nrow()` direkt an die Pipe-Kette hängen.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+# HA3 a
+owid_2015 <- filter(owid_daten, year == 2015)
+
+nrow(owid_2015)
+# Ca. 215–220 Zeilen.
+
+# HA3 b
+nrow(filter(owid_daten, access_to_water < 30))
+# Ca. 3.000–4.000 Zeilen (viele Länderjahre über die Zeit).
+# Das zeigt: In einem erheblichen Teil der Weltbevölkerung hat ein großer
+# Anteil keinen sicheren Zugang zu Trinkwasser — ein Kernmerkmal globaler Ungleichheit.
+
+# HA3 c
+drei_laender_seit_2000 <- filter(owid_daten,
+    country %in% c("Germany", "India", "Nigeria"),
+    year >= 2000
+  )
+
+drei_laender_seit_2000 |> glimpse()
+# Ca. 60–75 Zeilen (3 Länder × ca. 20–25 Jahre).
+
+# HA3 d
+owid_2020_hoher_wasserzugang <- filter(owid_daten,
+        year == 2020, 
+        access_to_water > 90
+        )
+
+nrow(owid_2020_hoher_wasserzugang)
+# Ca. 150–170 Zeilen.
+# Das sind vor allem Länder mit sehr hohem Wasserzugang — oft wohlhabendere
+# Staaten in Europa, Nordamerika und Teilen Asiens, in denen fast die gesamte
+# Bevölkerung Zugang zu sicherem Trinkwasser hat.
+```
+
+</details>
+
+<br>
+
+<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+
+---
+
+<h3 id="ha3">HA3 · Die Pipe (`|>`) kennenlernen</h3>
 
 ### Was ist die Pipe?
 
-Bisher hast du Funktionen oft so aufgerufen: Zuerst der Datensatz, dann die Funktion in Klammern — `glimpse(owid_daten)`. Das funktioniert. Wird es aber komplizierter, liest sich der Code schnell von innen nach außen — und wird schwer zu verstehen.
+Bisher hast du Funktionen oft so aufgerufen: Zuerst der Datensatz, dann die Funktion in Klammern — `glimpse(owid_daten)`. Das funktioniert. Wird es aber komplizierter, d.h. willst du mehrere Arbeitsschritte hintereinander abwickeln, wird der Code schnell unübersichtlich und schwer zu verstehen.
 
-Die **Pipe** (`|>`, gesprochen: „pipe") verbindet Schritte wie Perlen auf einer Kette: Das Ergebnis links wird automatisch als **erstes Argument** an die Funktion rechts übergeben. Du liest den Code von **oben nach unten** — in der Reihenfolge, in der du denkt.
+Die **Pipe** (`|>`) verbindet Schritte wie Perlen auf einer Kette: Das Ergebnis links wird automatisch als **erstes Argument** an die Funktion rechts übergeben. Du liest den Code von **oben nach unten** — in der Reihenfolge, in der du denkst.
 
 **Ohne Pipe** — alles in einer Zeile, von innen nach außen:
 
@@ -240,126 +351,6 @@ n_zeilen_2020
 # Die Pipe macht jeden Zwischenschritt sichtbar und erweiterbar.
 # Statt verschachtelter Klammern liest man den Datenfluss wie einen Satz:
 # „Nimm owid_daten, filtere, entferne NAs, plotte."
-```
-
-</details>
-
-<br>
-
-<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
-
----
-
-<h3 id="ha3">HA3 · Mit `filter()` Zeilen auswählen</h3>
-
-### Was macht `filter()`?
-
-Ein Tibble wie `owid_daten` enthält viele Zeilen — für viele Länder und viele Jahre. Meist interessieren dich nicht alle auf einmal, sondern nur ein **Ausschnitt**: z. B. nur 2020, oder nur Länder mit sehr niedrigem Wasserzugang.
-
-`filter()` wählt **Zeilen** aus, für die eine Bedingung **wahr** (`TRUE`) ist. Alle anderen Zeilen werden verworfen. Das Ergebnis ist wieder ein Tibble — nur kleiner.
-
-| Bedingung | Bedeutung | Beispiel |
-|-----------|-----------|----------|
-| `==` | ist gleich | `year == 2020` |
-| `>` / `<` | größer / kleiner | `access_to_water < 30` |
-| `>=` / `<=` | größer-gleich / kleiner-gleich | `year >= 2000` |
-| `&` | und (beides muss gelten) | `year == 2020 & access_to_water < 50` |
-| `%in%` | Wert ist in einer Liste | `country %in% c("Germany", "Nigeria")` |
-
-**Beispiel:** Nur Länderjahre mit weniger als 30 % Wasserzugang:
-
-```r
-owid_daten |>
-  filter(access_to_water < 30)
-```
-
-**Beispiel:** Nur Deutschland und Nigeria, ab dem Jahr 2000:
-
-```r
-owid_daten |>
-  filter(
-    country %in% c("Germany", "Nigeria"),
-    year >= 2000
-  )
-```
-
-Mehrere Bedingungen in `filter()` werden mit einem **Komma** getrennt — das bedeutet logisch **UND**: Beide müssen erfüllt sein.
-
-### Deine Aufgaben
-
-Schreibe den Code in den Abschnitt **HA3** in `scripts/session_04_skript.R`.
-
-a) Filtere `owid_daten` auf das Jahr 2015. Speichere das Ergebnis in `owid_2015` und prüfe mit `nrow()`, wie viele Zeilen übrig sind.
-
-b) Filtere auf alle Zeilen mit `access_to_water < 30` (weniger als 30 % der Bevölkerung mit sicherem Wasserzugang). Wie viele Zeilen ergeben sich? Was sagt dir diese Zahl über globale Ungleichheit?
-
-c) Filtere auf die Länder **Germany**, **India** und **Nigeria** — und nur für Jahre ab 2000 (`year >= 2000`). Speichere das Ergebnis in `drei_laender_seit_2000` und wende `glimpse()` darauf an.
-
-d) Kombiniere zwei Bedingungen: Erstelle ein Tibble mit allen Zeilen für **2020**, in denen `access_to_water` **über 90** liegt. Speichere es als `owid_2020_hoher_wasserzugang`. Zähle die Zeilen mit `nrow()` und schreibe **1–2 Sätze** als Kommentar: Was für Länder könnten das sein?
-
-<br>
-
-<details>
-<summary><strong>Tipp</strong></summary>
-
-`filter()` funktioniert am besten zusammen mit der Pipe — so bleibt der Datensatz links, die Bedingung steht in `filter()`:
-
-```r
-owid_daten |>
-  filter(year == 2020)
-```
-
-Für Aufgabe d) brauchst du zwei Bedingungen in einem `filter()`-Aufruf — entweder mit Komma oder mit `&`:
-
-```r
-owid_daten |>
-  filter(year == 2020, access_to_water > 90)
-```
-
-Wenn du unsicher bist, ob dein Filter funktioniert hat: `glimpse()` oder `nrow()` direkt an die Pipe-Kette hängen.
-
-</details>
-
-<br>
-
-<details>
-<summary><strong>Lösung</strong></summary>
-
-```r
-# HA3 a
-owid_2015 <- owid_daten |>
-  filter(year == 2015)
-
-nrow(owid_2015)
-# Ca. 215–220 Zeilen.
-
-# HA3 b
-owid_daten |>
-  filter(access_to_water < 30) |>
-  nrow()
-# Ca. 3.000–4.000 Zeilen (viele Länderjahre über die Zeit).
-# Das zeigt: In einem erheblichen Teil der Weltbevölkerung hat ein großer
-# Anteil keinen sicheren Zugang zu Trinkwasser — ein Kernmerkmal globaler Ungleichheit.
-
-# HA3 c
-drei_laender_seit_2000 <- owid_daten |>
-  filter(
-    country %in% c("Germany", "India", "Nigeria"),
-    year >= 2000
-  )
-
-drei_laender_seit_2000 |> glimpse()
-# Ca. 60–75 Zeilen (3 Länder × ca. 20–25 Jahre).
-
-# HA3 d
-owid_2020_hoher_wasserzugang <- owid_daten |>
-  filter(year == 2020, access_to_water > 90)
-
-nrow(owid_2020_hoher_wasserzugang)
-# Ca. 150–170 Zeilen.
-# Das sind vor allem Länder mit sehr hohem Wasserzugang — oft wohlhabendere
-# Staaten in Europa, Nordamerika und Teilen Asiens, in denen fast die gesamte
-# Bevölkerung Zugang zu sicherem Trinkwasser hat.
 ```
 
 </details>
