@@ -86,34 +86,38 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###***********************************************###
-##### HA2 · Variablentypen und ihre Tücken #####
-###***********************************************###
+###*****************************************###
+##### HA2 · Die Pipe (|>) kennenlernen #####
+###*****************************************###
 
 
-##### HA2 a · Klassen bestimmen
+##### HA2 a · glimpse() mit und ohne Pipe
 
-# Bestimme den Typ dieser Variablen mit class():
-# country, year, world_region, access_to_water, democracy_score_string
-
-
-
-
-##### HA2 b · Debugging-Aufgabe
-
-# Führe aus und erkläre im Kommentar, was das Problem ist und wie man es beheben würde:
-# mean(owid_daten$world_region)
-#
-#
-#
+# Wende glimpse() auf owid_daten an — einmal ohne Pipe, einmal mit Pipe.
+# Notiere als Kommentar: Ergeben beide Aufrufe dasselbe?
 
 
 
 
-##### HA2 c · Denk-Aufgabe (kein Code nötig)
+##### HA2 b · Pipe mit filter() und glimpse()
 
-# year hat den Typ integer. Was würde passieren, wenn year fälschlicherweise
-# als character gespeichert wäre — besonders in einem Linienplot?
+# Nutze die Pipe: filtere auf year == 2020, wende dann glimpse() an.
+# Wie viele Zeilen siehst du ungefähr?
+
+
+
+
+##### HA2 c · Pipe-Kette mit nrow()
+
+# owid_daten |> filter(year == 2020) |> nrow()
+# Speichere das Ergebnis in n_zeilen_2020.
+
+
+
+
+##### HA2 d · Denk-Aufgabe
+
+# Warum ist die Pipe hilfreich bei mehreren Schritten hintereinander?
 # Schreibe 2 Sätze als Kommentar.
 #
 #
@@ -122,46 +126,37 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###******************************************###
-##### HA3 · Fehlende Werte untersuchen #####
-###******************************************###
+###**************************************###
+##### HA3 · Mit filter() Zeilen auswählen #####
+###**************************************###
 
 
-##### HA3 A · Fehlende Werte zählen
+##### HA3 a · Nach Jahr filtern
 
-# Berechne die Anzahl fehlender Werte für:
-# access_to_water, life_expectancy_birth, gini
-# Speichere jedes Ergebnis in einem sinnvoll benannten Objekt, z. B. n_miss_water.
-
-
-
-
-##### HA3 B · Prozentanteile berechnen
-
-# Berechne den prozentualen Anteil fehlender Werte für jede der drei Variablen.
+# Filtere auf year == 2015. Speichere in owid_2015. Prüfe mit nrow().
 
 
 
 
-##### HA3 C · Mittelwert mit und ohne na.rm
+##### HA3 b · Niedriger Wasserzugang
 
-# Berechne den Mittelwert von access_to_water:
-# 1. Ohne na.rm = TRUE — was liefert R?
-# 2. Mit na.rm = TRUE — was ist der Wert?
-# Schreibe einen Kommentar, der den Unterschied erklärt.
-#
-#
-#
+# Filtere auf access_to_water < 30. Wie viele Zeilen? Kurzer Kommentar.
 
 
 
 
-##### HA3 D · Interpretieren
+##### HA3 c · Drei Länder seit 2000
 
-# Schreibe 3–4 Sätze als Kommentar:
-# Welche der drei Variablen hat die meisten fehlenden Werte?
-# Was könnte der Grund dafür sein?
-# Was bedeutet das für eine Analyse, die diese Variable verwendet?
+# Filtere auf Germany, India, Nigeria und year >= 2000.
+# Speichere in drei_laender_seit_2000 und wende glimpse() an.
+
+
+
+
+##### HA3 d · Hoher Wasserzugang 2020
+
+# Filtere auf year == 2020 und access_to_water > 90.
+# Speichere in owid_2020_hoher_wasserzugang. nrow() und 1–2 Sätze Kommentar.
 #
 #
 #
@@ -173,7 +168,7 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 ##### HA4 · Histogramm: Verteilung des Wasserzugangs #####
 ###*********************************************************###
 
-# filter() und distinct() werden in Session 5 ausführlich eingeführt — hier als Vorgabe:
+# filter() hast du in HA3 kennengelernt; distinct() lernst du in Session 5 — hier als Vorgabe:
 owid_2020 <- owid_daten |>
   filter(year == 2020) |>
   distinct(country, .keep_all = TRUE)
@@ -237,7 +232,7 @@ ggsave(
 ##### HA5 · Linienplot: Entwicklung über die Zeit #####
 ###*********************************************************###
 
-# %in% und filter() werden in Session 5 ausführlich eingeführt — hier als Vorgabe:
+# filter() und %in% hast du in HA3 kennengelernt — hier als Vorgabe:
 fuenf_laender <- owid_daten |>
   filter(
     country %in% c("Germany", "Brazil", "India", "Nigeria", "Bangladesh"),
@@ -297,7 +292,7 @@ ggsave(
 ###**********************************************************************###
 
 
-# filter() und !is.na() werden in Session 5 ausführlich eingeführt — hier als Vorgabe:
+# filter() hast du in HA3 kennengelernt; !is.na() lernst du in Session 5 — hier als Vorgabe:
 owid_2020_scatter <- owid_daten |>
   filter(year == 2020) |>
   distinct(country, .keep_all = TRUE) |>

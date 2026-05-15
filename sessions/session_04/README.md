@@ -13,8 +13,8 @@
 - [Einleitung](#einleitung)
 - [Hausaufgaben](#hausaufgaben)
   - [HA1 · Den Datensatz systematisch erkunden](#ha1)
-  - [HA2 · Variablentypen und ihre Tücken](#ha2)
-  - [HA3 · Fehlende Werte untersuchen](#ha3)
+  - [HA2 · Die Pipe (`|>`) kennenlernen](#ha2)
+  - [HA3 · Mit `filter()` Zeilen auswählen](#ha3)
   - [HA4 · Histogramm: Verteilung des Wasserzugangs](#ha4)
   - [HA5 · Linienplot: Entwicklung über die Zeit](#ha5)
   - [HA6 · Streudiagramm: Wasserzugang und Lebenserwartung](#ha6)
@@ -35,19 +35,21 @@ Am Ende dieser Hausaufgaben wirst du drei Plots erstellt haben:
 Anzahl Länder
   50 |  ██
   40 |  ████
-  30 |  ████                                  ████
-  20 |  ████                             ████████
-  10 |  ████               ██       ████████████
+  30 |  ██████████████████████████████████████████
+  20 |  █████████████████████████████████████████
+  10 |  ████████████████████████████████████████
    0 +─────────────────────────────────────────────
      0%    20%    40%    60%    80%   100%
            Bevölkerungsanteil mit sicherem Wasserzugang
 ```
 
+*Das hier ist nur eine Skizze, die die ungefähre Form zeigt — deine ggplot-Grafik wird deutlich schöner aussehen und muss ordentlich beschriftet sein.*
+
 **Plot 2 — Linienplot:** Wie hat sich der Wasserzugang in ausgewählten Ländern seit 2000 entwickelt?
 
 **Plot 3 — Streudiagramm:** Länder mit besserem Wasserzugang — leben ihre Einwohner:innen länger?
 
-*Die ASCII-Skizzen zeigen nur die ungefähre Form — deine ggplot-Grafiken werden deutlich schöner aussehen und müssen beschriftet sein.*
+
 
 ---
 
@@ -57,25 +59,26 @@ Alle Code-Aufgaben bearbeitest du in **einem einzigen Skript**:
 
 **`scripts/session_04_skript.R`**
 
-### Schritt-für-Schritt
+### Schritt-für-Schritt: Wie lege ich los?
 
-1. Vergewissere dich, dass du das korrekte RStudio-Projekt geöffnet hast. Oben rechts in RStudio sollte der Projektname erscheinen. Wenn nicht: Öffne die `.Rproj`-Datei per Doppelklick.
-2. Öffne das Skript `scripts/session_04_skript.R`.
-3. **Führe zuerst den SETUP-Abschnitt aus** — er lädt die nötigen Pakete und den OWID-Datensatz.
+1. Lade den Session-Ordner für diese Woche runter (Session 4). Die Anleitung dazu findest du [hier](https://github.com/nlegewie/Intro_to_R_Seminar/tree/main/sessions).
+2. Vergewissere dich, dass du das korrekte RStudio-Projekt geöffnet hast. Du findest die Datei im entsprechenden Session-Ordner. Für diese Woche brauchst du Session 4. Oben rechts in RStudio sollte der Projektname erscheinen. Wenn nicht: Öffne die `.Rproj`-Datei per Doppelklick.
+3. Öffne das Skript `scripts/session_04_skript.R`.
+4. **Führe zuerst den SETUP-Abschnitt aus** — er lädt die nötigen Pakete und den OWID-Datensatz.
 
-   > **`owid_data.csv` liegt unter `full_data/`** im Hauptordner des Repos. Wenn ein „Datei nicht gefunden"-Fehler erscheint, vergleiche deine Ordnerstruktur mit der im Repo und schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach.
+   > **`owid_data.csv` liegt unter `full_data/`** in deinem Hauptordner. Wenn ein „Datei nicht gefunden"-Fehler erscheint, vergleiche deine Ordnerstruktur mit der im Repo und schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach.
 
-4. Bearbeite die Hausaufgaben der Reihe nach.
+5. Bearbeite die Hausaufgaben der Reihe nach.
 
 > **Wichtig:** Schreibe deinen Code immer ins Skript, nicht in die Konsole. Nur so bleibt er gespeichert.
 
 ---
 
-<h2 id="einleitung">Einleitung: Was steckt eigentlich in einem Datensatz?</h2>
+<h2 id="einleitung">Einleitung: Was ist ein Datensatz?</h2>
 
-In Session 3 hast du einen Datensatz geladen und ein erstes Histogramm erstellt. Heute gehen wir einen Schritt zurück und fragen: **Was ist ein Datensatz in R überhaupt?** Welche Arten von Variablen gibt es — und warum spielt das eine Rolle? Und was passiert, wenn Werte fehlen?
+In Session 3 hast du einen Datensatz geladen und ein erstes Histogramm erstellt. Heute gehen wir einen Schritt zurück und fragen: **Was ist ein Datensatz in R überhaupt?** 
 
-Das klingt technisch, ist aber der Unterschied zwischen einer Analyse, die funktioniert, und einer, die einen kryptischen Fehler produziert.
+Das klingt technisch, ist aber der Unterschied zwischen einer Analyse, die funktioniert, und einer, die kryptische Fehler produziert.
 
 Unser inhaltlicher Fokus: **Zugang zu sauberem Trinkwasser** (`access_to_water`). Der Datensatz misst den Anteil der Bevölkerung, der Zugang zu sicher aufbereitetem Trinkwasser hat — von unter 2 % bis fast 100 %. Hinter diesen Zahlen steckt eine der grundlegendsten Dimensionen globaler Ungleichheit: Ob man sich darauf verlassen kann, dass das Wasser, das man trinkt, nicht krank macht.
 
@@ -119,14 +122,9 @@ d) Schreibe 2–3 Sätze als Kommentar: Was sagt der Wertebereich von `access_to
 <details>
 <summary><strong>Tipp</strong></summary>
 
-`glimpse()` und `summary()` können auf den ganzen Datensatz oder auf eine einzelne Spalte angewendet werden:
+`glimpse()` und `summary()` können auf den ganzen Datensatz oder auf eine einzelne Spalte angewendet werden. Für den gesamten Datensatz `owid_daten` nimmst du die Funktion (z.B. `glimpse()`), schreibst den Datensatz in die Klammer. Für einzelne Spalten musst du noch `$` und den Spaltennamen hinter den Datensatz hinzufügen.
 
-```r
-glimpse(owid_daten)           # ganzer Datensatz
-summary(owid_daten$access_to_water)  # nur eine Spalte
-```
-
-Für die Kommentare gibt es keine einzig richtige Antwort — schreib, was du siehst.
+Für die Kommentare gibt es keine einzig richtige Antwort — notiere, was du siehst und interessant findest.
 
 </details>
 
@@ -158,55 +156,58 @@ summary(owid_daten$access_to_water)
 
 ---
 
-<h3 id="ha2">HA2 · Variablentypen und ihre Tücken</h3>
+<h3 id="ha2">HA2 · Die Pipe (`|>`) kennenlernen</h3>
 
-### Was ist neu?
+### Was ist die Pipe?
 
-Jede Spalte in einem Tibble hat einen **Typ**. Der Typ bestimmt, was R damit machen kann — und was nicht:
+Bisher hast du Funktionen oft so aufgerufen: Zuerst der Datensatz, dann die Funktion in Klammern — `glimpse(owid_daten)`. Das funktioniert. Wird es aber komplizierter, liest sich der Code schnell von innen nach außen — und wird schwer zu verstehen.
 
-| Typ | Abkürzung in `glimpse()` | Beispiel |
-|-----|--------------------------|---------|
-| Ganze Zahlen | `<int>` | `2015`, `42` |
-| Dezimalzahlen | `<dbl>` | `72.3`, `0.04` |
-| Text | `<chr>` | `"Germany"`, `"Asia"` |
-| Kategorien (geordnet) | `<fct>` | `"niedrig"`, `"mittel"`, `"hoch"` |
-| Wahr/Falsch | `<lgl>` | `TRUE`, `FALSE` |
+Die **Pipe** (`|>`, gesprochen: „pipe") verbindet Schritte wie Perlen auf einer Kette: Das Ergebnis links wird automatisch als **erstes Argument** an die Funktion rechts übergeben. Du liest den Code von **oben nach unten** — in der Reihenfolge, in der du denkt.
 
-Mit `class()` kannst du den Typ einer einzelnen Spalte abfragen:
+**Ohne Pipe** — alles in einer Zeile, von innen nach außen:
 
 ```r
-class(owid_daten$country)            # "character"
-class(owid_daten$access_to_water)    # "numeric"
+nrow(filter(owid_daten, year == 2020))
 ```
 
-Warum ist das wichtig? Weil R Fehlermeldungen produziert, wenn du Funktionen auf den falschen Typ anwendest — und weil ggplot2 Variablen je nach Typ anders darstellt. `year` als Zahl ergibt eine kontinuierliche Achse; `year` als Faktor ergibt diskrete Gruppen.
+**Mit Pipe** — Schritt für Schritt, von oben nach unten:
+
+```r
+owid_daten |>
+  filter(year == 2020) |>
+  nrow()
+```
+
+Beide Varianten machen dasselbe: Sie zählen, wie viele Zeilen es für das Jahr 2020 gibt. Die Pipe-Version ist leichter zu erweitern — du kannst unten einfach weitere Zeilen anhängen, z. B. `glimpse()` oder `summary()`.
+
+> **Hinweis:** In älteren Skripten findest du manchmal `%>%` statt `|>`. Beide sind Pipes; wir nutzen `|>`, weil es in modernem R Standard ist.
 
 ### Deine Aufgaben
 
 Schreibe den Code in den Abschnitt **HA2** in `scripts/session_04_skript.R`.
 
-a) Bestimme den Typ dieser Variablen mit `class()`:
+a) Wende `glimpse()` auf `owid_daten` an — einmal **ohne** Pipe (`glimpse(owid_daten)`) und einmal **mit** Pipe (`owid_daten |> glimpse()`). Notiere als Kommentar: Ergeben beide Aufrufe dasselbe?
 
-- `country`
-- `year`
-- `world_region`
-- `access_to_water`
-- `democracy_score_string`
+b) Nutze die Pipe, um zuerst auf das Jahr 2020 zu filtern und dann `glimpse()` auf das Ergebnis anzuwenden. Wie viele Zeilen siehst du ungefähr?
 
-b) **Debugging-Aufgabe:** Der folgende Code erzeugt einen Fehler. Führe ihn aus, lies die Fehlermeldung genau und erkläre im Kommentar, was das Problem ist — und wie man es beheben würde:
+c) Baue eine längere Pipe-Kette: Starte mit `owid_daten`, filtere auf `year == 2020`, und zähle danach mit `nrow()`, wie viele Zeilen übrig bleiben. Speichere das Ergebnis in einem Objekt `n_zeilen_2020`.
 
-```r
-mean(owid_daten$world_region)
-```
-
-c) **Denk-Aufgabe (kein Code nötig):** `year` hat den Typ `integer` (ganze Zahl). In einem Linienplot wäre das sinnvoll — R behandelt es als fortlaufende Zeitachse. Aber was würde passieren, wenn `year` fälschlicherweise als `character` gespeichert wäre? Schreibe 2 Sätze als Kommentar.
+d) **Denk-Aufgabe:** Warum ist die Pipe besonders hilfreich, wenn du später mehrere Schritte hintereinander ausführst — z. B. filtern, fehlende Werte entfernen und dann plotten? Schreibe 2 Sätze als Kommentar.
 
 <br>
 
 <details>
-<summary><strong>Tipp zu b)</strong></summary>
+<summary><strong>Tipp</strong></summary>
 
-Lies die Fehlermeldung: Was sagt R über den Typ des Arguments? `mean()` braucht Zahlen. `world_region` enthält Text. Das ist der Konflikt — kein Tippfehler, sondern ein Typ-Fehler.
+Jede Zeile in einer Pipe-Kette beginnt mit dem Ergebnis der Zeile darüber. Die Einrückung ist optional, macht den Code aber lesbarer:
+
+```r
+owid_daten |>
+  filter(year == 2020) |>
+  glimpse()
+```
+
+Wenn eine Zeile mit `|>` endet, kommt die nächste Funktion in der **nächsten** Zeile. Der letzte Schritt braucht kein `|>` mehr — dort steht die letzte Funktion (z. B. `nrow()` oder `glimpse()`).
 
 </details>
 
@@ -216,21 +217,29 @@ Lies die Fehlermeldung: Was sagt R über den Typ des Arguments? `mean()` braucht
 <summary><strong>Lösung</strong></summary>
 
 ```r
-class(owid_daten$country)               # "character"
-class(owid_daten$year)                  # "integer"
-class(owid_daten$world_region)          # "character"
-class(owid_daten$access_to_water)       # "numeric"
-class(owid_daten$democracy_score_string) # "character"
+# HA2 a
+glimpse(owid_daten)
+owid_daten |> glimpse()
+# Beide zeigen dieselbe kompakte Übersicht — nur die Schreibweise unterscheidet sich.
 
-mean(owid_daten$world_region)
-# Fehlermeldung: argument is not numeric or logical: returning NA
-# Problem: world_region ist Text ("Africa", "Europe", ...). Den Mittelwert
-# von Regionsnamen zu berechnen ergibt keinen Sinn. Man müsste eine
-# numerische Variable wählen, z. B.: mean(owid_daten$access_to_water, na.rm = TRUE)
+# HA2 b
+owid_daten |>
+  filter(year == 2020) |>
+  glimpse()
+# Deutlich weniger Zeilen als im Gesamtdatensatz — nur Beobachtungen für 2020.
 
-# Wenn year als character gespeichert wäre, würde R es nicht als Zeitachse
-# behandeln — ggplot würde jeden Jahreswert als separate Kategorie darstellen,
-# was den Linienplot zerstören oder komplett unlesbar machen würde.
+# HA2 c
+n_zeilen_2020 <- owid_daten |>
+  filter(year == 2020) |>
+  nrow()
+
+n_zeilen_2020
+# Ca. 215–220 Zeilen (je nach Datensatzversion; ein Land kann mehrfach vorkommen).
+
+# HA2 d
+# Die Pipe macht jeden Zwischenschritt sichtbar und erweiterbar.
+# Statt verschachtelter Klammern liest man den Datenfluss wie einen Satz:
+# „Nimm owid_daten, filtere, entferne NAs, plotte."
 ```
 
 </details>
@@ -241,73 +250,73 @@ mean(owid_daten$world_region)
 
 ---
 
-<h3 id="ha3">HA3 · Fehlende Werte untersuchen</h3>
+<h3 id="ha3">HA3 · Mit `filter()` Zeilen auswählen</h3>
 
-### Was ist neu?
+### Was macht `filter()`?
 
-Fehlende Werte heißen in R `NA` (*Not Available*). Sie entstehen, weil Daten nicht für jedes Land und jedes Jahr erhoben wurden. Das ist normal — aber `NA` ist ansteckend: Fast jede Berechnung mit einem `NA` gibt wieder `NA` zurück:
+Ein Tibble wie `owid_daten` enthält viele Zeilen — für viele Länder und viele Jahre. Meist interessieren dich nicht alle auf einmal, sondern nur ein **Ausschnitt**: z. B. nur 2020, oder nur Länder mit sehr niedrigem Wasserzugang.
+
+`filter()` wählt **Zeilen** aus, für die eine Bedingung **wahr** (`TRUE`) ist. Alle anderen Zeilen werden verworfen. Das Ergebnis ist wieder ein Tibble — nur kleiner.
+
+| Bedingung | Bedeutung | Beispiel |
+|-----------|-----------|----------|
+| `==` | ist gleich | `year == 2020` |
+| `>` / `<` | größer / kleiner | `access_to_water < 30` |
+| `>=` / `<=` | größer-gleich / kleiner-gleich | `year >= 2000` |
+| `&` | und (beides muss gelten) | `year == 2020 & access_to_water < 50` |
+| `%in%` | Wert ist in einer Liste | `country %in% c("Germany", "Nigeria")` |
+
+**Beispiel:** Nur Länderjahre mit weniger als 30 % Wasserzugang:
 
 ```r
-mean(c(10, 20, NA))               # ergibt: NA
-mean(c(10, 20, NA), na.rm = TRUE) # ergibt: 15
+owid_daten |>
+  filter(access_to_water < 30)
 ```
 
-`na.rm = TRUE` weist R an, `NA`-Werte vor der Berechnung zu entfernen (*remove*). Das ist oft nötig — aber du solltest wissen, wie viele Werte dabei wegfallen.
-
-Nützliche Funktionen:
+**Beispiel:** Nur Deutschland und Nigeria, ab dem Jahr 2000:
 
 ```r
-is.na(spalte)                    # TRUE/FALSE für jeden Wert
-sum(is.na(spalte))               # Anzahl fehlender Werte
-sum(is.na(spalte)) / nrow(datensatz) * 100  # Prozentanteil
+owid_daten |>
+  filter(
+    country %in% c("Germany", "Nigeria"),
+    year >= 2000
+  )
 ```
+
+Mehrere Bedingungen in `filter()` werden mit einem **Komma** getrennt — das bedeutet logisch **UND**: Beide müssen erfüllt sein.
 
 ### Deine Aufgaben
 
 Schreibe den Code in den Abschnitt **HA3** in `scripts/session_04_skript.R`.
 
-#### HA3 A: Fehlende Werte zählen
+a) Filtere `owid_daten` auf das Jahr 2015. Speichere das Ergebnis in `owid_2015` und prüfe mit `nrow()`, wie viele Zeilen übrig sind.
 
-Berechne die Anzahl fehlender Werte für diese drei Variablen:
+b) Filtere auf alle Zeilen mit `access_to_water < 30` (weniger als 30 % der Bevölkerung mit sicherem Wasserzugang). Wie viele Zeilen ergeben sich? Was sagt dir diese Zahl über globale Ungleichheit?
 
-- `access_to_water`
-- `life_expectancy_birth`
-- `gini`
+c) Filtere auf die Länder **Germany**, **India** und **Nigeria** — und nur für Jahre ab 2000 (`year >= 2000`). Speichere das Ergebnis in `drei_laender_seit_2000` und wende `glimpse()` darauf an.
 
-Speichere jedes Ergebnis in einem sinnvoll benannten Objekt (z. B. `n_miss_water`).
-
-#### HA3 B: Prozentanteile berechnen
-
-Berechne den prozentualen Anteil fehlender Werte für jede der drei Variablen.
-
-#### HA3 C: Mittelwert mit und ohne `na.rm`
-
-Berechne den Mittelwert von `access_to_water`:
-
-1. Ohne `na.rm = TRUE` — was liefert R?
-2. Mit `na.rm = TRUE` — was ist der Wert?
-
-Schreibe einen Kommentar, der den Unterschied erklärt.
-
-#### HA3 D: Interpretieren
-
-Schreibe **3–4 Sätze** als Kommentar:
-
-- Welche der drei Variablen hat die meisten fehlenden Werte?
-- Was könnte der Grund dafür sein? (Tipp: Wofür braucht man Haushaltsbefragungen — und wer hat die Kapazitäten, diese regelmäßig durchzuführen?)
-- Was bedeutet das für eine Analyse, die diese Variable verwendet?
+d) Kombiniere zwei Bedingungen: Erstelle ein Tibble mit allen Zeilen für **2020**, in denen `access_to_water` **über 90** liegt. Speichere es als `owid_2020_hoher_wasserzugang`. Zähle die Zeilen mit `nrow()` und schreibe **1–2 Sätze** als Kommentar: Was für Länder könnten das sein?
 
 <br>
 
 <details>
 <summary><strong>Tipp</strong></summary>
 
-Schema für alle drei Variablen:
+`filter()` funktioniert am besten zusammen mit der Pipe — so bleibt der Datensatz links, die Bedingung steht in `filter()`:
 
 ```r
-n_miss_water <- sum(is.na(owid_daten$access_to_water))
-pct_miss_water <- n_miss_water / nrow(owid_daten) * 100
+owid_daten |>
+  filter(year == 2020)
 ```
+
+Für Aufgabe d) brauchst du zwei Bedingungen in einem `filter()`-Aufruf — entweder mit Komma oder mit `&`:
+
+```r
+owid_daten |>
+  filter(year == 2020, access_to_water > 90)
+```
+
+Wenn du unsicher bist, ob dein Filter funktioniert hat: `glimpse()` oder `nrow()` direkt an die Pipe-Kette hängen.
 
 </details>
 
@@ -317,31 +326,40 @@ pct_miss_water <- n_miss_water / nrow(owid_daten) * 100
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA3 A
-n_miss_water <- sum(is.na(owid_daten$access_to_water))
-n_miss_le    <- sum(is.na(owid_daten$life_expectancy_birth))
-n_miss_gini  <- sum(is.na(owid_daten$gini))
+# HA3 a
+owid_2015 <- owid_daten |>
+  filter(year == 2015)
 
-# HA3 B
-pct_miss_water <- n_miss_water / nrow(owid_daten) * 100
-pct_miss_le    <- n_miss_le    / nrow(owid_daten) * 100
-pct_miss_gini  <- n_miss_gini  / nrow(owid_daten) * 100
+nrow(owid_2015)
+# Ca. 215–220 Zeilen.
 
-# HA3 C
-mean(owid_daten$access_to_water)             # NA
-mean(owid_daten$access_to_water, na.rm = TRUE) # ca. 70
-# Ohne na.rm = TRUE "infiziert" ein einziges NA das gesamte Ergebnis —
-# R gibt NA zurück, weil es nicht sicher sein kann, wie der fehlende Wert
-# das Ergebnis beeinflusst hätte. Mit na.rm = TRUE werden NAs ignoriert
-# und der Mittelwert aus den verfügbaren Werten berechnet.
+# HA3 b
+owid_daten |>
+  filter(access_to_water < 30) |>
+  nrow()
+# Ca. 3.000–4.000 Zeilen (viele Länderjahre über die Zeit).
+# Das zeigt: In einem erheblichen Teil der Weltbevölkerung hat ein großer
+# Anteil keinen sicheren Zugang zu Trinkwasser — ein Kernmerkmal globaler Ungleichheit.
 
-# HA3 D
-# gini hat mit Abstand die meisten fehlenden Werte. Der Gini-Koeffizient
-# erfordert repräsentative Haushaltsbefragungen — ein aufwändiges und teures
-# Verfahren, das viele Länder nicht jedes Jahr durchführen können.
-# Reichere Länder haben dafür häufiger die Kapazität. Das bedeutet: Wenn wir
-# nur Länder mit vollständigen gini-Daten analysieren, schauen wir
-# möglicherweise nur auf einen wohlhabenden Ausschnitt der Welt.
+# HA3 c
+drei_laender_seit_2000 <- owid_daten |>
+  filter(
+    country %in% c("Germany", "India", "Nigeria"),
+    year >= 2000
+  )
+
+drei_laender_seit_2000 |> glimpse()
+# Ca. 60–75 Zeilen (3 Länder × ca. 20–25 Jahre).
+
+# HA3 d
+owid_2020_hoher_wasserzugang <- owid_daten |>
+  filter(year == 2020, access_to_water > 90)
+
+nrow(owid_2020_hoher_wasserzugang)
+# Ca. 150–170 Zeilen.
+# Das sind vor allem Länder mit sehr hohem Wasserzugang — oft wohlhabendere
+# Staaten in Europa, Nordamerika und Teilen Asiens, in denen fast die gesamte
+# Bevölkerung Zugang zu sicherem Trinkwasser hat.
 ```
 
 </details>
@@ -370,7 +388,7 @@ owid_2020 <- owid_daten |>
   distinct(country, .keep_all = TRUE)
 ```
 
-> `filter()` wählt nur Zeilen mit `year == 2020`. `distinct()` entfernt doppelte Ländereinträge, die im Rohdatensatz vorkommen können. Beide Funktionen lernst du in Session 5 ausführlich kennen — hier nutzt du sie als Vorgabe.
+> `filter()` hast du in HA3 kennengelernt — hier filterst du auf `year == 2020`. `distinct()` entfernt doppelte Ländereinträge, die im Rohdatensatz vorkommen können; diese Funktion lernst du in Session 5 ausführlich kennen.
 
 #### HA4 A: Plausibilitätschecks
 
@@ -524,7 +542,7 @@ fuenf_laender <- owid_daten |>
   distinct(country, year, .keep_all = TRUE)
 ```
 
-> `%in%` prüft, ob ein Wert in einem Vektor enthalten ist — hier: ob `country` zu den fünf genannten Ländern gehört. Auch das lernst du in Session 5 ausführlich.
+> `%in%` hast du in HA3 schon gesehen — hier prüfst du, ob `country` zu den fünf genannten Ländern gehört.
 
 #### HA5 A: Plausibilitätschecks
 
