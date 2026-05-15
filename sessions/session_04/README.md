@@ -13,8 +13,8 @@
 - [Einleitung](#einleitung)
 - [Hausaufgaben](#hausaufgaben)
   - [HA1 · Den Datensatz systematisch erkunden](#ha1)
-  - [HA2 · Die Pipe (`|>`) kennenlernen](#ha2)
-  - [HA3 · Mit `filter()` Zeilen auswählen](#ha3)
+  - [HA2 · Mit `filter()` Zeilen auswählen](#ha2)
+  - [HA3 · Die Pipe (`|>`) kennenlernen](#ha3)
   - [HA4 · Histogramm: Verteilung des Wasserzugangs](#ha4)
   - [HA5 · Linienplot: Entwicklung über die Zeit](#ha5)
   - [HA6 · Streudiagramm: Wasserzugang und Lebenserwartung](#ha6)
@@ -190,7 +190,7 @@ Mehrere Bedingungen in `filter()` werden mit einem **Komma** getrennt — das be
 
 ### Deine Aufgaben
 
-Schreibe den Code in den Abschnitt **HA3** in `scripts/session_04_skript.R`.
+Schreibe den Code in den Abschnitt **HA2** in `scripts/session_04_skript.R`.
 
 a) Filtere `owid_daten` auf das Jahr 2015. Speichere das Ergebnis in `owid_daten_2015` und prüfe mit `nrow()`, wie viele Zeilen übrig sind.
 
@@ -225,19 +225,19 @@ Wenn du unsicher bist, ob dein Filter funktioniert hat: `glimpse()` oder `nrow()
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA3 a
+# HA2 a
 owid_2015 <- filter(owid_daten, year == 2015)
 
 nrow(owid_2015)
 # Ca. 215–220 Zeilen.
 
-# HA3 b
+# HA2 b
 nrow(filter(owid_daten, access_to_water < 30))
 # Ca. 3.000–4.000 Zeilen (viele Länderjahre über die Zeit).
 # Das zeigt: In einem erheblichen Teil der Weltbevölkerung hat ein großer
 # Anteil keinen sicheren Zugang zu Trinkwasser — ein Kernmerkmal globaler Ungleichheit.
 
-# HA3 c
+# HA2 c
 drei_laender_seit_2000 <- filter(owid_daten,
     country %in% c("Germany", "India", "Nigeria"),
     year >= 2000
@@ -246,7 +246,7 @@ drei_laender_seit_2000 <- filter(owid_daten,
 drei_laender_seit_2000 |> glimpse()
 # Ca. 60–75 Zeilen (3 Länder × ca. 20–25 Jahre).
 
-# HA3 d
+# HA2 d
 owid_2020_hoher_wasserzugang <- filter(owid_daten,
         year == 2020, 
         access_to_water > 90
@@ -273,35 +273,36 @@ nrow(owid_2020_hoher_wasserzugang)
 
 Bisher hast du Funktionen oft so aufgerufen: Zuerst der Datensatz, dann die Funktion in Klammern — `glimpse(owid_daten)`. Das funktioniert. Wird es aber komplizierter, d.h. willst du mehrere Arbeitsschritte hintereinander abwickeln, wird der Code schnell unübersichtlich und schwer zu verstehen.
 
-Die **Pipe** (`|>`) verbindet Schritte wie Perlen auf einer Kette: Das Ergebnis links wird automatisch als **erstes Argument** an die Funktion rechts übergeben. Du liest den Code von **oben nach unten** — in der Reihenfolge, in der du denkst.
+Die **Pipe** (`|>`) verbindet Schritte wie Perlen auf einer Kette: Das Ergebnis links wird automatisch als **erstes Argument** an die Funktion rechts übergeben. Du liest den Code von **oben nach unten** — in der Reihenfolge, in der du denkst. Du kannst sie lesen als "und dann".
 
 **Ohne Pipe** — alles in einer Zeile, von innen nach außen:
 
 ```r
-nrow(filter(owid_daten, year == 2020))
+filter(owid_daten, year == 2020)
 ```
 
 **Mit Pipe** — Schritt für Schritt, von oben nach unten:
 
 ```r
 owid_daten |>
-  filter(year == 2020) |>
-  nrow()
+  filter(year == 2020)
 ```
 
-Beide Varianten machen dasselbe: Sie zählen, wie viele Zeilen es für das Jahr 2020 gibt. Die Pipe-Version ist leichter zu erweitern — du kannst unten einfach weitere Zeilen anhängen, z. B. `glimpse()` oder `summary()`.
+Das Beispiel mit Pipe kannst du lesen als: "Ich nehme den Datensatz `owid_daten` UND DANN filtere ich die Zeilen heraus, die das Jahr 2020 beschreiben."
+
+Beide Varianten machen dasselbe: Sie filtern den Datensatz für das Jahr 2020. Die Pipe-Version ist leichter zu erweitern — du kannst unten einfach weitere Zeilen anhängen, z. B. `glimpse()` oder `summary()`.
 
 > **Hinweis:** In älteren Skripten findest du manchmal `%>%` statt `|>`. Beide sind Pipes; wir nutzen `|>`, weil es in modernem R Standard ist.
 
 ### Deine Aufgaben
 
-Schreibe den Code in den Abschnitt **HA2** in `scripts/session_04_skript.R`.
+Schreibe den Code in den Abschnitt **HA3** in `scripts/session_04_skript.R`.
 
-a) Wende `glimpse()` auf `owid_daten` an — einmal **ohne** Pipe (`glimpse(owid_daten)`) und einmal **mit** Pipe (`owid_daten |> glimpse()`). Notiere als Kommentar: Ergeben beide Aufrufe dasselbe?
+a) Wende `glimpse()` auf `owid_daten` an — einmal **ohne** Pipe und einmal **mit** Pipe. Notiere als Kommentar: Ergeben beide Aufrufe dasselbe?
 
-b) Nutze die Pipe, um zuerst auf das Jahr 2020 zu filtern und dann `glimpse()` auf das Ergebnis anzuwenden. Wie viele Zeilen siehst du ungefähr?
+b) Nutze die Pipe, um zuerst auf das Jahr 2020 zu filtern und dann `glimpse()` auf das Ergebnis anzuwenden. Wie viele Zeilen siehst du?
 
-c) Baue eine längere Pipe-Kette: Starte mit `owid_daten`, filtere auf `year == 2020`, und zähle danach mit `nrow()`, wie viele Zeilen übrig bleiben. Speichere das Ergebnis in einem Objekt `n_zeilen_2020`.
+c) Baue eine längere Pipe-Kette: Starte mit `owid_daten`, filtere auf `year == 2020`, zähle danach mit `nrow()`, wie viele Zeilen übrig bleiben und prüfe danach mit `class()`, welchen Typ der Output hat.
 
 d) **Denk-Aufgabe:** Warum ist die Pipe besonders hilfreich, wenn du später mehrere Schritte hintereinander ausführst — z. B. filtern, fehlende Werte entfernen und dann plotten? Schreibe 2 Sätze als Kommentar.
 
@@ -328,29 +329,29 @@ Wenn eine Zeile mit `|>` endet, kommt die nächste Funktion in der **nächsten**
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA2 a
+# HA3 a
 glimpse(owid_daten)
 owid_daten |> glimpse()
 # Beide zeigen dieselbe kompakte Übersicht — nur die Schreibweise unterscheidet sich.
 
-# HA2 b
+# HA3 b
 owid_daten |>
   filter(year == 2020) |>
   glimpse()
 # Deutlich weniger Zeilen als im Gesamtdatensatz — nur Beobachtungen für 2020.
 
-# HA2 c
+# HA3 c
 n_zeilen_2020 <- owid_daten |>
   filter(year == 2020) |>
-  nrow()
+  nrow() |>
+  class()
 
-n_zeilen_2020
-# Ca. 215–220 Zeilen (je nach Datensatzversion; ein Land kann mehrfach vorkommen).
+# Es handelt sich um ein Objekt des Typs "integer", was eine ganze Zahl ist.
 
-# HA2 d
+# HA3 d
 # Die Pipe macht jeden Zwischenschritt sichtbar und erweiterbar.
 # Statt verschachtelter Klammern liest man den Datenfluss wie einen Satz:
-# „Nimm owid_daten, filtere, entferne NAs, plotte."
+# „Nimm owid_daten UND DANN filtere UND DANN entferne NAs UND DANN plotte."
 ```
 
 </details>
@@ -365,7 +366,7 @@ n_zeilen_2020
 
 ### Ziel
 
-Du erstellst ein beschriftetes Histogramm des Wasserzugangs für das Jahr 2020. Die Verteilung hat eine charakteristische Form — sie ist nicht einfach schief, sondern zeigt zwei Häufungspunkte, sogenannte **Bimodalität**: Eine Gruppe von Ländern mit sehr niedrigem Wasserzugang und eine große Gruppe mit sehr hohem. Das ist kein statistisches Artefakt — es ist eine Aussage über die Welt.
+Du erstellst ein beschriftetes Histogramm des Wasserzugangs für das Jahr 2020. Die Verteilung hat eine charakteristische Form, welche uns einen wichtigen Einblick in das Phänomen bietet. 
 
 ### Aufgaben
 
@@ -379,40 +380,39 @@ owid_2020 <- owid_daten |>
   distinct(country, .keep_all = TRUE)
 ```
 
-> `filter()` hast du in HA3 kennengelernt — hier filterst du auf `year == 2020`. `distinct()` entfernt doppelte Ländereinträge, die im Rohdatensatz vorkommen können; diese Funktion lernst du in Session 5 ausführlich kennen.
+> `filter()` hast du in HA2 kennengelernt — hier filterst du auf `year == 2020`. `distinct()` entfernt doppelte Ländereinträge, die im Rohdatensatz vorkommen können; diese Funktion lernst du in Session 5 ausführlich kennen. Die weiteren filter() Aufrufe entfernen Zeilen, die Werte für ganze Kontinente zusammenfassen.
 
 #### HA4 A: Plausibilitätschecks
 
 Führe aus und notiere deine Beobachtungen als Kommentar:
 
 - `nrow(owid_2020)` — wie viele Länder für 2020?
-- `summary(owid_2020$access_to_water)` — welche Werte siehst du?
-- `sum(is.na(owid_2020$access_to_water))` — wie viele Länder fehlen?
+- `summary(owid_2020$access_to_water)` — welche Werte siehst du? Wie viele Länder fehlen?
 
 #### HA4 B: Histogramm erstellen und beschriften
 
-Erstelle ein Histogramm von `access_to_water` mit `ggplot()` + `geom_histogram()`. Experimentiere mit `bins` (probiere 15, 25, 35) und wähle den Wert, der die Verteilung am klarsten zeigt.
+Erstelle ein Histogramm von `access_to_water` mit `ggplot()` + `geom_histogram()`. Experimentiere mit `bins` (probiere 15, 25, 35) und wähle den Wert, der die Verteilung am klarsten zeigt. bin kannst du als Argument innerhalb von `geom_histogram()` hinzufugen, z.B. so: `geom_histogram(bins = 25)`
 
 Füge mit `labs()` hinzu:
 
 - `title` — einen informativen Titel
 - `subtitle` — das Jahr und was gemessen wird
 - `x` und `y` — sinnvolle Achsenbeschriftungen
-- `caption` — Quellenangabe
+- `caption` — Quellenangabe ("OWID")
 
-Vergib dem Plot das Objekt `water_histogram` und gib ihn aus.
+Weise den Plot dem Objekt `water_histogram` zu und lass ihn dir auswerfen.
 
 #### HA4 C: Farbe und Interpretation
 
-Passe die Balkenfarbe an: `fill = "steelblue", color = "white"` im `geom_histogram()`-Aufruf. Probiere auch andere Farben — welche findest du für das Thema passend?
+Passe die Balkenfarbe an: `fill = "steelblue", color = "white"` im `geom_histogram()`-Aufruf. Mehrere Argumente (also hier `bins`, `fill` und `color`) werden mit Kommata getrennt. Probiere auch andere Farben — welche findest du für das Thema passend?
 
 Schreibe **3–4 Sätze Interpretation** als Kommentar:
 
-- Siehst du die zwei Häufungspunkte?
-- Was bedeutet die Lücke dazwischen?
 - Was sagt die Verteilung über globale Ungleichheit beim Wasserzugang?
 
 #### HA4 D: Plot speichern
+
+Kopiere den folgenden Code in das Skript und führe ihn aus. 
 
 ```r
 dir.create(here("output"), showWarnings = FALSE)
@@ -433,7 +433,8 @@ ggsave(
 Grundmuster:
 
 ```r
-water_histogram <- ggplot(owid_2020, aes(x = access_to_water)) +
+water_histogram <- owid_2020 |>
+ggplot(aes(x = access_to_water)) +
   geom_histogram(bins = 25, fill = "steelblue", color = "white") +
   labs(
     title    = "...",
@@ -454,9 +455,6 @@ water_histogram
 <summary><strong>Lösung</strong></summary>
 
 ```r
-owid_2020 <- owid_daten |>
-  filter(year == 2020) |>
-  distinct(country, .keep_all = TRUE)
 
 # HA4 A
 nrow(owid_2020)
@@ -466,7 +464,8 @@ sum(is.na(owid_2020$access_to_water))
 # Werte reichen von unter 2% bis 100%; Median um 79%.
 
 # HA4 B–C
-water_histogram <- ggplot(owid_2020, aes(x = access_to_water)) +
+water_histogram <- owid_2020 |>
+ggplot(aes(x = access_to_water)) +
   geom_histogram(bins = 25, fill = "steelblue", color = "white") +
   labs(
     title    = "Zugang zu sauberem Trinkwasser weltweit",
@@ -507,7 +506,7 @@ ggsave(
 
 ### Ziel
 
-Ein Histogramm zeigt, wie eine Variable zu einem Zeitpunkt verteilt ist. Ein **Linienplot** zeigt, wie sie sich über die Zeit verändert. Du wirst sehen, dass Länder mit niedrigem Wasserzugang zwar Fortschritte machen — aber die Lücke zu den reichen Ländern riesig bleibt.
+Ein Histogramm zeigt, wie eine Variable verteilt ist. Eben haben wir uns die Verteilung in einem bestimmten Jahr angeschaut (2020). Ein **Linienplot** zeigt, wie sich eine Variable über die Zeit verändert. 
 
 ### Was ist neu?
 
@@ -522,7 +521,7 @@ ggplot(daten, aes(x = year, y = variable, color = country)) +
 
 Schreibe den Code in den Abschnitt **HA5** in `scripts/session_04_skript.R`.
 
-Der Abschnitt enthält diese vorbereitete Zeile:
+Der Abschnitt enthält diese vorbereitete Zeile. Für sie aus, um das Objekt `fuend_laender` zu erstellen. 
 
 ```r
 fuenf_laender <- owid_daten |>
@@ -533,25 +532,26 @@ fuenf_laender <- owid_daten |>
   distinct(country, year, .keep_all = TRUE)
 ```
 
-> `%in%` hast du in HA3 schon gesehen — hier prüfst du, ob `country` zu den fünf genannten Ländern gehört.
+> `%in%` hast du in HA3 schon gesehen — hier prüfst du, ob `country` zu den fünf genannten Ländern gehört, und filterst die Zeilen heraus, für die das der Fall ist.
 
 #### HA5 A: Plausibilitätschecks
 
 Führe aus:
 
 - `nrow(fuenf_laender)` — wie viele Zeilen?
-- `summary(fuenf_laender$access_to_water)` — Wertebereiche?
-- `sum(is.na(fuenf_laender$access_to_water))` — fehlende Werte?
+- `summary(fuenf_laender$access_to_water)` — Wertebereiche? Fehlende Werte?
 
 #### HA5 B: Linienplot erstellen
 
 Erstelle einen Linienplot mit `year` auf der x-Achse, `access_to_water` auf der y-Achse, und einer Linie pro Land. Beschrifte den Plot vollständig mit `labs()`.
 
+Benutze innerhalb von `geom_line()` das Argument `linewidth = 1`, welches die Linien etwas dicker und leichter lesbar macht.
+
 Weise den Plot dem Objekt `water_lineplot` zu.
 
 #### HA5 C: Plot speichern und interpretieren
 
-Speichere den Plot:
+Speichere den Plot, indem du den folgenden Code ins Skript kopierst und ausführst.
 
 ```r
 ggsave(
@@ -576,7 +576,8 @@ Schreibe **3–4 Sätze Interpretation** als Kommentar:
 Grundmuster für den Linienplot:
 
 ```r
-water_lineplot <- ggplot(fuenf_laender, aes(x = year, y = access_to_water, color = country)) +
+water_lineplot <- fuenf_laender |>
+ggplot(aes(x = year, y = access_to_water, color = country)) +
   geom_line(linewidth = 1) +
   labs(
     title   = "...",
@@ -589,8 +590,6 @@ water_lineplot <- ggplot(fuenf_laender, aes(x = year, y = access_to_water, color
 water_lineplot
 ```
 
-`linewidth = 1` macht die Linien etwas dicker und leichter lesbar.
-
 </details>
 
 <br>
@@ -599,17 +598,10 @@ water_lineplot
 <summary><strong>Lösung</strong></summary>
 
 ```r
-fuenf_laender <- owid_daten |>
-  filter(
-    country %in% c("Germany", "Brazil", "India", "Nigeria", "Bangladesh"),
-    year >= 2000
-  ) |>
-  distinct(country, year, .keep_all = TRUE)
 
 # HA5 A
 nrow(fuenf_laender)
 summary(fuenf_laender$access_to_water)
-sum(is.na(fuenf_laender$access_to_water))
 
 # HA5 B
 water_lineplot <- ggplot(fuenf_laender, aes(x = year, y = access_to_water, color = country)) +
@@ -629,7 +621,7 @@ water_lineplot
 # Indien zeigt den stärksten Aufwärtstrend: von ~38% auf über 70% in 20 Jahren.
 # Deutschland liegt die ganze Zeit nahe 100% und ist kaum von der Stelle gerückt —
 # weil es nichts mehr zu verbessern gibt.
-# Der Abstand zwischen Deutschland und Nigeria ist 2024 fast genauso groß wie 2000.
+# Der Abstand zwischen Deutschland und Nigeria ist auch 2024 noch sehr groß.
 # Das zeigt: Selbst wenn ärmere Länder Fortschritte machen, bleibt die absolute
 # Lücke dramatisch groß.
 
@@ -653,7 +645,7 @@ ggsave(
 
 ### Ziel
 
-Länder mit besserem Wasserzugang — leben ihre Einwohner:innen auch länger? Du erstellst ein Streudiagramm, das jeden Punkt als ein Land darstellt — und damit sichtbar macht, ob zwischen den beiden Variablen ein Zusammenhang besteht.
+Leben in Ländern mit besserem Wasserzugang die Einwohner:innen länger? Du erstellst ein Streudiagramm, das jeden Punkt als ein Land darstellt — und damit sichtbar macht, ob zwischen den beiden Variablen ein Zusammenhang besteht.
 
 ### Was ist neu?
 
@@ -687,9 +679,15 @@ Erstelle ein Streudiagramm mit:
 - `life_expectancy_birth` auf der y-Achse
 - `color = world_region`, um Punkte nach Region einzufärben
 
+Nutze innerhalb von `geom_point()` das Argument `alpha = 0.5`. Das macht die Punkte leicht transparent, was dabei hilft Punkte sichtbar zu machen, die direkt oder teilweise übereinander liegen. Bei vielen Datenpunkten oder Datenpunkten mit ähnlichen Werten ist das oft ein sehr nützliches Mittel. 
+
+Nutze als zweites Argument `size = 2.5`, welches die Punkte etwas größer und dadurch besser sichtbar macht.
+
 Beschrifte den Plot vollständig. Weise ihn dem Objekt `water_scatter` zu.
 
 #### HA6 C: Plot speichern und interpretieren
+
+Kopiere den folgenden Code ins Skript und führe ihn aus:
 
 ```r
 ggsave(
@@ -715,8 +713,9 @@ Schreibe **4–5 Sätze Interpretation** als Kommentar:
 Grundmuster:
 
 ```r
-water_scatter <- ggplot(owid_2020_scatter, aes(x = access_to_water, y = life_expectancy_birth, color = world_region)) +
-  geom_point(alpha = 0.7, size = 2.5) +
+water_scatter <- owid_2020_scatter |>
+ggplot(aes(x = access_to_water, y = life_expectancy_birth, color = world_region)) +
+  geom_point(alpha = 0.5, size = 2.5) +
   labs(
     title  = "...",
     x      = "...",
@@ -727,8 +726,6 @@ water_scatter <- ggplot(owid_2020_scatter, aes(x = access_to_water, y = life_exp
 
 water_scatter
 ```
-
-`alpha = 0.7` macht die Punkte leicht durchsichtig — so sieht man überlappende Punkte besser. `size = 2.5` macht sie etwas größer.
 
 </details>
 
@@ -759,7 +756,6 @@ water_scatter <- ggplot(owid_2020_scatter,
     title   = "Wasserzugang und Lebenserwartung im Jahr 2020",
     x       = "Bevölkerungsanteil mit sicherem Wasserzugang (%)",
     y       = "Lebenserwartung bei Geburt (Jahre)",
-    color   = "Weltregion",
     caption = "Quelle: Our World in Data / WHO–UNICEF JMP / UN"
   )
 

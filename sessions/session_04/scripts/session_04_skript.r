@@ -34,9 +34,9 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###***************************###
+###*************************** ###
 ##### ***HAUSAUFGABEN*** #####
-###***************************###
+###*************************** ###
 
 # Bearbeite diesen Abschnitt zu Hause.
 # Ausführliche Anleitungen: README.md in diesem Ordner.
@@ -45,9 +45,9 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###**************************************************###
+###************************************************** ###
 ##### HA1 · Den Datensatz systematisch erkunden #####
-###**************************************************###
+###************************************************** ###
 
 
 ##### HA1 a · glimpse()
@@ -86,66 +86,25 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###*****************************************###
-##### HA2 · Die Pipe (|>) kennenlernen #####
-###*****************************************###
+###***************************************** ###
+##### HA2 ·  ##### Mit filter() Zeilen auswählen #####
+###***************************************** ###
 
-
-##### HA2 a · glimpse() mit und ohne Pipe
-
-# Wende glimpse() auf owid_daten an — einmal ohne Pipe, einmal mit Pipe.
-# Notiere als Kommentar: Ergeben beide Aufrufe dasselbe?
-
-
-
-
-##### HA2 b · Pipe mit filter() und glimpse()
-
-# Nutze die Pipe: filtere auf year == 2020, wende dann glimpse() an.
-# Wie viele Zeilen siehst du ungefähr?
-
-
-
-
-##### HA2 c · Pipe-Kette mit nrow()
-
-# owid_daten |> filter(year == 2020) |> nrow()
-# Speichere das Ergebnis in n_zeilen_2020.
-
-
-
-
-##### HA2 d · Denk-Aufgabe
-
-# Warum ist die Pipe hilfreich bei mehreren Schritten hintereinander?
-# Schreibe 2 Sätze als Kommentar.
-#
-#
-#
-
-
-
-
-###**************************************###
-##### HA3 · Mit filter() Zeilen auswählen #####
-###**************************************###
-
-
-##### HA3 a · Nach Jahr filtern
+##### HA2 a · Nach Jahr filtern
 
 # Filtere auf year == 2015. Speichere in owid_2015. Prüfe mit nrow().
 
 
 
 
-##### HA3 b · Niedriger Wasserzugang
+##### HA2 b · Niedriger Wasserzugang
 
 # Filtere auf access_to_water < 30. Wie viele Zeilen? Kurzer Kommentar.
 
 
 
 
-##### HA3 c · Drei Länder seit 2000
+##### HA2 c · Drei Länder seit 2000
 
 # Filtere auf Germany, India, Nigeria und year >= 2000.
 # Speichere in drei_laender_seit_2000 und wende glimpse() an.
@@ -153,7 +112,7 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-##### HA3 d · Hoher Wasserzugang 2020
+##### HA2 d · Hoher Wasserzugang 2020
 
 # Filtere auf year == 2020 und access_to_water > 90.
 # Speichere in owid_2020_hoher_wasserzugang. nrow() und 1–2 Sätze Kommentar.
@@ -164,14 +123,62 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
-###*********************************************************###
+###************************************** ###
+##### HA3 · Die Pipe (|>) kennenlernen #####
+###************************************** ###
+
+
+##### HA3 a · glimpse() mit und ohne Pipe
+
+# Wende glimpse() auf owid_daten an — einmal ohne Pipe, einmal mit Pipe.
+# Notiere als Kommentar: Ergeben beide Aufrufe dasselbe?
+
+
+
+
+##### HA3 b · Pipe mit filter() und glimpse()
+
+# Nutze die Pipe: filtere auf year == 2020, wende dann glimpse() an.
+# Wie viele Zeilen siehst du ungefähr?
+
+
+
+
+##### HA3 c · Pipe-Kette mit nrow()
+
+# owid_daten |> filter(year == 2020) |> nrow()
+# Speichere das Ergebnis in n_zeilen_2020.
+
+
+
+
+##### HA3 d · Denk-Aufgabe
+
+# Warum ist die Pipe hilfreich bei mehreren Schritten hintereinander?
+# Schreibe 2 Sätze als Kommentar.
+#
+#
+#
+
+
+
+
+
+
+
+###********************************************************* ###
 ##### HA4 · Histogramm: Verteilung des Wasserzugangs #####
-###*********************************************************###
+###********************************************************* ###
 
 # filter() hast du in HA3 kennengelernt; distinct() lernst du in Session 5 — hier als Vorgabe:
 owid_2020 <- owid_daten |>
-  filter(year == 2020) |>
-  distinct(country, .keep_all = TRUE)
+    filter(year == 2020) |>
+    distinct(country, .keep_all = TRUE) |>
+    filter(!grepl("Africas", country)) |>
+    filter(!grepl("Asia", country)) |>
+    filter(!grepl("Africa", country)) |>
+    filter(!grepl("Americas", country)) |>
+    filter(!grepl("Europe", country))
 
 
 
