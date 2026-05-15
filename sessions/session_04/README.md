@@ -727,6 +727,7 @@ ggplot(aes(x = access_to_water, y = life_expectancy_birth, color = world_region)
 water_scatter
 ```
 
+
 </details>
 
 <br>
@@ -756,6 +757,7 @@ water_scatter <- ggplot(owid_2020_scatter,
     title   = "Wasserzugang und Lebenserwartung im Jahr 2020",
     x       = "Bevölkerungsanteil mit sicherem Wasserzugang (%)",
     y       = "Lebenserwartung bei Geburt (Jahre)",
+    color   = "Weltregion",
     caption = "Quelle: Our World in Data / WHO–UNICEF JMP / UN"
   )
 
@@ -803,26 +805,151 @@ Berechne für `access_to_water` im Datensatz `owid_2020`:
 
 Schreibe 3–4 Sätze Kommentar: Warum weichen Mittelwert und Median voneinander ab — und was sagt die Standardabweichung über die Ungleichheit des Wasserzugangs aus?
 
+<br>
+
+<details>
+<summary><strong>Tipp</strong></summary>
+
+`owid_2020` hast du in HA4 gebaut — er enthält bereits je Land eine Zeile für 2020. Du kannst die drei Kennzahlen direkt auf die Spalte anwenden:
+
+```r
+mean(owid_2020$access_to_water, na.rm = TRUE)
+median(owid_2020$access_to_water, na.rm = TRUE)
+sd(owid_2020$access_to_water, na.rm = TRUE)
+```
+
+Optional: Speichere die Werte in Objekten (`mean_water` usw.), damit du sie leichter im Kommentar vergleichen kannst.
+
+Bei deiner Einordnung hilft das Histogramm aus HA4: Eine **bimodale** Verteilung zieht Mittelwert und Median oft auseinander.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+mean_water <- mean(owid_2020$access_to_water, na.rm = TRUE)
+median_water <- median(owid_2020$access_to_water, na.rm = TRUE)
+sd_water <- sd(owid_2020$access_to_water, na.rm = TRUE)
+
+mean_water
+median_water
+sd_water
+# Mittelwert und Median liegen typischerweise nicht exakt gleich: Der Median ist
+# der „mittlere“ Wert beim Sortieren — der Mittelwert reagiert empfindlich auf
+# viele sehr niedrige oder sehr hohe Beobachtungen. Bei bimodal verteiltem
+# Wasserzugang (viele Länder mit niedrigem und viele mit hohem Zugang) ziehen
+# die extremen Gruppen den Mittelwert; der Median markiert eher die „Mitte“ der
+# sortierten Länderliste. Die Standardabweichung beschreibt die Streuung um
+# den Mittelwert: Ein großer Wert bedeutet große Unterschiede zwischen den
+# Ländern — passend zur globalen Ungleichheit beim Zugang zu sauberem Wasser.
+```
+
+</details>
+
+<br>
+
 ---
 
 ### B-HA2 ⚠️ · Trendlinie im Streudiagramm
 
-Füge dem Streudiagramm aus HA6 eine glatte Trendlinie hinzu:
+Füge dem Streudiagramm aus HA6 glatte Trendlinien für die Kontinentalgruppen hinzu:
 
 ```r
 water_scatter +
-  geom_smooth(method = "loess", color = "black", se = FALSE)
+  geom_smooth(method = "loess", se = FALSE)
 ```
 
-- Was zeigt die Kurve — ist der Zusammenhang linear?
-- Gibt es Bereiche, in denen die Lebenserwartung mit dem Wasserzugang besonders stark steigt?
+- Was zeigen die Kurven — ist der Zusammenhang linear?
+- Gibt es Wertbereiche oder Kontinente, in denen die Lebenserwartung mit dem Wasserzugang besonders stark steigt?
 - Schreibe 3–4 Sätze Kommentar.
+
+<br>
+
+<details>
+<summary><strong>Tipp</strong></summary>
+
+`water_scatter` nutzt bereits `color = world_region` in `aes()`. **Jede Farbe** ist damit eine eigene Gruppe — `geom_smooth()` berechnet für jede Weltregion eine eigene LOESS-Kurve, wenn du ihn so anhängst.
+
+Falls eine Meldung zu „fewer than n unique points“ erscheint: Manche Regionen haben nur wenige Länder — die Kurve wird dann unsicher oder entfällt teilweise.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+water_scatter +
+  geom_smooth(method = "loess", se = FALSE)
+
+# Die Kurven sind meist keine perfekten Geraden — LOESS passt eine glatte,
+# lokale Kurve an. Der Zusammenhang wirkt überwiegend positiv, kann aber in
+# einzelnen Bereichen flacher oder steiler sein (z. B. starker Anstieg der
+# Lebenserwartung bei niedrigem bis mittlerem Wasserzugang, dann abflachend).
+# Unterschiede zwischen den Regionen zeigen, dass der Zusammenhang nicht für
+# alle Kontinente gleich verläuft — institutionelle Faktoren und Gesundheitssysteme
+# erklären weiter Varianz jenseits des Wasserzugangs.
+```
+
+</details>
+
+<br>
 
 ---
 
 ### B-HA3 ⚠️ · Eigene Länderauswahl für den Linienplot
 
 Wähle 4–6 Länder deiner Wahl und erstelle einen eigenen Linienplot der Wasserzugangsentwicklung seit 2000. Begründe als Kommentar, warum du genau diese Länder gewählt hast — und was der Vergleich zeigt.
+
+<br>
+
+<details>
+<summary><strong>Tipp</strong></summary>
+
+Orientiere dich an der Pipeline aus HA5: `filter()` mit `country %in% c("...", ...)` und `year >= 2000`, dann `distinct(country, year, .keep_all = TRUE)` gegen doppelte Zeilen.
+
+Achte darauf, dass die Ländernamen **exakt** so geschrieben sind wie im Datensatz (Großbuchstaben, Leerzeichen) — bei Unsicherheit: `sort(unique(owid_daten$country))` oder `filter(owid_daten, country == "…")` testen.
+
+</details>
+
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
+```r
+# Beispiel — ersetze die Länder durch deine eigene Auswahl und Begründung.
+eigene_laender <- owid_daten |>
+  filter(
+    country %in% c("Ethiopia", "Vietnam", "Mexico", "Sweden"),
+    year >= 2000
+  ) |>
+  distinct(country, year, .keep_all = TRUE)
+
+eigenes_wasserplot <- ggplot(eigene_laender, aes(x = year, y = access_to_water, color = country)) +
+  geom_line(linewidth = 1) +
+  labs(
+    title   = "Wasserzugang: eigener Ländervergleich seit 2000",
+    x       = "Jahr",
+    y       = "Bevölkerungsanteil mit sicherem Wasserzugang (%)",
+    color   = "Land",
+    caption = "Quelle: Our World in Data / WHO–UNICEF JMP"
+  )
+
+eigenes_wasserplot
+
+# Auswahlbeispiel: ein Land in Ostafrika, ein Aufstiegsland in Asien,
+# ein lateinamerikanischer Staat und ein hocheinkommensnahes Nordland.
+# Alle zeigen Aufwärtstrends, aber auf sehr unterschiedlichem Niveau;
+# die Lücke zwischen Schweden (~100 %) und Äthiopien bleibt groß — das illustriert,
+# dass globale Ungleichheit beim Wasserzugang auch nach zwei Jahrzehnten bestehen bleibt.
+```
+
+</details>
 
 <br>
 

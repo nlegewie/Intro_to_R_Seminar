@@ -372,11 +372,11 @@ ggsave(
 
 ##### B-HA2 ⚠️ · Trendlinie im Streudiagramm
 
-# Füge dem Streudiagramm aus HA6 eine glatte Trendlinie hinzu:
+# Füge dem Streudiagramm aus HA6 glatte Trendlinien pro Weltregion hinzu:
 # water_scatter +
-#   geom_smooth(method = "loess", color = "black", se = FALSE)
-# Was zeigt die Kurve — ist der Zusammenhang linear?
-# Gibt es Bereiche, in denen die Lebenserwartung besonders stark steigt?
+#   geom_smooth(method = "loess", se = FALSE)
+# Was zeigen die Kurven — ist der Zusammenhang linear?
+# Gibt es Wertbereiche oder Kontinente mit besonders starkem Anstieg?
 # Schreibe 3–4 Sätze Kommentar.
 #
 #
