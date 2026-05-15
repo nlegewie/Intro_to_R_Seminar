@@ -813,10 +813,12 @@ Schreibe 3–4 Sätze Kommentar: Warum weichen Mittelwert und Median voneinander
 `owid_2020` hast du in HA4 gebaut — er enthält bereits je Land eine Zeile für 2020. Du kannst die drei Kennzahlen direkt auf die Spalte anwenden:
 
 ```r
-mean(owid_2020$access_to_water, na.rm = TRUE)
-median(owid_2020$access_to_water, na.rm = TRUE)
-sd(owid_2020$access_to_water, na.rm = TRUE)
+mean(...)
+median(...)
+sd(...)
 ```
+
+Denke daran, in den Befehlen das Argument zum Ingorieren fehlender Werte zu verwenden.
 
 Optional: Speichere die Werte in Objekten (`mean_water` usw.), damit du sie leichter im Kommentar vergleichen kannst.
 
