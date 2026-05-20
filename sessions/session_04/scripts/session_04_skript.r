@@ -172,13 +172,7 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 # filter() hast du in HA3 kennengelernt; distinct() lernst du in Session 5 — hier als Vorgabe:
 owid_2020 <- owid_daten |>
-    filter(year == 2020) |>
-    distinct(country, .keep_all = TRUE) |>
-    filter(!grepl("Africas", country)) |>
-    filter(!grepl("Asia", country)) |>
-    filter(!grepl("Africa", country)) |>
-    filter(!grepl("Americas", country)) |>
-    filter(!grepl("Europe", country))
+    filter(year == 2020)
 
 
 

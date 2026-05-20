@@ -207,8 +207,6 @@ session_daten <- owid_daten |>
 > **Was passiert hier?**
 > - `filter(year >= 1950)` — nur Daten seit 1950. `>=` stellt sicher, dass 1950 mit eingeschlossen ist. Würden wir `>` nutzen, wäre 1950 ausgeschlossen und wir hätten nur Daten ab 1951.
 > - `select(...)` — wählt nur die für diese Session relevanten Spalten.
-> - Die `grepl()`-Zeilen entfernen **Aggregat-Zeilen** im Spaltennamen `country` (z. B. `Europe (UN)`, `High-income countries`) — nicht echte Länder wie Germany. `grepl()` sucht nach **Teilstrings**: `grepl("Europe", country)` trifft auf Namen, die das Wort „Europe" enthalten, nicht auf alle Länder mit `world_region == "Europe"`. Wichtig: Die Bedingungen immer auf **`country`** anwenden, nicht auf `world_region` — sonst würdest du z. B. mit `!grepl("Europe", world_region)` alle europäischen Länder (inkl. Germany) löschen.
-> - `distinct(country, year, .keep_all = TRUE)` entfernt **doppelte Länder-Jahr-Zeilen** im Rohdatensatz.
 
 `select` hat noch einige weitere praktische Möglichkeiten, wie z.B. alle Variablen auswählen mit einem bestimmten Wort im Namen. Mit `owid_daten %>% select(starts_with("headcount"))` wählen wir zum Beispiel alle Variablen aus, die das Wort "headcount" als Teil ihres Namens haben.
 

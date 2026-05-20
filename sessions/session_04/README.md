@@ -135,7 +135,7 @@ Für die Kommentare gibt es keine einzig richtige Antwort — notiere, was du si
 
 ```r
 glimpse(owid_daten)
-# Der Datensatz hat ca. 75.000 Zeilen und 77 Spalten (je nach Version leicht abweichend).
+# Der Datensatz hat ca. 63.000 Zeilen und 78 Spalten (je nach Version leicht abweichend).
 
 summary(owid_daten)
 # access_to_water: Min ~1%, Median ~79%, Max 100%
@@ -229,12 +229,12 @@ Wenn du unsicher bist, ob dein Filter funktioniert hat: `glimpse()` oder `nrow()
 owid_2015 <- filter(owid_daten, year == 2015)
 
 nrow(owid_2015)
-# Ca. 215–220 Zeilen.
+# 26 Zeilen.
 
 # HA2 b
 nrow(filter(owid_daten, access_to_water < 30))
-# Ca. 3.000–4.000 Zeilen (viele Länderjahre über die Zeit).
-# Das zeigt: In einem erheblichen Teil der Weltbevölkerung hat ein großer
+# 708 Zeilen
+# Das zeigt: In Land-Jahr Kombinationen hat ein großer
 # Anteil keinen sicheren Zugang zu Trinkwasser — ein Kernmerkmal globaler Ungleichheit.
 
 # HA2 c
@@ -244,7 +244,7 @@ drei_laender_seit_2000 <- filter(owid_daten,
   )
 
 drei_laender_seit_2000 |> glimpse()
-# Ca. 60–75 Zeilen (3 Länder × ca. 20–25 Jahre).
+# 78 Zeilen
 
 # HA2 d
 owid_2020_hoher_wasserzugang <- filter(owid_daten,
@@ -253,7 +253,7 @@ owid_2020_hoher_wasserzugang <- filter(owid_daten,
         )
 
 nrow(owid_2020_hoher_wasserzugang)
-# Ca. 150–170 Zeilen.
+# 73 Zeilen.
 # Das sind vor allem Länder mit sehr hohem Wasserzugang — oft wohlhabendere
 # Staaten in Europa, Nordamerika und Teilen Asiens, in denen fast die gesamte
 # Bevölkerung Zugang zu sicherem Trinkwasser hat.
@@ -338,7 +338,7 @@ owid_daten |> glimpse()
 owid_daten |>
   filter(year == 2020) |>
   glimpse()
-# Deutlich weniger Zeilen als im Gesamtdatensatz — nur Beobachtungen für 2020.
+# 269 Zeilen; eutlich weniger als im Gesamtdatensatz — nur Beobachtungen für 2020.
 
 # HA3 c
 n_zeilen_2020 <- owid_daten |>
@@ -376,11 +376,9 @@ Der Abschnitt enthält bereits diese vorbereitete Zeile — führe sie zuerst au
 
 ```r
 owid_2020 <- owid_daten |>
-  filter(year == 2020) |>
-  distinct(country, .keep_all = TRUE)
+  filter(year == 2020)
 ```
 
-> `filter()` hast du in HA2 kennengelernt — hier filterst du auf `year == 2020`. `distinct()` entfernt doppelte Ländereinträge, die im Rohdatensatz vorkommen können; diese Funktion lernst du in Session 5 ausführlich kennen. Die weiteren filter() Aufrufe entfernen Zeilen, die Werte für ganze Kontinente zusammenfassen.
 
 #### HA4 A: Plausibilitätschecks
 
@@ -460,8 +458,8 @@ water_histogram
 nrow(owid_2020)
 summary(owid_2020$access_to_water)
 sum(is.na(owid_2020$access_to_water))
-# Ca. 215–220 Länder für 2020; wenige fehlende Werte.
-# Werte reichen von unter 2% bis 100%; Median um 79%.
+# Ca. 269 Länder für 2020; 107 fehlende Werte.
+# Werte reichen von ca. 6% bis 100%; Median um 72%.
 
 # HA4 B–C
 water_histogram <- owid_2020 |>
@@ -477,12 +475,10 @@ ggplot(aes(x = access_to_water)) +
 
 water_histogram
 
-# Die Verteilung ist bimodal: Es gibt eine Häufung von Ländern mit sehr niedrigem
-# Wasserzugang (unter 30%) und eine viel größere Häufung nahe 100%.
-# Der breite leere Bereich dazwischen zeigt, dass es kaum "mittelmäßigen"
-# Wasserzugang gibt — die Welt ist in diesem Bereich tatsächlich zweigeteilt.
-# Das spiegelt eine fundamentale globale Ungleichheit wider: Sauberes Wasser
-# ist in reichen Ländern eine Selbstverständlichkeit, in armen oft unerreichbar.
+# Die Verteilung ist unimodal: Es gibt eine Häufung von Ländern mit 100%
+# Wasserzugang.
+# Die Verteilung ist linksschief, d.h. es gibt eine Reihe Länder, die sich über den gesamten Bereich unter 100% Wasserversorgung verteilen.
+# Auffällig ist auch, dass es im Jahr 2020 weiterhin einige Länder gibt, in denen unter 2% der Bevölkerung verlässlichen Zugang zu sauberem Trinkwasser haben.
 
 dir.create(here("output"), showWarnings = FALSE)
 
@@ -601,7 +597,11 @@ water_lineplot
 
 # HA5 A
 nrow(fuenf_laender)
+# 130 Zeilen
+
 summary(fuenf_laender$access_to_water)
+# Bereich von 12,5% bis 99,92%. Median bei 59%. 5 fehlende Werte
+
 
 # HA5 B
 water_lineplot <- ggplot(fuenf_laender, aes(x = year, y = access_to_water, color = country)) +
@@ -743,6 +743,7 @@ owid_2020_scatter <- owid_daten |>
 
 # HA6 A
 nrow(owid_2020_scatter)
+# 160 Zeilen
 # Wenn wir NAs nicht entfernen würden, würde ggplot2 die Punkte mit NA in
 # einer der beiden Variablen einfach weglassen und eine Warnung ausgeben
 # ("Rows containing missing values removed"). Der Plot würde funktionieren,
@@ -833,20 +834,24 @@ Bei deiner Einordnung hilft das Histogramm aus HA4: Eine **bimodale** Verteilung
 
 ```r
 mean_water <- mean(owid_2020$access_to_water, na.rm = TRUE)
+# 72,1%
+
 median_water <- median(owid_2020$access_to_water, na.rm = TRUE)
+# 81,8%
+
 sd_water <- sd(owid_2020$access_to_water, na.rm = TRUE)
+# 29,06
 
 mean_water
 median_water
 sd_water
 # Mittelwert und Median liegen typischerweise nicht exakt gleich: Der Median ist
 # der „mittlere“ Wert beim Sortieren — der Mittelwert reagiert empfindlich auf
-# viele sehr niedrige oder sehr hohe Beobachtungen. Bei bimodal verteiltem
-# Wasserzugang (viele Länder mit niedrigem und viele mit hohem Zugang) ziehen
-# die extremen Gruppen den Mittelwert; der Median markiert eher die „Mitte“ der
-# sortierten Länderliste. Die Standardabweichung beschreibt die Streuung um
-# den Mittelwert: Ein großer Wert bedeutet große Unterschiede zwischen den
-# Ländern — passend zur globalen Ungleichheit beim Zugang zu sauberem Wasser.
+# viele sehr niedrige oder sehr hohe Beobachtungen. 
+# Die vielen Werte in der "long left tail", also die Länder mit relativ niedriger Wasserversorgung, ziehen den Mittelwert nach unten. Der Median ist hier eine bessere Beschreibung der zentralen Tendenz in den Daten.
+# Die Standardabweichung zeigt, dass es beträchtliche Unterschiede in der Wasserversorgung gibt.
+
+
 ```
 
 </details>
@@ -893,7 +898,7 @@ water_scatter +
 # einzelnen Bereichen flacher oder steiler sein (z. B. starker Anstieg der
 # Lebenserwartung bei niedrigem bis mittlerem Wasserzugang, dann abflachend).
 # Unterschiede zwischen den Regionen zeigen, dass der Zusammenhang nicht für
-# alle Kontinente gleich verläuft — institutionelle Faktoren und Gesundheitssysteme
+# alle Kontinente gleich verläuft. In Asien zum Beispiel verläuft die Kurve sehr anders als in Afrika. Institutionelle Faktoren und Gesundheitssysteme
 # erklären weiter Varianz jenseits des Wasserzugangs.
 ```
 
@@ -929,8 +934,7 @@ eigene_laender <- owid_daten |>
   filter(
     country %in% c("Ethiopia", "Vietnam", "Mexico", "Sweden"),
     year >= 2000
-  ) |>
-  distinct(country, year, .keep_all = TRUE)
+  )
 
 eigenes_wasserplot <- ggplot(eigene_laender, aes(x = year, y = access_to_water, color = country)) +
   geom_line(linewidth = 1) +
@@ -949,6 +953,7 @@ eigenes_wasserplot
 # Alle zeigen Aufwärtstrends, aber auf sehr unterschiedlichem Niveau;
 # die Lücke zwischen Schweden (~100 %) und Äthiopien bleibt groß — das illustriert,
 # dass globale Ungleichheit beim Wasserzugang auch nach zwei Jahrzehnten bestehen bleibt.
+# Vietnam zeigt den größten Anstieg, aber auch der ist nicht besonders ausgeprägt.
 ```
 
 </details>
