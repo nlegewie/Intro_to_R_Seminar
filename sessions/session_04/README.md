@@ -229,7 +229,7 @@ Wenn du unsicher bist, ob dein Filter funktioniert hat: `glimpse()` oder `nrow()
 owid_2015 <- filter(owid_daten, year == 2015)
 
 nrow(owid_2015)
-# 26 Zeilen.
+# 269 Zeilen.
 
 # HA2 b
 nrow(filter(owid_daten, access_to_water < 30))
