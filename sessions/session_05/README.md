@@ -30,32 +30,9 @@ In dieser Session dreht sich alles um Fragen der Nachhaltigkeit aus einer Perspe
 - Wie hat sich die Weltbevölkerung seit 1950 entwickelt — und welche Regionen treiben das Wachstum?
 - Welche Länder und Regionen stoßen den größten Anteil der globalen CO₂-Emissionen aus?
 - Wenn wir nach Bevölkerungsgröße normieren — ändert sich das Bild?
+- Welche Länder produzieren am meisten Plastikmüll, und wer exportiert am meisten dieses Mülls?
 
-Im Laufe der Übungen und Hausaufgaben wirst du vier Plots und mehrere Zusammenfassungstabellen erstellt haben.
 
-**Plot 1 — Linienplot:** Weltbevölkerung seit 1950 nach Region
-
-```
-Milliarden Menschen
-  4 |   █████████████████████████████████████████████ Asia
-    |   ███████████████████████████████████████████
-  3 |   ███████████████████████████████████████
-    |   ██████████████████████████████████
-  2 |   █████████████████████████████   Africa
-    |   ██████████████              Europe ────────
-  1 |   █████████
-    |   ██████
-  0 +──────────────────────────────────────────
-    1950   1970   1990   2010   2023
-```
-
-**Plot 2 — Histogramm:** Verteilung der CO₂-Anteile nach Ländern (2022)
-
-**Plot 3 — Linienplot:** Pro-Kopf-CO₂-Emissionen in ausgewählten Ländern seit 1950
-
-**Plot 4 — Streudiagramm:** Plastikmüllaufkommen und CO₂ pro Kopf (2010)
-
-*Die ASCII-Skizze zeigt nur die ungefähre Form.*
 
 ---
 
