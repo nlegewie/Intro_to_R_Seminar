@@ -121,7 +121,7 @@ c)  Nutze `select(starts_with())` um aus dem vollen Datensatz `owid_daten` alle 
 <br>
 
 <details>
-<summary><strong>Tipp</strong></summary>
+<summary><strong>Tipps</strong></summary>
 
 `glimpse()` und `summary()` kennst du schon aus Session 4 — wende sie einfach auf `session_daten` an. 
 
@@ -530,7 +530,7 @@ Schreibe 2–3 Sätze: Welche Länder dominieren — und überrascht dich etwas?
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA3 A
+# Ü4 A
 co2_2022 <- session_daten |>
   filter(year == 2022) |>
   filter(!is.na(share_global_co2))
@@ -542,7 +542,7 @@ summary(co2_2022$share_global_co2)
 # Emittenten heben den Mittelwert deutlich an, während die meisten Länder
 # einen winzigen Anteil haben.
 
-# HA3 B
+# Ü4 B
 co2_histogram <- co2_2022 |> 
 ggplot(aes(x = share_global_co2)) +
   geom_histogram(bins = 30, fill = "#c0392b", color = "white") +
@@ -561,7 +561,7 @@ ggsave(here("output", "co2_histogramm_2022.png"), plot = co2_histogram, width = 
 # während ein Handvoll Länder Anteile von 5–30% aufweisen. Mann sieht sie teilweise kaum im Plot.
 # Das zeigt eine massive Ungleichheit beim CO₂-Ausstoß.
 
-# HA3 C
+# Ü4 C
 co2_2022 |>
   group_by(world_region) |>
   summarize(
@@ -577,7 +577,7 @@ co2_2022 |>
 # als Afrika, weil dort weniger, aber größere Emittenten enthalten sind.
 
 
-# HA3 D
+# Ü4 D
 co2_2022 |>
   select(country, world_region, share_global_co2) |>
   arrange(desc(share_global_co2)) |>
@@ -691,14 +691,14 @@ Entferne fehlende Werte und berechne den **Mittelwert von `co2_pro_1mio`** nach 
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA4 A
+# Ü5 A
 session_daten_mutated <- session_daten |>
   mutate(
     co2_pro_1mio           = share_global_co2 / population * 1e6,
     kumulativ_co2_pro_1mio = cumulative_co2   / population * 1e6
   )
 
-# HA4 B
+# Ü5 B
 session_daten_mutated |>
   filter(year == 2022) |>
   select(country, world_region, share_global_co2, population, co2_pro_1mio) |>
@@ -712,7 +712,7 @@ session_daten_mutated |>
 # Das zeigt: Die Frage "Wer emittiert am meisten?" hängt stark davon ab,
 # ob man absolut misst oder die Bevölkerung in die Berechnung einbezieht.
 
-# HA4 C
+# Ü5 C
 session_daten_mutated |>
   filter(year == 2022, !is.na(co2_pro_1mio)) |>
   group_by(world_region) |>
@@ -758,7 +758,7 @@ Erstelle einen Linienplot mit `year` auf der x-Achse, `co2_pro_1mio` auf der y-A
 Speichere den Plot:
 
 ```r
-ggsave(here("output", "co2_pro_kopf_verlauf.png"), plot = co2_lineplot, width = 9, height = 5)
+ggsave(here("output", "co2_pro_1mio_verlauf.png"), plot = co2_lineplot, width = 9, height = 5)
 ```
 
 #### Ü6 C: Interpretation
@@ -832,7 +832,7 @@ co2_lineplot <- ggplot(laender_co2, aes(x = year, y = co2_pro_1mio, color = coun
   )
 
 co2_lineplot
-ggsave(here("output", "co2_pro_kopf_verlauf.png"), plot = co2_lineplot, width = 9, height = 5)
+ggsave(here("output", "co2_pro_1mio_verlauf.png"), plot = co2_lineplot, width = 9, height = 5)
 
 # Ü6 C
 
@@ -980,7 +980,7 @@ plastik_scatter
 ggsave(here("output", "plastik_co2_scatter.png"), plot = plastik_scatter, width = 9, height = 6)
 
 
-# Ü7 B
+# Ü7 C
 
 # Tendenziell scheint ein positiver Zusammenhang zu bestehen (Länder mit mehr CO2-Emmissionen generieren auch mehr Plastikmüll). Allerdings scheinen einige Ausreißer ziemlich stark diesen Trend zu treiben. Für eine genaure Analysen könnten wir u.a. diese Ausreißer ausschließen und schauen, ob der Trend bestehen bleibt.
 ```
@@ -1224,7 +1224,7 @@ session_daten |>
 
 ---
 
-### B-HA3 ⚠️⚠️ · Freie Exploration: Deine eigene Frage
+### B-ÜB3 ⚠️⚠️ · Freie Exploration: Deine eigene Frage
 
 **Analytisches Ziel:** Du formulierst eine eigene Forschungsfrage und beantwortest sie mit den Werkzeugen dieser Session.
 
@@ -1248,8 +1248,9 @@ Wenn du fertig bist:
 2. Stelle sicher, dass alle vier Plots im Ordner `output/` liegen:
    - `pop_wachstum_region.png`
    - `co2_histogramm_2022.png`
-   - `co2_pro_kopf_verlauf.png`
+   - `co2_pro_1mio_verlauf.png`
    - `plastik_co2_scatter.png`
+   - Wenn du die Bonus-Aufgaben gemacht hast, reiche außerdem folgende zwei Plots ein: `co2_kumulativ_histogram_2022.png`, `plastik_export_verlauf.png`
 3. Reiche auf Learnweb ein:
    - `scripts/session_05_skript.R`
    - alle vier Plot-Dateien
