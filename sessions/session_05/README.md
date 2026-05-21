@@ -137,7 +137,7 @@ Für c): Stell sicher, dass du "co2" auch im Befehl in Anfürungszeichen gesetzt
 ```r
 # a)
 glimpse(session_daten)
-# Ca. 30.000 Zeilen, 8 Spalten
+# Ca. 20.000 Zeilen, 8 Spalten
 
 #b)
 summary(session_daten)

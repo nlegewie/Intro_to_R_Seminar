@@ -32,8 +32,6 @@ library(here)
 owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
-
-
 ###*************************###
 ##### ***ÜBUNGEN*** #####
 ###*************************###
