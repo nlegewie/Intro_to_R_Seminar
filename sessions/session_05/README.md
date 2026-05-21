@@ -32,7 +32,26 @@ In dieser Session dreht sich alles um Fragen der Nachhaltigkeit aus einer Perspe
 - Wenn wir nach Bevölkerungsgröße normieren — ändert sich das Bild?
 - Welche Länder produzieren am meisten Plastikmüll, und wer exportiert am meisten dieses Mülls?
 
+Am Ende der Übungen wirst du u. a. **Linienplots**, **Histogramme**, **Streudiagramme** und **Zusammenfassungstabellen** erstellt haben — ähnlich den Vorschauen unten (ohne dass du hier schon den Lösungscode siehst).
 
+### Beispiel: Bevölkerungswachstum nach Region (Ü3)
+
+![Bevölkerungswachstum nach Weltregion seit 1950 — Vorschau zur Zieldarstellung dieser Session](figures/preview_pop_wachstum_region.png)
+
+*Vorschau aus demselben OWID-Datensatz wie in den Übungen; Form und Beschriftung entsprechen dem Linienplot in Ü3 D.*
+
+### Beispiel: CO₂-Anteile nach Weltregion, 2022 (Ü4 C)
+
+| Weltregion    | Summe CO₂-Anteile (%) | Mittelwert pro Land (%) | Anzahl Länder |
+|---------------|----------------------:|------------------------:|--------------:|
+| Asia          | 59,3                  | 1,16                    | 51            |
+| North America | 16,6                  | 0,49                    | 34            |
+| Europe        | 13,6                  | 0,31                    | 44            |
+| South America | 2,9                   | 0,24                    | 12            |
+| Africa        | 2,7                   | 0,05                    | 53            |
+| Oceania       | 1,2                   | 0,06                    | 19            |
+
+*Vorschau-Tabelle: `group_by(world_region)` + `summarize()` auf `share_global_co2` (Jahr 2022), sortiert nach `sum_co2`. Die Summe über alle Regionen kann von 100 % abweichen, weil nicht jedes Land Daten für 2022 hat.*
 
 ---
 
