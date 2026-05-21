@@ -61,15 +61,9 @@ Alle Code-Aufgaben bearbeitest du in:
 
 **`scripts/session_05_skript.R`**
 
-Führe zuerst den **SETUP-Abschnitt** aus — er lädt die Pakete und den Rohdatensatz.
+Führe nach jedem Start von RStudio zuerst den **SETUP-Abschnitt** aus — er lädt die Pakete und den Rohdatensatz.
 
 > **`owid_data.csv` liegt unter `full_data/`** im Hauptordner des Repos. Wenn ein „Datei nicht gefunden"-Fehler erscheint, vergleiche deine Ordnerstruktur mit der im Repo.
-
----
-
-<h2 id="neue-werkzeuge">Neue Werkzeuge dieser Session</h2>
-
-Bevor du mit den Hausaufgaben beginnst, lies diesen Abschnitt durch. Er erklärt alle neuen Funktionen, die du heute brauchst. Du kannst jederzeit hierher zurückblättern.
 
 ---
 
@@ -381,14 +375,14 @@ Schreibe **3–4 Sätze Interpretation** als Kommentar: Welche Region wächst am
 <summary><strong>Lösung</strong></summary>
 
 ```r
-# HA2 A
+# Ü3 A
 session_daten |>
   filter(year == 2023) |>
   summarize(gesamt_pop = sum(population, na.rm = TRUE))
 
 Die Weltbevölkerung laut unserem Datensatz lag im Jahr 2023 bei ca. 8,02 Mrd. Menschen.
 
-# HA2 B
+# Ü3 B
 session_daten |>
   filter(year == 2023) |>
   group_by(world_region) |>
@@ -396,7 +390,7 @@ session_daten |>
   arrange(desc(gesamt_pop))
 # Asien hat mit Abstand die größte Bevölkerung (fast 5 Milliarden im Datensatz).
 
-# HA2 C
+# Ü3 C
 pop_pro_jahr_region <- session_daten |>
   filter(!is.na(population)) |>
   group_by(year, world_region) |>
@@ -406,7 +400,7 @@ glimpse(pop_pro_jahr_region)
 # Jetzt ist eine Zeile = ein Jahr + eine Region. Statt 10.600 Länder-Jahr-Zeilen
 # haben wir ca. 530 Region-Jahr-Zeilen.
 
-# HA2 D
+# Ü3 D
 pop_lineplot <- pop_pro_jahr_region |>
   ggplot(aes(x = year, y = gesamt_pop, color = world_region)) +
     geom_line(linewidth = 1) +
