@@ -150,12 +150,14 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 ###***********************************###
 
 # a) Gruppiere nach democracy_score, berechne median edu_spending_gdp (2017), visualisiere als Balkendiagramm
+#    Weise den Plot plot_democracy_spending zu und speichere als plot_democracy_spending.png
 
 
 # b) Liste alle Länder mit democracy_score == 3 (liberale Demokratien) auf
 
 
 # c) Streudiagramm: edu_spending_gdp ~ gdp, je world_region eine Trendlinie
+#    Weise den Plot plot_gdp_edu_spending zu und speichere als plot_gdp_edu_spending.png
 
 
 
@@ -166,7 +168,7 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 # a) Erstelle zwei Datensätze (spending_2007, schooling_2017) und joine sie zu lagged_edu
 
 
-# b) Erstelle Streudiagramm plot_lagged_edu mit linearem Trend
+# b) Erstelle Streudiagramm plot_lagged_edu mit linearem Trend und speichere als plot_lagged_edu.png
 
 
 # c) Führe lineare Regression mit lm() und broom::tidy() durch, interpretiere Ergebnis

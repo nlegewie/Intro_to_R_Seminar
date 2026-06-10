@@ -1,10 +1,6 @@
-# Hausaufgaben Session 7 — Zugang zu Bildung weltweit
+# Session 6 — Bildungsungleichheiten
 
 **Seminar:** Globale Ungleichheit · Wintersemester 2025/26
-
-> **Hinweis:** In dieser Session wendest du das Gelernte selbstständiger an — die Aufgaben geben dir den inhaltlichen Rahmen und die Variablen, aber du entscheidest, wie du den Code genau schreibst. 
-
-> Bevor du Tips benutzt, schau dir frühere Hausaufgaben oder Seminar-Skripte an. Für die meisten Aufgaben findest du Code, den du nur ein bisschen anpassen musst. Das ist ein großer Vorteil von R und ein sehr typischer Arbeitsschritt: alten Code leicht anpassen, um neue Analysen durchzuführen.
 
 ---
 
@@ -40,7 +36,7 @@ Am Ende dieser Hausaufgaben wirst du fünf Plots erstellt und im Ordner `output/
 | **Plot 4 — Streudiagramm mit Regression** | `plot_gdp_gender_gap.png` | Gibt es einen Zusammenhang zwischen BIP und Gender-Gap in der tertiären Bildung? |
 | **Plot 5 — Linienplot** | `plot_tertiaer_trend.png` | Wie hat sich die Beteiligung an tertiärer Bildung in ausgewählten Ländern seit 2000 entwickelt? |
 
-Die Bonus-Aufgaben (B-Ü6 und B-Ü7) enthalten zusätzliche explorative Visualisierungen, die du erstellen, aber nicht zwingend speichern musst.
+Die Bonus-Aufgaben (B-Ü6 und B-Ü7) enthalten zusätzliche explorative Visualisierungen, die du ebenfalls speichern solltest, wenn du die Übungen bearbeiten solltest.
 
 ---
 
@@ -694,11 +690,33 @@ Diese Aufgaben sind freiwillig und stellen etwas höhere Anforderungen. Schau ma
 
 <h3 id="b-ue6">B-Ü6 ⚠️ · Demokratie und Bildungsausgaben</h3>
 
-**a)** Geben demokratischere Länder anteilig am Bruttoinlandsprodukt mehr für Bildung aus als nicht-demokratische Länder? Die Variable `democracy_score` kann Werte von 0 (geschlossene Autokratie) bis 3 (liberale Demokratie) annehmen. Überlege dir, wie du diese Frage beantworten kannst. Nutze das Jahr 2017 für deine Analyse. Interpretiere die Ergebnisse kurz.
+**a)** Geben demokratischere Länder anteilig am Bruttoinlandsprodukt mehr für Bildung aus als nicht-demokratische Länder? Die Variable `democracy_score` kann Werte von 0 (geschlossene Autokratie) bis 3 (liberale Demokratie) annehmen. Überlege dir, wie du diese Frage beantworten kannst. Nutze das Jahr 2017 für deine Analyse. Erstelle ein Balkendiagramm, weise den Plot dem Objekt `plot_democracy_spending` zu und interpretiere die Ergebnisse kurz.
+
+Speichere den Plot:
+
+```r
+ggsave(
+  here("output", "plot_democracy_spending.png"),
+  plot   = plot_democracy_spending,
+  width  = 8,
+  height = 5
+)
+```
 
 **b)** Welche Länder haben `democracy_score == 3`? Schreibe Code, der alle diese Länder ausgibt. Sind die Ergebnisse aus a) dadurch leichter oder schwerer zu interpretieren?
 
-**c)** Hängen Bildungsausgaben anteilig am Bruttoinlandsprodukt zusammen mit der Höhe des Bruttoinlandsprodukts — und unterscheidet sich dieser Zusammenhang nach Weltregion? Nutze wieder das Jahr 2017. Erstelle dazu ein Streudiagramm mit linearen Trendlinien und interpretiere die Ergebnisse kurz.
+**c)** Hängen Bildungsausgaben anteilig am Bruttoinlandsprodukt zusammen mit der Höhe des Bruttoinlandsprodukts — und unterscheidet sich dieser Zusammenhang nach Weltregion? Nutze wieder das Jahr 2017. Erstelle dazu ein Streudiagramm mit linearen Trendlinien, weise den Plot dem Objekt `plot_gdp_edu_spending` zu und interpretiere die Ergebnisse kurz.
+
+Speichere den Plot:
+
+```r
+ggsave(
+  here("output", "plot_gdp_edu_spending.png"),
+  plot   = plot_gdp_edu_spending,
+  width  = 9,
+  height = 6
+)
+```
 
 <br>
 
@@ -710,6 +728,7 @@ Diese Aufgaben sind freiwillig und stellen etwas höhere Anforderungen. Schau ma
 - Du willst für jeden Wert von `democracy_score` (0, 1, 2, 3) einen zusammengefassten Wert der Bildungsausgaben zeigen. Nutze dafür eine Pipeline aus `group_by()`, `summarize()` und `geom_col()`.
 - Filtere vorher auf `year == 2017` und schließe fehlende Werte auf beiden Variablen aus.
 - `democracy_score` kommt auf die x-Achse; der zusammengefasste Wert (z.B. Median) auf die y-Achse.
+- Weise den Plot `plot_democracy_spending` zu, bevor du `ggsave()` ausführst.
 
 **B-Ü6 b**
 
@@ -721,6 +740,7 @@ Diese Aufgaben sind freiwillig und stellen etwas höhere Anforderungen. Schau ma
 - Streudiagramm-Grundmuster: `ggplot(aes(x = [ABHÄNGIGE VAR], y = [UNABHÄNGIGE VAR], color = [VERGLEICHSVAR]))` + `geom_point()` + `geom_smooth(method = "lm", se = FALSE)`.
 - `color = ...` in `aes()` sorgt dafür, dass auch die Trendlinie pro Gruppe getrennt berechnet wird.
 - Schließe fehlende Werte auf beiden Variablen aus, bevor du den Plot erstellst.
+- Weise den Plot `plot_gdp_edu_spending` zu, bevor du `ggsave()` ausführst.
 
 </details>
 
@@ -731,7 +751,7 @@ Diese Aufgaben sind freiwillig und stellen etwas höhere Anforderungen. Schau ma
 
 ```r
 # B-Ü6 a
-owid_daten |>
+plot_democracy_spending <- owid_daten |>
   filter(!is.na(democracy_score), !is.na(edu_spending_gdp)) |>
   filter(year == 2017) |>
   group_by(democracy_score) |>
@@ -744,6 +764,15 @@ owid_daten |>
     x        = "Demokratie-Score (0 = geschlossene Autokratie, 3 = liberale Demokratie)",
     y        = "Median: Bildungsausgaben (% des BIP)"
   )
+
+plot_democracy_spending
+
+ggsave(
+  here("output", "plot_democracy_spending.png"),
+  plot   = plot_democracy_spending,
+  width  = 8,
+  height = 5
+)
 
 # Die Bildungsausgabe anteilig am Bruttoinlandsprodukt steigen mit dem `democracy_score` stetig an.
 
@@ -759,7 +788,7 @@ owid_daten |>
 
 
 # B-Ü6 c
-owid_daten |>
+plot_gdp_edu_spending <- owid_daten |>
   filter(year == 2017) |>
   filter(!is.na(gdp), !is.na(edu_spending_gdp)) |>
   ggplot(aes(x = gdp, y = edu_spending_gdp, color = world_region)) +
@@ -772,6 +801,15 @@ owid_daten |>
     y        = "Bildungsausgaben (% des BIP)",
     color    = "Weltregion"
   )
+
+plot_gdp_edu_spending
+
+ggsave(
+  here("output", "plot_gdp_edu_spending.png"),
+  plot   = plot_gdp_edu_spending,
+  width  = 9,
+  height = 6
+)
 
 # Insgesamt kein klarer positiver Zusammenhang zwischen BIP und Bildungsausgabenanteil.
 # In manchen Regionen ist der Trend leicht negativ, in anderen positiv. Die Streuung ist groß, was auf starke
@@ -798,6 +836,17 @@ owid_daten |>
 Verbinde dann beide Datensätze mit `spending_2007 |> inner_join(schooling_2017, by = "country")` und speichere das Ergebnis als `lagged_edu`. Wie viele Länder bleiben übrig?
 
 **b)** Erstelle ein Streudiagramm mit `edu_spending_gdp` auf der x-Achse und `years_of_schooling` auf der y-Achse. Füge eine lineare Trendlinie hinzu und beschrifte den Plot vollständig. Weise den Plot dem Objekt `plot_lagged_edu` zu.
+
+Speichere den Plot:
+
+```r
+ggsave(
+  here("output", "plot_lagged_edu.png"),
+  plot   = plot_lagged_edu,
+  width  = 9,
+  height = 6
+)
+```
 
 **c)** Berechne eine einfache lineare Regression. Du kannst dazu folgenden Code als Ausgangspunkt verwenden:
 
@@ -832,7 +881,7 @@ Schreibe danach **4–5 Sätze Interpretation** als Kommentar: Ist der Zusammenh
 
 - Die Datenquelle für den Plot ist `lagged_edu` — nicht `owid_daten`.
 - Streudiagramm-Grundstruktur: `ggplot(aes(x = ..., y = ...))` + `geom_point(alpha = 0.6)` + `geom_smooth(method = "lm", se = FALSE)`.
-- Vergiss `labs()` nicht und weise den Plot dem Objekt `plot_lagged_edu` zu.
+- Vergiss `labs()` nicht und weise den Plot dem Objekt `plot_lagged_edu` zu, bevor du `ggsave()` ausführst.
 
 **B-Ü7 c**
 
@@ -880,6 +929,13 @@ plot_lagged_edu <- lagged_edu |>
 
 plot_lagged_edu
 
+ggsave(
+  here("output", "plot_lagged_edu.png"),
+  plot   = plot_lagged_edu,
+  width  = 9,
+  height = 6
+)
+
 
 # B-Ü7 c
 library(broom)
@@ -907,15 +963,22 @@ lm(years_of_schooling ~ edu_spending_gdp, data = lagged_edu) |>
 Wenn du fertig bist:
 
 1. Speichere das Skript `scripts/session_06_skript.R`.
-2. Stelle sicher, dass alle fünf Plots im Ordner `output/` gespeichert wurden:
+2. Stelle sicher, dass alle fünf Pflicht-Plots im Ordner `output/` gespeichert wurden:
    - `plot_bildungsjahre.png` (Ü1)
    - `plot_bar_illiteracy.png` (Ü2)
    - `plot_smooth_illiteracy.png` (Ü3)
    - `plot_gdp_gender_gap.png` (Ü4)
    - `plot_tertiaer_trend.png` (Ü5)
+
+   **Optional (Bonus-Aufgaben):** Wenn du B-Ü6 oder B-Ü7 bearbeitet hast, kannst du zusätzlich diese Plots speichern — sie sind für die Abgabe nicht verpflichtend:
+   - `plot_democracy_spending.png` (B-Ü6 a)
+   - `plot_gdp_edu_spending.png` (B-Ü6 c)
+   - `plot_lagged_edu.png` (B-Ü7 b)
+
 3. Reiche auf Learnweb ein:
    - `scripts/session_06_skript.R`
-   - alle Plot-Dateien aus `output/`
+   - die fünf Pflicht-Plots aus `output/`
+   - optional: Bonus-Plots, falls du die Bonus-Aufgaben bearbeitet hast
 
 > **Falls etwas nicht klappt:** Lies zuerst die Fehlermeldung, frage deine Buddy-Partner:in oder schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach.
 
