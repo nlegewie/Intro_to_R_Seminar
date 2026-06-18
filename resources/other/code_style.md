@@ -235,3 +235,10 @@ owid_data |>
 | Aussagekräftige Namen in `snake_case` | `daten_2015` statt `d2` |
 | Zeilen kurz halten | Unter 80 Zeichen, Pipe-Operator am Zeilenende |
 | `styler` regelmäßig nutzen | Addins → Style active file |
+
+
+## Ressourcen
+
+Weitere Tips zum Formatieren deines Codes findest hier:
+
+- [Advanced R (Hadley Wickham)](http://adv-r.had.co.nz/Style.html)
