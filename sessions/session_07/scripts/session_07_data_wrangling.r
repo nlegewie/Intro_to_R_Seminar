@@ -1,9 +1,9 @@
 
-###***************************************************###
-###***************************************************###
-##### ***SESSION 6 — ZUGANG ZU BILDUNG WELTWEIT*** #####
-###***************************************************###
-###***************************************************###
+###***********************************************************###
+###***********************************************************###
+##### ***SESSION 7 — GESCHLECHTERUNGLEICHHEITEN*** #####
+###***********************************************************###
+###***********************************************************###
 
 
 ###*************************************###
@@ -11,7 +11,7 @@
 ###*************************************###
 
 # Führe diesen gesamten Abschnitt aus, BEVOR du mit den Übungen beginnst.
-# Markiere alle Zeilen bis zur nächsten Sektion und drücke Ctrl+Enter / Cmd+Enter.
+# Dieses Skript wird per source() aus session_07_data_analysis.r geladen.
 
 
 ###******************###
@@ -20,17 +20,12 @@
 
 library(tidyverse)
 library(here)
-library(janitor)
-library(patchwork)
 
 
 ###****************************************** ###
 ##### Vollständigen OWID-Datensatz laden #####
 ###****************************************** ###
 
-# owid_daten wird in den Übungen verwendet.
-# Pfad zur zentralen Datei im Kursrepository (einmal gespeichert, alle Sitzungen):
-# Projekt-Stamm ist dieser Sitzungsordner → zwei Ebenen nach oben zum Repo-Stamm → full_data/
 owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
@@ -42,60 +37,28 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 # Ausführliche Anleitungen: README.md im Session-Ordner auf GitHub.
 
 
-
-###***********************************###
-##### Ü1 · Bildungsjahre nach Region #####
-###***********************************###
-
-
-
-
-
-###**********************************************###
-##### Ü2 · Analphabetismus nach Weltregion #########
-###**********************************************###
-
-
-
-
-
 ###******************************************************###
-##### Ü3 · Analphabetismus-Trend über die Zeit #############
+##### Ü1 · Datenaufbereitung auslagern (source) ##########
 ###******************************************************###
 
+# Querschnitt 2015: nur echte Weltregionen, relevante Variablen
+gender_2015 <- owid_daten |>
+  filter(year == 2015, !is.na(world_region)) |>
+  select(
+    country, world_region,
+    girls_in_primary, boys_in_primary,
+    girls_in_tertiary, boys_in_tertiary,
+    female_labor_participation,
+    suicide_rate_male, suicide_rate_female,
+    gdp, life_expectancy_birth, population, maternal_deaths
+  )
+
+# a) Ergänze primary_gap als Differenz von girls_in_primary und boys_in_primary
 
 
+# b) Erstelle parity_2015: filter(!is.na(primary_gap)), parity_category mit case_when(),
+#    Faktor-Reihenfolge: "Jungen vorne", "etwa gleich", "Mädchen vorne"
 
 
-###************************************************###
-##### Ü4 · Die Bildungsschere (Gender-Gap) #########
-###************************************************###
-
-
-
-
-
-###******************************************************###
-##### Ü5 · Tertiäre Bildung: Länder-Trends #################
-###******************************************************###
-
-
-
-
-
-###***********************************###
-##### B-Ü6 · Demokratie und Bildung ####
-###***********************************###
-
-
-
-
-
-###********************************************************###
-##### B-Ü7 · Time-Lag: Zahlt Bildung sich aus? ###############
-###********************************************************###
-
-
-
-
+# Bonus B-Ü3: Erweitere bei Bedarf den select()-Block oben um weitere Variablen.
 
