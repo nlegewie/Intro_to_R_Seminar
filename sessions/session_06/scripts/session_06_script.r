@@ -41,6 +41,8 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 
 
 
+
+
 ###***********************************###
 ##### Ü1 · Bildungsjahre nach Region #####
 ###***********************************###
