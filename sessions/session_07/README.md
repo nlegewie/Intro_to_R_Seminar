@@ -864,7 +864,7 @@ library(here)
 library(janitor)
 library(patchwork)
 
-source(here("scripts", "data_wrangling.R"))
+source(here("scripts", "session_07_data_wrangling.R"))
 ```
 
 ## Bildungsparität nach Weltregion

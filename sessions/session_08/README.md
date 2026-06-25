@@ -353,7 +353,7 @@ time_use_daten_long <- time_use_daten_corrected |>
 
 ### Deine Aufgaben
 
-Schreibe den Code zum Datenaufbereitungsschritt in **b)** in den Abschnitt **Ü2** in `scripts/session_08_data_wrangling.r`, und die Analyseschritte in **a)**, **b)** und **c)** in `scripts/session_08_analysis.r`. 
+Schreibe den Code zum Datenaufbereitungsschritt in **b)** in den Abschnitt **Ü2** in `scripts/session_08_data_wrangling.r`, und die Analyseschritte in **a)** und **c)** in `scripts/session_08_analysis.r`. 
 
 **a)** Schaue dir Zusammenfassungen aller `time_use`-Variablen an. In welchen drei Bereichen fällt am meisten Zeit an?
 

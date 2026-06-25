@@ -8,6 +8,12 @@
 source(here("scripts", "session_08_data_wrangling.r"))
 
 
+library(viridis)
+library(gghihgliht)
+library(hrbrthemes)
+
+
+
 ###************************* ###
 ##### ***ÜBUNGEN*** #####
 ###************************* ###
