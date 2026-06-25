@@ -29,23 +29,89 @@
 
 <h2 id="einleitung">Einleitung: XXX</h2>
 
+**Frage dieser Session:** Wie nutzen Menschen in verschiedenen Ländern ihre Zeit — und hängt das mit wirtschaftlicher Entwicklung zusammen?
+
+Zeit ist eine der knappsten Ressourcen, die es gibt: Jeder Tag hat 24 Stunden, und wie sie aufgeteilt werden — zwischen Arbeit, Schlaf, Care, Freizeit — sagt viel darüber aus, wie Menschen leben. In dieser Session untersuchst du genau das mit Daten aus über 30 Ländern. Du erkundest Verteilungen und Muster, und fragst am Ende: Verbringen wohlhabendere Länder ihre Zeit anders?
+
 ---
 
 <h2 id="endprodukt">Dein Endprodukt</h2>
 
----
+Methodisch setzt du die Arbeit aus Session 7 fort: **Datenaufbereitung und Analyse bleiben getrennt**, und am Ende fasst du alles in einem **RMarkdown-Bericht** zusammen. Der inhaltliche rote Faden:
+
+**aufbereiten → beschreiben → vergleichen → historisch einordnen → mit BIP verknüpfen → berichten**
+
+Am Ende hast du Folgendes erstellt:
+
+| Produkt | Datei / Objekt | Was es zeigt |
+|---------|------------------|--------------|
+| **Aufbereitungsskript** | `scripts/session_08_data_wrangling.r` | Lädt OWID-Daten, baut `time_use_daten_corrected` und `time_use_daten_long` |
+| **Analyseskript** | `scripts/session_08_analysis.r` | Alle Visualisierungen und Interpretationen als Code |
+| **Dichteplots** | `time_use_density_plots` | Wie verteilt sich Zeit pro Aktivität über alle Länder? |
+| **Heatmap** | `time_use_heatmap_angled` | 32 Länder × 13 Aktivitäten auf einen Blick |
+| **Arbeitsstunden-Trends** | `annual_wh_highlight_own`, `annual_wh_grouped` | Entwicklung der Jahresarbeitsstunden — einzelne Länder und Weltregionen |
+| **BIP-Zusammenhang** | `time_use_lm_annotated` | Steigt oder sinkt Zeitaufwand mit wirtschaftlicher Entwicklung? |
+| **Reproduzierbarer Bericht** | `session_08_report.Rmd` → `.html` | Plots, Interpretationen und Analyse-Narrativ in einem Dokument |
+
+> Die Bonus-Aufgaben lassen dich eigene Fragen stellen — etwa das Verhältnis von „Arbeit" und „Freizeit" oder ein Deutschlandprofil im Ländervergleich.
+
+Wenn du die Übungen durcharbeitest, wächst Schritt für Schritt ein vollständiges Bild: Erst lernst du die Daten kennen, dann findest du Muster, die Tabellen allein nicht zeigen, und am Ende erzählst du die Geschichte in einem Bericht, den du per Knopfdruck neu erzeugen kannst.
+
 
 <h2 id="neue-werkzeuge">Neue Werkzeuge dieser Session</h2>
+
+| Werkzeug / Konzept | Wofür |
+|--------------------|-------|
+| Breites vs. langes Format | Viele Spalten pro Land → eine Zeile pro Land und Kategorie; Grundlage für `facet_wrap()` |
+| `pivot_longer()` | Breiten Datensatz ins lange Format umformen |
+| `str_replace()` | Teile von Text in Spalten ersetzen oder entfernen (z. B. `"time_use_"` aus Kategorienamen) |
+| `geom_tile()` | Heatmaps: Werte als farbige Kacheln darstellen |
+| `fct_reorder()` | Kategorien nach Werten sortieren (z. B. Aktivitäten nach durchschnittlicher Minutenzahl) |
+| ggplot-Themes (`theme_bw()`, `theme_ipsum()`) | Aussehen von Plots steuern (Hintergrund, Gitter, Schrift) |
+| `gghighlight()` | Ausgewählte Länder oder Gruppen hervorheben, Rest ausgrauen |
+| `styler` | Code automatisch nach dem Tidyverse Style Guide formatieren |
+
+### Pakete installieren und laden
+
+Diese Session nutzt ein paar **zusätzliche Pakete** neben `tidyverse`. Du musst jedes Paket **einmal installieren** und danach in deinen Skripten **laden**, wenn du es brauchst.
+
+**Schritt 1 — Installieren (nur einmal, nur in der Konsole!)**
+
+Tippe jeden Befehl **einmal** in die Konsole ein und drücke ENTER. Schreibe `install.packages(...)` **nicht** in deine Skripte — Installation gehört nicht in den Datenaufbereitungs- oder Analyse-Workflow.
+
+```r
+install.packages("viridis")
+install.packages("gghighlight")
+install.packages("hrbrthemes")
+install.packages("styler")
+```
+
+**Schritt 2 — Laden (in den Skripten, jedes Mal beim Start)**
+
+Nach der Installation aktivierst du Pakete mit `library()`. Diese Befehle gehören in den **SETUP-Abschnitt** deiner Skripte — dort, wo du auch `library(tidyverse)` stehen hast:
+
+| Paket | Wofür in dieser Session | Wo laden |
+|-------|-------------------------|----------|
+| `viridis` | Farbskala für Heatmaps (`scale_fill_viridis()`) | `session_08_analysis.r` |
+| `gghighlight` | Länder oder Regionen in Linienplots hervorheben | `session_08_analysis.r` |
+| `hrbrthemes` | Theme `theme_ipsum()` | `session_08_analysis.r` |
+| `styler` | Code formatieren (Ü6) | nur in der Konsole — kein `library()` nötig |
+
+```r
+library(viridis)
+library(gghighlight)
+library(hrbrthemes)
+```
+
+Führe den SETUP-Abschnitt aus, bevor du mit den Übungen beginnst. Wenn R meldet, dass ein Paket fehlt, installiere es zuerst in der Konsole und lade es danach mit `library()`.
 
 ---
 
 <h2 id="wo-du-arbeitest">Wo du arbeitest</h2>
 
-Führe zuerst den **SETUP-Abschnitt** aus — er lädt die nötigen Pakete und den OWID-Datensatz.
+Führe zuerst den **SETUP-Abschnitt** im Skript `session_08_data_wrangling.R` aus — er lädt die nötigen Pakete und den OWID-Datensatz.
 
-In dieser Session vertiefen wir die Trennung von Datenaufbereitungs- und Analyse-Skripten, sowie die Nutzung von RMarkdown als Format für die Erstellung von Berichten. Das heißt, du wirst...
-
-Alle Code-Aufgaben bearbeitest du in den folgenden Skripten: `session_08_data_wrangling.r`, `session_08_analysis.r` (beide im `scripts`-Ordner) und `session_08_report.Rmd` im `session_08`-Ordner.\
+Alle Code-Aufgaben bearbeitest du in den folgenden Skripten: `session_08_data_wrangling.r`, `session_08_analysis.r` (beide im `scripts`-Ordner). Am Ende fügst du die Ergebnisse und Interpretationen in das Bericht-Dokument `session_08_report.Rmd` im `session_08`-Ordner ein.\
 
 ---
 
@@ -57,26 +123,27 @@ Alle Code-Aufgaben bearbeitest du in den folgenden Skripten: `session_08_data_wr
 
 ### Ziel
 
-Bevor du Zeitnutzungsdaten analysieren kannst, musst du herausfinden, welches Jahr am besten geeignet ist, und einen sauberen Arbeitsdatensatz erstellen.
+Bevor du die Zeitnutzungsdaten analysieren kannst, musst du herausfinden, welches Jahr am besten geeignet ist, und einen sauberen Arbeitsdatensatz erstellen.
 
 ### Deine Aufgaben
 
 Schreibe den Code in den Abschnitt **Ü1** in `scripts/session_08_data_wrangling.r`.
 
-**a)** Finde heraus, in welchem Jahr die meisten Länder Daten zur Variablen `time_use_paid_work` haben. Zähle dazu pro Jahr, wie viele Zeilen auf dieser Variable **keinen** fehlenden Wert haben, und sortiere das Ergebnis absteigend.
+**a)** Finde heraus, in welchem Jahr die meisten Länder Daten zur Variablen `time_use_paid_work` haben. Zähle dazu pro Jahr, wie viele Zeilen auf dieser Variable *keinen* fehlenden Wert haben, und sortiere das Ergebnis absteigend.
 
 **b)** Erstelle einen Datensatz `time_use_daten`, der:
 - nur das Jahr mit den meisten Datenpunkten enthält
-- Zeilen mit fehlenden Werten auf `time_use_education` ausschließt. (Da alle `time_use`-Variablen aus der selben Datenquelle kommen, deckt dieser Befehl dann alle relevanten Variablen ab.)
+- Zeilen mit fehlenden Werten auf `time_use_paid_work` ausschließt. (Da alle `time_use`-Variablen aus der selben Datenquelle kommen, deckt dieser Befehl dann alle relevanten Variablen ab.)
 - nur die Variablen `country`, `world_region`, `gdp` und alle `time_use_*`-Variablen enthält
 
-**c)** Prüfe den neuen Datensatz kurz: Wie viele Länder bleiben übrig? Welche Weltregionen sind vertreten?
+**c)** Prüfe den neuen Datensatz kurz: 
+- Wie viele Länder bleiben übrig? 
+- Welche Weltregionen sind vertreten?
+- Welche Länder sind vertreten (nutze dazu `pull()`).
 
-**d)** Schaue dir an, welche Länder vertreten sind. Nutze dazu `pull()`.
+**d)** Zähle pro Weltregion, wie viele Länder in `time_use_daten` vorhanden sind. Könnte hier ein Problem liegen für spätere Analysen?
 
-**e)** Zähle pro Weltregion, wie viele Länder in `time_use_daten` vorhanden sind. Könnte hier ein Problem liegen für spätere Analysen?
-
-**f)** Es gibt ein paar fehlende Werte auf der Variable `world_region`. Schau nach, um welche Länder es sich handelt, und weise den Ländern die korrekten Werte auf `world_region` zu. Nutze für diese Korrektur für jedes Land eine Kombination aus `mutate()` und `if_else()`. Weise das Ergebnis dem neuen Objekt `time_use_daten_corrected` zu.
+**e)** Es gibt ein paar fehlende Werte auf der Variable `world_region`. Schau nach, um welche Länder es sich handelt, und weise den Ländern die korrekten Werte auf `world_region` zu. Nutze für diese Korrektur für jedes Land eine Kombination aus `mutate()` und `if_else()`. Weise das Ergebnis dem neuen Objekt `time_use_daten_corrected` zu.
 
 <br>
 
@@ -96,17 +163,13 @@ Schreibe den Code in den Abschnitt **Ü1** in `scripts/session_08_data_wrangling
 
 **Ü1 c**
 
-- `nrow()` zählt die Zeilen, `unique(time_use_daten$world_region)` zeigt die vorhandenen Regionen.
+- `nrow()` zählt die Zeilen, `unique(time_use_daten$world_region)` zeigt die vorhandenen Regionen. Für die Länderübersicht: Pipe `time_use_daten` in `pull(country)` — das liefert einen einfachen Vektor aller Ländernamen, den du schnell überfliegen kannst.
 
 **Ü1 d**
 
-- Pipe `time_use_daten` in `pull(country)` — das liefert einen einfachen Vektor aller Ländernamen, den du schnell überfliegen kannst.
-
-**Ü1 e**
-
 - `count(world_region)` zeigt dir, wie viele Länder pro Region vorhanden sind. Nutze den Befehl in einer Pipe. Schau, ob alle Regionen vertreten sind und ob es fehlende Werte (`NA`) auf `world_region` gibt.
 
-**Ü1 f**
+**Ü1 e**
 
 - Filtere zuerst mit `filter(is.na(world_region))`, um die betroffenen Länder zu identifizieren.
 - Korrigiere dann mit einer Kette von `mutate(world_region = if_else(country == "...", "...", world_region))` — einen Aufruf pro Land. Das `world_region` am Ende des `if_else` sorgt dafür, dass alle anderen Werte unverändert bleiben.
@@ -136,19 +199,17 @@ time_use_daten <- owid_daten |>
 # Ü1 c
 nrow(time_use_daten)
 unique(time_use_daten$world_region)
-
+time_use_daten |>
+  pull(country)
 # 32 Länder, 4 Weltregionen: Europa, Asien, Nordamerika, Ozeanien
 
 # Ü1 d
 time_use_daten |>
-  pull(country)
+  count(world_region)
+# Asien hat nur 4 Länder, Ozeanien und Nordamerika haben nur 2. Wenn wir später Weltregionen vergleichen sollten, werden die Daten zu diesen Region kaum belastbar sein, da viele Länder fehlen.
+
 
 # Ü1 e
-time_use_daten |>
-  count(world_region)
-
-
-# Ü1 f
 time_use_daten |>
   filter(is.na(world_region))
 
@@ -177,21 +238,130 @@ Bevor du Zusammenhänge untersuchst, verschaffst du dir einen Überblick über d
 
 ### Daten umformen: `pivot_longer()`
 
+In `time_use_daten_corrected` liegt jede Aktivität in einer **eigenen Spalte** — das nennt man **breites Format** (*wide data*). Pro Land gibt es genau **eine Zeile**, und die Spaltenüberschriften sind die Variablennamen.
+
+Es gibt noch einen anderen Weg, die gleichen Daten darzustellen. Im **langen Format** (*long data*) steht jede Beobachtung in einer **eigenen Zeile**. Statt vieler Spalten für die Aktivitäten hast du zwei neue Spalten: eine für den **Namen** der Aktivität und eine für den **Wert**.
+
+**Warum umformen?** Mit breiten Daten müsstest du für jede `time_use`-Variable einen eigenen Plot schreiben. Im langen Format kannst du alle Kategorien in **einer** ggplot-Pipeline darstellen — z. B. mit `facet_wrap(~kategorie)`. In anderen Situationen zeigst du vllt. die verschiedenen Kategorien als Farben im Plot.
+
+Zum Verständnis: Hier ein kleiner Ausschnitt aus unseren Session-Daten (2013) — nur drei Länder und vier Aktivitäten:
+
+**Breit** — eine Zeile pro Land, eine Spalte pro Aktivität:
+
+| country | time_use_paid_work | time_use_sleep | time_use_sports | time_use_friends |
+|---------|-------------------:|---------------:|----------------:|-----------------:|
+| France  | 170 | 513 | 12 | 55 |
+| Germany | 224 | 498 | 26 | 61 |
+| Japan   | 326 | 442 | 10 | 17 |
+
+**Lang** — dieselben Informationen, aber jede Kombination aus Land und Aktivität bekommt eine eigene Zeile:
+
+| country | kategorie | minuten |
+|---------|-----------|--------:|
+| France  | paid_work | 170 |
+| France  | sleep     | 513 |
+| France  | sports    | 12 |
+| France  | friends   | 55 |
+| Germany | paid_work | 224 |
+| Germany | sleep     | 498 |
+| …       | …         | … |
+
+Aus **3 Ländern × 4 Aktivitäten** werden **12 Zeilen** — und aus 4 Spalten werden 2 (`kategorie`, `minuten`).
+
+`pivot_longer()` macht genau diese Umwandlung. Du gibst an, **welche Spalten** zusammengefasst werden sollen, und wie die neuen Spalten heißen:
+
+```r
+time_use_daten_long <- time_use_daten_corrected |>
+  pivot_longer(
+    cols = starts_with("time_use"),   # alle time_use_*-Spalten umformen
+    names_to = "kategorie",           # alte Spaltennamen landen hier
+    values_to = "minuten"             # die Werte landen hier
+  )
+```
+
+- `cols` — welche Spalten breit → lang werden. `starts_with("time_use")` wählt alle Aktivitäten aus, ohne sie einzeln aufzuzählen.
+- `names_to` — Name der neuen Spalte für die Variablennamen.
+- `values_to` — Name der neuen Spalte für die eigentlichen Minutenwerte.
+
+Spalten wie `country`, `world_region` und `gdp` bleiben unverändert — sie werden für jede neue Zeile einfach mitkopiert. So weiß jede Zeile im langen Datensatz weiterhin, zu welchem Land sie gehört.
 
 ### Wörter aus Variablen entfernen mit `str_replace()`
 
+Nach `pivot_longer()` stehen in der Spalte `kategorie` noch die **ursprünglichen Spaltennamen** — also z. B. `"time_use_paid_work"` statt `"paid_work"`. Für Plots und Interpretationen sind die kürzeren Namen leichter lesbar.
+
+`str_replace()` ersetzt **Teile eines Textes** in einer Spalte. Du sagst R: „Suche diesen Text — und tausche ihn gegen etwas anderes aus."
+
+Die Grundidee in drei Argumenten:
+
+```r
+str_replace(text, "was_raus_soll", "was_stattdessen_reinkommt")
+```
+
+1. **text** — die Spalte (oder ein einzelner Text), die du bearbeiten willst  
+2. **"was_raus_soll"** — der Teil, den du finden und ersetzen willst  
+3. **"was_stattdessen_reinkommt"** — der neue Text; `""` (leerer Text) bedeutet: einfach löschen
+
+**Einfaches Beispiel:** Stell dir vor, du hast eine Spalte `gruß`:
+
+| gruß |
+|------|
+| Hallo Welt |
+| Hallo R |
+| Hallo Daten |
+
+Du willst das Wort `"Hallo "` entfernen:
+
+```r
+gruß_tabelle |>
+  mutate(gruß_kurz = str_replace(gruß, "Hallo ", ""))
+```
+
+| gruß | gruß_kurz |
+|------|-----------|
+| Hallo Welt | Welt |
+| Hallo R | R |
+| Hallo Daten | Daten |
+
+`str_replace()` arbeitet **Zeile für Zeile** durch die Spalte.
+
+**In unseren Session-Daten** sieht das nach `pivot_longer()` so aus:
+
+| kategorie (vorher) | kategorie (nachher) |
+|--------------------|---------------------|
+| time_use_paid_work | paid_work |
+| time_use_sleep | sleep |
+| time_use_sports | sports |
+| time_use_friends | friends |
+
+Der gemeinsame Anfang `"time_use_"` kommt in jeder Zeile vor — den ersetzen wir durch nichts:
+
+```r
+time_use_daten_long <- time_use_daten_corrected |>
+  pivot_longer(
+    cols = starts_with("time_use"),
+    names_to = "kategorie",
+    values_to = "minuten"
+  ) |>
+  mutate(kategorie = str_replace(kategorie, "time_use_", ""))
+```
+
+- `mutate(...)` erzeugt (oder überschreibt) die Spalte `kategorie`.
+- `"time_use_"` ist exakt der Text, den du entfernen willst — inklusive des Unterstrichs am Ende.
+- `""` heißt: an dieser Stelle nichts einfügen; der Rest des Namens bleibt stehen.
+
+> **Kleiner Tipp:** Achte auf exakte Schreibweise. `"time_use_"` ist nicht dasselbe wie `"Time_use_"`. Wenn das Muster nicht passt, bleibt der Text unverändert.
 
 ### Deine Aufgaben
 
 Schreibe den Code zum Datenaufbereitungsschritt in **b)** in den Abschnitt **Ü2** in `scripts/session_08_data_wrangling.r`, und die Analyseschritte in **a)**, **b)** und **c)** in `scripts/session_08_analysis.r`. 
 
-**a)** Schaue dir Zusammenfassungen aller `time_use`-Variablen an. In welchen drei Bereichen wird fällt am meisten Zeit an?
+**a)** Schaue dir Zusammenfassungen aller `time_use`-Variablen an. In welchen drei Bereichen fällt am meisten Zeit an?
 
 
-**b)** Wir wollen im nächsten Schritt unaufwändig viele Plots für die verschiedenen `time_use`-Variablen erstellen. Dafür müssen wir den Datensatz umformen. Nutze `pivot_longer` auf alle `time_use`-Variablen. Gebe der Variablen-Spalte den Namen `kategorie` und der Werte-Spalte den Namen `minuten`. Dann 
- `time_use_daten_long`. Denke daran, als Ausgangspunkt `time_use_daten_corrected` zu nutzen. 
+**b)** Wir wollen im nächsten Schritt mit wenig Aufwand viele Plots erstellen; einen für jede `time_use`-Variable. Dafür müssen wir den Datensatz umformen. Nutze `pivot_longer` auf alle `time_use`-Variablen. Gebe der Variablen-Spalte den Namen `kategorie` und der Werte-Spalte den Namen `minuten`. Entferne dann aus der `kategorie`-Spalte den Präfix `time_use` aus allen Zeilen, indem du `mutate()` und `str_replace()` einsetzt. Weise das Ergebnis dem Objekt `time_use_daten_long` zu. Denke daran, als Ausgangspunkt `time_use_daten_corrected` zu nutzen. 
 
-**c)** Erstelle einen Dichte-Plot für jede `time_use`-Variable mit nur einer Pipeline. Nutze dazu `facet_wrap` und füge das Argument `scales = "free"` hinzu, damit die Plots leichter zu interpretieren sind. Füge dem Plot außerdem einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen hinzu. Schreibe ein paar Sätze Interpretation:
+**c)** Erstelle einen Dichte-Plot für jede `time_use`-Variable mit nur einer Pipeline. Nutze dazu `facet_wrap` und füge das Argument `scales = "free"` hinzu, damit die Plots leichter zu interpretieren sind. Füge dem Plot außerdem einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen hinzu. Füge den Plot dem Objekt `time_use_density_plots` zu. 
+Schreibe ein paar Sätze Interpretation:
 - Für welche Aktivitäten wird am meisten/am wenigsten Zeit aufgewändet?
 - Welche verschiedenen Arten von Verteilungen sehen wir?
 (Beachte, dass die Achsen nicht die gleichen Skalierungen aufweisen!)
@@ -203,13 +373,19 @@ Schreibe den Code zum Datenaufbereitungsschritt in **b)** in den Abschnitt **Ü2
 
 **Ü2 a**
 
-- Nutze `select(starts_with("time_use")) |> summary()`. Die Mittelwerte zeigen dir schnell, wo die meiste Zeit anfällt.
+- Nutze `select(starts_with("time_use"))` und `summary()`. Die Mittelwerte zeigen dir schnell, wo die meiste Zeit anfällt.
 
 **Ü2 b**
 
 - Das `cols`-Argument von `pivot_longer()` akzeptiert Selektions-Helfer wie `starts_with("time_use")`.
 - Vergiss nicht, anschließend mit `mutate(kategorie = str_replace(kategorie, "time_use_", ""))` den Präfix aus den Kategorienamen zu entfernen.
-- Denke daran, als Ausgangspunkt `time_use_daten_corrected` (nicht `time_use_daten`) zu nutzen.
+
+**Ü2 c**
+
+- Ausgangspunkt ist `time_use_daten_long` aus b). Auf der x-Achse kommt `minuten`, auf der y-Achse brauchst du keine Variable — `geom_density()` berechnet die Dichte selbst.
+- `facet_wrap(~kategorie, ...)` erzeugt ein kleines Panel pro Aktivität. `scales = "free"` sorgt dafür, dass jede y-Achse ihre eigene Skala bekommt. Das ist wichtig, weil z.B. Schlaf und Sport sehr unterschiedliche Größenordnungen haben.
+- Titel, Untertitel und Achsenbeschriftungen fügst du mit `labs()` am Ende der Pipeline hinzu. Weise die gesamte Pipeline dem Objekt `time_use_density_plots` zu.
+- Bei der Interpretation: Schau dir die **Mittelwerte** aus a) und die **Form** der Kurven in den Panels an — wo liegen die meisten Länder, und sehen die Verteilungen ähnlich aus (glockig, schief, mit Ausreißern)?
 
 </details>
 
@@ -234,7 +410,7 @@ time_use_daten_long <- time_use_daten_corrected |>
 
 
 # Ü2 c     
-time_use_daten_long |>
+time_use_density_plots <- time_use_daten_long |>
   ggplot(aes(x = minuten)) +
   geom_density() +
   facet_wrap(~kategorie, scales = "free") +
@@ -247,7 +423,8 @@ time_use_daten_long |>
 
 # Am meisten Zeit wird für Schlaf und Arbeiten aufgewandt. 
 # Am wenigsten Zeit wird für Sport, Events und Shopping aufgewandt.
-# Einige Verteilung sind annähernd normal, andere sind leicht links- bzw. rechtsschief. Manche zeigen ein paar Ausreißerfälle, wie z.B. Personal care und Events.
+# Einige Verteilung sind annähernd normal, andere sind leicht links- bzw. rechtsschief. 
+# Manche zeigen ein paar Ausreißerfälle, wie z.B. Personal care und Events.
 
 ```
 
@@ -263,23 +440,21 @@ time_use_daten_long |>
 
 ### Ziel
 
-Du erstellst eine Heatmap, die die Zeitnutzung aller Länder auf einen Blick vergleichbar macht — eine Kachel pro Land und Aktivitätskategorie, eingefärbt nach Minutenzahl. Dabei lernst du `geom_tile()` kennen und übst, Achsenbeschriftungen und Variablen-Reihenfolge gezielt anzupassen.
+Manchmal wollen wir viele Beobachtungen (hier: Ländern) und anhand vieler Variablen vergleichen. Viele Plots sind dafür eher ungeeignet, und Tabellen sind eher unübersichtlich. Eine Plot-Art, die für solche Vergleiche gut geeignet ist: Heatmaps. In dieser Übung lernst du Heatmaps kennen und erstellst eine Heatmap, die die Zeitnutzung aller Länder auf einen Blick vergleichbar macht. Das geht mit `geom_tile()`. Du lernst diesen `ggplot()`-Befehl kennen und übst, Achsenbeschriftungen und Variablen-Reihenfolge gezielt anzupassen.
 
-### Was ist neu? — Heatmaps mit `geom_tile()`
+### Heatmaps mit `geom_tile()`
 
-Eine **Heatmap** zeigt Werte als eingefärbte Kacheln in einem Raster — eine Zeile pro Einheit (z. B. Land), eine Spalte pro Kategorie (z. B. Aktivität). Je heller oder dunkler die Kachel, desto größer oder kleiner der Wert. Das erlaubt es, viele Einheiten und viele Variablen auf einmal zu vergleichen, ohne dutzende einzelne Balkendiagramme zu benötigen.
+Eine **Heatmap** zeigt Werte als eingefärbte Kacheln in einem Raster — eine Zeile pro Einheit (z. B. Land), eine Spalte pro Kategorie (z. B. Aktivität), oder umgekehrt. Je heller oder dunkler die Kachel, desto größer oder kleiner der Wert. Das erlaubt es, viele Einheiten und viele Variablen auf einmal zu vergleichen, ohne dutzende Balkendiagramme zu benötigen.
 
-In ggplot2 erstellt man Heatmaps mit `geom_tile()`. Das Mapping braucht drei aesthetics:
+In ggplot2 erstellt man Heatmaps mit `geom_tile()`. Das Mapping braucht drei Aesthetics:
 
 ```r
-ggplot(aes(x = country, y = kategorie, fill = minuten)) +
+ggplot(aes(x = [VARIABLE 1], y = [VARIABLE 2], fill = [VARIABLE MIT WERTEN])) +
   geom_tile()
 ```
 
 - `x` und `y` legen fest, welche Variable auf welcher Achse steht.
-- `fill` bestimmt die Farbe der einzelnen Kacheln — das ist der Wert, den du darstellen willst.
-
-Mit `coord_flip()` tauscht du die Achsen: Die Länder landen dann auf der y-Achse, sodass ihre Namen vertikal lesbar werden.
+- `fill` ist der Wert, den du darstellen willst. Er bestimmt die Farbe der einzelnen Kacheln.
 
 **Wie interpretiert man eine Heatmap?**
 
@@ -289,10 +464,9 @@ Mit `coord_flip()` tauscht du die Achsen: Die Länder landen dann auf der y-Achs
 
 ### Deine Aufgaben
 
+**a)** Erstelle eine Heatmap mit `geom_tile()`. `country` sollte auf die x-Achse, `kategorie` auf die y-Achse. Die Kategorien `sleep` und `paid_work` vereinen mit Abstand am meisten Zeitnutzung auf sich. Dadurch sind Differenzierungen beim Rest in der Grafik nicht mehr so gut zu sehen. Filtere diese beiden Kategorien aus der `kategorie`-Spalte heraus, indem einen `filter()`-Befehl am Anfang der Pipeline hinzufügst und darin `!=` benutzt.
 
-**a)** Erstelle eine Heatmap mit `geom_tile()`. Die Kategorien `sleep` und `paid_work` vereinen mit Abstand am meisten Zeitnutzung auf sich. Dadurch sind Differenzierungen beim Rest in der Grafik nicht mehr so gut zu sehen. Filtere diese beiden Kategorien aus der `kategorie`-Spalte heraus, indem einen `filter()`-Befehl am Anfang der Pipeline hinzufügst und darin `!=` benutzt.
-
-**b)** Sortiere die `kategorie`-Variable nach den Werten in `minuten`, damit die Kategorien mit den geringsten Werten links landen und der Rest nach aufsteigenden Werten sortiert ist. Das erleichtert die Interpretation. Die kannst hierfür `fct_reorder()` auf die Spalte `kategorie` innerhalb des `aes()`-Befhels anwenden. Das sollte so aussehen: `aes(x = ..., y = fct_reorder(..., minuten))`. Weise den Plot dem Objekt `time_use_heatmap` zu.
+**b)** Sortiere die `kategorie`-Variable nach den Werten in `minuten`, damit die Kategorien mit den geringsten Werten links landen und der Rest nach aufsteigenden Werten sortiert ist. Das erleichtert die Interpretation. Du kannst hierfür `fct_reorder()` auf die Spalte `kategorie` innerhalb des `aes()`-Befehls anwenden. Das sollte so aussehen: `aes(x = fct_reorder(..., minuten), y = ...)`. Weise den Plot dem Objekt `time_use_heatmap` zu.
 
 **c)** Erweitere den Plot `time_use_heatmap` wie folgt: Die Labels der verschiedenen `time_use`-Kategorien sind kaum lesbar. Du kannst das ändern, indem du die Labels um 45 Grad drehst. Dazu fügst du dem Plot einen `theme()`-Befehl hinzu, innerhalb dessen du die X-Achse ansteuerst und dort den Winkel der Labels anpasst: `axis.text.x = element_text(angle = 45, hjust = 1)`. Füge außerdem mit `labs()` einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen hinzu. Weise den erweiterten Plot dem Objekt `time_use_heatmap_angled` zu.
 
@@ -305,12 +479,12 @@ Mit `coord_flip()` tauscht du die Achsen: Die Länder landen dann auf der y-Achs
 
 **Ü3 a**
 
-- Für `geom_tile()` brauchst du drei aesthetics: `x = country`, `y = kategorie`, `fill = minuten`. Füge `coord_flip()` hinzu, damit die langen Ländernamen lesbar werden.
-- Die beiden ausgeschlossenen Kategorien in `time_use_daten_long` heißen `"sleep"` und `"paid_work"` (der Präfix wurde in Ü2 b entfernt).
+- Für `geom_tile()` brauchst du drei aesthetics: `x = country`, `y = kategorie`, `fill = minuten`.
+- Die beiden ausgeschlossenen Kategorien in `time_use_daten_long` heißen `"sleep"` und `"paid_work"` (der Präfix wurde in Ü2 b entfernt). Um die Farben besser unterscheiden zu können, füge dem Plot den Befehl `scale_fill_viridis(name="Minuten/Tag",option ="C")` hinzu.
 
 **Ü3 b**
 
-- `fct_reorder(kategorie, minuten)` sortiert die Faktorebenen nach dem Mittelwert von `minuten` — also nach der durchschnittlichen Zeit pro Kategorie. Setze das direkt im `aes(y = ...)` argument ein.
+- `fct_reorder(kategorie, minuten)` sortiert die Faktorebenen nach dem Mittelwert von `minuten` — also nach der durchschnittlichen Zeit pro Kategorie. Setze das direkt im `aes(x = ...)`-Argument ein.
 
 **Ü3 c**
 
@@ -332,16 +506,16 @@ Mit `coord_flip()` tauscht du die Achsen: Die Länder landen dann auf der y-Achs
 # Ü3 a
 time_use_daten_long |>
   filter(kategorie != "sleep", kategorie != "paid_work") |>
-  ggplot(aes(x = country, y = kategorie, fill = minuten)) +
+  ggplot(aes(x = kategorie, y = country, fill = minuten)) +
   geom_tile() +
-  coord_flip()
+  scale_fill_viridis(name="Hrly Temps C",option ="C")
 
 # Ü3 b
 time_use_heatmap <- time_use_daten_long |>
   filter(kategorie != "sleep", kategorie != "paid_work") |>
-  ggplot(aes(x = country, y = fct_reorder(kategorie, minuten), fill = minuten)) +
+  ggplot(aes(x = fct_reorder(kategorie, minuten), y = country, fill = minuten)) +
   geom_tile() +
-  coord_flip()
+  scale_fill_viridis(name="Hrly Temps C",option ="C")
 
 # Ü3 c
 time_use_heatmap_angled <- time_use_heatmap +
@@ -349,8 +523,8 @@ time_use_heatmap_angled <- time_use_heatmap +
   labs(
     title = "Zeitnutzung im Ländervergleich",
     subtitle = "Minuten pro Tag, 2013 (ohne Schlaf und bezahlte Arbeit)",
-    x = "Land",
-    y = "Aktivität",
+    y = "Land",
+    x = "Aktivität",
     fill = "Minuten/Tag"
   )
 
@@ -375,10 +549,10 @@ time_use_heatmap_angled <- time_use_heatmap +
 
 ### Ziel
 
-Du erforschst, wie sich die jährlichen Arbeitsstunden in verschiedenen Ländern über die Zeit verändert haben. Dabei lernst du, ggplot-Themes anzuwenden um das visuelle Erscheinungsbild von Plots zu steuern, und `gghighlight` zu nutzen, um bestimmte Länder oder Regionen hervorzuheben.
+Du erforschst in dieser Übung, wie sich die jährlichen Arbeitsstunden in verschiedenen Ländern über die Zeit verändert haben. Dabei lernst du `ggplot()`-Themes kennen und anzuwenden, um das visuelle Erscheinungsbild von Plots zu steuern. Außerdem lernst du `gghighlight()` kennen, was dir hilft, bestimmte Beobachtungen (bei uns: Länder) oder Gruppen (bei uns: Regionen) hervorzuheben.
 
 
-### Was ist neu? — ggplot-Themes und `gghighlight`
+### `ggplot()`-Themes
 
 **ggplot-Themes** steuern das visuelle Erscheinungsbild eines Plots: Hintergrundfarbe, Gitternetzlinien, Schriftgrößen und mehr. Du hängst sie wie eine weitere Ebene mit `+` an:
 
@@ -388,34 +562,30 @@ plot + theme_minimal()  # Weißer Hintergrund ohne Rahmen — minimalistisch
 plot + theme_ipsum()    # Aus dem hrbrthemes-Paket — typografisch ansprechend
 ```
 
-Das Paket `hrbrthemes` muss einmalig installiert werden: `install.packages("hrbrthemes")`.
+Gehe sicher, dass du das Paket `hrbrthemes` installiert und geladen hast (siehe [Neue Werkzeuge](#neue-werkzeuge)).
 
-**`gghighlight`** hebt ausgewählte Datenpunkte oder Linien hervor und graut den Rest dezent ab — ohne ihn zu entfernen. Das ist besonders nützlich, wenn ein Plot viele Linien enthält und du einzelne hervorheben möchtest:
+### Aspekte in Plots hervorheben: `gghighlight()`
+
+**`gghighlight`** hebt ausgewählte Datenpunkte oder Linien hervor und graut den Rest dezent ab, ohne ihn zu entfernen. Das ist besonders nützlich, wenn ein Plot viele Linien enthält und du einzelne hervorheben möchtest:
 
 ```r
 plot + gghighlight(country == "Germany")
 plot + gghighlight(country %in% c("Germany", "France", "Japan"))
 ```
 
-Das Paket muss einmalig installiert werden: `install.packages("gghighlight")`.
-
-### Aspekte in Plots hervorheben: `gghighlight()`
-
+Gehe sicher, dass du das Paket `gghighlight` installiert und geladen hast (siehe [Neue Werkzeuge](#neue-werkzeuge)).
 
 ### Deine Aufgaben
 
+**a)** Erstelle einen Linienplot der jährlichen Arbeitsstunden (`annual_working_hours`) über die Zeit für alle Länder. Färbe die Linien nach `country` ein und filtere vorher fehlende Werte auf `annual_working_hours` heraus. Benutze dafür den Basis-datensatz `owid_daten`, da wir jetzt uns nicht nur auf das Jahr 2013 beziehen wollen. Weise den Plot dem Objekt `annual_wh_base` zu.
 
-**a)** Erstelle einen Linienplot (`geom_line()`) der jährlichen Arbeitsstunden (`annual_working_hours`) über die Zeit (`year`) für alle Länder. Fäbe die Linien nach `country` ein und filtere vorher fehlende Werte auf `annual_working_hours` heraus. Weise den Plot dem Objekt `annual_wh_base` zu.
+**b)** Erweitere `annual_wh_base` um das Theme `theme_bw()`.  Dann erweitere `annual_wh_base` um das Theme `theme_ipsum()`. Entscheide dich für eines der Themes und weise füge den Code in dein Skript ein. Weise den Plot dem Objekt `annual_wh_theme` zu. Nutze in den nächsten Schritten diesen Plot. 
 
-**b)** Erweitere `annual_wh_base` um das Theme `theme_bw()`. Weise das Ergebnis dem Objekt `annual_wh_theme_bw` zu. Was fällt dir an der Lesbarkeit des Plots auf, wenn so viele Länder gleichzeitig dargestellt werden?
+**c)** Was fällt dir an der Lesbarkeit des Plots auf, wenn so viele Länder gleichzeitig dargestellt werden? Füge deinem Plot folgenden Code an und schaue, was passiert: `gghighlight(country %in% c("United States", "Germany", "Spain", "France", "United Kingdom"))`
 
-**c)** Entscheide dich für das Theme `bw` oder `ipsum` und nutze in der Folge den entsprechenden Plot. Installiere das `hrbrthemes`-Paket mit `install.packages("hrbrthemes")`. Tippe den Befehl nur einmal in der Konsole ein und drücke ENTER; der Befehl solle in keinem der Skripts landen. Nachdem das Paket installiert ist, musst du es noch mit `library()` aktivieren. Schreibe den Befehl in das `session_08_analysis.R`-Skript, damit er jedes Mal am Anfang ausgeführt wird. Füre ihn dann einmal aus, damit das Paket direkt geladen ist.
+**d)** Entscheide dich für einen eigenen Satz an Ländern, die du gerne hervorheben möchtest. Wenn du nochmal die Liste der Länder oder ihre Schreibweise brauchst, schau in Übung 1d nach. Erstelle einen Plot, der diese Länder hervorhebt und weise ihn dem Objekt `annual_wh_highlight_own` zu.
 
-**d)** Installiere und lade das `gghighlight`-Paket. Gehe so vor wie eben: Erst per Konsole installieren, dann Lade-Befehl ins Skript einfügen und einmal ausführen.
-
-**e)** Entscheide dich für einen eigenen Satz an Ländern, die du gerne hervorheben möchtest. Wenn du nochmal die Liste der Länder oder ihre Schreibweise brauchst, schau in Übung 1d nach. Erstelle einen Plot, der diese Länder hervorhebt und weise ihn dem Objekt `annual_wh_highlight_own` zu.
-
-**f)** Gruppiere die Daten nach Weltregion, indem du im `aes()`-Befehl `color = world_region` setzt und `geom_smooth(se = FALSE)` statt `geom_line()` verwendest. Du kannst hier nicht das vorhandene Plot-Objekt verwenden. Nutze daher den Code, mit dem du das erste Objekt generiert hast, als Ausgangspunkt, plus dein präferiertes Theme. Füge außerdem einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen hinzu. Weise den neuen Plot dem Objekt `annual_wh_grouped` zu.
+**e)** Gruppiere die Daten nach Weltregion, indem du im `aes()`-Befehl `color = world_region` setzt und `geom_smooth(se = FALSE)` statt `geom_line()` verwendest. Du kannst hier nicht das vorhandene Plot-Objekt verwenden. Nutze daher den Code, mit dem du das erste Objekt generiert hast, als Ausgangspunkt, plus dein präferiertes Theme. Füge außerdem einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen hinzu. Weise den neuen Plot dem Objekt `annual_wh_grouped` zu.
 
 
 <br>
@@ -430,23 +600,18 @@ Das Paket muss einmalig installiert werden: `install.packages("gghighlight")`.
 
 **Ü4 b**
 
-- Hänge `theme_bw()` mit `+` an das gespeicherte Objekt `annual_wh_base` an.
+- Hänge `theme_bw()` mit `+` an das gespeicherte Objekt `annual_wh_base` an. Das gleiche kannst du mit `theme_ipsum()` machen.
 
 **Ü4 c**
 
-- Installiere `hrbrthemes` einmalig in der Konsole mit `install.packages("hrbrthemes")`, dann lade es mit `library(hrbrthemes)` im Skript.
-- `theme_ipsum()` funktioniert wie jedes andere Theme: einfach mit `+` anhängen.
+- `gghighlight()` hängst du mit `+` an ein bestehendes Plot-Objekt.
+- Im Argument gibst du eine logische Bedingung an: `gghighlight(country %in% c("Germany", ...))`.
 
 **Ü4 d**
 
-- Installiere `gghighlight` einmalig in der Konsole, dann lade es im Skript. `gghighlight()` hängst du mit `+` an ein bestehendes Plot-Objekt.
-- Im Argument gibst du eine logische Bedingung an: `gghighlight(country %in% c("Germany", ...))`.
-
-**Ü4 e**
-
 - Die vollständige Liste der verfügbaren Länder findest du mit `owid_daten |> filter(!is.na(annual_working_hours)) |> pull(country) |> unique()` — oder schau in Ü1 d nach.
 
-**Ü4 f**
+**Ü4 e**
 
 - Verwende `geom_smooth(se = FALSE)` statt `geom_line()` — das glättet die Daten und zeigt einen Trend pro Region, ohne das Zickzack-Problem vieler Länder-Linien.
 - Filtere mit `!is.na(world_region)`, damit Länder ohne Regionen-Zuordnung nicht stören.
@@ -470,19 +635,20 @@ annual_wh_base <- owid_daten |>
 annual_wh_theme_bw <- annual_wh_base +
   theme_bw()
 
-# Ü4 c
+# ODER
+
 annual_wh_theme_ipsum <- annual_wh_base +
   theme_ipsum()
 
-# Ü4 d
+# Ü4 c
 annual_wh_highlight <- annual_wh_theme_ipsum +
   gghighlight(country %in% c("United States", "Germany", "Spain", "France", "United Kingdom"))
 
-# Ü4 e
+# Ü4 d
 annual_wh_highlight_own <- annual_wh_theme_ipsum +
   gghighlight(country %in% c("Finland", "Sweden", "Iceland", "Estonia", "Latvia"))
 
-# Ü4 f
+# Ü4 e
 annual_wh_grouped <- owid_daten |>
   filter(!is.na(annual_working_hours), !is.na(world_region)) |>
   ggplot(aes(x = year, y = annual_working_hours, color = world_region)) +
@@ -510,11 +676,15 @@ annual_wh_grouped <- owid_daten |>
 
 ### Ziel
 
-Du untersuchst, ob wohlhabendere Länder mehr oder weniger Zeit für bestimmte Aktivitäten aufwenden. Eine Grafik mit `facet_wrap()` erlaubt es, diesen Zusammenhang für alle Zeitnutzungs-Kategorien gleichzeitig darzustellen.
+Wenden wohlhabendere Länder mehr oder weniger Zeit für bestimmte Aktivitäten auf? Eine Grafik mit `facet_wrap()` erlaubt es, diesen Zusammenhang für alle Zeitnutzungs-Kategorien gleichzeitig darzustellen.
 
 ### Deine Aufgaben
 
-**a)** Erstelle ein Streudiagramm, das pro `time_use`-Kategorie den Zusammenhang zwischen `gdp` und `minuten` zeigt. Nutze `geom_point()` und füge mit `geom_smooth(method = "lm", se = FALSE)` eine lineare Trendlinie hinzu. Verwende `facet_wrap(~kategorie, scales = "free")`, damit jede Kategorie ein eigenes Panel mit eigener Skala bekommt. Füge dem Plot außerdem einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen hinzu.
+**a)** Erstelle ein Streudiagramm, das pro `time_use`-Kategorie den Zusammenhang zwischen `gdp` und `minuten` zeigt. Nutze `geom_point()` und füge mit `geom_smooth(method = "lm", se = FALSE)` eine lineare Trendlinie hinzu. Verwende `facet_wrap(~kategorie, scales = "free")`, damit jede Kategorie ein eigenes Panel mit eigener Skala bekommt. Weise den Plot dem Objekt `time_use_lm_base` zu.
+
+**b)** Füge dem Plot einen Titel, einen Untertitel und sinnvolle Achsenbeschriftungen, sowie ein Theme deiner Wahl hinzu. Weise den Plot dem Objekt `time_use_lm_annotated` zu.
+
+**c)** Interpretiere die Plots in ein paar Sätzen.
 
 <br>
 
@@ -527,6 +697,18 @@ Du untersuchst, ob wohlhabendere Länder mehr oder weniger Zeit für bestimmte A
 - `facet_wrap(~kategorie, scales = "free")` erstellt ein eigenes Panel pro Kategorie. `scales = "free"` ist wichtig, weil die Zeitspannen der Kategorien sehr unterschiedlich sind.
 - `geom_smooth(method = "lm", se = FALSE)` fügt eine lineare Trendlinie hinzu, ohne das Konfidenzband anzuzeigen.
 
+**Ü5 b**
+
+- Du musst die Pipeline aus a) nicht wiederholen — hänge `labs()` und ein Theme mit `+` an das gespeicherte Objekt `time_use_lm_base` an.
+- `labs()` setzt Titel, Untertitel und Achsenbeschriftungen. Denk daran: x = BIP, y = Minuten, und der Titel sollte den Plot allgemein beschreiben (Zeitnutzung und wirtschaftliche Entwicklung).
+- Ein Theme wie `theme_bw()` oder `theme_minimal()` hängst du ebenfalls mit `+` an. Probiere aus, welches dir besser gefällt.
+
+**Ü5 c**
+
+- Gehe Panel für Panel durch: Steigt die Trendlinie, fällt sie, oder liegt sie fast flach? Das sagt dir die Richtung des Zusammenhangs pro Kategorie.
+- Fasse ähnliche Muster zusammen — z. B. Kategorien, bei denen mehr BIP mit mehr Zeit einhergeht, und Kategorien, bei denen es umgekehrt ist.
+- Formuliere in ganzen Sätzen und beziehe dich auf konkrete Kategorien aus dem Plot, nicht nur auf „positive" oder „negative Korrelation".
+
 </details>
 
 <br>
@@ -537,12 +719,14 @@ Du untersuchst, ob wohlhabendere Länder mehr oder weniger Zeit für bestimmte A
 ```r
 
 # Ü5 a
-
-time_use_daten_long |>
+time_use_lm_base <- time_use_daten_long |>
   ggplot(aes(x = gdp, y = minuten)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
-  facet_wrap(~kategorie, scales = "free") +
+  facet_wrap(~kategorie, scales = "free") 
+  
+# Ü5 b
+time_use_lm_annotated <- time_use_lm_base +
   theme_bw() +
   labs(
     title = "Zeitnutzung und wirtschaftliche Entwicklung",
@@ -550,6 +734,12 @@ time_use_daten_long |>
     x = "BIP pro Kopf (USD)",
     y = "Minuten pro Tag"
   )
+
+# Ü5 c
+# Mit steigendem BIP/Kopf steigt im Durchschnitt der Zeitaufwand für `education`, `events`, `other`, `shopping`, `sports` und `volunteering`.
+# Mit steigendem BIP/Kopf sinkt im Durchschnitt der Zeitaufwand für `housework`, `paid_work`, und `sleep`.
+# BIP/Kopf hängt nur sehr schwach oder gar nicht zusammen mit Zeitaufwand in `care`, `eating_drinking`, `friends`, `personal_care` und `tv_radio`.
+# Insgesamt betrachtet scheinen Menschen in Ländern mit höherem BIP mehr Zeit für Freizeitaktivitäten zur Verfügung zu haben.
 
 ```
 
@@ -566,33 +756,33 @@ time_use_daten_long |>
 
 ### Ziel
 
-Gut geschriebener Code ist leichter zu lesen, zu verstehen und zu warten — für andere, aber vor allem für dich selbst in drei Monaten. Du lernst die wichtigsten Prinzipien lesbaren R-Codes und wendest das Paket `styler` an, um deinen Code automatisch zu formatieren.
+Gut geschriebener Code ist leichter zu lesen, zu verstehen und zu warten. Das gilt für andere, aber vor allem für dich selbst in drei Wochen oder in drei Monaten. In dieser Übung schauen wir uns kurz die wichtigsten Prinzipien lesbaren R-Codes an und lernen das `styler`-Paket kennen, mit dessen Hilfe du deinen Code automatisch formatieren kannst.
 
 ### Grundprinzipien für lesbaren Code; `styler`
 
-Der **Tidyverse Style Guide** ist der verbreitete Standard für R-Code in der Datenwissenschaft. Die wichtigsten Regeln auf einen Blick:
+Der **Tidyverse Style Guide** ist ein verbreiteter Standard für R-Code im Umgang mit R. Die wichtigsten Regeln auf einen Blick:
 
 - **Variablen- und Funktionsnamen**: `snake_case` (Kleinbuchstaben, Wörter mit `_` getrennt), z. B. `time_use_daten`, nicht `TimeUseDaten` oder `time.use.daten`
 - **Leerzeichen**: Ein Leerzeichen vor und nach Operatoren wie `<-`, `=`, `+`, `|>`. Kein Leerzeichen vor Klammern.
-- **Zeilenlänge**: Nicht mehr als etwa 80 Zeichen pro Zeile. Lange Pipelines und Funktionsaufrufe über mehrere Zeilen aufteilen.
+- **Zeilenlänge**: Nicht mehr als etwa 80 Zeichen pro Zeile. 
+- **Pipelines**: Jeder Schritt in eine neue Zeile.
 - **Kommentare**: Nur kommentieren, was nicht ohnehin aus dem Code ersichtlich ist. Ein guter Kommentar erklärt das *Warum*, nicht das *Was*.
 
 Das Paket `styler` formatiert deinen Code automatisch nach dem Tidyverse Style Guide:
 
 ```r
-install.packages("styler")  # einmalig in der Konsole
 styler::style_file(here("scripts", "session_08_analysis.r"))
 ```
 
 Alternativ kannst du in RStudio über **Addins → Style active file** das aktive Skript formatieren.
 
+Gehe sicher, dass du das Paket `styler` installiert und geladen hast (siehe [Neue Werkzeuge](#neue-werkzeuge)).
+
 ### Deine Aufgaben
 
-**a)** Installiere `styler` (einmalig in der Konsole). Öffne dann `session_08_analysis.r` und formatiere es per Addin oder per `styler::style_file()`. Schau dir an, was `styler` verändert hat.
+**a)**  Formatiere `session_08_analysis.r` per `style_file()`. Führe diesen Befehl nur in der Konsole aus, schreibe ihn *nicht* in eines der Skripte. Schau dir an, was `styler` verändert hat. Formatiere dann auch `session_08_data_wrangling.R`.
 
-**b)** Gehe das Skript durch und prüfe alle Kommentare: Beschreiben sie nur, was der Code ohnehin tut, oder erklären sie das Warum? Entferne oder verbessere Kommentare, die keinen echten Mehrwert bieten.
-
-**c)** Prüfe alle Variablen- und Objektnamen: Sind sie nach `snake_case` benannt? Sind sie kurz, aber aussagekräftig?
+**b)** Schreibe sinnvollen Kommentar für die Aufgabe Ü1 (im Skript `session_08_data_wrangling.R`).
 
 <br>
 
@@ -601,16 +791,14 @@ Alternativ kannst du in RStudio über **Addins → Style active file** das aktiv
 
 **Ü6 a**
 
-- Installiere `styler` einmalig mit `install.packages("styler")` in der Konsole. In RStudio findest du das Addin dann unter **Addins → Style active file** (oben in der Toolbar).
-- Speichere das Skript vor und nach dem Formatieren und vergleiche die Unterschiede.
+- `style_file()` braucht den **Pfad zur Datei**. Mit `here("scripts", "session_08_analysis.r")` findest du sie relativ zum Projektordner. Gehe nach dem gleichen Schema vor, um das Skript `session_08_data_wrangling.R` zu formattieren.
+- Der Befehl gehört **nur in die Konsole**, nicht ins Skript. Nach dem Ausführen speichert RStudio die Datei oft automatisch 
+- Typische Anpassungen durch `styler`: Leerzeichen um `<-` und `|>`, Pipelines mit einem Schritt pro Zeile, einheitliche Einrückung. Kommentare und Variablennamen lässt `styler` in der Regel unverändert.
+- Alternative in RStudio: **Addins → Style active file** — dafür muss `session_08_analysis.r` gerade geöffnet und aktiv sein.
 
 **Ü6 b**
 
 - Gute Kommentare erklären das *Warum*, nicht das *Was*. Ein Kommentar wie `# Filtere fehlende Werte heraus` ist überflüssig — der Code sagt das selbst. Besser: `# 2013 ist das einzige Jahr mit vollständigen Zeitnutzungsdaten`.
-
-**Ü6 c**
-
-- Suche nach Variablennamen mit Punkten (`.`) oder Großbuchstaben und ersetze sie durch `snake_case`.
 
 </details>
 
@@ -621,9 +809,34 @@ Alternativ kannst du in RStudio über **Addins → Style active file** das aktiv
 
 ```r
 
-# Ü6 a
+# Ü6 a — nur in der Konsole ausführen, nicht ins Skript schreiben
 
+styler::style_file(here("scripts", "session_08_analysis.r"))
+styler::style_file(here("scripts", "session_08_data_wrangling.r"))
 
+# Ü6 b — Beispielkommentare für Ü1 in session_08_data_wrangling.r
+
+# Ü1 — Zeitnutzungsdaten aufbereiten
+# Die OWID-Zeitnutzungsvariablen liegen nur für 2013 vor; danach fehlende
+# Weltregionen korrigieren, damit spätere Analysen nach Region funktionieren.
+
+# Ü1 a — Jahr mit den meisten Datenpunkten ermitteln
+owid_daten |>
+  group_by(year) |>
+  summarize(non_na = sum(!is.na(time_use_paid_work))) |>
+  arrange(desc(non_na))
+
+# Ü1 b — Arbeitsdatensatz: nur 2013, ohne fehlende time_use-Werte
+time_use_daten <- owid_daten |>
+  filter(year == 2013) |>
+  filter(!is.na(time_use_education)) |>
+  select(country, world_region, gdp, starts_with("time_use"))
+
+# Ü1 e — USA, Korea und UK haben keinen world_region-Wert in den Rohdaten. Die entsprechenden Werte werden zugewiesen.
+time_use_daten_corrected <- time_use_daten |>
+  mutate(world_region = if_else(country == "USA", "North America", world_region),
+         world_region = if_else(country == "Korea", "Asia", world_region),
+         world_region = if_else(country == "UK", "Europe", world_region))
 
 ```
 
@@ -639,13 +852,26 @@ Alternativ kannst du in RStudio über **Addins → Style active file** das aktiv
 
 ### Ziel
 
-Du fasst deine Ergebnisse in einem reproduzierbaren RMarkdown-Bericht zusammen. Der Bericht lädt die aufbereiteten Daten per `source()`, zeigt deine finalen Plots mit `echo = FALSE` und enthält deine schriftlichen Interpretationen als Fließtext.
+Füge deine Ergebnisse (Plots und Interpretationen) in einen RMarkdown-Bericht ein. Der Bericht lädt die aufbereiteten Daten per `source()`, zeigt deine finalen Plots und enthält deine schriftlichen Interpretationen als Fließtext.
 
 ### Deine Aufgaben
 
 **a)** Ergänze im **Setup-Chunk** von `session_08_report.Rmd` den `source()`-Aufruf für `session_08_data_wrangling.r`, damit alle aufbereiteten Objekte im Bericht verfügbar sind. Füge außerdem `library()`-Befehle für alle benötigten Pakete hinzu.
 
-**b)** Übertrage deine finalen Plots aus den Skripten in Code-Chunks mit `echo = FALSE`. Schreibe deine Interpretationen als Fließtext zwischen die Chunks. Strukturiere den Bericht mit Markdown-Überschriften (`##`).
+**b)** Übertrage deine finalen Plots aus den Skripten in Code-Chunks. Schreibe deine Interpretationen als Fließtext zwischen die Chunks. Strukturiere den Bericht mit Markdown-Überschriften (`##`). Die Plots und Interpretationen, die du übertragen solltest:
+
+| Übung | Plot-Objekt |
+|-------|-------------|
+| Ü2 | `time_use_density_plots` |
+| Ü3 | `time_use_heatmap_angled` |
+| Ü4 | `annual_wh_highlight_own`, `annual_wh_grouped` |
+| Ü5 | `time_use_lm_annotated` |
+
+| Übung | Aufgabe | Leitfragen |
+|-------|---------|------------|
+| Ü2 | c | Für welche Aktivitäten wird am meisten/am wenigsten Zeit aufgewandt? Welche Arten von Verteilungen sehen wir? |
+| Ü3 | d | Was zeigt die Heatmap? Welche Muster und Ausreißer fallen auf? |
+| Ü5 | c | Wie hängen BIP und Zeitnutzung pro Kategorie zusammen? Steigen oder sinken die Trendlinien? |
 
 **c)** Knitte den Bericht zu HTML.
 
@@ -656,13 +882,12 @@ Du fasst deine Ergebnisse in einem reproduzierbaren RMarkdown-Bericht zusammen. 
 
 **Ü7 a**
 
-- Der `source()`-Aufruf gehört in den Setup-Chunk (der erste Chunk im Rmd, meist mit `include=FALSE`). Der Pfad lautet `source(here("scripts", "session_08_data_wrangling.r"))`.
-- `library(here)` muss **vor** dem `source()`-Aufruf stehen.
+- Der `source()`-Aufruf gehört in den Setup-Chunk (der erste Chunk im Rmd, meist mit `include=FALSE`). Der Pfad lautet `here("scripts", "session_08_data_wrangling.r")`.
+- `library(here)` muss im Setup-Chunk **vor** dem `source()`-Aufruf stehen.
 
 **Ü7 b**
 
-- Verwende für jeden Plot einen eigenen Chunk mit `echo = FALSE`, damit im Bericht nur der Plot erscheint, nicht der Code.
-- Du kannst die Plot-Objekte (z. B. `time_use_heatmap_angled`, `annual_wh_grouped`) direkt im Chunk aufrufen — sie wurden beim Sourcen erzeugt.
+- Kopiere den Code in das Markdown-Dokument, der die finalen Plots erzeugt, aber ohne die Zuweisung zu einem Objekt.
 - Deine Interpretationen aus den R-Kommentaren kannst du als normalen Markdown-Text zwischen die Chunks einfügen.
 
 **Ü7 c**
@@ -680,7 +905,7 @@ Du fasst deine Ergebnisse in einem reproduzierbaren RMarkdown-Bericht zusammen. 
 
 # Ü7 a — Sourcen im Setup-Chunk (nicht als R-Code, sondern im .Rmd)
 # ```{r setup, include=FALSE}
-# knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+# knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 # library(tidyverse)
 # library(here)
 # library(hrbrthemes)
@@ -714,6 +939,11 @@ Diese Aufgaben sind freiwillig und bewusst **weniger angeleitet**. Sie geben dir
 
 **c)** Erstelle ein Streudiagramm des Work-Play-Verhältnisses gegen das BIP. Gibt es einen Zusammenhang?
 
+<br>
+
+<details>
+<summary><strong>Lösung</strong></summary>
+
 ```r
 # Ausgangspunkt:
 time_use_daten_work_play <- time_use_daten |>
@@ -737,7 +967,12 @@ time_use_daten_work_play |>
   geom_point() +
   geom_smooth(method = "lm") +
   theme_bw()
+
 ```
+
+</details>
+
+<br>
 
 ---
 
@@ -745,7 +980,7 @@ time_use_daten_work_play |>
 
 **Analytisches Ziel:** Wie sieht das Zeitnutzungsprofil Deutschlands im internationalen Vergleich aus?
 
-Erstelle ein Profil von Deutschland hinsichtlich der Zeitnutzung. Wo liegt Deutschland im Vergleich zu anderen Ländern? Bei welchen Aktivitäten ist Deutschland auffällig? Nutze `gghighlight(country == "Germany")` oder filtere den Datensatz, um Deutschland hervorzuheben. 
+Erstelle ein Profil von Deutschland hinsichtlich der Zeitnutzung. Wo liegt Deutschland im Vergleich zu anderen Ländern? Bei welchen Aktivitäten ist Deutschland auffällig? 
 
 ---
 

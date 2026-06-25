@@ -1,35 +1,11 @@
 
 ###***************************************************###
 ###***************************************************###
-##### ***SESSION 8 — Time Use*** #####
+##### ***SESSION 8 — ZEITNUTZUNG*** #####
 ###***************************************************###
 ###***************************************************###
 
-
-###*************************************###
-##### ***SETUP — ZUERST AUSFÜHREN!*** #####
-###*************************************###
-
-# Führe diesen gesamten Abschnitt aus, BEVOR du mit den Übungen beginnst.
-# Markiere alle Zeilen bis zur nächsten Sektion und drücke Ctrl+Enter / Cmd+Enter.
-
-
-###******************###
-##### Pakete laden #####
-###******************###
-
-library(tidyverse)
-library(here)
-
-
-###****************************************** ###
-##### Vollständigen OWID-Datensatz laden #####
-###****************************************** ###
-
-# owid_daten wird in den Übungen verwendet.
-# Pfad zur zentralen Datei im Kursrepository (einmal gespeichert, alle Sitzungen):
-# Projekt-Stamm ist dieser Sitzungsordner → zwei Ebenen nach oben zum Repo-Stamm → full_data/
-owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
+source(here("scripts", "session_08_data_wrangling.r"))
 
 
 ###************************* ###
@@ -40,8 +16,56 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 # Ausführliche Anleitungen: README.md im Session-Ordner auf GitHub.
 
 
+###*******************************************###
+##### Ü2 · Beschreibung der Variablen #####
+###*******************************************###
+
+##### a #####
+
+##### c #####
 
 
+###***************************************************###
+##### Ü3 · Breite Vergleiche anstellen mit Heatmaps #####
+###***************************************************###
+
+##### a #####
+
+##### b #####
+
+##### c #####
+
+##### d #####
 
 
+###**************************************************************###
+##### Ü4 · Entwicklung von Arbeitsstunden pro Jahr über die Zeit #####
+###**************************************************************###
 
+##### a #####
+
+##### b #####
+
+##### c #####
+
+##### d #####
+
+##### e #####
+
+
+###***************************************************###
+##### Ü5 · Zusammenhang von Zeitnutzung und BIP #####
+###***************************************************###
+
+##### a #####
+
+##### b #####
+
+##### c #####
+
+
+###***********************************###
+##### Ü6 · Code formatieren #####
+###***********************************###
+
+##### a #####
