@@ -27,7 +27,7 @@
 
 ---
 
-<h2 id="einleitung">Einleitung: XXX</h2>
+<h2 id="einleitung">Einleitung: Zeitnuzung in globaler Perspektive</h2>
 
 **Frage dieser Session:** Wie nutzen Menschen in verschiedenen Ländern ihre Zeit — und hängt das mit wirtschaftlicher Entwicklung zusammen?
 
