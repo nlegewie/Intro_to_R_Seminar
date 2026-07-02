@@ -143,4 +143,4 @@ Wenn du unsicher bist: Nimm **P1** oder **P4**. Beide ergeben einen vollständig
 - [ ] **Mindestens einen** Plot mit `ggplot`
 - [ ] Ausformulierte Analysetexte zu jedem Schritt.
 - [ ] Paragraphen, der die verschiedenen Schritte der Analyse verbinden und für einen Roten Faden sorgen.
-- [ ] Ein **Grenzen-Absatz** (Was kann deine Analyse *nicht* zeigen?)
+- [ ] Ein **Grenzen-Abschnitt** (Was kann deine Analyse *nicht* zeigen?)

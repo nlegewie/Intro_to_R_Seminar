@@ -36,21 +36,6 @@ owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
 ##### ***SCHRITT 1*** #####
 ###*************************###
 
-owid_daten |>
-  filter(!is.na(gini)) |>
-  summarise(
-    n_werte_ges   = n(),
-    jahr_von  = min(year),
-    jahr_bis  = max(year),
-    n_laender = n_distinct(country)
-  )
-
-
-owid_daten |>
-  filter(year >= 2000) |>
-  filter(!is.na(gini), !is.na(life_satisfaction)) |>
-  count(year, name = "laender_mit_beiden") |>
-  arrange(desc(laender_mit_beiden))
 
 
 
