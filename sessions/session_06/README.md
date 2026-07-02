@@ -538,7 +538,7 @@ owid_gender_mutated <- owid_gender |>
 
 # Ü4 c
 
-plot_gdp_gender_gap <– owid_gender_mutated %>% 
+plot_gdp_gender_gap <- owid_gender_mutated %>% 
   ggplot(aes(x = gdp, y = gender_gap, color = world_region)) +
     geom_hline(yintercept = 0, color = "white", linewidth = 3) +
     geom_point(alpha = 0.6, size = 2.5) +
