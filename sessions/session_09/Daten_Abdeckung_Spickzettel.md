@@ -1,14 +1,14 @@
 # Spickzettel: Welche Daten kann ich benutzen?
 
-Nicht jede Variable ist für jede Frage brauchbar. Manche gibt es nur für wenige Länder oder nur für **ein** Jahr. Dieser Spickzettel zeigt dir, **worauf du bauen kannst** – bevor du dich in eine Frage verliebst, die die Daten nicht beantworten können.
+Nicht jede Variable ist für jede Frage brauchbar. Manche gibt es nur für wenige Länder oder nur für **ein** Jahr. Dieser Spickzettel zeigt dir, **worauf du bauen kannst**, bevor du dich in eine Frage verliebst, die die Daten nicht beantworten können.
 
 **Die drei Stufen (Tier):**
 
-- 🟢 **Tier A – gut:** viele Länder, viele Jahre. Ideal für **jede** Reise.
+- 🟢 **Tier A – gut:** viele Länder, viele Jahre. Ideal für jeden Projekttyp.
 - 🟡 **Tier B – ok:** brauchbar, aber prüfe Jahre/Länder genau (oft ~150–210 Länder, manchmal kürzerer Zeitraum).
-- 🔴 **Tier C – dünn:** wenige Länder oder nur ein einziges Jahr. **Nur mit Vorsicht** – für die meisten Reisen nicht geeignet.
+- 🔴 **Tier C – dünn:** wenige Länder oder nur ein einziges Jahr. Für die meisten Projekttypen nicht geeignet.
 
-> **Immer selbst nachprüfen!** Dieser Zettel ist eine Landkarte, kein Ersatz für den Machbarkeits-Check. Nutze `variable_pruefen()` und `abdeckung_pro_jahr()` aus `helper_datencheck.R`.
+> **Immer selbst nachprüfen!** Dieser Zettel ist eine Hilfestellung, kein Ersatz für deine egeinen Machbarkeits-Checks.
 
 ---
 
@@ -32,7 +32,7 @@ Nicht jede Variable ist für jede Frage brauchbar. Manche gibt es nur für wenig
 
 **Bildung:** `primary_enrollment_rate`, `secondary_enrollment_rate`, `tertiary_enrollment_rate`, `edu_spending_gdp`, `edu_spending_total_spending`, `girls_in_primary`/`boys_in_primary`, `girls_in_tertiary`/`boys_in_tertiary` — meist ab ~1970, ~190–210 Länder.
 
-**Wirtschaft & Einkommen:** `gdp` (ab 1990). ⚠️ Die ganze **Einkommens-/Armuts-Familie** — `gini`, `mean_income`, `median_income`, `s80_s20_ratio`, `polarization_income`, `headcount_ratio_*`, `poverty_gap_index_international_povline` — deckt **~160 Länder** ab, aber **nur bis ~2021**, und das **neueste Jahr ist fast leer**. Bestes Fenster: **etwa 2013–2018**.
+**Wirtschaft & Einkommen:** `gdp` (ab 1990). ⚠️ Die ganze **Einkommens-/Armuts-Familie** (`gini`, `mean_income`, `median_income`, `s80_s20_ratio`, `polarization_income`, `headcount_ratio_*`, `poverty_gap_index_international_povline`) deckt **~160 Länder** ab, aber **nur bis ~2021**, und das **neueste Jahr ist fast leer**. Bestes Fenster: **etwa 2013–2018**.
 
 **Gesundheit:** `healthcare_spending_share_of_gdp` (ab 2000), `suicide_rate` (ab 2000), `suicide_rate_male`/`suicide_rate_female` (~115 Länder), `maternal_mortality_ratio`, `maternal_deaths`, `access_to_water` (ab 2000).
 
@@ -58,4 +58,4 @@ Diese Variablen haben **wenige Länder** oder existieren **nur für ein einziges
 1. **Zwei Variablen (J3/J5)?** Beide müssen im **selben Jahr** genug gemeinsame Länder haben → `abdeckung_pro_jahr()`.
 2. **Zeitverlauf (J2)?** Wähle eine Variable mit **langer, lückenarmer** Reihe für **eine** Einheit.
 3. **Neuestes Jahr ≠ bestes Jahr.** Aktuelle Jahre sind oft am leersten. Geh 3–6 Jahre zurück.
-4. **Im Zweifel Tier A.** Wenn dein Thema nur mit Tier C funktioniert, wähle ein anderes Thema – das erspart dir viel Frust.
+4. **Im Zweifel Tier A.** Wenn dein Thema nur mit Tier C funktioniert, wähle ein anderes Thema; das erspart dir viel Frust.
