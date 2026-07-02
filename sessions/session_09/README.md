@@ -1,158 +1,74 @@
-# Session 9 — XXX
+# Session 9 — Von der Idee zur Frage
 
-**Seminar:** Globale Ungleichheit · Wintersemester 2025/26
+Heute beginnt die Vorbereitung auf deine **Abschlussarbeit**. In den nächsten drei Sitzungen bringen wir dich auf die Startbahn:
 
----
+- **Heute (S9):** von einer vagen Idee zu einer **präzisen, machbaren Frage**.
+- **S10:** von der Frage zur **Analyse** (Skripte, Modell, Tabellen).
+- **S11:** von der Analyse zum **Bericht** (RMarkdown, knitten, abgeben).
 
-## Inhaltsverzeichnis
-
-
-
-
----
-
-<h2 id="endprodukt">Dein Endprodukt</h2>
-
-
+Du musst die Arbeit **nicht** in diesen Sitzungen fertigstellen – danach hast du noch rund zwei Monate. Ziel heute ist nur: eine gute Frage, die die Daten auch beantworten können.
 
 ---
 
-<h2 id="wo-du-arbeitest">Wo du arbeitest</h2>
-
-Führe zuerst den **SETUP-Abschnitt** aus — er lädt die nötigen Pakete und den OWID-Datensatz.
-
-Alle Code-Aufgaben bearbeitest du in den folgenden Skripten: `session_09_data_wrangling.r`, `session_09_analysis.r` (beide im `scripts`-Ordner) und `session_09_report.Rmd` im `session_09`-Ordner.\
-
----
-
-<h2 id="einleitung">Einleitung: XXX</h2>
-
+## Was du heute mitnimmst
+- **Eine (oder zwei) Kandidatenfragen** zu deinem Thema aus dem Bereich „Globale Ungleichheiten“.
+- Ein **Machbarkeits-Check**: Gibt es die Daten überhaupt – für genug Länder und Jahre?
+- **Eine gewählte Reise** (J1–J5) aus dem Fragetyp-Katalog.
 
 ---
 
-<h2 id="endprodukt">Dein Endprodukt</h2>
+## Ablauf
+1. **Demo:** Wir verwandeln gemeinsam eine vage Idee („Sind Demokratien gleicher?“) in eine präzise Frage – und sehen, wie der Machbarkeits-Check die Frage formt.
+2. **Katalog:** Überblick über die fünf Reisen.
+3. **Deine Arbeit:** Frage(n) formulieren, Machbarkeit prüfen, Reise wählen.
+4. **Gruppenrunde:** Jede/r stellt die eigene Frage in **einem Satz** vor; die Gruppe hilft, Risiken zu erkennen.
 
 ---
 
-<h2 id="neue-werkzeuge">Neue Werkzeuge dieser Session</h2>
+## Deine Aufgabe (Eigenarbeit)
 
----
+**Schritt 1 — Frage(n) formulieren.**
+Nimm eine Vorlage aus dem `Fragetyp_Katalog.md` und fülle die Lücken mit deinem Thema. Schreib **eine oder zwei** Kandidatenfragen auf.
 
-<h2 id="wo-du-arbeitest">Wo du arbeitest</h2>
-
-In dieser Session vertiefen wir die Trennung von Datenaufbereitungs- und Analyse-Skripten, sowie die Nutzung von RMarkdown als Format für die Erstellung von Berichten. Das heißt, du wirst...
-
-
-
----
-
-<h2 id="aufgaben">Übungen</h2>
-
----
-
-<h3 id="ue1">Ü1 · Datenaufbereitung</h3>
-
-### Ziel
-
-XXX
-
-### Deine Aufgaben
-
-Schreibe den Code in den Abschnitt **Ü1** in `scripts/session_09_data_wrangling.r`.
-
-**a)** 
-
-<br>
-
-<details>
-<summary><strong>Tipps</strong></summary>
-
-**Ü1 a**
-
-
-
-</details>
-
-<br>
-
-<details>
-<summary><strong>Lösung</strong></summary>
-
+**Schritt 2 — Machbarkeit prüfen.** Lade zuerst die Hilfsfunktionen:
 ```r
-# Ü1 a
-
-
-
+source("R/helper_datencheck.R")
+laender <- nur_laender(owid)
 ```
+Dann prüfe deine Variablen:
+```r
+# Eine Variable:
+variable_pruefen(laender, "gini")
 
-</details>
+# Zwei Variablen zusammen (für J3/J5) – welches Jahr hat genug Länder?
+abdeckung_pro_jahr(laender, c("gini", "life_expectancy_birth"), ab_jahr = 2000)
+```
+Nutze den **`Daten_Abdeckung_Spickzettel.md`** als Orientierung.
 
-<br>
+**Schritt 3 — Entscheiden.**
+- Ist die Frage **machbar**? (Genug Länder? Ein Jahr mit guter Abdeckung? Beide Variablen vorhanden?)
+- Welche **Reise** passt (J1–J5)?
+- Welches **Jahr** (oder welchen Zeitraum) nimmst du?
 
-<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
-
----
-
-
-- `join()`: add additional information from earlier year to a cross-section data set.
-- ggplot details, color palettes: scale_colour_brewer(type = "seq", palette = "Spectral"). Color blind palettes. https://www.color-blindness.com/coblis-color-blindness-simulator/
-
-
-# The palette with grey:
-cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
-# The palette with black:
-cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
-# To use for fills, add
-  scale_fill_manual(values=cbPalette)
-
-# To use for line and point colors, add
-  scale_colour_manual(values=cbPalette)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> **Denk an die Demo:** Das *neueste* Jahr ist oft das *leerste*. Geh im Zweifel ein paar Jahre zurück.
 
 ---
 
-<h2 id="abgabe">Abgabe</h2>
+## Hausaufgabe
 
-Wenn du fertig bist:
+Entscheide dich für **eine** Frage und schreib ein **Mini-Exposé (5 Sätze)** ins Starter-Projekt:
+1. Mein Thema ist …
+2. Meine Frage lautet …
+3. Ich nutze Reise … (J1–J5), weil …
+4. Meine Variable(n) und mein Jahr: …
+5. Das ist relevant, weil …
 
-1. Speichere das Skript `scripts/session_07_skript.R`.
-2. Stelle sicher, dass alle fünf Pflicht-Plots im Ordner `output/` gespeichert wurden:
-   - XXX
-
-   **Optional (Bonus-Aufgaben):** Wenn du B-Ü6 oder B-Ü7 bearbeitet hast, kannst du zusätzlich diese Plots speichern — sie sind für die Abgabe nicht verpflichtend:
-   - XXX
-
-3. Reiche auf Learnweb ein:
-   - `scripts/session_07_skript.R`
-   - die Pflicht-Plots aus `output/`
-   - optional: Bonus-Plots, falls du die Bonus-Aufgaben bearbeitet hast
-
-> **Falls etwas nicht klappt:** Lies zuerst die Fehlermeldung, frage deine Buddy-Partner:in oder schau in den [häufigen Fehlern](../../resources/other/common_errors.md) nach.
+Bring das Exposé zu Session 10 mit – dort bauen wir die Analyse dazu.
 
 ---
 
-<p align="right"><a href="#inhaltsverzeichnis"><strong>Zurück zum Inhaltsverzeichnis</strong></a></p>
+## Checkliste zum Feierabend
+- [ ] Ich habe eine Frage, die zu einer Reise (J1–J5) passt.
+- [ ] Ich habe mit `variable_pruefen()` / `abdeckung_pro_jahr()` geprüft, dass die Daten existieren.
+- [ ] Ich weiß, welches **Jahr** (oder welchen Zeitraum) ich nehme.
+- [ ] Mein Mini-Exposé ist geschrieben.
