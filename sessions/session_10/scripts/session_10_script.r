@@ -56,13 +56,12 @@ pruefe_abdeckung_pro_jahr <- function(...) {
 }
 
 
-pruefe_abdeckung_pro_jahr("suicide_rate") %>% 
-  ggplot(aes(x = year, y = n_laender)) +
-  geom_col()
+pruefe_abdeckung_pro_jahr("suicide_rate")
 
 pruefe_abdeckung_pro_jahr("gini", "suicide_rate", "life_satisfaction") %>% 
   ggplot(aes(x = year, y = n_laender)) +
   geom_col()
+
 
 
 ###***************************************************###
@@ -77,6 +76,7 @@ pruefe_abdeckung_pro_jahr("gini", "suicide_rate", "life_satisfaction") %>%
 
 gen_streudiagramm <- function(var_x, var_y) {
   owid_daten |>
+    filter(year == 2017) |>
     filter(!is.na(.data[[var_x]]), !is.na(.data[[var_y]])) |>
     ggplot(aes(x = .data[[var_x]], y = .data[[var_y]])) +
     geom_point(alpha = 0.4) +
@@ -96,6 +96,9 @@ gen_streudiagramm("gdp", "life_expectancy_birth")
 gen_streudiagramm("gdp", "plastic_waste_generation")
 
 gen_streudiagramm("gdp", "one_person_households")
+
+
+gen_streudiagramm("gdp", "land_animals_slaughtered_for_meat")
 
 
 ###*************************************************************###
@@ -122,3 +125,24 @@ alle_plots <- map2(x_variablen, y_variablen, gen_streudiagramm)
 
 # Einzelnen Plot aus der Liste ansehen (z. B. das erste Paar):
 alle_plots[[1]]
+
+
+
+
+
+
+tiere_lm <- lm(land_animals_slaughtered_for_meat ~ gdp + poverty_gap_index_international_povline, data = owid_daten)
+
+tiere_lm_tidy <- tiere_lm |>
+  tidy(conf.int = TRUE)
+
+
+tiere_lm_augmented <- tiere_lm |>
+  augment()
+
+
+tiere_lm_tidy %>% 
+  mutate(p.value = round(p.value, 2))
+
+
+tiere_lm |> predict()
