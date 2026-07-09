@@ -1,0 +1,41 @@
+---
+title: "session_07_report.Rmd"
+author: "Nicolas Legewie"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(broom)
+library(kableExtra)
+
+owid_daten <- read_csv(here("..", "..", "full_data", "owid_data.csv"))
+
+
+
+pruefe_abdeckung_pro_jahr <- function(...) {
+  variablen <- c(...)
+
+  owid_daten |>
+    select(year, all_of(variablen)) |>
+    filter(if_all(all_of(variablen), \(x) !is.na(x))) |>
+    count(year, name = "n_laender") |>
+    arrange(desc(n_laender))
+}
+
+```
+
+
+
+# `kable()` Demo
+
+```{r}
+
+pruefe_abdeckung_pro_jahr("suicide_rate") |>
+  kable()
+
+```
